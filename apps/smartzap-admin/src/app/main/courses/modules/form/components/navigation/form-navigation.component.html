@@ -1,11 +1,11 @@
-<div class="w-96 flex flex-col flex-1 min-h-0">
+<div class="w-96 flex flex-col flex-1 min-h-0 overflow-x-hidden">
   <nav class="flex-1">
     @for (item of navItems; track item.order; let i = $index) {
       <a
         [routerLink]="item.disabled ? null : item.route"
         routerLinkActive="active-item"
         [routerLinkActiveOptions]="{ exact: i === 0 }"
-        class="flex w-96 py-6 px-9 gap-4 item-container"
+        class="flex w-full py-6 px-9 gap-4 item-container"
         [ngClass]="{
           'text-disabled cursor-default': item.disabled,
           'cursor-pointer': !item.disabled,
@@ -28,7 +28,7 @@
 
   <a
     routerLink="/courses"
-    class="flex w-96 py-6 px-9 gap-4 item-container cursor-pointer mt-auto"
+    class="flex w-full py-6 px-9 gap-4 item-container cursor-pointer border-t border-default"
     matRipple
   >
     <div class="w-7 h-7 self-start rounded-full border-2 flex justify-center items-center shrink-0 order-counter">
