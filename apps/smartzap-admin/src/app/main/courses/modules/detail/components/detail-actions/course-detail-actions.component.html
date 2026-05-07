@@ -56,7 +56,7 @@
         {{ 'COURSE.DETAIL.BUTTON.MANAGER' | transloco }}
       </a>
     }
-    @if (reportButtons?.length) {
+    @if (reportButtons?.length && course.status === 'FINISHED') {
       @for (reportButton of reportButtons; track reportButton) {
         <button
           mat-menu-item

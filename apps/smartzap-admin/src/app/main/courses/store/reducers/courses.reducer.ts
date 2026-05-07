@@ -18,6 +18,7 @@ export interface CoursesFilter {
   languages: string[];
   categories: string[];
   statuses: string[];
+  createdByMe: boolean;
 }
 
 export const adapter: EntityAdapter<Course> = createEntityAdapter<Course>();
@@ -35,6 +36,7 @@ export const initialState: State = adapter.getInitialState({
     languages: [],
     categories: [],
     statuses: [],
+    createdByMe: false,
   },
   sort: undefined,
 });

@@ -175,7 +175,7 @@
             }
 
             <!-- Grupo: Relatórios -->
-            @if (reportButtons?.length) {
+            @if (reportButtons?.length && canReport(element)) {
               <div class="px-4 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide select-none">
                 Relatórios
               </div>

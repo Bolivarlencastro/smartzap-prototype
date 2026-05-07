@@ -285,7 +285,7 @@ export class PrototypeAdminStateService {
       total_lessons: 2,
       total_users_enrolled: 124,
       total_users_completed: 91,
-      user_creator: { id: this.userProfile.id },
+      user_creator: { id: this.userProfile.id, name: this.userProfile.name },
     }),
     this.createCourse({
       id: 'course-playbook',
@@ -299,7 +299,7 @@ export class PrototypeAdminStateService {
       total_lessons: 1,
       total_users_enrolled: 86,
       total_users_completed: 30,
-      user_creator: { id: this.userProfile.id },
+      user_creator: { id: this.userProfile.id, name: this.userProfile.name },
     }),
     this.createCourse({
       id: 'course-compliance',
@@ -313,7 +313,7 @@ export class PrototypeAdminStateService {
       total_lessons: 2,
       total_users_enrolled: 210,
       total_users_completed: 177,
-      user_creator: { id: 'external-owner' },
+      user_creator: { id: 'user-marcos', name: 'Marcos Ribeiro' },
     }),
     this.createCourse({
       id: 'course-retention',
@@ -327,7 +327,21 @@ export class PrototypeAdminStateService {
       total_lessons: 1,
       total_users_enrolled: 42,
       total_users_completed: 0,
-      user_creator: { id: this.userProfile.id },
+      user_creator: { id: this.userProfile.id, name: this.userProfile.name },
+    }),
+    this.createCourse({
+      id: 'course-cultura',
+      name: 'Cultura e Valores da Empresa',
+      category_id: 'cat-compliance',
+      description: 'Apresentacao dos principios, missao e visao organizacional.',
+      lang: 'pt-BR',
+      status: 'FINISHED',
+      is_active: true,
+      total_contents: 3,
+      total_lessons: 1,
+      total_users_enrolled: 312,
+      total_users_completed: 289,
+      user_creator: { id: 'user-ana', name: 'Ana Lima' },
     }),
   ];
 
@@ -420,6 +434,7 @@ export class PrototypeAdminStateService {
     const categoryFilter = this.toArray(params['category_id__eq']);
     const languageFilter = this.toArray(params['lang__in']).map((item) => item.toLowerCase());
     const statusFilter = this.toArray(params['status__in']);
+    const creatorId = params['user_creator_id'] ? String(params['user_creator_id']) : null;
 
     if (searchTerm) {
       result = result.filter((course) => course.name.toLowerCase().includes(searchTerm));
@@ -432,6 +447,9 @@ export class PrototypeAdminStateService {
     }
     if (statusFilter.length) {
       result = result.filter((course) => statusFilter.includes(course.status || ''));
+    }
+    if (creatorId) {
+      result = result.filter((course) => course.user_creator?.id === creatorId);
     }
 
     result = this.sortByField(result, String(params['sort'] || '-created'));
@@ -1106,7 +1124,7 @@ export class PrototypeAdminStateService {
       updated: overrides.updated || now,
       holder_image: overrides.holder_image || `https://picsum.photos/seed/${overrides.id}-holder/1200/675`,
       thumb_image: overrides.thumb_image || `https://picsum.photos/seed/${overrides.id}-thumb/600/338`,
-      user_creator: overrides.user_creator || { id: this.userProfile.id },
+      user_creator: overrides.user_creator || { id: this.userProfile.id, name: this.userProfile.name },
       message_description: overrides.message_description,
       category: this.categories.find((category) => category.id === overrides.category_id),
       points: overrides.points,

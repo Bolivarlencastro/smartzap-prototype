@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from '@keeps-platform-frontend-workspace/kp-keeps';
 import { SmartzapAPI } from '@core/api/smartzap.api';
 import { Enrollment, EnrollmentApiResponse } from 'app/main/courses/model';
 import { CollectionApiResponse, CollectionResponse, Page } from 'app/shared/model';
@@ -8,7 +9,10 @@ import { Course, ImageUploadApiResponse, Lesson } from '../model';
 
 @Injectable()
 export class CoursesService {
-  constructor(private _http: SmartzapAPI) {}
+  constructor(
+    private _http: SmartzapAPI,
+    private _authService: AuthService,
+  ) {}
 
   fetchCourses(coursePage: Page, filters?: any, term?: string, sort?: string): Observable<CollectionResponse<Course>> {
     const params: Record<string, string | number> = {
@@ -21,6 +25,7 @@ export class CoursesService {
     if (filters?.categories.length) params['category_id__eq'] = filters.categories;
     if (filters?.languages.length) params['lang__in'] = filters.languages.map((lang) => lang.toLocaleLowerCase());
     if (filters?.statuses.length) params['status__in'] = filters.statuses.join(',');
+    if (filters?.createdByMe && this._authService.userId) params['user_creator_id'] = this._authService.userId;
 
     return this._http.get<CollectionApiResponse<Course>>('/course', params).pipe(
       map((response) => this.applyCourseFilters(response, filters)),

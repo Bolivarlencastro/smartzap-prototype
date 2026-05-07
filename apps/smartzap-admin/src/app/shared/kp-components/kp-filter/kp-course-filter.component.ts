@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -21,6 +22,7 @@ import { CoursesFilter } from '@app/main/courses/store/reducers/courses.reducer'
     MatSelect,
     MatOption,
     MatIcon,
+    MatChipsModule,
     KpSelectMenuTriggerComponent,
     KpSelectTriggerContentDirective,
     TranslocoPipe,
@@ -44,6 +46,7 @@ export class KpCourseFilterComponent implements OnInit {
     languages: new FormControl<string[]>([]),
     categories: new FormControl<string[]>([]),
     statuses: new FormControl<string[]>([]),
+    createdByMe: new FormControl<boolean>(false),
   });
 
   private readonly destroyRef = inject(DestroyRef);
@@ -56,6 +59,7 @@ export class KpCourseFilterComponent implements OnInit {
           languages: initial.languages ?? [],
           categories: initial.categories ?? [],
           statuses: initial.statuses ?? [],
+          createdByMe: initial.createdByMe ?? false,
         },
         { emitEvent: false },
       );
@@ -63,8 +67,13 @@ export class KpCourseFilterComponent implements OnInit {
 
     this.form.valueChanges
       .pipe(debounceTime(300), takeUntilDestroyed(this.destroyRef))
-      .subscribe(({ languages, categories, statuses }) => {
-        this.filterEvent.emit({ languages: languages ?? [], categories: categories ?? [], statuses: statuses ?? [] });
+      .subscribe(({ languages, categories, statuses, createdByMe }) => {
+        this.filterEvent.emit({
+          languages: languages ?? [],
+          categories: categories ?? [],
+          statuses: statuses ?? [],
+          createdByMe: createdByMe ?? false,
+        });
       });
   }
 }

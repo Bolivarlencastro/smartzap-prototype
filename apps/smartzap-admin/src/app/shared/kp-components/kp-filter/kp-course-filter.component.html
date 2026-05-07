@@ -1,4 +1,11 @@
 <form [formGroup]="form" class="flex items-center gap-2">
+  <mat-chip-listbox formControlName="createdByMe" [multiple]="false">
+    <mat-chip-option [value]="true">
+      <mat-icon matChipAvatar>person</mat-icon>
+      Criados por mim
+    </mat-chip-option>
+  </mat-chip-listbox>
+
   <kp-select-menu-trigger [label]="'GENERAL.STATUS' | transloco">
     <mat-icon class="filled s-1 text-primary">circle</mat-icon>
     <mat-select kpSelectTriggerContent multiple formControlName="statuses">

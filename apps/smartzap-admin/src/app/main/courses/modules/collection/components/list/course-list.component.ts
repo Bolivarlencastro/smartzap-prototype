@@ -126,6 +126,10 @@ export class CourseListComponent {
     return course.status === 'FINISHED';
   }
 
+  canReport(course: Course): boolean {
+    return course.status === 'FINISHED';
+  }
+
   emitAction(action: CourseListAction, course: Course, reportType?: ReportType): void {
     this.actionSelected.emit({ action, course, reportType });
   }
