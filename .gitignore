@@ -42,6 +42,9 @@ Thumbs.db
 # Claude Code agent configs (internal)
 .claude/
 
+# MCP server configs (may contain API keys)
+.mcp.json
+
 .angular
 .nx
 
