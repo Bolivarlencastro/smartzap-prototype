@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatChipsModule } from '@angular/material/chips';
+import { NgClass } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -19,10 +20,11 @@ import { CoursesFilter } from '@app/main/courses/store/reducers/courses.reducer'
   templateUrl: './kp-course-filter.component.html',
   imports: [
     ReactiveFormsModule,
+    NgClass,
+    MatButton,
     MatSelect,
     MatOption,
     MatIcon,
-    MatChipsModule,
     KpSelectMenuTriggerComponent,
     KpSelectTriggerContentDirective,
     TranslocoPipe,
@@ -50,6 +52,18 @@ export class KpCourseFilterComponent implements OnInit {
   });
 
   private readonly destroyRef = inject(DestroyRef);
+
+  get createdByMeActive(): boolean {
+    return !!this.form.get('createdByMe')?.value;
+  }
+
+  toggleCreatedByMe(): void {
+    this.form.patchValue({ createdByMe: !this.createdByMeActive });
+  }
+
+  clearCreatedByMe(): void {
+    this.form.patchValue({ createdByMe: false });
+  }
 
   ngOnInit(): void {
     const initial = this.filters();

@@ -1,10 +1,35 @@
 <form [formGroup]="form" class="flex items-center gap-2">
-  <mat-chip-listbox formControlName="createdByMe" [multiple]="false">
-    <mat-chip-option [value]="true">
-      <mat-icon matChipAvatar>person</mat-icon>
-      Criados por mim
-    </mat-chip-option>
-  </mat-chip-listbox>
+
+  <div class="inline-flex">
+    <button
+      mat-stroked-button
+      type="button"
+      class="h-9 px-3 text-sm flex items-center border item"
+      [ngClass]="createdByMeActive
+        ? 'bg-primary text-on-primary border-none rounded-tl-lg rounded-bl-lg rounded-tr-none rounded-br-none'
+        : 'rounded-lg'"
+      (click)="toggleCreatedByMe()"
+    >
+      <div class="flex gap-2 items-center">
+        @if (createdByMeActive) {
+          <mat-icon class="s-6">check</mat-icon>
+        } @else {
+          <mat-icon class="s-6 text-primary">person</mat-icon>
+        }
+        <span class="font-normal">Criados por mim</span>
+      </div>
+    </button>
+    @if (createdByMeActive) {
+      <button
+        mat-button
+        type="button"
+        (click)="clearCreatedByMe()"
+        class="h-9 rounded-none rounded-tr-lg rounded-br-lg bg-primary text-on-primary flex items-center min-w-4 p-2"
+      >
+        <mat-icon class="s-6">close</mat-icon>
+      </button>
+    }
+  </div>
 
   <kp-select-menu-trigger [label]="'GENERAL.STATUS' | transloco">
     <mat-icon class="filled s-1 text-primary">circle</mat-icon>
