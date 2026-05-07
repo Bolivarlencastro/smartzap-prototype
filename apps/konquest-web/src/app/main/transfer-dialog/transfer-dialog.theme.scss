@@ -1,9 +1,0 @@
-@use 'sass:map';
-
-@mixin transfer-dialog-theme {
-  app-transfer-dialog {
-    .detail-container {
-      background-color: var(--mat-sys-surface-container);
-    }
-  }
-}

@@ -1,4 +1,0 @@
-{
-  "extends": ["../../.stylelintrc.json"],
-  "ignoreFiles": ["artifacts/**/*.css", "src/app/layout/**/*.scss", "src/@fuse/**/*.scss"]
-}

@@ -1,7 +1,0 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@use 'libs/caixa/src/lib/styles/caixa-theme' as caixa-theme;
-
-html {
-  @include caixa-theme.caixa-theme;
-}

@@ -1,4 +1,0 @@
-export enum TransferStep {
-  SELECT_RECIPIENT = 'SELECT_RECIPIENT',
-  CONFIRMATION = 'CONFIRMATION',
-}

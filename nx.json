@@ -72,7 +72,7 @@
       "typeSeparator": "."
     }
   },
-  "defaultProject": "konquest-web",
+  "defaultProject": "smartzap-admin",
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],

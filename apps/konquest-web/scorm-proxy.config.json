@@ -1,8 +1,0 @@
-{
-  "/scorm-proxy": {
-    "target": "https://konquest-stage.keepsdev.com",
-    "secure": true,
-    "changeOrigin": true,
-    "pathRewrite": { "^/scorm-proxy-v2/([^/]+)/scorm/(.*)$": "/clients/$1/scorm/$2" }
-  }
-}
