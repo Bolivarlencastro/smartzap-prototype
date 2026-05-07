@@ -1,0 +1,29 @@
+<div mat-dialog-title class="flex justify-between items-center">
+  <h1 class="text-xl" [ngClass]="titleClass">{{ confirmTitle || 'UI.GENERAL.CONFIRM' | transloco }}</h1>
+  <button
+    class="close-icon"
+    mat-icon-button
+    (click)="dialogRef.close()"
+    [attr.aria-label]="'UI.GENERAL.CLOSE' | transloco"
+  >
+    <mat-icon class="s-4">close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <ng-container *ngTemplateOutlet="customTemplate; context: context"></ng-container>
+</div>
+@if (actionButtons?.length) {
+  <div mat-dialog-actions class="flex justify-end">
+    @for (action of actionButtons; track action) {
+      <button
+        mat-flat-button
+        [color]="action.color || 'primary'"
+        [disabled]="isSaveDisabled"
+        [id]="'button-' + action.id"
+        (click)="dialogRef.close(action.id)"
+      >
+        {{ action.label }}
+      </button>
+    }
+  </div>
+}

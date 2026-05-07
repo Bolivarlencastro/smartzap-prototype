@@ -1,0 +1,33 @@
+<div class="p-10 w-full">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col grow">
+    <div class="flex gap-8 justify-between mb-2">
+      <mat-form-field appearance="outline" class="basis-1/2">
+        <mat-label> Id do usuário de origem: </mat-label>
+        <input data-test="field-name" matInput formControlName="sourceUser" [matAutocomplete]="autoSource" />
+        <mat-autocomplete #autoSource="matAutocomplete" [displayWith]="displayWithFn">
+          @for (user of sourceUser$ | async; track user) {
+            <mat-option [value]="user">
+              {{ user.name }}
+            </mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="basis-1/2">
+        <mat-label> Id do usuário de destino: </mat-label>
+        <input data-test="field-name" matInput formControlName="targetUser" [matAutocomplete]="autoTarget" />
+        <mat-autocomplete #autoTarget="matAutocomplete" [displayWith]="displayWithFn">
+          @for (user of targetUser$ | async; track user) {
+            <mat-option [value]="user">
+              {{ user.name }}
+            </mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <button type="submit" mat-flat-button color="primary" class="ml-auto w-auto" [disabled]="form.invalid">
+      Migrar matrícula de usuários
+    </button>
+  </form>
+</div>

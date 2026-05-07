@@ -1,0 +1,125 @@
+@if (vm()?.selectedTab === 'feed') {
+  @if (pulsesVm()?.loading) {
+    @if (vm()?.feedLayout === 'list') {
+      <div class="feed-list-skeletons">
+        @for (i of skeletonItems; track i) {
+          <ng-container *ngTemplateOutlet="pulseSkeleton" />
+        }
+      </div>
+    } @else {
+      <div class="feed-list-skeletons feed-list-skeletons--grid">
+        @for (i of skeletonItems; track i) {
+          <ng-container *ngTemplateOutlet="pulseGridSkeleton" />
+        }
+      </div>
+    }
+  } @else if (pulsesVm()?.pulses?.length) {
+    @if (vm()?.feedLayout === 'list') {
+      <div
+        class="feed-list-items"
+        infiniteScroll
+        [scrollWindow]="true"
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="1000"
+        (scrolled)="onPulsesScroll()"
+      >
+        @for (pulse of pulsesVm()!.pulses; track pulse.id) {
+          <app-pulse-card [pulse]="pulse" />
+        }
+        @if (pulsesVm()?.loadingMore) {
+          <ng-container *ngTemplateOutlet="pulseSkeleton" />
+        }
+      </div>
+    } @else if (vm()?.feedLayout === 'grid') {
+      <div
+        class="feed-list-items feed-list-items--grid"
+        infiniteScroll
+        [scrollWindow]="true"
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="1000"
+        (scrolled)="onPulsesScroll()"
+      >
+        @for (pulse of pulsesVm()!.pulses; track pulse.id) {
+          <kp-pulse-card
+            [pulse]="pulse"
+            [legacyMode]="false"
+            class="cursor-pointer"
+            (click)="onOpenPulse(pulse)"
+            (favoriteToggle)="onToggleBookmark(pulse)"
+          />
+        }
+        @if (pulsesVm()?.loadingMore) {
+          <ng-container *ngTemplateOutlet="pulseGridSkeleton" />
+        }
+      </div>
+    }
+  } @else {
+    <div class="feed-list-empty">
+      <div class="feed-list-empty__icon-wrapper"><mat-icon>inbox</mat-icon></div>
+      <strong class="feed-list-empty__title">{{ titleKey() | transloco }}</strong>
+      <span class="feed-list-empty__description">{{ descriptionKey() | transloco }}</span>
+    </div>
+  }
+} @else if (vm()?.selectedTab === 'channels') {
+  @if (channelsVm()?.loading) {
+    <div class="feed-list-skeletons">
+      @for (i of skeletonItems; track i) {
+        <ng-container *ngTemplateOutlet="channelSkeleton" />
+      }
+    </div>
+  } @else if (channelsVm()?.channels?.length) {
+    <div
+      class="feed-list-items"
+      infiniteScroll
+      [scrollWindow]="true"
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="1000"
+      (scrolled)="onChannelsScroll()"
+    >
+      @for (channel of channelsVm()!.channels; track channel.id) {
+        <kp-channel-card
+          [channel]="channel"
+          class="cursor-pointer"
+          (click)="onChannelClick(channel.id)"
+          (subscribeEvent)="onChannelSubscribe($event)"
+        />
+      }
+      @if (channelsVm()?.loadingMore) {
+        <ng-container *ngTemplateOutlet="channelSkeleton" />
+      }
+    </div>
+  } @else {
+    <div class="feed-list-empty">
+      <div class="feed-list-empty__icon-wrapper"><mat-icon>inbox</mat-icon></div>
+      <strong class="feed-list-empty__title">{{ titleKey() | transloco }}</strong>
+      <span class="feed-list-empty__description">{{ descriptionKey() | transloco }}</span>
+    </div>
+  }
+}
+
+<!-- Pulse List Skeleton -->
+<ng-template #pulseSkeleton>
+  <ngx-skeleton-loader
+    [count]="1"
+    appearance="line"
+    [theme]="{ height: '22rem', borderRadius: '0.75rem', marginBottom: '0' }"
+  />
+</ng-template>
+
+<!-- Pulse Grid Skeleton -->
+<ng-template #pulseGridSkeleton>
+  <ngx-skeleton-loader
+    [count]="1"
+    appearance="line"
+    [theme]="{ height: 'auto', aspectRatio: '1 / 1', borderRadius: '0.5rem', marginBottom: '0' }"
+  />
+</ng-template>
+
+<!-- Channel Card Skeleton -->
+<ng-template #channelSkeleton>
+  <ngx-skeleton-loader
+    [count]="1"
+    appearance="line"
+    [theme]="{ height: '10.75rem', borderRadius: '0.75rem', marginBottom: '0' }"
+  />
+</ng-template>

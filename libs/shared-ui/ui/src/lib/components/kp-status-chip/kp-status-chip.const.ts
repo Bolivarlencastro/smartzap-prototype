@@ -1,0 +1,16 @@
+export enum KpStatusChipColor {
+  GRAY = '#CACACA',
+  DARK_GRAY = '#1c1c1c',
+  BLUE = '#92D2D2',
+  DARK_BLUE = '#2294E5',
+  GREEN = '#47AB0A',
+  ORANGE = '#FF800B',
+  LIGHT_ORANGE = '#FEBF84',
+  RED = '#FF0000',
+  LIGHT_RED = '#E34848',
+  YELLOW = '#FFB100',
+  DARK_YELLOW = '#CB8100',
+  PURPLE = '#CA73AC',
+  LIGHT_BROWN = '#DCB5B5',
+  LIGHT_GRAY = '#454545',
+}

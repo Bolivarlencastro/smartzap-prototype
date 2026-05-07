@@ -1,0 +1,14 @@
+<mat-card appearance="outlined" class="mat-elevation-z66 flex flex-1 flex-col w-full">
+  @if (boxTitle) {
+    <mat-card-header>
+      <mat-card-title class="flex items-center">
+        <ng-content select="[header]"></ng-content>
+        {{ boxTitle }}
+      </mat-card-title>
+      <mat-card-subtitle>{{ boxSubtitle }}</mat-card-subtitle>
+    </mat-card-header>
+  }
+  <mat-card-content class="kp-content-box-container">
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>

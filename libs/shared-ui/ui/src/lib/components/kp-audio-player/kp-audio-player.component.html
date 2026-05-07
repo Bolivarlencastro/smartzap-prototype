@@ -1,0 +1,26 @@
+<div class="kp-audio-player">
+  <!-- SoundCloud Player -->
+  @if (isSoundCloud) {
+    <iframe
+      class="kp-audio-player-content"
+      title="SoundCloud"
+      width="100%"
+      height="166"
+      allow="autoplay"
+      [src]="audioUrl + '&amp;{ single_active=true }' | kpSafeUrl"
+    ></iframe>
+  }
+  <!--/ SoundCloud Player -->
+
+  <!-- HTML5 Player -->
+  @if (!isSoundCloud) {
+    <kp-media-player
+      [url]="audioUrl"
+      [playerType]="'audio'"
+      (paused)="onPause()"
+      (played)="onPlay()"
+      class="kp-audio-player-content"
+    ></kp-media-player>
+  }
+  <!--/ HTML5 Player -->
+</div>

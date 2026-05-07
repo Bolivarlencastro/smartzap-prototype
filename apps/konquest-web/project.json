@@ -1,0 +1,181 @@
+{
+  "name": "konquest-web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/konquest-web/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "plugins": ["kp-version.plugin.js"],
+        "outputPath": "dist/apps/konquest-web",
+        "index": "apps/konquest-web/src/index.html",
+        "main": "apps/konquest-web/src/main.ts",
+        "polyfills": "apps/konquest-web/src/polyfills.ts",
+        "tsConfig": "apps/konquest-web/tsconfig.app.json",
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared-ui/ui", ""]
+        },
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/konquest-web/src/assets",
+          {
+            "glob": "**/*",
+            "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+            "ignore": ["inline-locale-files/**", "additional-locale/**", "locale/**", "cmaps/**"],
+            "output": "/assets/"
+          }
+        ],
+        "styles": [
+          "libs/shared-ui/layout/src/lib/styles/tailwind.scss",
+          "libs/shared-ui/layout/src/lib/styles/main.scss",
+          "apps/konquest-web/src/app/app.theme.scss",
+          "apps/konquest-web/src/styles.scss",
+          "./node_modules/quill/dist/quill.snow.css",
+          "./node_modules/iv-viewer/dist/iv-viewer.min.css",
+          "./node_modules/vidstack/player/styles/default/theme.css",
+          "./node_modules/vidstack/player/styles/default/layouts/video.css",
+          "./node_modules/vidstack/player/styles/default/layouts/audio.css",
+          "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+          "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
+        ],
+        "scripts": [
+          "./node_modules/iv-viewer/dist/iv-viewer.min.js",
+          "./node_modules/jspdf/dist/jspdf.umd.min.js",
+          "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+        ],
+        "allowedCommonJsDependencies": [
+          "@babel",
+          "@messageformat",
+          "@jsverse",
+          "canvag",
+          "core-js",
+          "iv-viewer",
+          "jspdf",
+          "jspdf-autotable",
+          "keycloak-js",
+          "ngx-embed-video",
+          "ngrx-store-freeze",
+          "pdfmake",
+          "raf",
+          "rgbcolor"
+        ],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/konquest-web/ngsw-config.json"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "6.5mb",
+              "maximumError": "12mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/konquest-web/src/environments/environment.ts",
+              "with": "apps/konquest-web/src/environments/environment.prod.ts"
+            }
+          ],
+          "index": "apps/konquest-web/src/index-prod/index.html",
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "konquest-web:build:production"
+        },
+        "development": {
+          "buildTarget": "konquest-web:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/konquest-web"],
+      "options": {
+        "jestConfig": "apps/konquest-web/jest.config.ts",
+        "ci": true,
+        "codeCoverage": true,
+        "tsConfig": "apps/konquest-web/tsconfig.spec.json"
+      },
+      "configurations": {
+        "ci": {
+          "cache": false
+        },
+        "dev": {
+          "coverageReporters": ["html", "text-summary", "lcov"]
+        }
+      },
+      "defaultConfiguration": "dev"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/konquest-web/**/*.scss"]
+      }
+    },
+    "i18n-extract": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager extract --project konquest-web"
+      }
+    },
+    "i18n:find": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager find --project konquest-web"
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Konquest Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "konquest-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "**/libs/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/konquest-web/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/store/**, **/translate.ts, **/*.routes.ts, **/app.config.ts,, **/*.module.ts, **/app.component.ts, **/test-setup.ts, src/main.ts",
+          "sonar.plugins.downloadOnlyRequired": "true"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "konquest-web:build"
+      }
+    }
+  }
+}

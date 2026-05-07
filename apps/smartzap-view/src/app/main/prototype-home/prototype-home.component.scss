@@ -1,0 +1,110 @@
+.prototype-home {
+  min-height: 100vh;
+  padding: 32px 20px 40px;
+  background:
+    radial-gradient(circle at top right, rgb(186 135 255 / 28%), transparent 28%),
+    linear-gradient(180deg, #faf5ff 0%, #fff 45%, #f6f4ff 100%);
+  color: #261435;
+
+  &__hero {
+    max-width: 1120px;
+    margin: 0 auto 28px;
+    display: grid;
+    gap: 24px;
+    align-items: center;
+
+    @media (width >= 900px) {
+      grid-template-columns: 320px minmax(0, 1fr);
+    }
+  }
+
+  &__hero-art {
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+  }
+
+  &__hero-copy h1 {
+    margin: 8px 0 12px;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  &__hero-copy p {
+    max-width: 720px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #52346f;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #efe4ff;
+    color: #7d37d4;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  &__grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    gap: 16px;
+
+    @media (width >= 760px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (width >= 1100px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__card {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 24px;
+    text-decoration: none;
+    color: inherit;
+    background: rgb(255 255 255 / 88%);
+    border: 1px solid rgb(141 91 214 / 16%);
+    box-shadow: 0 18px 50px rgb(92 40 140 / 10%);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgb(125 55 212 / 35%);
+      box-shadow: 0 20px 60px rgb(92 40 140 / 14%);
+    }
+  }
+
+  &__card-type {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9053da;
+  }
+
+  &__card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  &__card-description {
+    color: #6b4d87;
+    line-height: 1.5;
+  }
+}

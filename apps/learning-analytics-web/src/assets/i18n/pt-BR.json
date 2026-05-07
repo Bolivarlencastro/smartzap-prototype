@@ -1,0 +1,661 @@
+{
+  "CATEGORY": {
+    "Communications": "Comunicação",
+    "Design": "Design",
+    "Development": "Desenvolvimento",
+    "Digital Marketing": "Marketing Digital",
+    "Entrepreneurship": "Empreendedorismo",
+    "Finance": "Finança",
+    "Financial Education": "Educação Financeira",
+    "Health and Fitness": "Saúde e Bem estar",
+    "Language": "Línguas",
+    "Leadership": "Liderança",
+    "Lifestyle": "Estilo de Vida",
+    "Management": "Gestão",
+    "Marketing": "Marketing",
+    "Office Productivity": "Produtividade no escritório",
+    "Personal Development": "Desenvolvimento pessoal",
+    "Project Management": "Gerenciamento de Projetos",
+    "Sales": "Vendas",
+    "Social Media": "Mídia Social",
+    "Strategy": "Estratégia",
+    "Technology": "Tecnologia",
+    "Web Design": "Web Design"
+  },
+  "COURSE": {
+    "CONTENTS": {
+      "DATATABLE": {
+        "COLUMN": {
+          "ENGAGEMENT": "Engajamento (%)",
+          "NAME": "Nome",
+          "QUANTITY": "Visualizações",
+          "VIEW_TIME": "Tempo de visualização"
+        },
+        "FILTER": {
+          "CONTENT_TYPE": " Tipo de Conteúdo",
+          "LABEL": "Filtro",
+          "PLACEHOLDER": "Pesquisar pelo nome do conteúdo"
+        },
+        "TITLE": "Lista de Conteúdos"
+      },
+      "TITLE": "Cursos / lista de conteúdos"
+    },
+    "DETAILS": {
+      "CHARTS": {
+        "LABELS": {
+          "ENROLLMENTS_COMPLETED": "Concluíram",
+          "ENROLLMENTS_STARTED": "Iniciaram",
+          "ENROLLMENTS_TOTAL": "Matriculados"
+        }
+      },
+      "DATATABLE": {
+        "COLUMN": {
+          "END_DATE": "Conclusão",
+          "NAME": "Usuário",
+          "PERFORMANCE": "Performance",
+          "START_DATE": "Início",
+          "PROGRESS": "Progresso"
+        },
+        "FILTER": {
+          "INTERVAL": "Período",
+          "LABEL": "Filtro",
+          "PLACEHOLDER": "Pesquisar pelo nome do usuário matriculado"
+        },
+        "TITLE": "Lista de Usuários"
+      },
+      "ERROR": {
+        "NOT_FOUND": "Curso não encontrado",
+        "UNKNOWN": "Ocorreu um erro ao consultar os dados"
+      },
+      "WIDGETS": {
+        "NPS": {
+          "BUTTON": "Ver respostas",
+          "CON": "Detratores",
+          "NEUTRAL": "Neutros",
+          "PRO": "Promotores"
+        }
+      }
+    },
+    "OVERVIEW": {
+      "CHARTS": {
+        "LABELS": {
+          "COURSES_COMPLETED": "Matrículas finalizadas",
+          "COURSES_NEW_ENROLLMENTS": "Total de matrículas (finalizadas e iniciadas)",
+          "COURSES_STARTED": "Matrículas Iniciadas"
+        }
+      },
+      "DATATABLE": {
+        "COLUMN": {
+          "CATEGORY": "Categoria",
+          "ENROLLMENT": "Matrículas",
+          "ENROLLMENT_COMPLETED": "Concluíram com sucesso",
+          "ENROLLMENT_RATIO": "Taxa de aprovação",
+          "NAME": "Nome",
+          "RATING": "Avaliação"
+        },
+        "FILTER": {
+          "LABEL": "Filtro",
+          "PLACEHOLDER": "Pesquisa por nome ou categoria do curso"
+        },
+        "TITLE": "Lista de Cursos"
+      },
+      "TITLE": "Cursos",
+      "WIDGETS": {
+        "AVAILABLE": {
+          "SUB_TITLE": "Total de Horas",
+          "TITLE": "Conteúdos Disponíveis"
+        },
+        "CONSUMED": {
+          "SUB_TITLE": "Total de Horas",
+          "TITLE": "Conteúdos Realizados"
+        },
+        "CONTENTS": {
+          "TITLE": "Conteúdos Disponíveis"
+        },
+        "RATING": {
+          "SUB_TITLE": "Estrelas",
+          "TITLE": "Avaliação Média dos Cursos"
+        },
+        "RATIO": {
+          "TITLE": "Taxa Conclusão"
+        },
+        "TOP5": {
+          "TITLE": "Top 5 Categorias (quantidade)"
+        },
+        "TOTAL": {
+          "TITLE": "TOTAL DE <br><strong>CURSOS</strong>"
+        }
+      }
+    }
+  },
+  "DASHBOARD": {
+    "CHART": {
+      "SERIES": {
+        "ACTIVE_USERS_DESCRIPTION": "Usuários que acessaram conteúdos em cursos ou micro-learnings",
+        "ACTIVE_USERS_IN_": "Ativos em",
+        "COMPLETED_COURSES_IN_": "Cursos Concluídos em",
+        "NEW_COURSES_IN_": "Novos Cursos em",
+        "NEW_USERS_IN_": "Novos Usuários em"
+      },
+      "VALUES": {
+        "ACTIVE": "Ativos",
+        "NEW_COURSES": "Novos Cursos",
+        "NEW_USERS": "Novos Usuários"
+      }
+    },
+    "FILTER": {
+      "DIMENSION_TITLE": "Dimensão",
+      "PERIOD_TITLE": "Período"
+    },
+    "TITLE": "Learning Analytics",
+    "WIDGETS": {
+      "ACTIVE_USERS": {
+        "SUBTITLE": "Total no período",
+        "TITLE": "Usuários Ativos"
+      },
+      "COMPLETED_COURSES": {
+        "SUBTITLE": "Total no período",
+        "TITLE": "Cursos concluídos"
+      },
+      "NEW_COURSES": {
+        "SUBTITLE": "Total no período",
+        "TITLE": "Novos cursos"
+      },
+      "NEW_USERS": {
+        "SUBTITLE": "Total no período",
+        "TITLE": "Novos Usuários"
+      },
+      "TOTAL_COURSES": {
+        "SUBTITLE": "Total",
+        "TITLE": "Cursos"
+      },
+      "TOTAL_USERS": {
+        "SUBTITLE": "Total",
+        "TITLE": "Usuários"
+      }
+    }
+  },
+  "ENROLLMENT_STATUSES": {
+    "COMPLETED": "Concluído",
+    "ENROLLED": "Matrículado",
+    "REFUSED": "Recusado",
+    "REPROVED": "Reprovado",
+    "STARTED": "Iniciado",
+    "VALIDATION_PENDING": "Pendente"
+  },
+  "ENROLLMENT_TYPES": {
+    "FREE": "Livre",
+    "REQUIRED": "Obrigatória"
+  },
+  "ERRORS": {
+    "401": {
+      "MESSAGE": "Desculpe, mas você não tem acesso a página que esta procurando."
+    }
+  },
+  "FILTER": {
+    "FILTER": {
+      "SELECT_MAX_MISSIONS": "Selecione até 3 cursos",
+      "SELECT_MAX_USERS": "Selecione até 3 usuários"
+    }
+  },
+  "GENERAL": {
+    "ACTIVE_USERS": "Usuários ativos",
+    "ACTIVITY_AREA": "Área de atividade",
+    "ALL": "Todos",
+    "APPLY": "Aplicar",
+    "ASSESSMENTS": {
+      "CONTENT": "Avaliação pelo consumo do conteúdo",
+      "FULL": "Conteúdo mais Quiz",
+      "QUIZ": "Avaliação apenas pelos Quizzes"
+    },
+    "ASSESSMENT_TYPE": "Tipo de avaliação",
+    "BACK": "Voltar",
+    "CANCEL": "Cancelar",
+    "CATEGORIES": "Categorias",
+    "CHANNEL": "Canal",
+    "CLEAR_FILTER": "Limpar",
+    "CLOSE": "Fechar",
+    "CONCLUSION_DATE": "Data de conclusão",
+    "CONTENT": {
+      "BLOG": "Blog",
+      "HTML": "HTML",
+      "HTML FILE": "Arquivo HTML",
+      "IMAGE": "Imagem",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "PRESENTATION": "Apresentação",
+      "QUESTION": "Quiz",
+      "SCORM": "Scorm",
+      "SPREADSHEET": "Apresentação Slide",
+      "TEXT": "Texto",
+      "VIDEO": "Vídeo"
+    },
+    "COURSE": "Curso",
+    "COURSES": "Cursos",
+    "CREATION_DATE": "Data de criação",
+    "CREATOR": "Criador",
+    "CURRENT_MONTH": "Mês Atual",
+    "CURRENT_YEAR": "Ano Atual",
+    "DELETED_MISSIONS": "Cursos deletadas",
+    "DELETED_TRAILS": "Trilhas deletadas",
+    "DELETION_DATE": "Data de deleção",
+    "DETAILS": "Detalhes",
+    "DIRECTORATE": "Diretoria",
+    "DURATION": "Duração",
+    "EMPTY_LIST_MESSAGE": "Não há registros",
+    "ENABLED_USERS": "Usuários habilitados",
+    "ENROLLMENTS": "Matrículas",
+    "ENROLLMENT_DATE": "Data de matrícula",
+    "ENROLLMENT_START_DATE": "Data de início da matrícula",
+    "ENROLLMENT_STATUS": "Status da matrícula",
+    "ENROLLMENT_TYPE": "Tipo de matrícula",
+    "EXPIRATION_DATE": "Data de expiração",
+    "EXPORT": "Exportar",
+    "FILTER": "Filtro",
+    "GENERATE_REPORT": "Gerar relatório",
+    "JOB": "Cargo",
+    "JOB_FUNCTION": "Função",
+    "LANGUAGE": "Idioma",
+    "LOADING": "Carregando",
+    "MENU": "Menu",
+    "MESSAGE": {
+      "EMPTY_TABLE": "Nenhum resultado encontrado"
+    },
+    "MISSION": "Curso",
+    "MISSIONS": "Cursos",
+    "MISSION_MODEL": "Modelo do curso",
+    "MISSION_PROVIDER": "Provedor do curso",
+    "MISSION_STATUS": "Status do curso",
+    "MISSION_TYPE": "Tipo do curso",
+    "MONTH": "Mês",
+    "NO": "Não",
+    "NOTIFICATION": {
+      "CANT_MARK_AS_READ": "Não foi possível marcar a notificação como lida.",
+      "KONQUEST_COURSE_OVERVIEW_REPORT_DONE": "Relatório da visão geral do curso emitido",
+      "KONQUEST_USER_OVERVIEW_REPORT_DONE": "Relatório da visão geral do usuário emitido",
+      "KONQUEST_WORKSPACE_ALL_USERS_REPORT_DONE": "Relatório de todos os usuários do workspace emitido",
+      "KONQUEST_WORKSPACE_ENROLLMENTS_REPORT_DONE": "Relatório de matrículas do workspace emitido",
+      "KONQUEST_WORKSPACE_EVALUATIONS_REPORT_DONE": "Relatório de avaliações do workspace emitido",
+      "KONQUEST_WORKSPACE_GROUPS_CHANNELS_USERS_REPORT_DONE": "Relatório do grupo de canais dos usuários emitido",
+      "KONQUEST_WORKSPACE_GROUPS_MISSIONS_USERS_REPORT_DONE": "Relatório do grupo de cursos dos usuários emitido",
+      "KONQUEST_WORKSPACE_MISSIONS_QUIZ_ACTIVITIES_REPORT_DONE": "Relatório de questionário das cursos emitido",
+      "KONQUEST_WORKSPACE_MISSIONS_REPORT_DONE": "Relatório de cursos do workspace emitido",
+      "KONQUEST_WORKSPACE_OVERVIEW_REPORT_DONE": "Relatório da visão geral do workspace emitido",
+      "KONQUEST_WORKSPACE_PULSES_AND_CHANNELS_REPORT_DONE": "Relatório de canais e pulses do workspace emitido",
+      "KONQUEST_WORKSPACE_PULSES_QUIZ_ACTIVITIES_REPORT_DONE": "Relatório de questionário dos pulses emitido",
+      "KONQUEST_WORKSPACE_USER_ACCESS_BY_DATE_REPORT_DONE": "Relatório de acesso de usuários por data emitido",
+      "SMARTZAP_COURSE_OVERVIEW_REPORT_DONE": "Smartzap - Relatório da visão geral do curso emitido"
+    },
+    "NO_RESULTS_FOUND": "Nenhum resultado encontrado",
+    "OBJECTIVE_DATE": "Data meta",
+    "PERFORMANCE": "Desempenho",
+    "PERIOD": "Período",
+    "PROGRESS": "Progresso",
+    "PULSES": "Pulses",
+    "REGISTRATION_DATE": "Data de cadastro",
+    "REMOVED_USERS": "Usuários removidos",
+    "REPORT-DOWNLOAD": "Relatório baixado",
+    "SEARCH": "Filtrar",
+    "SELECT_ALL": "Selecionar todos",
+    "STATUS": "Status",
+    "SUBDIRECTORATE": "Subdiretoria",
+    "TOTAL": "Total",
+    "TRAIL": "Trilha",
+    "TRAILS": "Trilhas",
+    "USER": "Usuário",
+    "USERS": "Usuários",
+    "USER_COUNTRY": "País do usuário",
+    "USER_CREATOR": "Usuário criador",
+    "USER_LEADER": "Líder do usuário",
+    "WAIVER": "Desistência",
+    "YEAR": "Ano",
+    "YES": "Sim"
+  },
+  "LANGUAGE": {
+    "ENGLISH": "Inglês",
+    "PORTUGUESE": "Português",
+    "SPANISH": "Espanhol"
+  },
+  "MAT-PAGINATOR": {
+    "FIRST_PAGE": "Primeira página",
+    "ITEMS_PER_PAGE": "Itens por página",
+    "LAST_PAGE": "Última página",
+    "NEXT_PAGE": "Próxima página",
+    "PAGE_OF": "de",
+    "PREV_PAGE": "Página Anterior"
+  },
+  "MISSION": {
+    "MODEL": {
+      "EXTERNAL": "Externa",
+      "INTERNAL": "Interna",
+      "LIVE": "Online",
+      "PRESENTIAL": "Presencial",
+      "SCORM": "SCORM"
+    },
+    "STATUS": {
+      "IN_PROGRESS": "Em progresso",
+      "IN_REVIEW": "Em revisão",
+      "PUBLISHED": "Publicada"
+    },
+    "TYPE": {
+      "CLOSED": "Fechada",
+      "OPEN": "Aberta"
+    }
+  },
+  "NAVIGATION": {
+    "COURSE": "Dashboard Cursos",
+    "DASHBOARD": "Dashboard",
+    "MY_DASHBOARD": "Meu dashboard",
+    "REPORT": "Relatórios",
+    "USERS_DASHBOARD": "Dashboard de Usuários"
+  },
+  "RANGES": {
+    "0": "0",
+    "1-3": "menos de 3",
+    "10-15": "entre 10 e 15",
+    "15+": "15 ou mais",
+    "3-5": "entre 3 e 5",
+    "5-10": "entre 5 e 10"
+  },
+  "REPORT": {
+    "ALL_USERS": "Lista de Usuários Geral",
+    "APPS": "Aplicações",
+    "COURSE_OVERVIEW": "Visão do Curso",
+    "CUSTOM": {
+      "MISSION": "Relatório de Cursos",
+      "USERS": "Relatório de Usuários",
+      "ACTIVE_MISSION": "Curso ativo",
+      "INACTIVE_MISSION": "Curso inativo"
+    },
+    "DESCRIPTION": {
+      "ALL_USERS": "Listagem dos usuários que tem acesso ao Konquest.<br><b>Campos:</b><ul><li>ID do usuário</li><li>Nome do usuário</li><li>Email do usuário</li><li>Telefone do usuário</li><li>Endereço do usuário</li></ul>",
+      "COURSE_OVERVIEW": "Estatísticas gerais de uma curso do Konquest com informações sumarizadas sobre conteúdos, matrículas, cursos (cursos), pulses e quizzes.<br><ul><li>Conteúdos: totais de horas, pontuação, avaliação e distribuição por tipo.</li><li>Matriculas: concluídas, andamento e comparação últimos 7 e 30 dias.</li><li>Performance: avaliação das performances dos usuários por faixas</li><li>Performance dos Quizzes: avaliação das performances os quizzes</li><li>Quizzes: analises de erros e acertos</li><li>Ranking: 10 melhores performances no curso</li></ul>",
+      "GROUP_CHANNEL_USER": "Listagem do relacionamento de canais, grupos e usuários com os dados 'crus' (sem tratamentos) e com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>Nome do grupo</li><li>Nome do canal</li><li>Nome do usuário</li><li>Email do usuário</li></ul>",
+      "GROUP_MISSION_USER": "Listagem do relacionamento de cursos, grupos e usuários com os dados 'crus' (sem tratamentos) e com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>Nome do grupo</li><li>Nome do curso</li><li>Nome do usuário</li><li>Email do usuário</li></ul>",
+      "MISSION_ENROLLMENTS": "Listagem geral das matrículas de todos os cursos com os dados 'crus' (sem tratamentos) e com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>ID do curso</li><li>Nome do curso</li><li>Usuário proprietário (criador)</li><li>Data de última atualização </li><li>Status da Criação</li><li>Tipo de Curso</li><li>Nome do Grupo</li><ul>",
+      "MISSION_EVALUATIONS": "Descrição das Avaliações dos Cursos",
+      "MISSION_QUIZ": "Listagem geral dos quizzes de todos os cursos com os dados 'crus' (sem tratamentos) e com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>ID da resposta</li><li>Nome do curso</li><li>Usuário</li><li>Questão</li><li>Acerto</li><li>Data de resposta </li></ul>",
+      "PULSES_ACTIVITIES": "Listagem de canais e pulses com as atividades de consumos dos usuários, sendo os dados 'crus' (sem tratamentos), com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>Nome do Canal</li><li>Nome do pulse</li><li>Nome do usuário consumidor</li><li>Email do usuário consumidor</li><li>Ação</li><li>Data de início</li><li>Data de fim</li><li>Consumo</li></ul>",
+      "PULSES_QUIZ": "Listagem de quizzes por canais e pulses com as atividades dos usuários, sendo os dados 'crus' (sem tratamentos), com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>ID da resposta</li><li>Nome do pulse</li><li>Nome do usuário</li><li>Email do usuário</li><li>Questão</li><li>Acerto</li><li>Data de resposta</li></ul>",
+      "PULSE_CHANNELS": "Listagem de canais e pulses com os dados 'crus' (sem tratamentos) e com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>Nome do Pulse</li><li>Tipo do Pulse</li><li>Duração do pulse</li><li>Nome do Canal</li><li>Tipo do Canal</li><li>Usuário proprietário (criador)</li></ul>",
+      "USERS_ACCESS": "Listagem dos usuários ativos por dia (que utilizaram o Konquest para consumir algum conteúdo).<br><b>Campos:</b><ul><li>Nome do usuário</li><li>Email do usuário</li><li>Telefone do usuário</li><li>Data da atividade</li><li>Último Acesso</li><li>Última atividade</li></ul>",
+      "USER_OVERVIEW": "Estatísticas gerais de um usuário no Konquest com informações sumarizadas sobre matrículas, conteúdos consumidos, acessos e nível de engajamento.<br><ul><li>Resumo de consumo de cursos (taxas de conclusão)</li><li>Lista de cursos concluídas (com performance)\n</li><li>Lista de pulses consumidos (com tempo de consumo)</li><li>Relação de vínculo com grupos (com taxas de conclusão)</li></ul>",
+      "WORKSPACE_MISSION": "Listagem geral de cursos com os dados 'crus' (sem tratamentos) e com tabelas sumarizadas e dashboard.<br><b>Campos:</b><ul><li>ID do curso</li><li>Nome do curso</li><li>Usuário proprietário (criador)</li><li>Data de última atualização </li><li>Data de criação </li><li>Status do curso(em criação, publicada ou em revisão)</li><li>Tipo do curso (pública ou privada)</li><li>Grupo vinculado a curso (ID, Nome)</li><li>Duração do curso</li><li>Total de matrículas</li><li>Total de matrículas concluídas</li><li>Categoria do curso</li></ul>",
+      "WORKSPACE_OVERVIEW": "Estatísticas gerais do Konquest com informações sumarizadas sobre conteúdos, matrículas, cursos (cursos) e pulses."
+    },
+    "FILTER": {
+      "DATE_RANGE": {
+        "FROM": "de",
+        "TO": "até"
+      },
+      "INPUT": {
+        "LABEL": "Nome do Solicitante"
+      },
+      "REQUEST_DATE": {
+        "TITLE": "Data de Solicitação"
+      }
+    },
+    "FILTERS": {
+      "activity": "Usuários ativos no período",
+      "area_of_activity": "Área de atividade",
+      "assessment_type": "Tipo de avaliação",
+      "channel__id": "Canal",
+      "country": "País do usuário",
+      "course_id": "Curso",
+      "created_date": "Data de criação",
+      "deleted": "Cursos deletadas",
+      "deleted_date": "Data de deleção",
+      "development_status": "Status do curso",
+      "director": "Diretoria",
+      "duration_time": "Duração",
+      "end_date": "Data de conclusão",
+      "enrollment": "Inscrição",
+      "enrollment_date": "Data de matrícula",
+      "expiration_date": "Data de expiração",
+      "give_up": "Desistência",
+      "goal_date": "Data meta",
+      "id": "Curso",
+      "job_function__name": "Função",
+      "job__name": "Cargo",
+      "language": "Idioma",
+      "learning_object_id": "Curso",
+      "learning_trail": "Trilhas deletadas",
+      "learning_trail_id": "Trilha",
+      "learning_trail__language": "Idioma",
+      "learning_trail__deleted_date": "Data de deleção",
+      "learning_trail_step__learning_trail_id": "Trilha",
+      "manager": "Subdiretoria",
+      "mission": "Cursos deletadas",
+      "mission__deleted_date": "Data de deleção",
+      "mission__expiration_date": "Data de expiração",
+      "mission__id": "Curso",
+      "mission__language": "Idioma",
+      "mission__mission_model": "Modelo do curso",
+      "mission_category_id": "Categorias",
+      "mission_enrollment_active": "Usuários ativos",
+      "mission_id": "Curso",
+      "mission_model": "Modelo de curso",
+      "mission_provider__id": "Provedor do curso",
+      "mission_type_id": "Tipo do curso",
+      "performance": "Desempenho",
+      "progress": "Progresso",
+      "related_user_leader_id": "Líder do usuário",
+      "required": "Tipo de matrícula",
+      "start_date": "Data de início da matrícula",
+      "status": "Status da matrícula",
+      "time_start": "Período",
+      "updated_date": "Data de atualização",
+      "user": "Usuários habilitados",
+      "user__country": "País do usuário",
+      "user__related_user_leader_id": "Líder do usuário",
+      "user_creator_id": "Usuário criador",
+      "user_deleted_from_workspace": "Usuários removidos",
+      "user_id": "Usuário",
+      "user_profile_workspace": "Área de atividade",
+      "user_role_workspace__created_date": "Data de cadastro"
+    },
+    "GROUP_CHANNEL_USER": "Canais por Grupos",
+    "GROUP_MISSION_USER": "Cursos por Grupos",
+    "MISSION_ENROLLMENTS": "Lista de Matrículas de Cursos",
+    "MISSION_ENROLLMENTS_QUIZZES": "Quizzes por Curso",
+    "MISSION_EVALUATIONS": "Avaliações do curso",
+    "MISSION_EVALUATION_ANALYSIS": "Análise de Avaliações de Cursos",
+    "MISSION_QUIZ": "Quizzes por Cursos",
+    "NAME": {
+      "konquest-groups-channels-users-export": "Canais por Grupos",
+      "konquest-groups-missions-users-export": "Cursos por Grupos",
+      "konquest-mission-enrollment-quizzes": "Análise de Quizzes por Curso",
+      "konquest-mission-evaluations-statistics-export": "Análise de Avaliações de Cursos",
+      "konquest-mission-presentation": "Visão do Curso",
+      "konquest-missions-enrollments-export": "Lista de Matrículas de Cursos",
+      "konquest-missions-evaluations-export": "Avaliações do Curso",
+      "konquest-missions-export": "Lista de cursos",
+      "konquest-missions-quizzes-answers-export": "Quizzes por Cursos",
+      "konquest-pulses-channels-export": "Lista de Pulses por Canal",
+      "konquest-pulses-quizzes-answers-export": "Quizzes por Canais",
+      "konquest-trails-enrollments-export": "Lista de matrículas por Trilhas",
+      "konquest-trails-export": "Lista de trilhas",
+      "konquest-user-consumptions-export": "Consumo Geral dos Usuários",
+      "konquest-user-general-statistics-export": "Estatísticas Gerais do Usuário",
+      "konquest-user-presentation": "Visão do Usuário",
+      "konquest-users-access-by-date-export": "Usuários Ativos por Dia",
+      "konquest-users-export": "Lista de Usuários Geral",
+      "konquest-users-pulses-activities-export": "Consumo Canais e Pulses",
+      "konquest-workspace-presentation": "Visão geral Konquest",
+      "smartzap-course-presentation": "Visão geral Smartzap",
+      "konquest-trails-completion-rate-export": "Taxa de Conclusão das Trilhas",
+      "smartzap-user-activities-export": "Atividades dos Usuários",
+      "smartzap-enrollments-export": "Matrículas em Progresso",
+      "myaccount-user-permissions-export": "Lista de permissões dos usuários"
+    },
+    "PULSES_ACTIVITIES": "Consumo Canais e Pulses",
+    "PULSES_QUIZ": "Quizzes por Canais",
+    "PULSE_CHANNELS": "Lista de Pulses por Canal",
+    "REPORT_REQUEST_SENT": "Solicitação de relatório enviada",
+    "REPORT_REQUEST_FAILURE": "Falha ao enviar solicitação do relatório",
+    "REPORT_ALREADY_REQUESTED": "Um relatório com os mesmos filtros já está em processamento",
+    "SIMPLE_FILTER_DIALOG": {
+      "FROM": "de",
+      "PERIOD": "Período",
+      "TO": "até"
+    },
+    "SMATZAP_COURSE_OVERVIEW": "Visão Geral",
+    "STATUS": {
+      "DONE": "Concluído",
+      "ERROR": "Erro",
+      "PROCESSING": "Processando",
+      "QUEUED": "Na fila",
+      "TIMEOUT": "Timeout"
+    },
+    "TABLE": {
+      "COL": {
+        "FILTERS": "Filtros usados",
+        "REPORT_NAME": "Relatório",
+        "REQUESTER": "Solicitante",
+        "REQUEST_DATE": "Data de solicitação"
+      }
+    },
+    "TABS": {
+      "LATEST_REPORTS": "Últimos Relatórios Gerados"
+    },
+    "TITLE": "Relatórios",
+    "TRAIL_CONCLUSION_RATE": "Taxa de conclusão das trilhas",
+    "TRAIL_ENROLLMENTS": "Lista de matrículas de trilhas",
+    "TRAIL_LIST": "Lista de trilhas",
+    "USERS_ACCESS": "Usuários ativos por dia",
+    "USERS_GENERAL_CONSUMPTION": "Consumo Geral dos Usuários",
+    "USER_GENERAL_STATISTICS": "Estatísticas Gerais do Usuário",
+    "USER_OVERVIEW": "Visão do Usuário",
+    "USER_PERMISSIONS": "Permissões dos Usuários",
+    "WARNING-MESSAGE": "Os relatórios serão apagados após 60 dias da data de solicitação.",
+    "WORKSPACE_MISSION": "Lista de Cursos",
+    "WORKSPACE_OVERVIEW": "Visão Geral"
+  },
+  "REPORTS": {
+    "KONQUEST_TAB": {
+      "FILTER_MISSIONS_SUBTITLE": "Pesquise e selecione as cursos com as quais deseja gerar o relatório visão do curso.",
+      "FILTER_USERS_SUBTITLE": "Pesquise e selecione os usuários com os quais deseja gerar o relatório visão do usuário.",
+      "MESSAGES": {
+        "DOWNLOAD_TIP": "Busque pelo relatório e clique para iniciar a sua geração. Faça o download na lista de relatórios gerados.",
+        "REPORT_DETAIL_TOOLTIP": "Clique para saber mais sobre este relatorio"
+      },
+      "MISSION_EVALUATIONS_SUBTITLE": "Pesquise e selecione as cursos com as quais deseja gerar o relatório de avaliações do curso.",
+      "MISSION_QUIZ_SUBTITLE": "Pesquise e selecione as cursos com as quais deseja gerar o relatório de quizzes por cursos.",
+      "PULSES_QUIZ_SUBTITLE": "Pesquise e selecione os canais com as quais deseja gerar o relatório de quizzes por canais.",
+      "SERACH_HINT": "Nenhum dado correspondente ao filtro",
+      "SERACH_PLACEHOLDER": "Pesquise por nome",
+      "USERS_ACCESS_SUBTITLE": "Defina um período e selecione um ou mais usuários com os quais deseja gerar o relatório de usuários ativos por dia."
+    },
+    "SMARTZAP_TAB": {
+      "FILTER_COURSES_SUBTITLE": "Pesquise e selecione os cursos com os quais deseja gerar o relatório visão geral."
+    }
+  },
+  "REPORT_MODAL": {
+    "NO_ITEMS": "Não há dados para serem exibidos.",
+    "SELECTION_LABEL": {
+      "CHANNEL": {
+        "PLURAL": "{{value}} canais selecionados",
+        "SINGULAR": "{{value}} canal selecionado"
+      },
+      "COURSE": {
+        "PLURAL": "{{value}} cursos selecionados",
+        "SINGULAR": "{{value}} curso selecionado"
+      },
+      "MISSION": {
+        "PLURAL": "{{value}} cursos selecionadas",
+        "SINGULAR": "{{value}} curso selecionada"
+      },
+      "USER": {
+        "PLURAL": "{{value}} usuários selecionados",
+        "SINGULAR": "{{value}} usuário selecionado"
+      }
+    },
+    "SEPARATOR": "a"
+  },
+  "USERS": {
+    "DETAILS": {
+      "DATATABLE": {
+        "COLUMN": {
+          "CATEGORY": "Categoria",
+          "COMPLETED_DATE": "Conclusão",
+          "NAME": "Curso",
+          "PERFORMANCE": "Performance",
+          "QUIZZES": "Quizzes\n(acerto/total)",
+          "START_DATE": "Início"
+        },
+        "TITLE": "Lista de Cursos"
+      },
+      "ERROR": {
+        "NOT_FOUND": "Usuário não encontrado",
+        "UNKNOWN": "Ocorreu um erro ao consultar os dados"
+      },
+      "TITLE": "Usuários : "
+    },
+    "FILTER": {
+      "COMPLETION_RANGE": "Taxa de conclusão",
+      "COURSES_PLACEHOLDER": "Digite o nome do curso",
+      "END_DATE": "Data de conclusão",
+      "JOB": "Cargo",
+      "MISSION_CATEGORY": "Categoria do curso",
+      "PERFORMANCE": "Performance",
+      "START_DATE": "Data de início",
+      "USERS_PLACEHOLDER": "Digite o nome do usuário",
+      "USER_LEADER": "Líder do usuário"
+    },
+    "OVERVIEW": {
+      "CHART": {
+        "TITLE": "Distribuição de Usuários x Quantidade de Cursos (Matriculados e Finalizados)",
+        "USERS_COMPLETED": "Usuários Concluiram",
+        "USERS_ENROLLED": "Usuários Matriculados"
+      },
+      "DATATABLE": {
+        "COLUMN": {
+          "AREA": "Área",
+          "DIRECTOR": "Diretoria",
+          "COMPLETED_RATIO": "Taxa de conclusão",
+          "COURSES_COMPLETED": "Cursos concluídos",
+          "COURSES_STARTED": "Cursos iniciados",
+          "JOB": "Cargo",
+          "LEADER": "Líder",
+          "NAME": "Usuário",
+          "MANAGER": "Subdiretoria"
+        },
+        "TITLE": "Lista de Usuários"
+      },
+      "TITLE": "Usuários",
+      "WIDGETS": {
+        "AVERAGE_ACTIVE_USERS": {
+          "TEXT": "Usuários por dia",
+          "TITLE": "Média de Ativos"
+        },
+        "ENGAGEMENT_RATE": {
+          "TEXT": "Média dos usuários dos últimos 30 dias",
+          "TITLE": "Taxa de Engajamento"
+        },
+        "FILTER_NOT_APPLIED": "Filtro não aplicado",
+        "KNOWLEDGE_CONSUMED": {
+          "TEXT": "Média por usuários",
+          "TITLE": "Conhecimento Consumido"
+        },
+        "TOP_CONTENT_CONSUMED": {
+          "TITLE": "Conteúdos mais consumidos"
+        },
+        "TOP_ENROLLMENT_CATEGORIES": {
+          "TITLE": "TOP 5 Categorias (matriculados)"
+        },
+        "USERS_ACTIVE_TOTAL": {
+          "TEXT": "Acessaram no período",
+          "TITLE": "Total de <strong>Ativos</strong>"
+        },
+        "USERS_CREATORS": {
+          "TEXT": "Multiplicadores",
+          "TITLE": "Criaram pelo menos um curso ou canal"
+        },
+        "USERS_TOTAL": {
+          "TEXT": "Cadastrados",
+          "TITLE": "Total de <strong>Usuários</strong>"
+        }
+      }
+    }
+  }
+}

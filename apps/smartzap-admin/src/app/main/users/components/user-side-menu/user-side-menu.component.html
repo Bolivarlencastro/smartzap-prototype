@@ -1,0 +1,38 @@
+<div class="h-full w-80 flex flex-col">
+  <!-- HEADER -->
+  <div class="h-32 pl-8 pr-6 flex items-center">
+    <div class="flex flex-col gap-1">
+      <span class="mb-2">{{ 'USERS.SUMMARY.TITLE' | transloco }}</span>
+      <span class="text-xs">{{ 'USERS.SUMMARY.SUBTITLE' | transloco }}</span>
+    </div>
+    <button mat-icon-button class="ml-auto" (click)="closeMenu.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <!-- / HEADER -->
+
+  <mat-divider></mat-divider>
+
+  <!-- CARDS -->
+  <div class="flex-1 pt-6 px-6 flex flex-col gap-3 overflow-y-auto">
+    <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon svgIcon="group" class="s-6 text-primary"></mat-icon>
+      <span>{{ summary()?.total || 0 }} {{ 'USERS.SUMMARY.TOTAL' | transloco }}</span>
+    </div>
+
+    @if (summary()?.synced) {
+      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#01d89b'"></span>
+        <span>{{ summary()?.synced }} {{ 'USERS.SUMMARY.SYNCED' | transloco }}</span>
+      </div>
+    }
+
+    @if (summary()?.notSynced) {
+      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#ff4444'"></span>
+        <span>{{ summary()?.notSynced }} {{ 'USERS.SUMMARY.NOT_SYNCED' | transloco }}</span>
+      </div>
+    }
+  </div>
+  <!-- / CARDS -->
+</div>

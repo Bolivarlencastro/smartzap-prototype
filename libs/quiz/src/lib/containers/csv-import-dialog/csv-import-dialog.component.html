@@ -1,0 +1,87 @@
+<h2 mat-dialog-title class="csv-import-header">
+  <span>{{ 'QUIZ.CSV_IMPORT_DIALOG.TITLE' | transloco }}</span>
+  <button mat-icon-button (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<mat-dialog-content class="csv-import-content">
+  <p class="csv-import-description">{{ 'QUIZ.CSV_IMPORT_DIALOG.DESCRIPTION' | transloco }}</p>
+
+  <label
+    for="csv-file-input"
+    class="csv-import-dropzone"
+    [class.csv-import-dropzone--dragging]="isDragging()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave()"
+    (drop)="onDrop($event)"
+  >
+    <span class="material-symbols-outlined csv-import-dropzone-icon">upload_file</span>
+    <strong>{{ 'QUIZ.CSV_IMPORT_DIALOG.DROPZONE_LABEL' | transloco }}</strong>
+    <span>{{ 'QUIZ.CSV_IMPORT_DIALOG.DROPZONE_SUBLABEL' | transloco }}</span>
+  </label>
+  <input
+    #fileInput
+    id="csv-file-input"
+    type="file"
+    accept=".csv"
+    class="csv-import-file-input"
+    (change)="onFileSelected()"
+  />
+
+  @if (status() === 'parsing') {
+    <div class="csv-import-loading">
+      <mat-spinner diameter="24" />
+    </div>
+  }
+
+  @if (status() === 'error') {
+    <div class="csv-import-message csv-import-message--error">
+      <span class="material-symbols-outlined">error</span>
+      <span>{{ 'QUIZ.CSV_IMPORT_DIALOG.ERROR_MESSAGE' | transloco }}</span>
+    </div>
+  }
+
+  @if (status() === 'success') {
+    <div class="csv-import-message csv-import-message--success">
+      <span class="material-symbols-outlined">check_circle</span>
+      <span>
+        {{ 'QUIZ.CSV_IMPORT_DIALOG.SUCCESS_MESSAGE' | transloco: { fileName: fileName(), count: questions().length } }}
+      </span>
+    </div>
+
+    <section class="csv-import-preview">
+      <div class="csv-import-preview-header">
+        <div>
+          <h3>{{ 'QUIZ.CSV_IMPORT_DIALOG.PREVIEW_TITLE' | transloco }}</h3>
+          <p>{{ 'QUIZ.CSV_IMPORT_DIALOG.PREVIEW_SUBTITLE' | transloco }}</p>
+        </div>
+        <button mat-button (click)="onAddAllToBank()">
+          {{ 'QUIZ.CSV_IMPORT_DIALOG.ADD_ALL_TO_BANK' | transloco }}
+        </button>
+      </div>
+      <div class="csv-import-preview-list">
+        @for (question of questions(); track $index) {
+          <qz-csv-import-preview-card
+            [question]="question"
+            [index]="$index"
+            (saveToBankChange)="onToggleSaveToBank($index)"
+          />
+        }
+      </div>
+    </section>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <a mat-button href="https://assets.keepsdev.com/files/modelo_quiz_importacao.csv" download>
+    {{ 'QUIZ.CSV_IMPORT_DIALOG.DOWNLOAD_TEMPLATE' | transloco }}
+  </a>
+  <span class="csv-import-actions-spacer"></span>
+  <button mat-stroked-button (click)="onCancel()">
+    {{ 'QUIZ.CSV_IMPORT_DIALOG.CANCEL' | transloco }}
+  </button>
+  <button mat-flat-button color="primary" [disabled]="status() !== 'success'" (click)="onImport()">
+    {{ 'QUIZ.CSV_IMPORT_DIALOG.IMPORT' | transloco }}
+  </button>
+</mat-dialog-actions>

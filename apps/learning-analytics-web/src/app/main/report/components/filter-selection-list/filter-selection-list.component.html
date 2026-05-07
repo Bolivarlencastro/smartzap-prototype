@@ -1,0 +1,39 @@
+<div [ngClass]="{ 'mt-1': multiple }">
+  @if (multiple) {
+    <span [matBadge]="selectedCount" matBadgeSize="small" matBadgeOverlap="false">{{ subtitle }}</span>
+  } @else {
+    <span>{{ subtitle }}</span>
+  }
+
+  <mat-divider class="my-4"></mat-divider>
+
+  <mat-form-field class="w-full" appearance="outline">
+    <input matInput [placeholder]="'REPORTS.KONQUEST_TAB.SERACH_PLACEHOLDER' | transloco" #searchInput />
+    <mat-icon matSuffix>search</mat-icon>
+    @if (hasNoItems) {
+      <mat-hint>{{ 'REPORTS.KONQUEST_TAB.SERACH_HINT' | transloco }}</mat-hint>
+    }
+  </mat-form-field>
+
+  <cdk-virtual-scroll-viewport #scroller itemSize="48" class="list-content">
+    <mat-selection-list
+      color="accent"
+      (selectionChange)="selectionChange($event.options[0].value)"
+      [multiple]="multiple"
+    >
+      <mat-list-option
+        *cdkVirtualFor="let item of items; templateCacheSize: virtualForCacheSize; let i = index"
+        checkboxPosition="before"
+        [value]="item.id"
+        [selected]="isSelected(item.id)"
+      >
+        <div class="line-clamp-2 text-ellipsis overflow-hidden">{{ item.label }}</div>
+      </mat-list-option>
+      @if (isLoading) {
+        <div class="flex justify-center items-center py-4">
+          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="30"> </mat-progress-spinner>
+        </div>
+      }
+    </mat-selection-list>
+  </cdk-virtual-scroll-viewport>
+</div>

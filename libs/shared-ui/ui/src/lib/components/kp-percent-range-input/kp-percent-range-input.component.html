@@ -1,0 +1,33 @@
+<div
+  role="group"
+  class="kp-range-input-container"
+  [formGroup]="parts"
+  [attr.aria-labelledby]="_formField?.getLabelId()"
+  (focusin)="onFocusIn($event)"
+  (focusout)="onFocusOut($event)"
+>
+  <input
+    class="kp-range-input-element from"
+    formControlName="from"
+    size="5"
+    [mask]="mask"
+    [suffix]="suffix || ''"
+    [placeholder]="fromPlaceholder"
+    [dropSpecialCharacters]="false"
+    (input)="handleInput(parts.controls.from, to)"
+    #from
+  />
+  <span class="kp-range-input-spacer">{{ spacer }}</span>
+  <input
+    class="kp-range-input-element to"
+    formControlName="to"
+    size="5"
+    [mask]="mask"
+    [suffix]="suffix || ''"
+    [placeholder]="toPlaceholder"
+    [dropSpecialCharacters]="false"
+    (input)="handleInput(parts.controls.to)"
+    (keyup.backspace)="autoFocusPrev(parts.controls.to, from)"
+    #to
+  />
+</div>

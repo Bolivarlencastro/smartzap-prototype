@@ -1,0 +1,47 @@
+{
+  "name": "image-generator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/image-generator/src",
+  "prefix": "ig",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/image-generator/jest.config.ts",
+        "tsConfig": "libs/image-generator/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/image-generator/**/*.scss"]
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Image Generator Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "image-generator-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "libs/core/**, libs/shared-ui/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/image-generator/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/store/**, **/translate.ts, **/*.routes.ts, **/app.config.ts,, **/*.module.ts, **/test-setup.ts, **/*.providers.ts, **/*.routes.ts",
+          "sonar.plugins.downloadOnlyRequired": "true"
+        }
+      }
+    }
+  }
+}

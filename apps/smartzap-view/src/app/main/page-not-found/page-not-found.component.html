@@ -1,0 +1,19 @@
+<div class="not-found">
+  <div class="not-found-content">
+    <img class="not-found-image" src="/assets/images/logo.png" alt="logo" />
+
+    <h1>OOPS!!</h1>
+
+    <h2>Não foi possível carregar o conteúdo solicitado.</h2>
+
+    <h3>Talvez o seu link tenha expirado ou o conteúdo não exista mais.</h3>
+
+    @if (prototypeMode) {
+      <a [routerLink]="prototypeHomePath" mat-flat-button class="not-found-button">Abrir a galeria do protótipo</a>
+    }
+    <button (click)="onReturn(supportUrl)" mat-flat-button class="not-found-button">Contate o nosso suporte</button>
+    <button (click)="onReturn(whatsappUrlRedirect)" mat-flat-button class="not-found-button">
+      Retornar ao WhatsApp
+    </button>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="min-w-10 text-center">
+  @if (first) {
+    {{ 'UI.KP_FILTER.PLACEHOLDERS.WHERE' | transloco }}
+  } @else {
+    {{ 'UI.KP_FILTER.PLACEHOLDERS.AND' | transloco }}
+  }
+</div>
+
+<mat-form-field class="grow" appearance="outline" subscriptSizing="dynamic">
+  <mat-select
+    [value]="value"
+    (selectionChange)="onSelectionChange($event.value)"
+    [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.SELECT_FILTER' | transloco"
+  >
+    @for (option of options; track option) {
+      <mat-option [value]="option.filterKey">
+        {{ option.label | transloco }}
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>

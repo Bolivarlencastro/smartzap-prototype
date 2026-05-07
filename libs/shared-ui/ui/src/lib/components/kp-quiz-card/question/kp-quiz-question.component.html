@@ -1,0 +1,10 @@
+<div class="quiz-question" [@slideInLeft]>
+  <p class="quiz-question__text html-content-container" [innerHTML]="data.question.exam_question"></p>
+
+  <kp-quiz-card-options
+    [options]="data.question.options"
+    [question]="data.question.id"
+    (selected)="onSelectOption($event, data.question)"
+    #opt
+  ></kp-quiz-card-options>
+</div>

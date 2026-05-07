@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  justify-items: start;
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+}
+
+#color-picker {
+  background-color: var(--mat-sys-surface-container);
+}

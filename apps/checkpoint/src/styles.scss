@@ -1,0 +1,51 @@
+@use '@angular/material' as mat;
+@tailwind base;
+
+@layer base {
+  /* HTML and Body default styles */
+  html,
+  body {
+    color-scheme: light !important;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 100%;
+    font-size: 16px;
+  }
+}
+
+:root {
+  --check-in-green: #018001;
+  --check-in-red: #c00;
+}
+
+.bg-default {
+  background-color: var(--mat-sys-primary, #6b21a8);
+}
+
+.background-rings {
+  color: color-mix(in srgb, white 60%, transparent);
+}
+
+/* Angular Material theme */
+html {
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' -25,
+      'opsz' var(--optical-sizing, 24);
+  }
+}
+
+@tailwind components;
+@tailwind utilities;

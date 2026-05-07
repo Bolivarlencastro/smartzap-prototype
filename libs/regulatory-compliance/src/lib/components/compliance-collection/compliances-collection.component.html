@@ -1,0 +1,47 @@
+<div class="flex h-14 px-4 items-center border-b border-default">
+  <mat-checkbox
+    (change)="toggleAllRows($event)"
+    [checked]="isAllSelected"
+    [indeterminate]="indeterminateCheck"
+  ></mat-checkbox>
+
+  <p class="grow text-xs">
+    @if (!hasSelection) {
+      {{ 'REGULATORY_COMPLIANCE.COMPLIANCE_DIALOG.NAME' | transloco }}
+    } @else {
+      {{ 'REGULATORY_COMPLIANCE.COMPLIANCE_DIALOG.SELECTED' | kpPluralizeTranslate: { value: selectedTotal } }}
+    }
+  </p>
+
+  @if (hasSelection) {
+    <button mat-icon-button class="mr-2" (click)="onBatchDelete()">
+      <mat-icon class="s-6">delete</mat-icon>
+    </button>
+  }
+</div>
+
+<kp-infinite-scroll-container hostHeight="270px" (scrolled)="onScroll()">
+  @for (item of items; track item; let isLast = $last) {
+    <kp-editable
+      class="h-14 border-default"
+      [class.border-b]="!isLast"
+      [value]="item.name"
+      [checked]="item?.selected || false"
+      (checkedChange)="onItemSelectionChange($event, item)"
+      (savedChanges)="saveItemChanges($event, item)"
+      (deleteItem)="onDeleteItem(item)"
+    ></kp-editable>
+  }
+
+  @if (isLoading) {
+    <div class="py-2 flex items-center justify-center" [class.h-full]="!items?.length">
+      <mat-progress-spinner mode="indeterminate" diameter="36" color="primary"></mat-progress-spinner>
+    </div>
+  }
+
+  @if (isEmpty) {
+    <div class="flex flex-col items-center justify-center h-full">
+      {{ 'REGULATORY_COMPLIANCE.COMPLIANCE_DIALOG.EMPTY_LIST' | transloco }}
+    </div>
+  }
+</kp-infinite-scroll-container>

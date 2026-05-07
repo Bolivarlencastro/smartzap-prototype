@@ -1,0 +1,71 @@
+<div class="relative flex items-center">
+  <button
+    type="button"
+    mat-button
+    [matMenuTriggerFor]="menu"
+    class="country-selector h-4 pl-0 flex justify-start w-fit rounded-none"
+    [disabled]="disabled"
+  >
+    <span class="country-selector-flag flag" [ngClass]="selectedCountry?.flagClass || ''"></span>
+    @if (selectedCountry?.dialCode) {
+      <span class="country-selector-code">+{{ selectedCountry?.dialCode }}</span>
+    }
+  </button>
+  <mat-menu #menu="matMenu" class="h-80 w-72">
+    @if (enableSearch) {
+      <input
+        matInput
+        class="country-search p-5"
+        [(ngModel)]="searchCriteria"
+        type="text"
+        [placeholder]="searchPlaceholder || ('UI.GENERAL.SEARCH' | transloco)"
+        (click)="$event.stopPropagation()"
+      />
+    }
+
+    <mat-divider></mat-divider>
+
+    @for (country of preferredCountriesInDropDown; track country) {
+      <button type="button" mat-menu-item class="country-list-button" (click)="onCountrySelect(country, focusable)">
+        <div class="icon-wrapper">
+          <div class="flag" [ngClass]="country.flagClass"></div>
+        </div>
+        <div class="label-wrapper">
+          {{ country.name }}
+          @if (country?.dialCode) {
+            <span>+{{ country.dialCode }}</span>
+          }
+        </div>
+      </button>
+    }
+    @if (preferredCountriesInDropDown?.length) {
+      <mat-divider></mat-divider>
+    }
+    @for (country of allCountries; track country) {
+      @if (country | phoneInputSearch: searchCriteria) {
+        <button type="button" mat-menu-item class="country-list-button" (click)="onCountrySelect(country, focusable)">
+          <div class="icon-wrapper">
+            <div class="flag" [ngClass]="country?.flagClass || ''"></div>
+          </div>
+          <div class="label-wrapper">{{ country?.name }} +{{ country?.dialCode }}</div>
+        </button>
+      }
+    }
+  </mat-menu>
+
+  <input
+    matInput
+    type="tel"
+    autocomplete="off"
+    [ngClass]="cssClass"
+    (blur)="onTouched()"
+    (keypress)="onInputKeyPress($event)"
+    [(ngModel)]="phoneNumber"
+    (ngModelChange)="onPhoneNumberChange()"
+    [errorStateMatcher]="errorStateMatcher"
+    [placeholder]="inputPlaceholder"
+    [disabled]="disabled"
+    [aria-describedby]="describedBy"
+    #focusable
+  />
+</div>

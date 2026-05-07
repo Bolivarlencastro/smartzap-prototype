@@ -1,0 +1,9 @@
+{
+  "name": "stitch-refine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@google/stitch-sdk": "latest"
+  }
+}

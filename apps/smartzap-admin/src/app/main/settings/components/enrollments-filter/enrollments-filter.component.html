@@ -1,0 +1,26 @@
+<form [formGroup]="form" class="flex flex-wrap items-center gap-2">
+  <kp-select-menu-trigger [label]="'GENERAL.STATUS' | transloco">
+    <mat-icon class="filled s-1 text-primary">circle</mat-icon>
+    <mat-select kpSelectTriggerContent multiple formControlName="status__in">
+      @for (status of availableStatuses; track status.value) {
+        <mat-option [value]="status.value">{{ status.label | transloco }}</mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+
+  <kp-date-range-filter-v2
+    [parentFormGroup]="form"
+    gteFcName="start_date__gte"
+    lteFcName="end_date__lte"
+    icon="today"
+    [label]="'SETTINGS.ENROLLMENTS.FILTER.DATE' | transloco"
+  ></kp-date-range-filter-v2>
+
+  <kp-percentage-range-filter
+    [parentFormGroup]="form"
+    gteFcName="performance__gte"
+    lteFcName="performance__lte"
+    icon="bar_chart"
+    [label]="'GENERAL.PERFORMANCE' | transloco"
+  ></kp-percentage-range-filter>
+</form>

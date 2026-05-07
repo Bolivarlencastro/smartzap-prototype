@@ -1,0 +1,9 @@
+<div class="p-6 flex flex-col">
+  <span class="text-2xl mb-4">{{ 'LINK_CYCLE.DIALOG_TITLE' | transloco }}</span>
+  <span class="text-sm break-words mb-6">{{ 'LINK_CYCLE.DIALOG_DESCRIPTION' | transloco }}</span>
+  <app-link-cycle-dialog-form
+    [cycles]="cycles$ | async"
+    (formSubmit)="onSubmit($event)"
+    (filterCycle)="filterCycle($event)"
+  ></app-link-cycle-dialog-form>
+</div>

@@ -1,0 +1,44 @@
+:host {
+  @apply p-5 border border-default rounded-xl flex flex-col gap-4;
+
+  background-color: var(--mat-sys-surface);
+}
+
+.clear-btn {
+  @apply text-xs font-semibold cursor-pointer;
+
+  color: var(--mat-sys-primary);
+}
+
+.section {
+  @apply flex flex-col gap-2;
+}
+
+.section-label {
+  @apply text-2xxs font-bold uppercase opacity-50 px-1;
+}
+
+.chips-row {
+  @apply flex flex-wrap gap-2;
+}
+
+.chip {
+  @apply rounded-full font-medium px-3 py-1 text-xs cursor-pointer transition-colors border border-default;
+
+  border-color: var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface);
+
+  &:hover:not(.selected) {
+    background-color: color-mix(in srgb, var(--mat-sys-surface-container) 50%, transparent);
+  }
+
+  &.selected {
+    background-color: var(--mat-sys-primary-container);
+    color: var(--mat-sys-primary);
+    border-color: var(--mat-sys-primary-container);
+  }
+}
+
+.toggle-btn {
+  @apply flex items-center gap-1 text-xs font-medium cursor-pointer self-center;
+}

@@ -1,0 +1,22 @@
+@if (!textOnly) {
+  <div class="tag-icon-container">
+    @if (templateIcon; as tIcon) {
+      <mat-icon class="tag-icon s-1">{{ tIcon }} </mat-icon>
+    } @else {
+      <div class="tag-dot rounded-full w-[6px] h-[6px]"></div>
+    }
+  </div>
+}
+
+<div class="tag-content-container font-black text-[8px] leading-none uppercase pt-[1px]" [class.ml-1]="textOnly">
+  <ng-content></ng-content>
+  @if (displayByType) {
+    @if (includeLabelInTranslation) {
+      {{ typeLabel | transloco: { value: label } }}
+    } @else {
+      {{ typeLabel | transloco }}
+    }
+  } @else {
+    {{ label }}
+  }
+</div>

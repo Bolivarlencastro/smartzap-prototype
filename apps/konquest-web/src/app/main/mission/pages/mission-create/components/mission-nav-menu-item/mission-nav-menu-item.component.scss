@@ -1,0 +1,37 @@
+:host {
+  display: block;
+
+  @apply first:border-t border-b border-default;
+
+  .item-container {
+    .order-counter {
+      border-style: solid;
+      border-color: var(--mat-sys-outline-variant);
+    }
+
+    &.active-item {
+      .order-counter {
+        background-color: var(--mat-sys-primary);
+        color: var(--mat-sys-on-primary);
+        border: none;
+      }
+
+      .title {
+        color: var(--mat-sys-primary);
+      }
+    }
+  }
+
+  &:not(.disabled) {
+    &:hover,
+    &:focus {
+      background-color: var(--mat-sys-surface-container);
+    }
+
+    .item-container {
+      &.active-item {
+        background-color: var(--mat-sys-surface-container-low);
+      }
+    }
+  }
+}

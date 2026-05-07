@@ -1,0 +1,12 @@
+<div mat-dialog-title class="app-group-linked-dialog-header flex justify-between items-center">
+  <span class="text-lg">{{ dialogTitle | transloco }}</span>
+  <button
+    mat-icon-button
+    mat-dialog-close
+    [matTooltip]="'GENERAL.CLOSE' | transloco"
+    class="close-button"
+    aria-label="Close"
+  >
+    <mat-icon class="s-4">close</mat-icon>
+  </button>
+</div>

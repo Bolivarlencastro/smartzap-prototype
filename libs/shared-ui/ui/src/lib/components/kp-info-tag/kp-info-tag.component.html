@@ -1,0 +1,7 @@
+@if (icon) {
+  <mat-icon class="s-1">{{ icon }}</mat-icon>
+}
+@if (svgIcon && !icon) {
+  <mat-icon [svgIcon]="svgIcon" class="s-1"></mat-icon>
+}
+<span>{{ label }}</span>

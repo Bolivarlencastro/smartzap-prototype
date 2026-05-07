@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+@mixin kp-sidenav-theme {
+  kp-sidenav {
+    --kp-sidenav-bg: var(--mat-sys-surface-container);
+  }
+
+  .kp-sidenav-content {
+    --kp-sidenav-content-bg: var(--mat-sys-surface-bright);
+
+    display: block;
+    border-radius: 0.5rem;
+    position: relative;
+    background-color: var(--kp-sidenav-content-bg);
+  }
+}

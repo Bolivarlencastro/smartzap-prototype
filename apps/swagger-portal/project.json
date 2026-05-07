@@ -1,0 +1,74 @@
+{
+  "name": "swagger-portal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "kp",
+  "sourceRoot": "apps/swagger-portal/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/swagger-portal",
+        "index": "apps/swagger-portal/src/index.html",
+        "main": "apps/swagger-portal/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/swagger-portal/tsconfig.app.json",
+        "assets": ["apps/swagger-portal/src/favicon.ico", "apps/swagger-portal/src/assets"],
+        "styles": ["apps/swagger-portal/src/styles.scss", "./node_modules/swagger-ui-dist/swagger-ui.css"],
+        "scripts": [
+          "./node_modules/swagger-ui-dist/swagger-ui-bundle.js",
+          "./node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "2mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "swagger-portal:build:production"
+        },
+        "development": {
+          "buildTarget": "swagger-portal:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "swagger-portal:build"
+      }
+    }
+  }
+}

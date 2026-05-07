@@ -1,0 +1,185 @@
+<section class="flex mb-4 items-center" *kpVar="userData">
+  <mat-card class="h-20 w-full flex-row items-center justify-between" appearance="outlined">
+    <div class="flex items-center">
+      <div [class.hidden]="hideButtonHeader">
+        <a mat-icon-button routerLink="/user" class="text-primary">
+          <mat-icon class="s-9">chevron_left</mat-icon>
+        </a>
+      </div>
+      <h1 class="text-normal ml-8 text-left md:text-left">
+        {{ 'UI.USERS.DETAILS.TITLE' | transloco }} {{ userData?.name }}
+      </h1>
+    </div>
+    <kp-analytics-chart-filter (filter)="onFilterChart($event)"></kp-analytics-chart-filter>
+  </mat-card>
+
+  @if (userResponse?.isLoading) {
+    <kp-loading-progress-shade></kp-loading-progress-shade>
+  }
+</section>
+
+<section class="mb-4 flex flex-col md:flex-row gap-4">
+  <!-- Total Completed Courses -->
+  <mat-card
+    appearance="outlined"
+    class="p-4 rounded-md bg-primary text-on-primary flex flex-col w-full md:w-1/5 justify-between items-center"
+    *kpVar="userStats as stats"
+  >
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+    <span
+      class="text-3xl text-center"
+      [innerHTML]="'UI.USERS.DETAILS.WIDGETS.TOTAL_COMPLETED_COURSES.TITLE' | transloco"
+    ></span>
+    <span class="text-[100px] font-bold">{{ stats?.enrollments.completed.total || 0 }}</span>
+    <span class="text-2xl">{{ stats?.activities.completed_enrollments_total_seconds | kpNumberToTime: 's' }}</span>
+  </mat-card>
+
+  <!-- Performance Distribution Chart -->
+  <mat-card
+    appearance="outlined"
+    class="p-4 rounded-md w-full md:w-4/5 flex flex-col items-center justify-center"
+    *kpVar="performanceRanges as chartData"
+  >
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+    <kp-performance-distribution-chart
+      [data]="chartData"
+      [header]="'UI.USERS.DETAILS.WIDGETS.PERFORMANCE_CHART.TITLE' | transloco"
+      [label]="'UI.USERS.DETAILS.WIDGETS.PERFORMANCE_CHART.LABEL' | transloco"
+    >
+    </kp-performance-distribution-chart>
+  </mat-card>
+</section>
+
+<section class="mb-4 flex flex-col md:flex-row gap-4">
+  <!-- Completed Rate -->
+  <mat-card
+    appearance="outlined"
+    class="p-4 rounded-md w-full md:w-1/5 flex flex-col items-center justify-center"
+    *kpVar="userStats as stats"
+  >
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+    <kp-progress-circle [value]="stats?.enrollments.completed.ratio * 100"></kp-progress-circle>
+    <span class="text-2xl" [innerHTML]="'UI.USERS.DETAILS.WIDGETS.COMPLETED_RATE.TEXT' | transloco"></span>
+  </mat-card>
+
+  <!-- Average Performance -->
+  <mat-card
+    appearance="outlined"
+    class="p-4 rounded-md w-full md:w-2/5 flex flex-row items-center justify-center"
+    *kpVar="userStats as stats"
+  >
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+    <kp-progress-circle [value]="stats?.enrollments.performance_avg * 100"></kp-progress-circle>
+    <span class="text-3xl text-center" [innerHTML]="'UI.USERS.DETAILS.WIDGETS.PERFORMANCE.TITLE' | transloco"></span>
+  </mat-card>
+
+  <!-- User Activities -->
+  <mat-card
+    appearance="outlined"
+    class="p-4 rounded-md w-full md:w-2/5 flex flex-col place-content-evenly"
+    *kpVar="activitiesData as stats"
+  >
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+
+    <!-- Header -->
+    <div class="mb-10 flex flex-row justify-between gap-4">
+      <div
+        class="text-xl font-semibold"
+        [innerHTML]="'UI.USERS.DETAILS.WIDGETS.ACTIVITIES_STATS.TITLE' | transloco"
+      ></div>
+
+      <!-- Filter -->
+      <div class="flex flex-row items-start user-activity-filter">
+        <mat-button-toggle-group
+          aria-label="Filter"
+          [value]="activitiesFilter"
+          (change)="onActivitiesFilterChanged($event)"
+          [hideSingleSelectionIndicator]="true"
+        >
+          <mat-button-toggle [value]="FILTER_LAST_7_DAYS">
+            {{ 'UI.USERS.DETAILS.WIDGETS.ACTIVITIES_STATS.FILTER.LAST_7_DAYS' | transloco }}</mat-button-toggle
+          >
+          <mat-button-toggle [value]="FILTER_LAST_30_DAYS">
+            {{ 'UI.USERS.DETAILS.WIDGETS.ACTIVITIES_STATS.FILTER.LAST_30_DAYS' | transloco }}</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <!-- ./Header -->
+
+    <!-- Stats -->
+    <div class="flex flex-row">
+      <!-- Courses -->
+      <div class="flex flex-col w-1/2">
+        <div class="h4 font-bold">{{ 'UI.USERS.DETAILS.WIDGETS.ACTIVITIES_STATS.COURSES_CONSUMED' | transloco }}</div>
+
+        <div class="text-4xl font-bold leading-none mt-2">
+          {{ stats?.missions.total | number }}
+        </div>
+
+        <div
+          class="flex flex-row items-center"
+          *kpVar="stats?.missions.variation as variation"
+          [class]="variation.class"
+        >
+          <mat-icon class="mr-4" [ngClass]="variation?.class">{{ variation?.icon }}</mat-icon>
+          <span [title]="stats?.missions.previous">{{ variation?.rate * 100 | number: '1.2-2' }} %</span>
+        </div>
+      </div>
+
+      <!-- Pulses -->
+      <div class="flex flex-col w-1/2">
+        <div class="h4 font-bold">{{ 'UI.USERS.DETAILS.WIDGETS.ACTIVITIES_STATS.PULSES_CONSUMED' | transloco }}</div>
+
+        <div class="text-4xl font-bold leading-none mt-2">
+          {{ stats?.pulses.total | number }}
+        </div>
+
+        <div
+          class="flex flex-row items-center"
+          *kpVar="stats?.pulses.variation as variation"
+          [class]="variation?.class"
+        >
+          <mat-icon class="mr-4" [ngClass]="variation?.class">{{ variation?.icon }}</mat-icon>
+          <span [title]="stats?.pulses.previous">{{ variation?.rate * 100 | number: '1.2-2' }} %</span>
+        </div>
+
+        @if (!stats?.pulses.variation) {
+          <div class="ml-4 line-height-24">&nbsp;</div>
+        }
+      </div>
+    </div>
+    <!-- ./Stats -->
+  </mat-card>
+  <!-- ./User Activities -->
+</section>
+
+<section class="mb-4 flex flex-col md:flex-row gap-4">
+  <!-- Top Enrollment Categories -->
+  <mat-card appearance="outlined" class="p-4 rounded-md flex-1" *kpVar="topEnrollmentCategories as chartData">
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+    <h2>{{ 'UI.USERS.DETAILS.WIDGETS.TOP_ENROLLMENT_CATEGORIES.TITLE' | transloco }}</h2>
+    <kp-top-five-chart [data]="chartData"></kp-top-five-chart>
+  </mat-card>
+
+  <!-- Top Content Consumed -->
+  <mat-card appearance="outlined" class="p-4 rounded-md flex-1" *kpVar="topContentConsumed as chartData">
+    @if (userResponse?.isLoading) {
+      <kp-loading-progress-shade></kp-loading-progress-shade>
+    }
+    <h2>{{ 'UI.USERS.DETAILS.WIDGETS.TOP_CONTENT_CONSUMED.TITLE' | transloco }}</h2>
+    <kp-analytics-donut-chart [data]="chartData"></kp-analytics-donut-chart>
+  </mat-card>
+</section>

@@ -1,0 +1,55 @@
+.tracking-table {
+  width: 100%;
+}
+
+.tracking-header {
+  border-color: var(--mat-sys-outline-variant);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.tracking-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 320px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.tracking-empty-state__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(124 98 168 / 14%), rgb(124 98 168 / 6%));
+  color: #7c62a8;
+
+  .mat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+}
+
+.tracking-empty-state__content {
+  max-width: 480px;
+}
+
+.tracking-empty-state__title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tracking-empty-state__description {
+  margin: 0;
+  color: rgb(0 0 0 / 60%);
+  font-size: 15px;
+  line-height: 1.5;
+}

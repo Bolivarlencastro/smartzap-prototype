@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 24px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.table-layout {
+  @apply grow overflow-x-auto;
+  @include mat.table-overrides(
+    (
+      row-item-container-height: 72px,
+    )
+  );
+}
+
+.paginator-area {
+  border-top: 1px solid var(--mat-sys-outline-variant);
+}

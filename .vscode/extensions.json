@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "angular.ng-template",
+    "nrwl.angular-console",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "github.github-vscode-theme",
+    "johnpapa.vscode-peacock",
+    "vscode-icons-team.vscode-icons",
+    "ms-vscode-remote.remote-wsl",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "ritwickdey.liveserver",
+    "ms-vsliveshare.vsliveshare",
+    "sibiraj-s.vscode-scss-formatter",
+    "snyk-security.snyk-vulnerability-scanner",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

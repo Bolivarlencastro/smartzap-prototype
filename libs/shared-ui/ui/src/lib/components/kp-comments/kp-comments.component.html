@@ -1,0 +1,28 @@
+<div class="comments">
+  @if (comments && comments.length > 0) {
+    <h1 class="xxs:text-lg">
+      {{ title }}
+    </h1>
+  }
+  @for (comment of comments; track comment; let last = $last) {
+    <div>
+      <kp-comment
+        [comment]="comment"
+        [isAuthor]="comment?.user?.id === userId"
+        [canDelete]="canDeleteAnyComment"
+        [userLanguage]="userLanguage"
+        (editEvent)="onEdit($event)"
+        (deleteEvent)="onDelete($event)"
+        id="comment"
+      ></kp-comment>
+      @if (!last) {
+        <mat-divider></mat-divider>
+      }
+    </div>
+  }
+  @if (isLoading) {
+    <div class="spinner flex flex-row justify-center">
+      <mat-spinner color="accent" strokeWidth="4" diameter="50"></mat-spinner>
+    </div>
+  }
+</div>

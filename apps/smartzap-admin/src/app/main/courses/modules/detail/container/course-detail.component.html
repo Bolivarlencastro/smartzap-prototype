@@ -1,0 +1,69 @@
+@if (course$ | async; as course) {
+  <div class="course-detail-dialog">
+    <app-course-detail-header
+      [course]="course"
+      [showCloseButton]="true"
+      (closeClick)="closeDialog()"
+    ></app-course-detail-header>
+    <app-course-detail-status [course]="course"></app-course-detail-status>
+    <div class="course-detail-dialog__accent-line"></div>
+    <div mat-dialog-content class="course-detail-dialog__content page-layout-container py-6 px-6">
+      <div class="course-detail-dialog__intro">
+        <div class="course-detail-dialog__title-block">
+          <h1 class="course-detail-dialog__title" data-test="course-detail-header.name">{{ course.name }}</h1>
+          <div class="course-detail-dialog__meta" data-test="course-detail-header.created">
+            <span class="course-detail-dialog__meta-item">
+              <mat-icon class="s-4">calendar_today</mat-icon>
+              <span>{{ 'UI.TITLE.CREATED_ON' | transloco }} {{ course.created | date: 'shortDate' }}</span>
+            </span>
+            @if (course.user_creator?.name) {
+              <span class="course-detail-dialog__meta-item">
+                <mat-icon class="s-4">assignment_ind</mat-icon>
+                <span>{{ 'UI.TITLE.CREATED_BY' | transloco }} {{ course.user_creator?.name }}</span>
+              </span>
+            }
+            @if (course.category?.name) {
+              <span class="course-detail-dialog__meta-item">
+                <mat-icon class="s-4">category</mat-icon>
+                <span>{{ course.category?.name }}</span>
+              </span>
+            }
+          </div>
+        </div>
+
+        @if (course.status !== 'PROCESSING') {
+          <div class="course-detail-dialog__actions">
+            <app-course-detail-actions
+              [course]="course"
+              [reportButtons]="reportButtons$ | async"
+              [canEdit]="canEdit$ | async"
+              (remove)="onRemove(course.id)"
+              (transfer)="onTransfer(course.id)"
+              (edit)="onEdit()"
+              (publish)="onPublish(course.id)"
+              (generateReport)="onGenerateReport(course.id, $event)"
+            ></app-course-detail-actions>
+          </div>
+        }
+      </div>
+
+      <div class="course-detail-dialog__body">
+        <div class="course-detail-dialog__description">
+          <app-course-detail-description
+            [summary]="course.description"
+            [canEdit]="canEdit$ | async"
+            (update)="updateDescription($event)"
+          ></app-course-detail-description>
+        </div>
+
+        @if (contents$ | async; as contents) {
+          @if ((contents | keyvalue).length) {
+            <div class="course-detail-dialog__contents">
+              <app-course-detail-contents [contents]="contents"></app-course-detail-contents>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+}

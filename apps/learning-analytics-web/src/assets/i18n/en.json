@@ -1,0 +1,661 @@
+{
+  "CATEGORY": {
+    "Communications": "Communication",
+    "Design": "Design",
+    "Development": "Development",
+    "Digital Marketing": "Digital Marketing",
+    "Entrepreneurship": "Entrepreneurship",
+    "Finance": "Finance",
+    "Financial Education": "Financial Education",
+    "Health and Fitness": "Health and Wellness",
+    "Language": "Languages",
+    "Leadership": "Leadership",
+    "Lifestyle": "Lifestyle",
+    "Management": "Management",
+    "Marketing": "Marketing",
+    "Office Productivity": "Office Productivity",
+    "Personal Development": "Personal Development",
+    "Project Management": "Project Management",
+    "Sales": "Sales",
+    "Social Media": "Social Media",
+    "Strategy": "Strategy",
+    "Technology": "Technology",
+    "Web Design": "Web Design"
+  },
+  "COURSE": {
+    "CONTENTS": {
+      "DATATABLE": {
+        "COLUMN": {
+          "ENGAGEMENT": "Engagement (%)",
+          "NAME": "Name",
+          "QUANTITY": "Views",
+          "VIEW_TIME": "View time"
+        },
+        "FILTER": {
+          "CONTENT_TYPE": "Content Type",
+          "LABEL": "Filter",
+          "PLACEHOLDER": "Search by name of the content"
+        },
+        "TITLE": "Content List"
+      },
+      "TITLE": "Courses / content list"
+    },
+    "DETAILS": {
+      "CHARTS": {
+        "LABELS": {
+          "ENROLLMENTS_COMPLETED": "Completed",
+          "ENROLLMENTS_STARTED": "Started",
+          "ENROLLMENTS_TOTAL": "Enrolled"
+        }
+      },
+      "DATATABLE": {
+        "COLUMN": {
+          "END_DATE": "Completion",
+          "NAME": "User",
+          "PERFORMANCE": "Performance",
+          "START_DATE": "Start",
+          "PROGRESS": "Progress"
+        },
+        "FILTER": {
+          "INTERVAL": "Period",
+          "LABEL": "Filter",
+          "PLACEHOLDER": "Search by enrolled user name"
+        },
+        "TITLE": "Users :"
+      },
+      "ERROR": {
+        "NOT_FOUND": "Course not found",
+        "UNKNOWN": "There was an error when retrieving the data"
+      },
+      "WIDGETS": {
+        "NPS": {
+          "BUTTON": "See answers",
+          "CON": "Detractors",
+          "NEUTRAL": "Neutrals",
+          "PRO": "Promoters"
+        }
+      }
+    },
+    "OVERVIEW": {
+      "CHARTS": {
+        "LABELS": {
+          "COURSES_COMPLETED": "Completed Enrollments",
+          "COURSES_NEW_ENROLLMENTS": "New Registration",
+          "COURSES_STARTED": "Enrollments Started"
+        }
+      },
+      "DATATABLE": {
+        "COLUMN": {
+          "CATEGORY": "Category",
+          "ENROLLMENT": "Enrollments",
+          "ENROLLMENT_COMPLETED": "Completed",
+          "ENROLLMENT_RATIO": "Compl. rate",
+          "NAME": "Name",
+          "RATING": "Evaluation"
+        },
+        "FILTER": {
+          "LABEL": "Filter",
+          "PLACEHOLDER": "Search by course name or category"
+        },
+        "TITLE": "Course List"
+      },
+      "TITLE": "Dashboard | Courses",
+      "WIDGETS": {
+        "AVAILABLE": {
+          "SUB_TITLE": "Hours in the period",
+          "TITLE": "Available Content"
+        },
+        "CONSUMED": {
+          "SUB_TITLE": "Hours in the period",
+          "TITLE": "Realized Content"
+        },
+        "CONTENTS": {
+          "TITLE": "Available Content"
+        },
+        "RATING": {
+          "SUB_TITLE": "Stars",
+          "TITLE": "Average Course Rating"
+        },
+        "RATIO": {
+          "TITLE": "Completion Rate"
+        },
+        "TOP5": {
+          "TITLE": "Top 5 Categories (quantity)"
+        },
+        "TOTAL": {
+          "TITLE": "Total of <strong> COURSES CREATED </strong>"
+        }
+      }
+    }
+  },
+  "DASHBOARD": {
+    "CHART": {
+      "SERIES": {
+        "ACTIVE_USERS_DESCRIPTION": "Users who accessed contents from courses or micro-learnings",
+        "ACTIVE_USERS_IN_": "Active Users in",
+        "COMPLETED_COURSES_IN_": "Completed Courses in",
+        "NEW_COURSES_IN_": "New Courses in",
+        "NEW_USERS_IN_": "New Users in"
+      },
+      "VALUES": {
+        "ACTIVE": "Active",
+        "NEW_COURSES": "New Courses",
+        "NEW_USERS": "New Users"
+      }
+    },
+    "FILTER": {
+      "DIMENSION_TITLE": "Dimension",
+      "PERIOD_TITLE": "Period"
+    },
+    "TITLE": "Learning Analytics",
+    "WIDGETS": {
+      "ACTIVE_USERS": {
+        "SUBTITLE": "Total in period",
+        "TITLE": "Active Users"
+      },
+      "COMPLETED_COURSES": {
+        "SUBTITLE": "Total in period",
+        "TITLE": "Completed Courses"
+      },
+      "NEW_COURSES": {
+        "SUBTITLE": "Total in period",
+        "TITLE": "New Courses"
+      },
+      "NEW_USERS": {
+        "SUBTITLE": "Total in period",
+        "TITLE": "New Users"
+      },
+      "TOTAL_COURSES": {
+        "SUBTITLE": "Total",
+        "TITLE": "Courses"
+      },
+      "TOTAL_USERS": {
+        "SUBTITLE": "Total",
+        "TITLE": "Users"
+      }
+    }
+  },
+  "ENROLLMENT_STATUSES": {
+    "COMPLETED": "Completed",
+    "ENROLLED": "Enrolled",
+    "REFUSED": "Refused",
+    "REPROVED": "Reproved",
+    "STARTED": "Started",
+    "VALIDATION_PENDING": "Pending"
+  },
+  "ENROLLMENT_TYPES": {
+    "FREE": "Free",
+    "REQUIRED": "Required"
+  },
+  "ERRORS": {
+    "401": {
+      "MESSAGE": "Sorry, but you do not have access to the page you are looking for."
+    }
+  },
+  "FILTER": {
+    "FILTER": {
+      "SELECT_MAX_MISSIONS": "Select up to 3 courses",
+      "SELECT_MAX_USERS": "Select up to 3 users"
+    }
+  },
+  "GENERAL": {
+    "ACTIVE_USERS": "Active users",
+    "ACTIVITY_AREA": "Activity area",
+    "ALL": "All",
+    "APPLY": "Apply",
+    "ASSESSMENTS": {
+      "CONTENT": "Assessment by content consumption",
+      "FULL": "Content plus Quiz",
+      "QUIZ": "Assessment by Quizzes only"
+    },
+    "ASSESSMENT_TYPE": "Assessment type",
+    "BACK": "Back",
+    "CANCEL": "Cancel",
+    "CATEGORIES": "Categories",
+    "CHANNEL": "Channel",
+    "CLEAR_FILTER": "Clear",
+    "CLOSE": "Close",
+    "CONCLUSION_DATE": "Conclusion date",
+    "CONTENT": {
+      "BLOG": "Blog",
+      "HTML": "HTML",
+      "HTML FILE": "HTML File",
+      "IMAGE": "Image",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "PRESENTATION": "Presentation",
+      "QUESTION": "Question",
+      "SCORM": "SCORM",
+      "SPREADSHEET": "Slide show",
+      "TEXT": "Text",
+      "VIDEO": "Video"
+    },
+    "COURSE": "Course",
+    "COURSES": "Courses",
+    "CREATION_DATE": "Creation date",
+    "CREATOR": "Creator",
+    "CURRENT_MONTH": "Current Month",
+    "CURRENT_YEAR": "Current Year",
+    "DELETED_MISSIONS": "Deleted courses",
+    "DELETED_TRAILS": "Deleted trails",
+    "DELETION_DATE": "Deletion date",
+    "DETAILS": "Details",
+    "DIRECTORATE": "Directorate",
+    "DURATION": "Duration",
+    "EMPTY_LIST_MESSAGE": "No records found",
+    "ENABLED_USERS": "Enabled users",
+    "ENROLLMENTS": "Enrollments",
+    "ENROLLMENT_DATE": "Enrollment date",
+    "ENROLLMENT_START_DATE": "Enrollment start date",
+    "ENROLLMENT_STATUS": "Enrollment status",
+    "ENROLLMENT_TYPE": "Enrollment type",
+    "EXPIRATION_DATE": "Expiration date",
+    "EXPORT": "Export",
+    "FILTER": "Filter",
+    "GENERATE_REPORT": "Generate report",
+    "JOB": "Job",
+    "JOB_FUNCTION": "Job Function",
+    "LANGUAGE": "Language",
+    "LOADING": "Loading",
+    "MENU": "Menu",
+    "MESSAGE": {
+      "EMPTY_TABLE": "No results found."
+    },
+    "MISSION": "Course",
+    "MISSIONS": "Courses",
+    "MISSION_MODEL": "Course model",
+    "MISSION_PROVIDER": "Course provider",
+    "MISSION_STATUS": "Course status",
+    "MISSION_TYPE": "Course type",
+    "MONTH": "Month",
+    "NO": "No",
+    "NOTIFICATION": {
+      "CANT_MARK_AS_READ": "Cant mark as read",
+      "KONQUEST_COURSE_OVERVIEW_REPORT_DONE": "Course overview report emitted",
+      "KONQUEST_USER_OVERVIEW_REPORT_DONE": "User overview report emitted",
+      "KONQUEST_WORKSPACE_ALL_USERS_REPORT_DONE": "All Workspace users report emitted",
+      "KONQUEST_WORKSPACE_ENROLLMENTS_REPORT_DONE": "Workspace enrollments report emitted",
+      "KONQUEST_WORKSPACE_EVALUATIONS_REPORT_DONE": "Workspace evaluations report emitted",
+      "KONQUEST_WORKSPACE_GROUPS_CHANNELS_USERS_REPORT_DONE": "Workspace groups channels users report emitted",
+      "KONQUEST_WORKSPACE_GROUPS_MISSIONS_USERS_REPORT_DONE": "Workspace groups courses users report emitted",
+      "KONQUEST_WORKSPACE_MISSIONS_QUIZ_ACTIVITIES_REPORT_DONE": "Workspace courses quiz activities report emitted",
+      "KONQUEST_WORKSPACE_MISSIONS_REPORT_DONE": "Workspace courses report emitted",
+      "KONQUEST_WORKSPACE_OVERVIEW_REPORT_DONE": "Workspace overview report emitted",
+      "KONQUEST_WORKSPACE_PULSES_AND_CHANNELS_REPORT_DONE": "Workspace pulses and channels report emitted",
+      "KONQUEST_WORKSPACE_PULSES_QUIZ_ACTIVITIES_REPORT_DONE": "Workspace pulses quiz activities report emitted",
+      "KONQUEST_WORKSPACE_USER_ACCESS_BY_DATE_REPORT_DONE": "Workspace users pulses and channels report emitted",
+      "SMARTZAP_COURSE_OVERVIEW_REPORT_DONE": "Smartzap - Course overview report emitted"
+    },
+    "NO_RESULTS_FOUND": "No results found",
+    "OBJECTIVE_DATE": "Objective date",
+    "PERFORMANCE": "Performance",
+    "PERIOD": "Period",
+    "PROGRESS": "Progress",
+    "PULSES": "Pulses",
+    "REGISTRATION_DATE": "Registration date",
+    "REMOVED_USERS": "Removed users",
+    "REPORT-DOWNLOAD": "Report downloaded",
+    "SEARCH": "Filter",
+    "SELECT_ALL": "Select all",
+    "STATUS": "Status",
+    "SUBDIRECTORATE": "Subdirectorate",
+    "TOTAL": "Total",
+    "TRAIL": "Trail",
+    "TRAILS": "Trails",
+    "USER": "User",
+    "USERS": "Users",
+    "USER_COUNTRY": "User's country",
+    "USER_CREATOR": "Author",
+    "USER_LEADER": "User's leader",
+    "WAIVER": "Waiver",
+    "YEAR": "Year",
+    "YES": "Yes"
+  },
+  "LANGUAGE": {
+    "ENGLISH": "English",
+    "PORTUGUESE": "Portuguese",
+    "SPANISH": "Spanish"
+  },
+  "MAT-PAGINATOR": {
+    "FIRST_PAGE": "First page",
+    "ITEMS_PER_PAGE": "Items per page",
+    "LAST_PAGE": "Last page",
+    "NEXT_PAGE": "Next page",
+    "PAGE_OF": "of",
+    "PREV_PAGE": "Previous Page"
+  },
+  "MISSION": {
+    "MODEL": {
+      "EXTERNAL": "External",
+      "INTERNAL": "Internal",
+      "LIVE": "Online",
+      "PRESENTIAL": "Presential",
+      "SCORM": "SCORM"
+    },
+    "STATUS": {
+      "IN_PROGRESS": "In progress",
+      "IN_REVIEW": "In review",
+      "PUBLISHED": "Published"
+    },
+    "TYPE": {
+      "CLOSED": "Closed",
+      "OPEN": "Open"
+    }
+  },
+  "NAVIGATION": {
+    "COURSE": "Dashboard Courses",
+    "DASHBOARD": "Dashboard",
+    "MY_DASHBOARD": "My Dashboard",
+    "REPORT": "Reports",
+    "USERS_DASHBOARD": "Users Dashboard"
+  },
+  "RANGES": {
+    "0": "0",
+    "1-3": "less than 3",
+    "10-15": "between 10 and 15",
+    "15+": "more than 15",
+    "3-5": "between 3 and 5",
+    "5-10": "between 5 and 10"
+  },
+  "REPORT": {
+    "ALL_USERS": "General User List",
+    "APPS": "Applications",
+    "COURSE_OVERVIEW": "Course View",
+    "CUSTOM": {
+      "MISSION": "Courses Report",
+      "USERS": "Users Report",
+      "ACTIVE_MISSION": "Active course",
+      "INACTIVE_MISSION": "Inactive course"
+    },
+    "DESCRIPTION": {
+      "ALL_USERS": "List of users who have access to Konquest. <br> <b>Fields :</b><ul> <li> User ID </li> <li> User Name </li> <li> User Email </li> <li> User phone </li> <li> User address </li> </ul>",
+      "COURSE_OVERVIEW": "General statistics of a Konquest course with summarized information about contents, enrollments, courses (courses), pulses and quizzes. <br> <ul> <li> Contents: total hours, punctuation, evaluation and distribution by type. </li> <li> Enrollments: completed, progress and comparison in the last 7 and 30 days. </li> <li> Performance: evaluation of users' performances by tracks </li> <li> Performance of Quizzes: evaluation of performance quizzes </li> <li> Quizzes: analysis of mistakes and successes </li> <li> Ranking: 10 best performances in the course </li> </ul>",
+      "GROUP_CHANNEL_USER": "List of the relationship of channels, groups and users with 'raw' data (without treatments) and with summary tables and dashboards. <br> <b>Fields:</b><ul> <li> Group name </li> <li> Channel name </li> <li> User name </li> <li> User email </li> </ul>",
+      "GROUP_MISSION_USER": "List of the relationship of courses, groups and users with 'raw' data (without treatments) and with summary tables and dashboards. <br> <b>Fields:</b><ul> <li> Group name </li> <li> Course name </li> <li> User name </li> <li> User email </li> </ul>",
+      "MISSION_ENROLLMENTS": "General list of enrollments for all courses with 'raw' data (without treatments) and with summary tables and dashboard. <br> <b>Fields:</b><ul> <li> Course ID </li> <li> Course name </li> <li> Owner user (creator) </li> <li> Last updated date </li> <li> Creation status </li> <li> Course type </li> <li> Group Name </li> <ul>",
+      "MISSION_EVALUATIONS": "Description of Course Evaluations",
+      "MISSION_QUIZ": "General list of quizzes for all courses with 'raw' data (without treatments) and summary tables and dashboards. <br> <b>Fields:</b><ul> <li> Answer ID </li> <li> Course Name </li> <li> User </li> <li> Question </li> <li> Hit </li> <li> Response Date </li> </ul>",
+      "PULSES_ACTIVITIES": "List of channels and pulses with the users' consumption activities, the data being 'raw' (without treatments), with summarized tables and dashboard. <br> <b>Fields:</b><ul> <li> Name Channel </li> <li> Pulse name </li> <li> Consumer user name </li> <li> Consumer user email </li> <li> Action </li> <li> Date start </li> <li> End date </li> <li> Consumption </li> </ul>",
+      "PULSES_QUIZ": "List of quizzes by channels and pulses with the activities of the users, the data being 'raw' (without treatments), with summarized tables and dashboard. <br> <b>Fields:</b><ul> <li> ID answer </li> <li> Pulse name </li> <li> User name </li> <li> User email </li> <li> Question </li> <li> Hit </li> <li> Reply Date </li> </ul>",
+      "PULSE_CHANNELS": "List of channels and pulses with 'raw' data (without treatments) and with summary tables and dashboards. <br> <b>Fields:</b><ul> <li> Name of Pulse </li> <li> Pulse Type </li> <li> Pulse Duration </li> <li> Channel Name </li> <li> Channel Type </li> <li> Owner User (Creator) </li> </ul>",
+      "USERS_ACCESS": "List of daily active users (who used Konquest to consume some content). <br> <b>Fields:</b><ul> <li> User name </li> <li> User email </li> <li> User Phone </li> <li> Activity Date </li> <li> Last Access </li> <li> Last Activity </li> </ul>",
+      "USER_OVERVIEW": "General statistics of a user in Konquest with summarized information on enrollments, content consumed, accesses and level of engagement. <br> <ul> <li> Summary of course consumption (completion rates) </li> <li> List of completed courses (with performance) \n </li> <li> List of consumed pulses (with consumption time) </li> <li> Link relationship with groups (with completion rates) </li> </ul>",
+      "WORKSPACE_MISSION": "General list of courses with 'raw' data (without treatments) and summary tables and dashboard. <br> <b>Fields:</b><ul> <li> Course ID </li> <li> Name course </li> <li> Owner user (creator) </li> <li> Last updated date </li> <li> Creation date </li> <li> Course status (in creation, published or under review) </li> <li> Type of course (public or private) </li> <li> Group linked to the course (ID, Name) </li> <li> Duration of the course </li> <li> Total enrollments </li> <li> Total enrollments completed </li> <li> Course category </li> </ul>",
+      "WORKSPACE_OVERVIEW": "General Konquest statistics with summary information on content, enrollments, courses (courses) and pulses."
+    },
+    "FILTER": {
+      "DATE_RANGE": {
+        "FROM": "from",
+        "TO": "to"
+      },
+      "INPUT": {
+        "LABEL": "Requester name"
+      },
+      "REQUEST_DATE": {
+        "TITLE": "Request Date"
+      }
+    },
+    "FILTERS": {
+      "activity": "Active users during the period",
+      "area_of_activity": "Activity area",
+      "assessment_type": "Assessment type",
+      "channel__id": "Channel",
+      "country": "User's country",
+      "course_id": "Course",
+      "created_date": "Creation date",
+      "deleted": "Deleted courses",
+      "deleted_date": "Deletion date",
+      "development_status": "Course status",
+      "director": "Directorate",
+      "duration_time": "Duration",
+      "end_date": "Conclusion date",
+      "enrollment": "Enrollment",
+      "enrollment_date": "Enrollment date",
+      "expiration_date": "Expiration date",
+      "give_up": "Waiver",
+      "goal_date": "Objective date",
+      "id": "Course",
+      "job_function__name": "Job Function",
+      "job__name": "Job",
+      "language": "Language",
+      "learning_object_id": "Course",
+      "learning_trail": "Deleted trails",
+      "learning_trail_id": "Trail",
+      "learning_trail__language": "Language",
+      "learning_trail__deleted_date": "Deletion date",
+      "learning_trail_step__learning_trail_id": "Trail",
+      "manager": "Subdirectorate",
+      "mission": "Deleted courses",
+      "mission__deleted_date": "Deletion date",
+      "mission__expiration_date": "Expiration date",
+      "mission__id": "Course",
+      "mission__language": "Language",
+      "mission__mission_model": "Course model",
+      "mission_category_id": "Categories",
+      "mission_enrollment_active": "Active users",
+      "mission_id": "Course",
+      "mission_model": "Course model",
+      "mission_provider__id": "Course provider",
+      "mission_type_id": "Course type",
+      "performance": "Performance",
+      "progress": "Progress",
+      "related_user_leader_id": "User's leader",
+      "required": "Enrollment type",
+      "start_date": "Enrollment start date",
+      "status": "Enrollment status",
+      "time_start": "Period",
+      "updated_date": "Update date",
+      "user": "Enabled users",
+      "user__country": "User's country",
+      "user__related_user_leader_id": "User's leader",
+      "user_creator_id": "Author",
+      "user_deleted_from_workspace": "Removed users",
+      "user_id": "User",
+      "user_profile_workspace": "Activity area",
+      "user_role_workspace__created_date": "Registration date"
+    },
+    "GROUP_CHANNEL_USER": "Channels by Groups",
+    "GROUP_MISSION_USER": "Courses by Groups",
+    "MISSION_ENROLLMENTS": "Course Enrollments List",
+    "MISSION_ENROLLMENTS_QUIZZES": "Quizzes by Course",
+    "MISSION_EVALUATIONS": "Course evaluations",
+    "MISSION_EVALUATION_ANALYSIS": "Course Evaluation Analysis",
+    "MISSION_QUIZ": "Quizzes by Courses",
+    "NAME": {
+      "konquest-groups-channels-users-export": "Channels by Groups",
+      "konquest-groups-missions-users-export": "Courses by Groups",
+      "konquest-mission-enrollment-quizzes": "Quizzes by Courses Analysis",
+      "konquest-mission-evaluations-statistics-export": "Course Evaluation Analysis",
+      "konquest-mission-presentation": "Course View",
+      "konquest-missions-enrollments-export": "Course Enrollments list",
+      "konquest-missions-evaluations-export": "Course Evaluations",
+      "konquest-missions-export": "Course List",
+      "konquest-missions-quizzes-answers-export": "Quizzes by Courses",
+      "konquest-pulses-channels-export": "List of Pulses by Channel",
+      "konquest-pulses-quizzes-answers-export": "Quizzes by Channels",
+      "konquest-trails-enrollments-export": "Enrollment list by Trails",
+      "konquest-trails-export": "Trail list",
+      "konquest-user-consumptions-export": "Overall User Consumption",
+      "konquest-user-general-statistics-export": "General User Statistics",
+      "konquest-user-presentation": "User View",
+      "konquest-users-access-by-date-export": "Active Users per Day",
+      "konquest-users-export": "General User List",
+      "konquest-users-pulses-activities-export": "Channel and Pulse Consumption",
+      "konquest-workspace-presentation": "Konquest Overview",
+      "smartzap-course-presentation": "Smartzap Overview",
+      "konquest-trails-completion-rate-export": "Trail Completion Rate",
+      "smartzap-user-activities-export": "Users Activities",
+      "smartzap-enrollments-export": "Enrollments in progress",
+      "myaccount-user-permissions-export": "User permissions list"
+    },
+    "PULSES_ACTIVITIES": "Channel and Pulse Consumption",
+    "PULSES_QUIZ": "Quizzes by Channels",
+    "PULSE_CHANNELS": "List of Pulses by Channel",
+    "REPORT_REQUEST_SENT": "Report request sent",
+    "REPORT_REQUEST_FAILURE": "Failure to reques report",
+    "REPORT_ALREADY_REQUESTED": "A report with the same filters is already in process",
+    "SIMPLE_FILTER_DIALOG": {
+      "FROM": "from",
+      "PERIOD": "Period",
+      "TO": "to"
+    },
+    "SMATZAP_COURSE_OVERVIEW": "Overview",
+    "STATUS": {
+      "DONE": "Completed",
+      "ERROR": "Error",
+      "PROCESSING": "Processing",
+      "QUEUED": "Queued",
+      "TIMEOUT": "Timeout"
+    },
+    "TABLE": {
+      "COL": {
+        "FILTERS": "Applied filters",
+        "REPORT_NAME": "Report",
+        "REQUESTER": "Requester",
+        "REQUEST_DATE": "Request date"
+      }
+    },
+    "TABS": {
+      "LATEST_REPORTS": "Latest Reports Generated"
+    },
+    "TITLE": "Reports",
+    "TRAIL_CONCLUSION_RATE": "Trail completion rate",
+    "TRAIL_ENROLLMENTS": "Trail enrollments list",
+    "TRAIL_LIST": "Trail list",
+    "USERS_ACCESS": "Active users per day",
+    "USERS_GENERAL_CONSUMPTION": "Overall User Consumption",
+    "USER_GENERAL_STATISTICS": "General User Statistics",
+    "USER_OVERVIEW": "User View",
+    "USER_PERMISSIONS": "User Permissions",
+    "WARNING-MESSAGE": "Reports will be deleted after 60 days from the request date.",
+    "WORKSPACE_MISSION": "Courses List",
+    "WORKSPACE_OVERVIEW": "Overview"
+  },
+  "REPORTS": {
+    "KONQUEST_TAB": {
+      "FILTER_MISSIONS_SUBTITLE": "Search for and select the courses with which you want to generate the course vision report.",
+      "FILTER_USERS_SUBTITLE": "Search for and select the users with whom you want to generate the user view report.",
+      "MESSAGES": {
+        "DOWNLOAD_TIP": "Search for the report and click to generate it. Download it on the generated reports list.",
+        "REPORT_DETAIL_TOOLTIP": "Click to learn more about this report."
+      },
+      "MISSION_EVALUATIONS_SUBTITLE": "Search for and select the courses you want to generate the course assessments report for.",
+      "MISSION_QUIZ_SUBTITLE": "Search and select the courses for which you want to generate the quiz report by course.",
+      "PULSES_QUIZ_SUBTITLE": "Search and select the channels with which you want to generate the channel quiz report.",
+      "SERACH_HINT": "No data matching the filter",
+      "SERACH_PLACEHOLDER": "Search by name",
+      "USERS_ACCESS_SUBTITLE": "Set a date range and select one or more users for whom you want to generate the daily active users report."
+    },
+    "SMARTZAP_TAB": {
+      "FILTER_COURSES_SUBTITLE": "Search for and select the courses you want to generate the overview report for."
+    }
+  },
+  "REPORT_MODAL": {
+    "NO_ITEMS": "There is no data to display.",
+    "SELECTION_LABEL": {
+      "CHANNEL": {
+        "PLURAL": "{{value}} selected channels",
+        "SINGULAR": "{{value}} selected channel"
+      },
+      "COURSE": {
+        "PLURAL": "{{value}} selected courses",
+        "SINGULAR": "{{value}} selected course"
+      },
+      "MISSION": {
+        "PLURAL": "{{value}} selected courses",
+        "SINGULAR": "{{value}} selected course"
+      },
+      "USER": {
+        "PLURAL": "{{value}} selected users",
+        "SINGULAR": "{{value}} selected user"
+      }
+    },
+    "SEPARATOR": "to"
+  },
+  "USERS": {
+    "DETAILS": {
+      "DATATABLE": {
+        "COLUMN": {
+          "CATEGORY": "Category",
+          "COMPLETED_DATE": "Completion",
+          "NAME": "Course",
+          "PERFORMANCE": "Performance",
+          "QUIZZES": "Quizzes\n(correct/total)",
+          "START_DATE": "Start"
+        },
+        "TITLE": "Course List"
+      },
+      "ERROR": {
+        "NOT_FOUND": "User not found",
+        "UNKNOWN": "There was an error when retrieving the data"
+      },
+      "TITLE": "Dashboard | User"
+    },
+    "FILTER": {
+      "COMPLETION_RANGE": "Completion range",
+      "COURSES_PLACEHOLDER": "Enter the username",
+      "END_DATE": "Conclusion date",
+      "JOB": "Job",
+      "MISSION_CATEGORY": "Course category",
+      "PERFORMANCE": "Performance",
+      "START_DATE": "Start date",
+      "USERS_PLACEHOLDER": "Enter course name",
+      "USER_LEADER": "User leader"
+    },
+    "OVERVIEW": {
+      "CHART": {
+        "TITLE": "Distribution of User x Courses Quantity (Enrolled and Completed)",
+        "USERS_COMPLETED": "Users Completed",
+        "USERS_ENROLLED": "Users Enrolled"
+      },
+      "DATATABLE": {
+        "COLUMN": {
+          "AREA": "Area",
+          "DIRECTOR": "Directorate",
+          "COMPLETED_RATIO": "Completion Rate",
+          "COURSES_COMPLETED": "Courses Completed",
+          "COURSES_STARTED": "Courses Started",
+          "JOB": "Job",
+          "LEADER": "Leader",
+          "NAME": "User",
+          "MANAGER": "Subdirectorate"
+        },
+        "TITLE": "User List"
+      },
+      "TITLE": "Dashboard | Users",
+      "WIDGETS": {
+        "AVERAGE_ACTIVE_USERS": {
+          "TEXT": "Users per day",
+          "TITLE": "Average of Active"
+        },
+        "ENGAGEMENT_RATE": {
+          "TEXT": "Average of users of the last 30 days",
+          "TITLE": "Engagement Ratio"
+        },
+        "FILTER_NOT_APPLIED": "Filter not applied",
+        "KNOWLEDGE_CONSUMED": {
+          "TEXT": "Average per user",
+          "TITLE": "Knowledge Consumed"
+        },
+        "TOP_CONTENT_CONSUMED": {
+          "TITLE": "Top Content Consumed"
+        },
+        "TOP_ENROLLMENT_CATEGORIES": {
+          "TITLE": "TOP 5 Categories (enrolled)"
+        },
+        "USERS_ACTIVE_TOTAL": {
+          "TEXT": "Login in the period",
+          "TITLE": "Total of <strong>Active</strong>"
+        },
+        "USERS_CREATORS": {
+          "TEXT": "Multipliers",
+          "TITLE": "Created at least one course or channel"
+        },
+        "USERS_TOTAL": {
+          "TEXT": "Registered",
+          "TITLE": "Total of <strong>Users</strong>"
+        }
+      }
+    }
+  }
+}

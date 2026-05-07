@@ -1,0 +1,43 @@
+<button mat-icon-button [matMenuTriggerFor]="userMenu" data-cy="user-menu" aria-label="Open user menu">
+  <img
+    [src]="user?.avatar || defaultAvatar"
+    class="w-10 aspect-square rounded-full object-cover shrink-0 max-w-none shadow-sm ring-1 ring-black/5 dark:ring-white/10"
+    alt="Avatar Image"
+  />
+</button>
+
+<mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+  <div class="block px-6">
+    @if (user?.name) {
+      <div>
+        <span class="text-sm font-semibold">{{ user?.name }}</span
+        ><br />
+        <span class="text-xs">{{ workspaceName }}</span>
+      </div>
+    }
+  </div>
+
+  <button mat-menu-item data-test="user-menu-profile" (click)="profileClick()">
+    <mat-icon>account_circle</mat-icon>
+    <span>{{ 'UI.USER_MENU.PROFILE' | transloco }}</span>
+  </button>
+
+  @if (isAdmin) {
+    <button mat-menu-item data-cy="user-menu-settings" [routerLink]="settingsRoute">
+      <mat-icon>settings</mat-icon>
+      <span>{{ 'UI.USER_MENU.SETTINGS' | transloco }}</span>
+    </button>
+  }
+
+  @if (hasMultipleWorkspaces) {
+    <button mat-menu-item data-test="user-menu-changeworkspace" [routerLink]="workspacesRoute">
+      <mat-icon>business</mat-icon>
+      <span>{{ 'UI.USER_MENU.CHANGE_WORKSPACE' | transloco }}</span>
+    </button>
+  }
+
+  <button mat-menu-item data-test="user-menu-logout" (click)="logoutClick()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>{{ 'UI.USER_MENU.LOGOUT' | transloco }}</span>
+  </button>
+</mat-menu>

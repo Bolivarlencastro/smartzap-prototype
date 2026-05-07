@@ -1,0 +1,28 @@
+<span class="text-lg" mat-dialog-title>
+  {{ 'GROUPS.DIALOG.' + (!data ? 'CREATE_TITLE' : 'EDIT_TITLE') | transloco }}
+</span>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="w-full pt-1" appearance="outline" [hintLabel]="'GROUPS.DIALOG.HINT' | transloco">
+      <mat-label>
+        {{ 'GENERAL.NAME' | transloco }}
+      </mat-label>
+      <input maxlength="50" data-cy="group-dialog-name-input" matInput formControlName="name" />
+      <mat-error>{{ 'GENERAL.REQUIRED_FIELD' | transloco }}</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="flex justify-end">
+  <button mat-stroked-button mat-dialog-close>
+    {{ 'GENERAL.CANCEL' | transloco }}
+  </button>
+  <button
+    mat-flat-button
+    data-cy="group-dialog-ok-button"
+    color="primary"
+    (click)="onClick()"
+    [disabled]="!form.valid || form.pristine"
+  >
+    {{ 'GENERAL.OK' | transloco }}
+  </button>
+</div>

@@ -1,0 +1,94 @@
+<div class="grow flex flex-col">
+  @if (!isLoading) {
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            id="selectAll"
+            (change)="$event ? toggleAllRows() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          <span [class.hidden]="selection.hasValue()">
+            {{ 'REGULATORY_COMPLIANCE.NAME' | transloco }}
+          </span>
+          <span [class.hidden]="selection.isEmpty()">
+            {{
+              'REGULATORY_COMPLIANCE.SELECTED_ITEM_MESSAGE' | kpPluralizeTranslate: { value: selection.selected.length }
+            }}
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element?.compliance?.name }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="enrollments">
+        <mat-header-cell *matHeaderCellDef [class.hidden]="selection.hasValue()">
+          {{ 'REGULATORY_COMPLIANCE.ENROLLMENTS' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element?.enrollmentsCount }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="expiration">
+        <mat-header-cell *matHeaderCellDef [class.hidden]="selection.hasValue()">
+          @if (selection.isEmpty()) {
+            {{ 'REGULATORY_COMPLIANCE.EXPIRATION' | transloco }}
+          }
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"
+          >{{ element?.duration }}&nbsp;
+          {{ element?.periodType | cycleDurationType | kpPluralizeTranslate: { value: element.duration } }}</mat-cell
+        >
+      </ng-container>
+      <ng-container matColumnDef="menu">
+        <mat-header-cell *matHeaderCellDef>
+          <span [class.hidden]="selection.hasValue()">
+            {{ 'REGULATORY_COMPLIANCE.MENU' | transloco }}
+          </span>
+          <button
+            class="hidden"
+            [class.hidden]="selection.isEmpty()"
+            id="multipleDelete"
+            mat-icon-button
+            (click)="onDelete()"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button id="edit" mat-icon-button (click)="onEdit(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button id="delete" mat-icon-button (click)="onDelete(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        data-test="regulatory-compliance-option-selector"
+        *matRowDef="let row; columns: displayedColumns"
+      ></mat-row>
+    </mat-table>
+  } @else {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (!isLoading && !dataSource?.data?.length) {
+    <div class="grow flex items-center justify-center w-full text-sm">
+      {{ 'REGULATORY_COMPLIANCE.TABLE.NO_RESULTS' | transloco }}
+    </div>
+  }
+</div>

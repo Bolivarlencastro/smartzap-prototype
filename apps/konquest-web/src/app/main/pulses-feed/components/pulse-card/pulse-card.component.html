@@ -1,0 +1,95 @@
+<article class="pulse-card">
+  @if (pulse()?.is_active === false) {
+    <div class="pulse-card__inactive-overlay">
+      <span>{{ 'GENERAL.INACTIVE' | transloco }}</span>
+    </div>
+  }
+  <!-- Header -->
+  <div class="pulse-card__header">
+    <div class="pulse-card__channel-info">
+      <img
+        class="pulse-card__channel-avatar"
+        [src]="pulse()?.channel_cover_image || defaultChannelImage"
+        [alt]="pulse()?.channel_name"
+        width="36"
+        height="36"
+      />
+      <div class="pulse-card__channel-meta">
+        <span class="pulse-card__channel-name" (click)="navigateToChannel()">{{ pulse()?.channel_name }}</span>
+        <div class="pulse-card__sub-meta">
+          <span class="pulse-card__type-badge">{{ pulse()?.pulse_type?.name | kpCategoryLabel | transloco }}</span>
+          <span class="pulse-card__separator">·</span>
+          <span class="pulse-card__creator">{{ pulse()?.creator_name }}</span>
+          <span class="pulse-card__separator">·</span>
+          <span class="pulse-card__time">{{ relativeTime() }}</span>
+        </div>
+      </div>
+    </div>
+    @if (!pulse()?.is_channel_manager) {
+      <button mat-button (click)="toggleSubscription()">
+        {{ (isSubscribed() ? 'PULSES_FEED.PULSE_CARD.SUBSCRIBED' : 'PULSES_FEED.PULSE_CARD.SUBSCRIBE') | transloco }}
+      </button>
+    }
+  </div>
+
+  <!-- Cover image -->
+  <div class="pulse-card__cover" (click)="openDetail()">
+    <img
+      class="pulse-card__cover-img"
+      [src]="pulse()?.cover_image || defaultPulseImage"
+      [alt]="pulse()?.name"
+      width="480"
+      height="480"
+    />
+    <button class="pulse-card__play-btn" (click)="$event.stopPropagation(); openDetail()">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+  </div>
+
+  @if (pulse()?.pulse_type?.name !== 'Question') {
+    <!-- Actions -->
+    <div class="pulse-card__actions">
+      <app-pulse-rating [averageRating]="pulse()?.average_rating ?? 0" (rateChange)="setRating($event)" />
+
+      <div class="pulse-card__action-icons">
+        <button mat-icon-button class="pulse-card__action-btn" (click)="openDetail()">
+          <mat-icon>chat_bubble_outline</mat-icon>
+        </button>
+        <button mat-icon-button class="pulse-card__action-btn" (click)="copyLink()">
+          <mat-icon>send</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="pulse-card__action-btn pulse-card__bookmark-btn"
+          [class.is-bookmarked]="isBookmarked()"
+          (click)="toggleBookmark()"
+        >
+          <mat-icon [class.fill]="isBookmarked()">bookmark</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="pulse-card__content">
+      <strong class="pulse-card__name">{{ pulse()?.name }}</strong>
+      @if (!expanded()) {
+        <p class="pulse-card__description" #descriptionEl>{{ pulse()?.description }}</p>
+        @if (isTruncated()) {
+          <a class="pulse-card__see-more-btn" (click)="expanded.set(true)">
+            {{ 'PULSES_FEED.PULSE_CARD.SEE_MORE' | transloco }}
+          </a>
+        }
+      } @else {
+        <p class="pulse-card__description is-expanded">
+          {{ pulse()?.description }}
+          <a class="pulse-card__see-more-btn" (click)="expanded.set(false)">{{
+            'PULSES_FEED.PULSE_CARD.SEE_LESS' | transloco
+          }}</a>
+        </p>
+      }
+    </div>
+
+    <!-- Comments -->
+    <app-pulse-comments [pulse]="pulse()" />
+  }
+</article>

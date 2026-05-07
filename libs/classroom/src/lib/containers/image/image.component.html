@@ -1,0 +1,10 @@
+<kp-content-activity-tracker-wrapper
+  [startAutomatically]="false"
+  [disableActivityEvents]="isViewingAsUser()"
+  (activityEvent)="onTrackingActivity($event)"
+  #tracker
+>
+  @if (url$ | async; as url) {
+    <img class="class-image cursor-zoom-in" [src]="url" alt="course content" (click)="onClick(url)" />
+  }
+</kp-content-activity-tracker-wrapper>

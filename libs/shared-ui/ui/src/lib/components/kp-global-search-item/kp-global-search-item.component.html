@@ -1,0 +1,73 @@
+<div class="h-20 flex cursor-pointer bg-card container relative" (click)="onOpenDetails()">
+  <!-- SVG ICON -->
+  <div class="w-[70px] shrink-0 flex justify-center items-center opacity-40">
+    <mat-icon>{{ item?.type }}</mat-icon>
+  </div>
+  <!-- / SVG ICON -->
+
+  <!-- DESCRIPTION -->
+  <div class="flex flex-col justify-center truncate pr-12">
+    <div class="truncate">{{ item?.name }}</div>
+
+    <div class="flex gap-2.5">
+      @switch (item?.type) {
+        @case (itemType.CHANNEL) {
+          <div class="text-2xxs">{{ 'UI.GLOBAL_SEARCH.OWNER' | transloco }}: {{ item.user_creator?.name }}</div>
+          <div class="flex items-center gap-1 h-full">
+            <mat-icon class="s-2">language</mat-icon>
+            <span class="text-2xxs pt-px">{{ item.language | uppercase }}</span>
+          </div>
+        }
+        @case (itemType.PULSE) {
+          @if (item.channels?.length) {
+            <div class="flex items-center gap-1 h-full">
+              <mat-icon class="s-2" svgIcon="canal-pulse"></mat-icon>
+              <span class="text-2xxs pt-px">{{ item.channels?.[0]?.name }}</span>
+            </div>
+          }
+          <div class="flex items-center gap-1 h-full">
+            <mat-icon class="s-2">language</mat-icon>
+            <span class="text-2xxs pt-px">{{ item.language | uppercase }}</span>
+          </div>
+          <div class="flex items-center gap-1 h-full">
+            <mat-icon class="s-2">schedule</mat-icon>
+            <div class="text-2xxs pt-px">{{ item.duration_time | kpDuration }}</div>
+          </div>
+        }
+        @default {
+          @for (tag of item.tags; track tag; let last = $last) {
+            <kp-card-tag [type]="tag" [keepOpen]="last"></kp-card-tag>
+          }
+          <div class="flex items-center gap-1 h-full">
+            <mat-icon class="s-2">language</mat-icon>
+            <span class="text-2xxs pt-px">{{ item.language | uppercase }}</span>
+          </div>
+          <div class="flex items-center gap-1 h-full">
+            <mat-icon class="s-2">schedule</mat-icon>
+            <div class="text-2xxs pt-px">{{ item.duration_time | kpDuration }}</div>
+          </div>
+          @if (item.external_course) {
+            <mat-icon class="s-2 pt-1.5" svgIcon="moving"></mat-icon>
+          }
+        }
+      }
+    </div>
+  </div>
+  <!-- / DESCRIPTION -->
+
+  <button
+    mat-icon-button
+    kpDisableContinueMission
+    [element]="{
+      mission_model: item.course_model,
+      status: item.enrollment_status,
+      hidden: item.type !== itemType.TRAIL && item.type !== itemType.COURSE,
+      mission_status: item.development_status,
+    }"
+    (click)="onOpenContent($event)"
+    class="continue-button"
+  >
+    <mat-icon class="s-6">play_circle</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>

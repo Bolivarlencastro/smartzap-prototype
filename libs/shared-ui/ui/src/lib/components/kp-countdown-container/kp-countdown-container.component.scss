@@ -1,0 +1,28 @@
+:host {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.kp-countdown-container {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  grid-template-rows: 1fr;
+  padding: 4px 12px 4px 4px;
+  gap: 8px;
+  border-radius: 100px;
+  align-items: center;
+
+  mat-progress-spinner,
+  .icon-container {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .icon-container {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+  }
+}

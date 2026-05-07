@@ -1,0 +1,27 @@
+@use 'src/lib/components/kp-banner-v2/kp-banner-v2.theme';
+@use 'src/lib/components/kp-color-palette/kp-color-palette.theme';
+@use 'src/lib/components/kp-notification/kp-notification.theme';
+@use 'src/lib/components/kp-progress-circle/kp-progress-circle.theme';
+@use 'src/lib/components/kp-quiz-card/kp-quiz.theme';
+@use 'src/lib/components/kp-rate-button/kp-rate-button.theme';
+@use 'src/lib/components/kp-editable/kp-editable.theme';
+@use 'src/lib/components/kp-sidenav/kp-sidenav.theme';
+@use 'src/lib/components/kp-countdown-container/kp-countdown-container.theme';
+@use 'src/lib/components/kp-skeleton/kp-skeleton.theme';
+@use 'src/lib/styles/material-overrides';
+@use 'src/lib/styles/components-overrides';
+
+@mixin ui-theme {
+  @include kp-banner-v2.kp-banner-v2-theme;
+  @include kp-color-palette.kp-color-palette-theme;
+  @include kp-notification.kp-notification-theme;
+  @include kp-progress-circle.kp-progress-circle-theme;
+  @include kp-quiz.keeps-quiz-theme;
+  @include kp-rate-button.kp-rate-button-theme;
+  @include kp-editable.kp-editable-theme;
+  @include material-overrides.material-components-overrides;
+  @include components-overrides.fix-components-theme;
+  @include kp-sidenav.kp-sidenav-theme;
+  @include kp-countdown-container.kp-countdown-container-theme;
+  @include kp-skeleton.kp-skeleton-theme;
+}

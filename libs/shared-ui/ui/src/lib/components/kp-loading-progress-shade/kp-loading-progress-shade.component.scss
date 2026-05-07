@@ -1,0 +1,24 @@
+:host {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.kp-loading-progress-shade {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--mat-sys-surface-variant) 75%, transparent) !important; // rgba(0, 0, 0, 0.10);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+
+  &__spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

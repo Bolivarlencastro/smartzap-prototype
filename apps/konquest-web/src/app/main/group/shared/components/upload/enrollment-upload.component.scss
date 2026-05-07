@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.enrollment-upload {
+  position: relative;
+
+  &--message {
+    position: absolute;
+    top: 66px;
+    left: 0;
+  }
+}

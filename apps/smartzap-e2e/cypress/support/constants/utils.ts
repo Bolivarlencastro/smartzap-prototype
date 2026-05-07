@@ -1,0 +1,10 @@
+export const CATEGORY_DEV = 'Development';
+export const IN_CREATION_STATUS = 'Em Criação';
+export const COURSE_NOT_AVAILABLE = 'Nenhum curso encontrado.';
+export const WAITING_STATUS = 'Aguardando';
+export const STARTED_STATUS = 'Iniciou';
+export const COMPLETED_STATUS = 'Completou';
+export const CANCELED_STATUS = 'Cancelada';
+export const NO_RESULTS_FOUND = 'Nenhum resultado encontrado';
+export const COUNTRY = 'Brazil';
+export const WORKSPACE_ID = '7b2c5110-14d8-4a55-b984-be4eb3b3fdbf';

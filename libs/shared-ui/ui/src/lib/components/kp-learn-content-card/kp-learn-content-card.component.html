@@ -1,0 +1,79 @@
+<!--Tags-->
+<div class="flex gap-2 justify-between">
+  <div class="lc-card-status-tags flex gap-1 items-center flex-wrap">
+    @for (tag of learnContent?.tags; track tag; let last = $last) {
+      <kp-card-tag [type]="tag?.type" [label]="tag?.label" [keepOpen]="last" [dotColor]="tag?.dotColor"></kp-card-tag>
+    }
+  </div>
+
+  @if (learnContent?.eventDate) {
+    <div class="flex flex-col p-1 min-w-12 h-12 items-center bg-white rounded-md text-black font-black shadow">
+      <span class="text-2xl leading-none">{{ learnContent?.eventDate | date: 'dd' }}</span>
+      <span class="text-xs leading-none">{{ learnContent?.eventDate | date: 'LLL' | titlecase }}</span>
+    </div>
+  }
+</div>
+
+<div class="lc-card-tags flex flex-wrap gap-x-2 gap-y-1">
+  @if (learnContent?.externalProvider) {
+    <kp-info-tag [icon]="'trending_up'" [label]="learnContent?.externalProvider"></kp-info-tag>
+  }
+  @if (learnContent?.categoryLabel) {
+    <kp-info-tag [icon]="'folder'" [label]="learnContent?.categoryLabel | uppercase"></kp-info-tag>
+  }
+  @if (learnContent?.language) {
+    <kp-info-tag [icon]="'language'" [label]="learnContent?.language | uppercase"></kp-info-tag>
+  }
+  <kp-info-tag [icon]="'schedule'" [label]="learnContent?.duration | kpDuration"></kp-info-tag>
+  @if (learnContent?.missionsCount >= 0) {
+    <kp-info-tag icon="rocket_launch" [label]="learnContent?.missionsCount | number"></kp-info-tag>
+  }
+  @if (learnContent?.pulsesCount >= 0) {
+    <kp-info-tag [svgIcon]="'pulse'" [label]="learnContent?.pulsesCount | number"></kp-info-tag>
+  }
+</div>
+
+<!--Title and progress-->
+<div class="lc-card-main-content mt-auto flex flex-col gap-1">
+  <p class="lc-card-title line-clamp-2 font-bold text-white">
+    {{ learnContent?.title }}
+  </p>
+
+  <mat-progress-bar
+    mode="determinate"
+    [value]="learnContent?.progress"
+    class="content-card-progress-bar"
+  ></mat-progress-bar>
+</div>
+
+<!--Actions-->
+<div class="lc-card-actions grid-cols-1 xxs:grid-cols-[1fr_40px]">
+  <button
+    mat-flat-button
+    color="primary"
+    class="self-end h-10"
+    (click)="onCardAction(mainAction, $event)"
+    [attr.data-test]="'card-option-' + mainAction"
+  >
+    <div class="lc-card-main-action flex gap-1 items-center">
+      <mat-icon class="s-6 filled">{{ mainAction | kpLearnContentActionIcon }} </mat-icon>
+      {{ mainAction | kpLearnContentActionLabel | transloco }}
+    </div>
+  </button>
+
+  @if (remainingActions.length) {
+    <kp-speed-dial class="hidden xxs:block">
+      @for (action of remainingActions; track action) {
+        <kp-speed-dial-option
+          [icon]="action | kpLearnContentActionIcon"
+          [tooltip]="action | kpLearnContentActionLabel | transloco"
+          (click)="onCardAction(action, $event)"
+          [attr.data-test]="'card-option-' + action"
+        ></kp-speed-dial-option>
+      }
+    </kp-speed-dial>
+  }
+</div>
+
+<!--Background-->
+<div class="lc-card-background" [style.background-image]="backgroundImage"></div>

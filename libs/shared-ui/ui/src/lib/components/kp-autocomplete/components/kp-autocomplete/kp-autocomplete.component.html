@@ -1,0 +1,59 @@
+<mat-form-field appearance="outline" class="w-full cursor-pointer" subscriptSizing="dynamic">
+  <mat-label class="text-base cursor-pointer">{{ formFieldLabel | transloco }}</mat-label>
+  @if (multiple) {
+    <mat-select
+      class="text-base select-no-arrow"
+      [multiple]="true"
+      [formControlName]="acFormControlName"
+      [hideSingleSelectionIndicator]="true"
+      (selectionChange)="selectionChange($event.value)"
+    >
+      <mat-select-trigger>{{ selectTrigger | async }}</mat-select-trigger>
+      <kp-autocomplete-search-input (filterEvent)="onFilter($event)"></kp-autocomplete-search-input>
+      <div class="overflow-y-auto max-h-44">
+        @for (option of filteredOptions | async; track option) {
+          <mat-option class="text-base" [value]="option.value">
+            @if (option.icon) {
+              <mat-icon [svgIcon]="option.icon"></mat-icon>
+            }
+            {{ option.label }}
+          </mat-option>
+        }
+      </div>
+      @if (multiple) {
+        <div class="mt-1">
+          <div class="mt-2 pl-4 h-7">
+            <a class="text-primary cursor-pointer underline hover:no-underline" (click)="selectAll()">{{
+              'UI.GENERAL.SELECT_ALL' | transloco
+            }}</a>
+            <span class="text-primary"> - </span>
+            <a class="text-primary cursor-pointer underline hover:no-underline" (click)="clearSelection()">{{
+              'UI.GENERAL.CLEAR' | transloco
+            }}</a>
+          </div>
+        </div>
+      }
+    </mat-select>
+  } @else {
+    <mat-select
+      class="text-base select-no-arrow"
+      [formControlName]="acFormControlName"
+      [hideSingleSelectionIndicator]="true"
+      (selectionChange)="selectionChange($event.value)"
+    >
+      <mat-select-trigger>{{ selectTrigger | async }}</mat-select-trigger>
+      <kp-autocomplete-search-input (filterEvent)="onFilter($event)"></kp-autocomplete-search-input>
+      <div class="overflow-y-auto max-h-44">
+        @for (option of filteredOptions | async; track option) {
+          <mat-option class="text-base" [value]="option.value">
+            @if (option.icon) {
+              <mat-icon [svgIcon]="option.icon"></mat-icon>
+            }
+            {{ option.label }}
+          </mat-option>
+        }
+      </div>
+    </mat-select>
+  }
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

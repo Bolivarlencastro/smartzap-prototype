@@ -1,0 +1,58 @@
+{
+  "name": "quiz",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/quiz/src",
+  "prefix": "qz",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/quiz"],
+      "options": {
+        "jestConfig": "libs/quiz/jest.config.ts",
+        "ci": true,
+        "codeCoverage": true,
+        "tsConfig": "libs/quiz/tsconfig.spec.json"
+      },
+      "configurations": {
+        "ci": {
+          "cache": false
+        },
+        "dev": {
+          "coverageReporters": ["html", "text-summary", "lcov"]
+        }
+      },
+      "defaultConfiguration": "dev"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/quiz/**/*.scss"]
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Quiz Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "quiz-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "libs/core/**, libs/shared-ui/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/quiz/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/store/**, **/translate.ts, **/*.routes.ts, **/app.config.ts, **/*.module.ts, **/test-setup.ts, **/*.providers.ts, **/*.routes.ts, src/main.ts",
+          "sonar.plugins.downloadOnlyRequired": "true"
+        }
+      }
+    }
+  }
+}

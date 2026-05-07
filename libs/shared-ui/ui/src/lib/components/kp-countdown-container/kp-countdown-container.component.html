@@ -1,0 +1,29 @@
+@if (finished) {
+  <ng-content></ng-content>
+} @else {
+  <div class="kp-countdown-container">
+    <mat-progress-spinner
+      class="opacity-30 kp-countdown-spinner"
+      mode="determinate"
+      [diameter]="36"
+      [value]="100"
+      color="primary"
+    ></mat-progress-spinner>
+    <mat-progress-spinner
+      class="kp-countdown-spinner"
+      color="primary"
+      mode="determinate"
+      [diameter]="36"
+      [value]="progress"
+    >
+    </mat-progress-spinner>
+    <div class="icon-container">
+      <mat-icon class="s-5">front_hand</mat-icon>
+    </div>
+    @if (count) {
+      <div class="text-xs text-nowrap">
+        {{ count | kpTimeConversion }}
+      </div>
+    }
+  </div>
+}

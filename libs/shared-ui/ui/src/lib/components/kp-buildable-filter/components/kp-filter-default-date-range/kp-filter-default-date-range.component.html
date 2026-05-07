@@ -1,0 +1,29 @@
+@if (isRange) {
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-date-range-input [rangePicker]="rangePicker">
+      <input
+        matStartDate
+        [formControlName]="selectedOption?.rangeConfig.fromKey"
+        [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+      />
+      <input
+        matEndDate
+        [formControlName]="selectedOption?.rangeConfig.toKey"
+        [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+      />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #rangePicker></mat-date-range-picker>
+  </mat-form-field>
+} @else {
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+    <input
+      matInput
+      [formControlName]="singleControlName"
+      [matDatepicker]="picker"
+      [placeholder]="selectedOption?.placeholder || 'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+}

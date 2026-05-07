@@ -1,0 +1,17 @@
+@use 'src/lib/styles/mixins' as ui-mixins;
+
+.carousel-slide {
+  @include ui-mixins.frame;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &-overlay {
+    @include ui-mixins.frame;
+  }
+
+  &-content {
+    @include ui-mixins.frame(1);
+  }
+}

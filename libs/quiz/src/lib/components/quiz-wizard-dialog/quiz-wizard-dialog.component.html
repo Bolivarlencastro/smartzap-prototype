@@ -1,0 +1,51 @@
+<h2 mat-dialog-title class="flex justify-between items-center">
+  {{ title() | transloco }}
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<mat-dialog-content>
+  <p class="subtitle">{{ subtitle() | transloco }}</p>
+  <div class="cards-grid">
+    @switch (currentStep()) {
+      @case ('select_type') {
+        <button class="selection-card" (click)="selectType('assessment')">
+          <mat-icon class="card-icon">quiz</mat-icon>
+          <strong class="card-title">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_TYPE.ASSESSMENT.TITLE' | transloco }}</strong>
+          <p class="card-description">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_TYPE.ASSESSMENT.DESCRIPTION' | transloco }}</p>
+        </button>
+
+        <button class="selection-card selection-card--disabled" disabled>
+          <span class="coming-soon-badge">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.COMING_SOON' | transloco }}</span>
+          <mat-icon class="card-icon">bar_chart</mat-icon>
+          <strong class="card-title">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_TYPE.RESEARCH.TITLE' | transloco }}</strong>
+          <p class="card-description">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_TYPE.RESEARCH.DESCRIPTION' | transloco }}</p>
+        </button>
+      }
+
+      @case ('select_creation_method') {
+        <button class="selection-card" (click)="selectCreationMethod('manual')">
+          <mat-icon class="card-icon">edit_note</mat-icon>
+          <strong class="card-title">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_METHOD.MANUAL.TITLE' | transloco }}</strong>
+          <p class="card-description">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_METHOD.MANUAL.DESCRIPTION' | transloco }}</p>
+        </button>
+
+        <button class="selection-card selection-card--disabled" disabled>
+          <span class="coming-soon-badge">{{ 'QUIZ.QUIZ_WIZARD_DIALOG.COMING_SOON' | transloco }}</span>
+          <mat-icon class="card-icon">auto_awesome</mat-icon>
+          <strong class="card-title">{{
+            'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_METHOD.AI_ASSISTED.TITLE' | transloco
+          }}</strong>
+          <p class="card-description">
+            {{ 'QUIZ.QUIZ_WIZARD_DIALOG.SELECT_METHOD.AI_ASSISTED.DESCRIPTION' | transloco }}
+          </p>
+        </button>
+      }
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onBack()">{{ backButtonLabel() | transloco }}</button>
+</mat-dialog-actions>

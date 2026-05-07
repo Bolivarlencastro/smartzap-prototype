@@ -1,0 +1,19 @@
+@if (url$ | async; as url) {
+  <kp-content-activity-tracker-wrapper
+    class="html-docs"
+    [startAutomatically]="false"
+    [continueOnPageVisible]="true"
+    [disableActivityEvents]="isViewingAsUser()"
+    [disableInactivityCheck]="true"
+    (activityEvent)="onTrackingActivity($event)"
+    #tracker
+  >
+    <iframe
+      [src]="url | kpSafeUrl"
+      allow="fullscreen"
+      mozallowfullscreen="true"
+      webkitallowfullscreen="true"
+      title="HTML Content Frame"
+    ></iframe>
+  </kp-content-activity-tracker-wrapper>
+}

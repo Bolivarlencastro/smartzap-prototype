@@ -1,0 +1,33 @@
+@switch (mission?.mission_model) {
+  @case ('LIVE') {
+    <div [class.shadow]="withShadow" class="rounded-lg bg-white p-1 flex items-center gap-4 w-fit">
+      <span
+        data-test="mission-type-live-pop-up-selector"
+        class="text-zinc-600 font-bold xxs:text-xl flex items-center gap-4"
+      >
+        <mat-icon svgIcon="videocam" class="text-red-500 s-4 xxs:s-6"></mat-icon>
+        {{ 'UI.GENERAL.MISSION_MODEL.LIVE' | transloco }}
+      </span>
+    </div>
+  }
+  @case ('PRESENTIAL') {
+    <div [class.shadow]="withShadow" class="rounded-lg bg-white p-1 flex items-center gap-4 w-fit">
+      <span
+        data-test="mission-type-presencial-pop-up-selector"
+        class="text-zinc-600 font-bold xxs:text-lg flex items-center gap-4 pr-1"
+      >
+        <mat-icon svgIcon="place" class="text-blue-600 s-4 xxs:s-8"></mat-icon>
+        {{ 'UI.GENERAL.MISSION_MODEL.PRESENTIAL' | transloco }}
+      </span>
+    </div>
+  }
+  @case ('EXTERNAL_PROVIDER') {
+    <div [class.shadow]="withShadow" class="rounded-lg bg-white p-1 flex items-center gap-4 w-fit">
+      <span class="text-zinc-600 font-bold text-xl flex items-center gap-4">
+        <img [src]="mission?.provider?.icon" alt="Provider Icon" />
+      </span>
+    </div>
+  }
+  @case ('DEFAULT') {}
+  @case ('SCORM') {}
+}

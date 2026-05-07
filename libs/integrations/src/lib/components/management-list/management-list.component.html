@@ -1,0 +1,203 @@
+<div class="grow">
+  <mat-table matSort (matSortChange)="onSort($event)" [dataSource]="dataSource" class="missions-table kp-card-table">
+    <!-- SELECTION COLUMN -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef class="min-w-[70px] max-w-[70px] -ml-1.5">
+        <mat-checkbox
+          id="selectAll"
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-[70px] max-w-[70px] -ml-1.5">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <!-- / SELECTION COLUMN -->
+
+    <!-- NAME COLUMN -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="text-xs font-bold min-w-[180px]">
+        <span [class.hidden]="selection.hasValue()" mat-sort-header="name">
+          {{ 'INTEGRATIONS.MANAGEMENT_LIST.COLUMNS.NAME' | transloco }}
+        </span>
+        <span [class.hidden]="selection.isEmpty()">
+          {{
+            'INTEGRATIONS.MANAGEMENT_LIST.SELECTED_ITEM_MESSAGE'
+              | kpPluralizeTranslate: { value: selection.selected.length }
+          }}
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[180px] cursor-pointer" (click)="onOpenDetailDialog(element)"
+        >{{ element.name }}
+      </mat-cell>
+    </ng-container>
+    <!-- / NAME COLUMN -->
+
+    <!-- MIRROR DATE COLUMN -->
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="created_at"
+        class="text-xs font-bold min-w-[180px] max-w-[180px]"
+        [class.hidden]="selection.hasValue()"
+      >
+        {{ 'INTEGRATIONS.MANAGEMENT_LIST.COLUMNS.MIRROR_DATE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[180px] max-w-[180px]"
+        >{{ element.createdAt | date: 'shortDate' }}
+      </mat-cell>
+    </ng-container>
+    <!-- / MIRROR DATE COLUMN -->
+
+    <!-- CATEGORY COLUMN -->
+    <ng-container matColumnDef="category">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header="category"
+        class="text-xs font-bold min-w-[120px]"
+        [class.hidden]="selection.hasValue()"
+      >
+        {{ 'INTEGRATIONS.MANAGEMENT_LIST.COLUMNS.CATEGORY' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[120px]">{{ element.category }} </mat-cell>
+    </ng-container>
+    <!-- / CATEGORY COLUMN -->
+
+    <!-- ALURA STATUS COLUMN -->
+    <ng-container matColumnDef="alura_status">
+      <mat-header-cell *matHeaderCellDef class="text-xs font-bold min-w-[140px]" [class.hidden]="selection.hasValue()">
+        {{ 'INTEGRATIONS.MANAGEMENT_LIST.COLUMNS.ALURA_STATUS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[140px]">
+        <div class="flex items-center gap-1 cursor-default">
+          <mat-icon class="s-1 filled" [ngStyle]="{ color: element.status | aluraStatusColor }"> circle </mat-icon>
+          <span class="text-xs font-bold">{{ element.status | aluraCourseStatus | transloco | uppercase }}</span>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <!-- / ALURA STATUS COLUMN -->
+
+    <!-- MENU COLUMN -->
+    <ng-container matColumnDef="menu">
+      <mat-header-cell
+        *matHeaderCellDef
+        class="text-xs font-bold min-w-[160px] max-w-[160px]"
+        [ngClass]="{ 'justify-center': selection.isEmpty(), 'justify-end': selection.hasValue() }"
+      >
+        <span [class.hidden]="selection.hasValue()">
+          {{ 'INTEGRATIONS.MANAGEMENT_LIST.COLUMNS.MENU' | transloco }}
+        </span>
+        <button
+          class="hidden"
+          [class.hidden]="selection.isEmpty()"
+          mat-icon-button
+          [disabled]="selection.selected | disallowMirroredCourseDeletion"
+          [matTooltip]="'INTEGRATIONS.MANAGEMENT_LIST.BUTTON_TOOLTIP.DELETE' | transloco"
+          matTooltipPosition="below"
+          (click)="onDelete()"
+        >
+          <mat-icon class="s-6">delete</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[160px] max-w-[160px] justify-center">
+        <div class="flex items-center gap-1">
+          <button
+            mat-icon-button
+            [disabled]="element.status === DevelopmentStatus.PROCESSING"
+            [matTooltip]="'INTEGRATIONS.MANAGEMENT_LIST.BUTTON_TOOLTIP.EDIT' | transloco"
+            matTooltipPosition="below"
+            (click)="onOpenDetailDialog(element)"
+          >
+            <mat-icon class="s-6">edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            [disabled]="element.status === DevelopmentStatus.PROCESSING"
+            [matTooltip]="'INTEGRATIONS.MANAGEMENT_LIST.BUTTON_TOOLTIP.DELETE' | transloco"
+            matTooltipPosition="below"
+            (click)="onDelete(element)"
+          >
+            <mat-icon class="s-6">delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            [matTooltip]="'INTEGRATIONS.MANAGEMENT_LIST.BUTTON_TOOLTIP.ALURA_LINK' | transloco"
+            matTooltipPosition="below"
+            (click)="onOpenCourse(element)"
+          >
+            <mat-icon class="s-6">link</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <!-- / MENU COLUMN -->
+
+    <!-- ACTIVATION COLUMN -->
+    <ng-container matColumnDef="activation">
+      <mat-header-cell *matHeaderCellDef class="text-xs font-bold min-w-[95px] max-w-[95px] justify-center">
+        <span [class.hidden]="selection.hasValue()">
+          {{ 'INTEGRATIONS.MANAGEMENT_LIST.COLUMNS.ACTIVATION' | transloco }}
+        </span>
+        <mat-slide-toggle
+          color="primary"
+          class="hidden"
+          [class.hidden]="selection.isEmpty()"
+          [checked]="selection.selected | allCoursesActivated"
+          (change)="onToggleActive($event)"
+        ></mat-slide-toggle>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[95px] max-w-[95px] justify-center">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="element.active"
+          [disabled]="element.status === AluraStatus.DISABLED"
+          (change)="onToggleActive($event, element.id)"
+        ></mat-slide-toggle>
+      </mat-cell>
+    </ng-container>
+    <!-- / ACTIVATION COLUMN -->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" class="h-[88px]"></mat-row>
+  </mat-table>
+
+  <!-- TABLE SKELETON -->
+  @if (vm?.loading) {
+    <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+  }
+  <!-- / TABLE SKELETON -->
+
+  @if (!vm?.loading && !vm?.items.length) {
+    <div class="h-[calc(100%-56px)] flex flex-col items-center justify-center">
+      @if (vm?.hasAppliedFilter) {
+        <span class="text-sm">{{ 'INTEGRATIONS.MANAGEMENT_LIST.EMPTY_LIST.MESSAGE_WITH_FILTER' | transloco }}</span>
+      } @else {
+        <span class="text-sm">{{ 'INTEGRATIONS.MANAGEMENT_LIST.EMPTY_LIST.MESSAGE' | transloco }}</span>
+        <a class="text-sm text-primary underline font-bold cursor-pointer" (click)="onOpenCourseMirrorDialog()">{{
+          'INTEGRATIONS.MANAGEMENT_LIST.EMPTY_LIST.LINK' | transloco
+        }}</a>
+      }
+    </div>
+  }
+</div>
+
+<!-- PAGINATOR -->
+<mat-paginator
+  [length]="vm?.pagination.totalItems"
+  [pageSize]="vm?.pagination.perPage"
+  [pageIndex]="vm?.pagination.currentPage"
+  [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+  [showFirstLastButtons]="true"
+  (page)="onPageChange($event)"
+  class="border-t-1 border-default w-full sticky bottom-0"
+>
+</mat-paginator>
+<!-- / PAGINATOR -->

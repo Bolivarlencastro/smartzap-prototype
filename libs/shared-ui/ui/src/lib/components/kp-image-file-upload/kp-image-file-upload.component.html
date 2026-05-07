@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline" class="flex-auto w-full">
+  <input matInput [placeholder]="placeholder" [value]="fileName" readonly class="cursor-default" />
+  @if (control?.value) {
+    <mat-icon matSuffix (click)="cleanInput()" class="cursor-pointer pr-1">delete</mat-icon>
+  }
+  <mat-icon matSuffix (click)="uploadInputClick()" class="cursor-pointer pl-1">attach_file</mat-icon>
+  <input #fileInput hidden type="file" accept="image/jpeg, image/png" (change)="onFileInputChange()" />
+  <mat-hint>{{ hint }}</mat-hint>
+</mat-form-field>

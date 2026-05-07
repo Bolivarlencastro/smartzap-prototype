@@ -1,0 +1,34 @@
+<div class="text-xl py-3 pr-3 pl-5 flex justify-between items-center">
+  <span>{{ 'CLASSROOM.HELP_PANEL.TITLE' | transloco }}</span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="px-5 mx-auto pb-3 flex gap-5 flex-wrap">
+  @for (section of sections; track section.title) {
+    <div class="flex flex-col gap-1 mb-3 section">
+      <span>{{ section.title | transloco }}</span>
+      <span class="mb-3">{{ section.subtitle | transloco }}</span>
+
+      <div class="flex flex-col gap-3">
+        @for (item of section.items; track item.label) {
+          <div class="flex gap-3 items-center">
+            @if (item.icon) {
+              <mat-icon>{{ item.icon }}</mat-icon>
+            } @else {
+              <kp-countdown-container
+                *kpCountdown="{ timer: 36, manualStart: true }; let progress; let seconds = timer"
+                [count]="seconds"
+                [progress]="progress"
+              >
+              </kp-countdown-container>
+            }
+            <div class="h-7 px-2 rounded text-sm flex items-center help-panel-section-label">
+              {{ item.label | transloco }}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

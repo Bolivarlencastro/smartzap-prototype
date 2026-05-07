@@ -1,0 +1,168 @@
+{
+  "GENERAL": {
+    "CLEAR_FILTER": "Limpar filtro",
+    "FILTER": "Filtrar",
+    "FILTERS": "Filtros",
+    "INACTIVATE": "Inativar",
+    "RENEW": "Renovar",
+    "SEARCH": "Pesquisar",
+    "UNABLE_TO_RENEW": "Não é possível renovar esse ciclo pois existe uma falha no objeto de ensino vinculado."
+  },
+  "CANCEL": "Cancelar",
+  "CHARACTERS": "caracteres",
+  "CLOSE": "Fechar",
+  "COMPLIANCE_DIALOG": {
+    "ACTIONS": {
+      "DELETE": "Excluir",
+      "LEAVE": "Sair",
+      "SAVE_AND_CLOSE": "Salvar e fechar"
+    },
+    "DELETE": {
+      "MESSAGE": {
+        "PLURAL": "Você tem certeza que deseja excluir as normativas selecionadas? Os ciclos criados com elas serão desativados. E deverão ser configurados para que voltem a funcionar.",
+        "SINGULAR": "Você tem certeza que deseja excluir a normativa? Os ciclos criados com ela serão desativados. E deverão ser configurados para que voltem a funcionar."
+      },
+      "TITLE": {
+        "PLURAL": "Excluir normativas",
+        "SINGULAR": "Excluir normativa"
+      }
+    },
+    "EMPTY_LIST": "Não existem normativas cadastradas.",
+    "MESSAGE": "Crie, edite ou exclua os tipos de normativas que serão utilizados em sua workspace.",
+    "MESSAGES": {
+      "DELETE": {
+        "FAILURE": "Ocorreu um erro ao excluir a(s) normativa(s).",
+        "SUCCESS": "Normativa(s) excluída(s) com sucesso."
+      },
+      "SAVE": {
+        "FAILURE": "Ocorreu um erro ao salvar a(s) normativa(s).",
+        "FAILURE_COMPLIANCE_ALREADY_EXISTS": "Já existe normativa com este nome.",
+        "SUCCESS": "Normativa(s) salva(s) com sucesso."
+      }
+    },
+    "NAME": "Nome",
+    "SELECTED": {
+      "PLURAL": "{{ value }} itens selecionados",
+      "SINGULAR": "{{ value }} item selecionado"
+    },
+    "TITLE": "Cadastro de normativas"
+  },
+  "CREATE": "Criar",
+  "CREATE_CYCLE": "Criar ciclo",
+  "CREATE_CYCLE_SUCCESS_MESSAGE": "Ciclo normativo cadastrado com sucesso!",
+  "CREATE_NORMATIVE_CYCLE": "Criar ciclo normativo",
+  "CREATE_NORMATIVE_CYCLE_DIALOG_DESCRIPTION": "Crie um ciclo normativo para gerenciar a reciclagem de seus colaboradores.",
+  "CREATION": "Criação",
+  "CYCLE_FORM": {
+    "DESCRIPTION": {
+      "CONNECTED_MISSION": "curso",
+      "CONNECTED_TRAIL": "trilha",
+      "CYCLE_DESCRIPTION": "Ciclo de {{ compliance }} ligado a {{ learningObjectType }} {{ learningObjectName }}. Validade {{ duration }} {{ periodType }}.",
+      "EXPIRATION_DAYS": "dias",
+      "EXPIRATION_MONTHS": "meses",
+      "EXPIRATION_YEARS": "anos"
+    }
+  },
+  "CYCLE_MANAGEMENT": {
+    "DAYS_UNTIL_EXPIRATION": {
+      "PLURAL": "{{ value }} dias para o vencimento",
+      "SINGULAR": "{{ value }} dia para o vencimento"
+    },
+    "INACTIVATE_DIALOG": {
+      "MESSAGE": "Você tem certeza que deseja inativar este ciclo? Ao confirmar a inativação todo o histórico será mantido. Não será possível ativá-lo novamente. Para isso será necessário fazer uma nova vinculação.",
+      "POSITIVE_BUTTON": "Inativar",
+      "TITLE": "Inativar ciclo"
+    },
+    "MESSAGES": {
+      "INACTIVATE_FAILURE": "Ocorreu um erro ao inativar o ciclo.",
+      "INACTIVATE_SUCCESS": "Ciclo inativado com sucesso!",
+      "RENEW_FAILURE": "Ocorreu um erro ao renovar o ciclo.",
+      "RENEW_SUCCESS": "Ciclo renovado com sucesso!"
+    },
+    "RENEW_DIALOG": {
+      "MESSAGE": "Você tem certeza que deseja renovar este ciclo?",
+      "POSITIVE_BUTTON": "Renovar",
+      "TITLE": "Renovar ciclo"
+    },
+    "STATUS": {
+      "EXPIRED": "Vencido",
+      "EXPIRING": "Vencendo",
+      "INACTIVE": "Inativo",
+      "IN_PROGRESS": "Em andamento",
+      "RENEWED": "Renovado"
+    },
+    "TABLE": {
+      "EXPIRATION_DATE": "Expiração",
+      "EXPORT": "Exportar tabela",
+      "LEADER_NAME": "Líder",
+      "LEARNING_OBJECT": "Objeto de ensino",
+      "NORMATIVE": "Normativa",
+      "NO_RESULTS": "Não existem ciclos normativos iniciados em sua workspace.",
+      "RENEW_DATE": "Renovado",
+      "REPORT": "Gerar relatório",
+      "STATUS": "Status",
+      "USER_NAME": "Usuário",
+      "VALIDITY": "Validade"
+    },
+    "TITLE": "Gestão de ciclos normativos"
+  },
+  "CYCLE_VALIDITY": "Validade do ciclo",
+  "DELETE": "Excluir",
+  "DELETE_CYCLE_SUCCESS_MESSAGE": "Ciclo normativo excluído.",
+  "DELETE_MULTIPLE_NORMATIVE_CYCLE": "Excluir ciclos normativos",
+  "DELETE_MULTIPLE_NORMATIVE_CYCLE_MESSAGE": "Você tem certeza que deseja excluir os ciclos? As matrículas de usuários relacionadas a estes ciclos serão afetadas, não mais funcionando com estes módulos.",
+  "DELETE_NORMATIVE_CYCLE": "Excluir ciclo normativo",
+  "DELETE_NORMATIVE_CYCLE_MESSAGE": "Você tem certeza que deseja excluir o ciclo? As matrículas de usuários relacionadas a este ciclo serão afetadas, não mais funcionando com este módulo.",
+  "DESCRIPTION": "Descrição",
+  "DURATION": {
+    "DAYS": {
+      "NEUTRAL": "Dia(s)",
+      "PLURAL": "Dias",
+      "SINGULAR": "Dia"
+    },
+    "MONTHS": {
+      "NEUTRAL": "Mes(es)",
+      "PLURAL": "Meses",
+      "SINGULAR": "Mês"
+    },
+    "YEARS": {
+      "NEUTRAL": "Ano(s)",
+      "PLURAL": "Anos",
+      "SINGULAR": "Ano"
+    }
+  },
+  "EDIT": "Editar",
+  "SAVE": "Salvar",
+  "EDIT_CYCLE_SUCCESS_MESSAGE": "Ciclo normativo editado com sucesso.",
+  "EDIT_NORMATIVE_CYCLE": "Editar ciclo normativo",
+  "EDIT_NORMATIVE_CYCLE_DIALOG_DESCRIPTION": "Edite as informações do ciclo normativo.",
+  "EDIT_NORMATIVE_CYCLE_MESSAGE": "Você tem certeza que deseja editar o ciclo? Matrículas de usuários vinculados ao ciclo serão afetadas com as mudanças.",
+  "ENROLLMENTS": "Matrículas",
+  "EXPIRATION": "Vencimento",
+  "FILTERS_PLACEHOLDERS": {
+    "EXPIRATION_DATE": "Expiração",
+    "LEADER": "Líder",
+    "LEARNING_OBJECT": "Objeto de aprendizagem",
+    "NORMATIVE": "Normativa",
+    "USER": "Usuário"
+  },
+  "JOB_FUNCTION": "Função",
+  "JOB_POSITION": "Cargo",
+  "LEARNING_OBJECT": "Objeto de aprendizagem",
+  "MANAGEMENT": "Gestão",
+  "MENU": "Menu",
+  "NAME": "Nome",
+  "NORMATIVE": "Normativa",
+  "NORMATIVE_CYCLES": "Ciclos de normativos",
+  "NORMATIVE_FORM": {
+    "NAME_PLACEHOLDER": "Adicionar normativa"
+  },
+  "REGISTER_NORMATIVE": "Cadastrar normativa",
+  "SELECTED_ITEM_MESSAGE": {
+    "PLURAL": "{{value}} itens selecionados",
+    "SINGULAR": "{{value}} item selecionado"
+  },
+  "TABLE": {
+    "NO_RESULTS": "Não existem ciclos normativos cadastrados na sua workspace."
+  }
+}

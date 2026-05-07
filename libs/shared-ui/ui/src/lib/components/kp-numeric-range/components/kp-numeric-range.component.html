@@ -1,0 +1,11 @@
+<div class="kp-numeric-range-input-container" cdkMonitorSubtreeFocus (cdkFocusChange)="focusChanged($event)">
+  <div class="kp-numeric-range-input-wrapper text-default">
+    <ng-content select="input[kpNumericRangeStart]"></ng-content>
+  </div>
+
+  <span class="kp-numeric-range-input-separator">{{ separator }}</span>
+
+  <div class="kp-numeric-range-input-wrapper text-default">
+    <ng-content select="input[kpNumericRangeEnd]"></ng-content>
+  </div>
+</div>

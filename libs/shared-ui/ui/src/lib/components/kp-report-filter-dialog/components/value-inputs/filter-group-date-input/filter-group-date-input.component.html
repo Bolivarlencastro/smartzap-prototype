@@ -1,0 +1,10 @@
+<mat-form-field class="w-full" subscriptSizing="dynamic">
+  <input
+    formControlName="value"
+    matInput
+    [matDatepicker]="picker"
+    [placeholder]="'UI.REPORT_FILTER_DIALOG.DATE_PLACEHOLDER' | transloco"
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

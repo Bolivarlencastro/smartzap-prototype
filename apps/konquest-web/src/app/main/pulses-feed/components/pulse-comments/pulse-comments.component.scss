@@ -1,0 +1,136 @@
+.comments {
+  @apply flex flex-col gap-2;
+}
+
+.see-all {
+  @apply text-sm cursor-pointer px-4 opacity-75;
+
+  color: var(--mat-sys-on-surface-variant);
+
+  &:hover {
+    @apply opacity-100;
+  }
+}
+
+.comments-title {
+  @apply text-sm font-semibold px-4 mb-1.5;
+}
+
+.comments-list {
+  @apply flex flex-col gap-2 px-4;
+}
+
+.comment-item {
+  @apply flex items-start gap-2;
+}
+
+.avatar {
+  @apply rounded-full object-cover shrink-0;
+
+  width: 2rem;
+  height: 2rem;
+}
+
+.bubble {
+  @apply flex flex-col gap-0.5 rounded-xl px-3 py-2 [word-break:break-word];
+
+  background-color: var(--mat-sys-surface-container);
+}
+
+.bubble-header {
+  @apply flex items-center justify-between gap-1;
+}
+
+.comment-name {
+  @apply text-sm font-semibold leading-tight;
+}
+
+.comment-menu-btn {
+  @apply -mr-1 shrink-0 cursor-pointer;
+
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.edit-inline {
+  @apply flex flex-col gap-1 mt-0.5;
+}
+
+.edit-input {
+  @apply w-full text-sm resize-none leading-snug py-0.5 min-h-12;
+
+  background: transparent;
+  color: var(--mat-sys-on-surface);
+  field-sizing: content; /* NOSONAR */
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--mat-sys-primary);
+  }
+}
+
+.edit-actions {
+  @apply flex justify-end gap-0.5 h-10;
+
+  button mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.comment-text {
+  @apply text-sm leading-snug m-0;
+}
+
+.comment-time {
+  @apply text-xs opacity-75 ml-2;
+}
+
+.input-wrapper {
+  @apply flex items-center border-t border-default min-h-12 pl-4 pr-1 mt-1 py-1;
+}
+
+.comment-input {
+  @apply w-full text-sm resize-none overflow-hidden py-2.5 leading-5;
+
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+
+  &::placeholder {
+    color: var(--mat-sys-on-surface-variant);
+    opacity: 0.7;
+  }
+}
+
+.input-actions {
+  @apply flex flex-col items-end justify-end gap-1;
+}
+
+.emoji-btn {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.publish-btn {
+  color: var(--mat-sys-primary);
+  font-weight: 600;
+}
+
+.char-counter {
+  @apply text-xs opacity-60 select-none mr-2;
+
+  color: var(--mat-sys-on-surface-variant);
+
+  &.over-limit {
+    @apply opacity-100;
+
+    color: var(--mat-sys-error);
+  }
+}

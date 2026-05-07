@@ -1,0 +1,339 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col grow overflow-hidden">
+  <div class="w-full min-h-40 h-40 bg-primary flex items-center justify-between px-8">
+    <button
+      class="flex items-center justify-center w-32 h-32 rounded-full overflow-hidden ring-4 ring-bg bg-primary cursor-pointer relative"
+      (click)="avatarInput.click()"
+      (mouseenter)="toggleShowUploadButton('removeClass')"
+      (mouseleave)="toggleShowUploadButton('addClass')"
+      type="button"
+    >
+      @if (imageSrc || vm?.currentUser?.avatar) {
+        <img [attr.src]="imageSrc || vm?.currentUser?.avatar" class="object-cover w-full h-full" />
+      }
+
+      @if (avatarButtonIcon) {
+        <span
+          #editIcon
+          class="material-symbols-outlined photo-text-color s-8 font-thin absolute inset-0 m-auto opacity-0 transition-all duration-200"
+        >
+          edit
+        </span>
+      } @else {
+        <span class="material-symbols-outlined photo-text-color s-9 font-thin"> add_a_photo </span>
+      }
+    </button>
+    <input #avatarInput type="file" class="hidden" accept="image/png, image/jpeg" (change)="onChangeAvatar($event)" />
+    <div class="flex ml-auto gap-2.5">
+      @if (vm?.loading && !vm?.currentUser) {
+        <kp-skeleton class="w-10 h-10 bg-default rounded-full"></kp-skeleton>
+        <kp-skeleton class="w-10 h-10 bg-default rounded-full"></kp-skeleton>
+        <kp-skeleton class="w-10 h-10 bg-default rounded-full"></kp-skeleton>
+      } @else {
+        <button
+          data-test="button-send-invite"
+          mat-icon-button
+          type="button"
+          class="header-button-bg text-primary"
+          (click)="onSendEmail()"
+          [matTooltip]="'GENERAL.SEND_INVITE' | transloco"
+        >
+          <mat-icon>mail</mat-icon>
+        </button>
+
+        <button
+          data-test="button-new-password"
+          mat-icon-button
+          type="button"
+          class="header-button-bg text-primary"
+          (click)="onResetPassword()"
+          [matTooltip]="'GENERAL.PASSWORD' | transloco"
+        >
+          <mat-icon>vpn_key</mat-icon>
+        </button>
+        @if (displayImportDataButton) {
+          <button
+            mat-icon-button
+            type="button"
+            class="header-button-bg text-primary"
+            (click)="onImportData()"
+            [matTooltip]="'GENERAL.IMPORT_DATA' | transloco"
+          >
+            <mat-icon>merge</mat-icon>
+          </button>
+        }
+      }
+    </div>
+  </div>
+
+  @if (vm?.loading && !vm?.currentUser) {
+    <div class="grid grid-cols-2 gap-6 p-8">
+      <kp-skeleton class="w-full col-span-2 h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full col-span-2 h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full col-span-2 h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full h-14 bg-default rounded-s"></kp-skeleton>
+      <kp-skeleton class="w-full h-14 bg-default rounded-s"></kp-skeleton>
+    </div>
+  } @else {
+    <mat-tab-group [fitInkBarToContent]="true" animationDuration="0ms" class="grow overflow-y-auto w-full">
+      <mat-tab [label]="'USERS.DETAIL.TABS.PERSONAL.LABEL' | transloco">
+        <div class="p-8 flex flex-col gap-6">
+          <!-- EMAIL -->
+          <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label> {{ 'GENERAL.EMAIL' | transloco }}</mat-label>
+            <input data-test="field-email" matInput formControlName="email" />
+          </mat-form-field>
+
+          <div class="flex gap-6">
+            <!-- NAME -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label> {{ 'GENERAL.NAME' | transloco }}</mat-label>
+              <input data-test="field-name" matInput formControlName="name" />
+            </mat-form-field>
+
+            <!-- NICKNAME -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label> {{ 'GENERAL.NICKNAME' | transloco }}</mat-label>
+              <input matInput formControlName="nickname" />
+            </mat-form-field>
+          </div>
+
+          <!-- BIRTHDAY -->
+          <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>{{ 'GENERAL.BIRTHDAY' | transloco }}</mat-label>
+            <input matInput formControlName="birthday" [matDatepicker]="birthday" />
+            <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+            <mat-datepicker #birthday></mat-datepicker>
+          </mat-form-field>
+
+          <!-- CPF -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-label> CPF</mat-label>
+            <input matInput formControlName="cpf" mask="000.000.000-00" />
+          </mat-form-field>
+
+          <div class="flex gap-6">
+            <!-- ETHNICITY -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'USERS.DETAIL.TABS.PERSONAL.ETHNICITY.LABEL' | transloco }}</mat-label>
+              <mat-select formControlName="ethnicity">
+                <mat-option value=""></mat-option>
+                @for (ethnicity of ethnicities; track ethnicity.value) {
+                  <mat-option [value]="ethnicity.value">
+                    {{ ethnicity.label | transloco }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <!-- GENDER -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'USERS.DETAIL.TABS.PERSONAL.GENDER.LABEL' | transloco }}</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value=""></mat-option>
+                @for (gender of genres; track gender.value) {
+                  <mat-option [value]="gender.value">
+                    {{ gender.label | transloco }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="flex gap-6">
+            <!-- LANGUAGE -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'GENERAL.LANGUAGE' | transloco }}</mat-label>
+              <mat-select data-test="field-language" formControlName="language_id">
+                @for (language of languages; track language.id) {
+                  <mat-option [value]="language.id">
+                    <div class="flex items-center gap-6">
+                      <kp-language-color-tag [language]="language.name"></kp-language-color-tag>
+                      <span>{{ 'GENERAL.' + (language.name | uppercase) | transloco }}</span>
+                    </div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <!-- MARITAL STATUS -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'USERS.DETAIL.TABS.PERSONAL.MARITAL_STATUS.LABEL' | transloco }}</mat-label>
+              <mat-select formControlName="marital_status">
+                <mat-option value=""></mat-option>
+                @for (maritalStatus of maritalStatuses; track maritalStatus.value) {
+                  <mat-option [value]="maritalStatus.value">
+                    {{ maritalStatus.label | transloco }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab [label]="'USERS.DETAIL.TABS.CONTACT.LABEL' | transloco">
+        <div class="p-8 flex flex-col gap-6">
+          <!-- SECONDARY EMAIL -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-label> {{ 'USERS.DETAIL.TABS.CONTACT.SECONDARY_EMAIL' | transloco }}</mat-label>
+            <input matInput formControlName="secondary_email" />
+          </mat-form-field>
+
+          <!-- PHONE -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic" [floatLabel]="'always'">
+            <mat-label>{{ 'GENERAL.PHONE' | transloco }}</mat-label>
+            <kp-phone-input
+              matInput
+              [enableSearch]="true"
+              [preferredCountries]="['br', 'us', 'es']"
+              [inputPlaceholder]="'GENERAL.PHONE' | transloco"
+              [searchPlaceholder]="'GENERAL.SEARCH' | transloco"
+              formControlName="phone"
+            >
+            </kp-phone-input>
+          </mat-form-field>
+
+          <!-- ADDRESS -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-label> {{ 'GENERAL.ADDRESS' | transloco }}</mat-label>
+            <input matInput formControlName="address" />
+          </mat-form-field>
+
+          <!-- COUNTRY -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-label> {{ 'USERS.DETAIL.TABS.CONTACT.COUNTRY' | transloco }}</mat-label>
+            <input matInput formControlName="country" />
+          </mat-form-field>
+        </div>
+      </mat-tab>
+
+      <mat-tab [label]="'USERS.DETAIL.TABS.PROFESSIONAL.LABEL' | transloco">
+        <div class="p-8 flex flex-col gap-6">
+          <div class="flex gap-6">
+            <!-- ADMISSION DATE -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'USERS.DETAIL.TABS.PROFESSIONAL.ADMISSION_DATE' | transloco }}</mat-label>
+              <input matInput formControlName="admission_date" [matDatepicker]="admission_date" />
+              <mat-datepicker-toggle matSuffix [for]="admission_date"></mat-datepicker-toggle>
+              <mat-datepicker #admission_date></mat-datepicker>
+            </mat-form-field>
+
+            <!-- REGISTRATION NUMBER -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label> {{ 'USERS.DETAIL.TABS.PROFESSIONAL.REGISTRATION_NUMBER' | transloco }}</mat-label>
+              <input matInput formControlName="ein" />
+            </mat-form-field>
+          </div>
+
+          <!-- EDUCATION -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-label> {{ 'USERS.DETAIL.TABS.PROFESSIONAL.EDUCATION' | transloco }}</mat-label>
+            <input matInput formControlName="education" />
+          </mat-form-field>
+
+          <div class="flex gap-6" formGroupName="employee_info">
+            <!-- JOB -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'GENERAL.JOB' | transloco }}</mat-label>
+              <mat-select formControlName="job_position_id">
+                <mat-option [value]="null"></mat-option>
+                @for (job of jobs; track job.id) {
+                  <mat-option [value]="job.id">
+                    {{ job.name }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <!-- ACTIVITY AREA -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'GENERAL.ACTIVITY_AREA' | transloco }}</mat-label>
+              <mat-select formControlName="area_of_activity">
+                <mat-option [value]="null"></mat-option>
+                @for (area of vm?.activityAreas; track area) {
+                  <mat-option [value]="area">
+                    {{ area }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="flex gap-6">
+            <!-- HIERARCHICAL LEVEL -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label> {{ 'USERS.DETAIL.TABS.PROFESSIONAL.HIERARCHICAL_LEVEL' | transloco }}</mat-label>
+              <input matInput formControlName="hierarchical_level" />
+            </mat-form-field>
+
+            <!-- CONTRACT TYPE -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label> {{ 'USERS.DETAIL.TABS.PROFESSIONAL.CONTRACT_TYPE' | transloco }}</mat-label>
+              <input matInput formControlName="contract_type" />
+            </mat-form-field>
+          </div>
+
+          <div class="flex gap-6" formGroupName="employee_info">
+            <!-- DIRECTOR -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'GENERAL.DIRECTORATE' | transloco }}</mat-label>
+              <mat-select formControlName="director">
+                <mat-option [value]="null"></mat-option>
+                @for (director of vm?.directors; track director) {
+                  <mat-option [value]="director">
+                    {{ director }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <!-- MANAGER -->
+            <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+              <mat-label>{{ 'GENERAL.SUBDIRECTORATE' | transloco }}</mat-label>
+              <mat-select formControlName="manager">
+                <mat-option [value]="null"></mat-option>
+                @for (manager of vm?.managers; track manager) {
+                  <mat-option [value]="manager">
+                    {{ manager }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- LEADER -->
+          <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic">
+            <mat-label> {{ 'USERS.DETAIL.TABS.PROFESSIONAL.LEADER' | transloco }}</mat-label>
+            <input matInput formControlName="related_user_leader_id" [matAutocomplete]="auto" />
+            <mat-icon matIconSuffix>search</mat-icon>
+
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="leaderDisplayWith">
+              @for (leader of vm?.filteredLeaders; track leader.id) {
+                <mat-option [value]="leader">{{ leader.name }}</mat-option>
+              }
+            </mat-autocomplete>
+
+            @if (form.hasError('invalid', 'related_user_leader_id')) {
+              <mat-error>{{ 'USERS.DETAIL.TABS.PROFESSIONAL.INVALID_LEADER_SELECTED' | transloco }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-tab>
+
+      <mat-tab [disabled]="!vm?.currentUser?.id" [label]="'USERS.DETAIL.TABS.ACCESS.LABEL' | transloco">
+        <div class="px-8">
+          <ng-content></ng-content>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <app-user-footer
+      [editing]="vm?.editing"
+      (userAction)="onFooterAction($event)"
+      [submitDisabled]="submitDisabled"
+    ></app-user-footer>
+  }
+</form>

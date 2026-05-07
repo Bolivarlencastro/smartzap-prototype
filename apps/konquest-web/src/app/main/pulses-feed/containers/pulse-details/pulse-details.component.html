@@ -1,0 +1,263 @@
+<div [class]="outerClass()">
+  @if (pulse()?.is_active === false) {
+    <div class="pulse-details-inactive-overlay" [class.is-mobile]="isMobile()">
+      <span>{{ 'GENERAL.INACTIVE' | transloco }}</span>
+    </div>
+  }
+
+  @if (!isMobile()) {
+    <div class="dialog-external-button -right-14" matDialogClose>
+      <mat-icon>close</mat-icon>
+    </div>
+    @if (!isQuiz()) {
+      <div class="dialog-external-button -right-14 top-16" (click)="toggleInfo()">
+        <mat-icon>{{ infoOpen() ? 'right_panel_close' : 'right_panel_open' }}</mat-icon>
+      </div>
+    }
+
+    @if (hasNavigation()) {
+      <div
+        class="dialog-external-button -left-14 arrow"
+        [class.opacity-40]="!hasPrev()"
+        [class.pointer-events-none]="!hasPrev()"
+        (click)="navigatePrev()"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </div>
+
+      <div
+        class="dialog-external-button -right-14 arrow"
+        [class.opacity-40]="!hasNext()"
+        [class.pointer-events-none]="!hasNext()"
+        (click)="navigateNext()"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </div>
+    }
+  }
+
+  <!-- Content area (PDF, image, etc.) -->
+  <div [class]="contentAreaClass()">
+    @if (isMobile()) {
+      <div class="h-14 flex items-center justify-end gap-1 px-5">
+        @if (hasNavigation()) {
+          <button mat-icon-button [disabled]="!hasPrev()" (click)="navigatePrev()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <button mat-icon-button class="mr-auto" [disabled]="!hasNext()" (click)="navigateNext()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        }
+        @if (!isQuiz()) {
+          <button mat-icon-button (click)="toggleInfo()" class="ml-auto">
+            <mat-icon>{{ infoOpen() ? 'bottom_panel_close' : 'bottom_panel_open' }}</mat-icon>
+          </button>
+        }
+        <button mat-icon-button matDialogClose>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    }
+    @if (isQuiz()) {
+      <app-pulse-feed-quiz class="flex-1 overflow-hidden" />
+    } @else {
+      <div class="bg-black h-full w-full flex items-center justify-center overflow-hidden">
+        @if (contentUrl() && contentType()) {
+          <kp-viewer-konquest
+            [class]="contentType() === 'Video' ? 'max-h-full my-auto w-full' : 'h-full w-full'"
+            [url]="contentUrl()"
+            [holder]="'PULSE'"
+            [contentId]="pulse()?.id"
+            [contentType]="contentType()!"
+            [disableActivityEvents]="disableActivityEvents()"
+            [enableImageFullscreen]="false"
+            [mediaPlayerClass]="contentType() === 'Video' ? 'max-h-full' : ''"
+            [style.aspectRatio]="contentType() === 'Video' ? '16/9' : null"
+          />
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Info panel -->
+  @if (infoOpen() && !isQuiz()) {
+    <div [class]="infoPanelClass()">
+      @if (loading()) {
+        <!-- Skeleton -->
+        <div class="flex flex-col h-full animate-pulse">
+          <!-- Header skeleton -->
+          <div class="flex items-start gap-3 p-3 shrink-0 border-b border-default">
+            <div class="rounded-full shrink-0 w-9 h-9 bg-[var(--mat-sys-surface-container-high)]"></div>
+            <div class="flex flex-col gap-2 min-w-0 flex-1">
+              <div class="h-3 w-2/5 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+              <div class="h-2.5 w-3/5 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+            </div>
+            <div class="h-8 w-20 rounded ml-auto bg-[var(--mat-sys-surface-container-high)]"></div>
+          </div>
+
+          <!-- Body skeleton -->
+          <div class="flex-1 flex flex-col gap-4 p-4">
+            <div class="flex flex-col gap-2">
+              <div class="h-3.5 w-3/4 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+              <div class="h-2.5 w-full rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+              <div class="h-2.5 w-5/6 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+            </div>
+
+            <div class="flex flex-col gap-4 mt-2">
+              @for (i of [1, 2, 3]; track i) {
+                <div class="flex flex-col gap-1.5">
+                  <div class="h-2.5 w-1/4 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+                  <div class="h-2.5 w-3/4 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Footer skeleton -->
+          <div class="shrink-0">
+            <div class="flex items-center justify-between px-3 py-2">
+              <div class="flex items-center gap-1">
+                @for (i of [1, 2, 3, 4, 5]; track i) {
+                  <div class="w-5 h-5 rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+                }
+              </div>
+              <div class="flex items-center gap-1">
+                <div class="w-8 h-8 rounded-full bg-[var(--mat-sys-surface-container-high)]"></div>
+                <div class="w-8 h-8 rounded-full bg-[var(--mat-sys-surface-container-high)]"></div>
+              </div>
+            </div>
+            <div class="flex items-center border-t border-default min-h-14 px-4">
+              <div class="h-2.5 w-full rounded bg-[var(--mat-sys-surface-container-high)]"></div>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <!-- Header -->
+        <header class="flex items-start gap-3 p-3 shrink-0 border-b border-default">
+          <div class="flex items-center gap-2 min-w-0">
+            <img
+              class="rounded-full object-cover shrink-0 w-9 h-9"
+              [src]="channel()?.holder_image ?? defaultChannelImage"
+              [alt]="pulse()?.channels?.[0]?.name"
+              width="36"
+              height="36"
+            />
+            <div class="flex flex-col min-w-0">
+              <span class="text-sm font-semibold leading-tight truncate">{{ pulse()?.channels?.[0]?.name }}</span>
+              <div class="flex items-center gap-1 text-xs opacity-60 flex-wrap">
+                <span class="uppercase tracking-wide">{{
+                  pulse()?.pulse_type?.name | kpCategoryLabel | transloco
+                }}</span>
+                <span class="opacity-40">·</span>
+                <span class="truncate">{{ pulse()?.user_creator?.name }}</span>
+                <span class="opacity-40">·</span>
+                <span class="truncate">{{ relativeTime() }}</span>
+              </div>
+            </div>
+          </div>
+          @if (!channel()?.is_owner && !channel()?.is_contributor) {
+            <button mat-button (click)="toggleSubscription()" class="ml-auto">
+              {{
+                (isSubscribed() ? 'PULSES_FEED.PULSE_CARD.SUBSCRIBED' : 'PULSES_FEED.PULSE_CARD.SUBSCRIBE') | transloco
+              }}
+            </button>
+          }
+        </header>
+
+        <!-- Description + Comments (scrollable together) -->
+        <div class="flex flex-col flex-1 overflow-y-auto">
+          <!-- Description -->
+          <div class="shrink-0 flex flex-col gap-1 p-4">
+            <strong class="text-sm font-semibold leading-snug [word-break:break-word]">{{ pulse()?.name }}</strong>
+
+            @if (!expanded()) {
+              <p class="pulse-description" #descriptionEl>{{ pulse()?.description }}</p>
+              @if (isTruncated()) {
+                <a
+                  class="text-xs cursor-pointer text-[var(--mat-sys-on-surface-variant)] no-underline hover:no-underline"
+                  (click)="expanded.set(true)"
+                >
+                  {{ 'PULSES_FEED.PULSE_CARD.SEE_MORE' | transloco }}
+                </a>
+              }
+            } @else {
+              <p class="pulse-description is-expanded">
+                {{ pulse()?.description }}
+                <a
+                  class="text-xs cursor-pointer text-[var(--mat-sys-on-surface-variant)] no-underline hover:no-underline"
+                  (click)="expanded.set(false)"
+                  >{{ 'PULSES_FEED.PULSE_CARD.SEE_LESS' | transloco }}</a
+                >
+              </p>
+            }
+          </div>
+
+          <!-- Comments -->
+          <app-pulse-details-comments class="flex flex-col" [comments]="comments()" />
+        </div>
+
+        <!-- Footer -->
+        <footer class="shrink-0">
+          <div class="flex items-center justify-between px-3 py-2">
+            <app-pulse-rating [averageRating]="pulse()?.rating_avg ?? 0" (rateChange)="setRating($event)" />
+            <div class="flex items-center">
+              <button
+                mat-icon-button
+                class="text-[var(--mat-sys-on-surface-variant)] hover:text-[var(--mat-sys-primary)]"
+                (click)="copyLink()"
+              >
+                <mat-icon>send</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                class="text-[var(--mat-sys-on-surface-variant)] hover:text-[var(--mat-sys-primary)] bookmark-btn"
+                [class.is-bookmarked]="isBookmarked()"
+                (click)="toggleBookmark()"
+              >
+                <mat-icon [class.fill]="isBookmarked()">bookmark</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center border-t border-default min-h-14 pl-4 pr-1 py-1">
+            <textarea
+              class="comment-input"
+              rows="1"
+              [placeholder]="'PULSES_FEED.PULSE_CARD.ADD_COMMENT_PLACEHOLDER' | transloco"
+              [(ngModel)]="commentText"
+            ></textarea>
+            <div class="flex flex-col items-end justify-end gap-1">
+              <div class="flex items-center">
+                <button
+                  mat-icon-button
+                  class="text-[var(--mat-sys-on-surface-variant)]"
+                  type="button"
+                  [matMenuTriggerFor]="emojiMenu"
+                >
+                  <mat-icon>sentiment_satisfied</mat-icon>
+                </button>
+                @if (canPublish()) {
+                  <button
+                    mat-button
+                    class="text-[var(--mat-sys-primary)] font-semibold"
+                    type="button"
+                    (click)="publish()"
+                  >
+                    {{ 'PULSES_FEED.PULSE_CARD.PUBLISH_BUTTON' | transloco }}
+                  </button>
+                }
+              </div>
+
+              <span class="char-counter" [class.over-limit]="isOverLimit()">{{ charCount() }}/{{ maxChars }}</span>
+            </div>
+          </div>
+        </footer>
+
+        <mat-menu #emojiMenu="matMenu" class="max-w-96">
+          <ng-template matMenuContent>
+            <div #emojiPickerContainer (click)="$event.stopPropagation()"></div>
+          </ng-template>
+        </mat-menu>
+      }
+    </div>
+  }
+</div>

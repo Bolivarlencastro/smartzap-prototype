@@ -1,0 +1,115 @@
+<div class="grow flex h-full">
+  <mat-table matSort (matSortChange)="handleSort($event)" [dataSource]="transfers()" [hidden]="hiddenTable()">
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef class="min-w-16 max-w-16"></mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-16 max-w-16">
+        <mat-icon class="text-base opacity-70">rocket_launch</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mission__name" [sticky]="true">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-52 fixed-column-right-border">
+        {{ 'TRANSFER.TABLE.NAME' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="font-bold min-w-52 fixed-column-right-border">
+        <span class="[word-break:break-word] line-clamp-3" [matTooltip]="row.mission.name">{{ row.mission.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-32 max-w-32">
+        {{ 'TRANSFER.TABLE.ACTION' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-32 max-w-32 font-bold">
+        <span class="[word-break:break-word] line-clamp-3">{{ row.action | transferType | transloco }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="manager_user__name">
+      <mat-header-cell *matHeaderCellDef class="hidden sm:flex min-w-32" mat-sort-header>
+        {{ 'TRANSFER.TABLE.OWNER' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex min-w-32">
+        <span class="[word-break:break-word] line-clamp-3">{{ row.manager_user.name | titlecase }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="source__name">
+      <mat-header-cell *matHeaderCellDef class="hidden sm:flex min-w-32" mat-sort-header>
+        {{ 'TRANSFER.TABLE.ORIGIN' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex min-w-32">
+        <span class="[word-break:break-word] line-clamp-3">{{ row.source.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="receiver__name">
+      <mat-header-cell *matHeaderCellDef class="hidden sm:flex min-w-32" mat-sort-header>
+        {{ 'TRANSFER.TABLE.DESTINATION' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex min-w-32">
+        <span class="[word-break:break-word] line-clamp-3">{{ row.receiver.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_date">
+      <mat-header-cell *matHeaderCellDef class="hidden sm:flex min-w-28 max-w-28" mat-sort-header>
+        {{ 'TRANSFER.TABLE.DATE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex min-w-28 max-w-28">
+        <span>{{ row.created_date | date: 'shortDate' }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="users_enrolled">
+      <mat-header-cell
+        *matHeaderCellDef
+        class="hidden sm:flex justify-center min-w-[90px] max-w-[90px] pr-0"
+        mat-sort-header
+      >
+        {{ 'TRANSFER.TABLE.ENROLLMENTS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex justify-center min-w-[90px] max-w-[90px]">
+        <span>{{ (row.users_enrolled | number) || '-' }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24 justify-center">
+        {{ 'GENERAL.MENU' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-24 max-w-24 justify-center">
+        @if (row.action === TransferAction.SHARED) {
+          <button mat-icon-button [matMenuTriggerFor]="menu" [matTooltip]="'GENERAL.MENU' | transloco">
+            <mat-icon class="s-6">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="navigateToCourse(row.mission?.id)">
+              <span>{{ 'GENERAL.DETAILS' | transloco }}</span>
+            </button>
+            <button mat-menu-item (click)="handleDelete(row)">
+              <span>{{ 'TRANSFER.ACTION_BUTTON' | transloco }}</span>
+            </button>
+          </mat-menu>
+        } @else {
+          <mat-icon [matTooltip]="row.action | transferInfo | transloco" class="s-6">info</mat-icon>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  @if (showSkeleton()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (emptyState()) {
+    <div class="h-full flex flex-col justify-center items-center text-sm grow">
+      <span>{{ 'TRANSFER.TABLE.EMPTY' | transloco }}</span>
+    </div>
+  }
+</div>

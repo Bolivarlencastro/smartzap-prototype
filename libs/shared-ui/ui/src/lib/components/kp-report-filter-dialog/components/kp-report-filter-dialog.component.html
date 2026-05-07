@@ -1,0 +1,50 @@
+<h2 mat-dialog-title class="font-semibold">
+  <mat-icon svgIcon="filter_list" class="s-4 mr-6"></mat-icon>
+  <span class="text-lg">{{ data.title | transloco }}</span>
+</h2>
+
+@if ({ filterForm: filterForm$ | async, selectors: selectors$ | async }; as subs) {
+  <form [formGroup]="subs.filterForm">
+    <div mat-dialog-content class="py-5 px-6">
+      <ng-container formArrayName="filters">
+        <div class="flex flex-col gap-3">
+          @for (
+            control of subs.filterForm.controls.filters.controls;
+            track control;
+            let first = $first;
+            let index = $index
+          ) {
+            <div>
+              <kp-filter-group
+                [filterFormGroup]="control"
+                [first]="first"
+                [selectors]="subs.selectors"
+                [groupIndex]="index"
+                [currentSelector]="getSelector(control.get('selector').value)"
+                (removeFilterGroup)="removeFilterGroup(index, $event)"
+              ></kp-filter-group>
+            </div>
+          }
+          <button mat-button class="w-fit" (click)="add()" type="button" [disabled]="(canAddFilter$ | async) === false">
+            <mat-icon svgIcon="add" class="s-4 mr-4"></mat-icon>
+            <span>{{ 'UI.REPORT_FILTER_DIALOG.ADD_FILTER' | transloco }}</span>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+    <div mat-dialog-actions class="flex justify-end">
+      <button mat-stroked-button (click)="clearFilters()" type="button">
+        {{ 'UI.REPORT_FILTER_DIALOG.CLEAR_FILTERS' | transloco }}
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="subs.filterForm.invalid"
+        type="button"
+        (click)="generateReport()"
+      >
+        {{ data.positiveButtonLabel || 'UI.REPORT_FILTER_DIALOG.GENERATE_REPORT' | transloco }}
+      </button>
+    </div>
+  </form>
+}

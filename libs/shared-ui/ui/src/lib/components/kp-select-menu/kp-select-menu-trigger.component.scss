@@ -1,0 +1,22 @@
+kp-select-menu-trigger {
+  display: inline-flex;
+  position: relative;
+
+  .kp-select-trigger-content {
+    position: absolute;
+    bottom: 0;
+
+    .mat-mdc-select-arrow-wrapper,
+    .mat-mdc-select-trigger {
+      visibility: hidden !important;
+    }
+  }
+}
+
+mat-option {
+  font-size: 0.875rem !important;
+}
+
+.item {
+  border-color: var(--mat-sys-surface-container-highest) !important;
+}

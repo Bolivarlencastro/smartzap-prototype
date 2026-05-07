@@ -1,0 +1,19 @@
+<div class="h-full w-full flex gap-3 items-center">
+  <button mat-stroked-button [matMenuTriggerFor]="formMenu" color="primary" class="h-10 flex-none" #menuTrigger>
+    <mat-icon class="scale-80 text-primary dark:text-white"> settings </mat-icon>
+    <span class="ml-2">{{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.CONFIG_BUTTON' | transloco }}</span>
+  </button>
+  <kp-enrollment-setting-resume [enrollmentConfig]="enrollmentConfig" class="text-xs"></kp-enrollment-setting-resume>
+</div>
+
+<mat-menu #formMenu="matMenu" yPosition="above" class="w-96 max-w-none" [hasBackdrop]="false">
+  <kp-form-menu
+    [cycles]="cycles"
+    (closeEvent)="closeMenu()"
+    (formSubmit)="onSubmit($event)"
+    [enrollmentConfig]="enrollmentConfig"
+    [isNormativeActive]="isNormativeActive"
+    (resetEvent)="resetDataForm()"
+    (filterCycle)="onFilterCycle($event)"
+  ></kp-form-menu>
+</mat-menu>

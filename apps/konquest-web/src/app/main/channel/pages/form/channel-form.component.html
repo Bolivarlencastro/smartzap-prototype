@@ -1,0 +1,148 @@
+<div class="channel-form flex-1">
+  <!-- content -->
+  <div class="content p-10 sm:p-14 pb-14 flex flex-col">
+    <kp-content-box [boxTitle]="stepperTitle | transloco" class="flex">
+      @if (channel?.id) {
+        <button
+          header
+          [routerLink]="['/', 'channels', 'details', channel.id]"
+          data-test="button-return-to-channel"
+          mat-icon-button
+          class="mr-4 s-8"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      }
+      <mat-stepper [linear]="true" class="w-full h-full" #stepper>
+        <mat-step
+          state="INFORMATION"
+          [completed]="!!(channel$ | async) || (isSubmitted$ | async)"
+          class="h-full border"
+        >
+          <ng-template matStepLabel>
+            <span class="hidden sm:block">{{ 'CHANNEL_FORM.STEP.INFORMATION' | transloco }}</span>
+          </ng-template>
+
+          <form [formGroup]="informationFormGroup" (ngSubmit)="onSubmit()" class="p-4 flex flex-col gap-2">
+            <mat-form-field appearance="outline">
+              <mat-label>
+                {{ 'GENERAL.NAME' | transloco }}
+              </mat-label>
+              <input matInput formControlName="name" #nameInput id="input-channel-form-name" />
+              <mat-error>{{ 'CHANNEL.FORM.ERROR.NAME' | transloco }}</mat-error>
+              <mat-hint [align]="'end'"
+                >{{ nameInput.value.length || 0 }}
+                /200
+              </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always">
+              <mat-label>
+                {{ 'CHANNEL.FORM.CATEGORY' | transloco }}
+              </mat-label>
+
+              <mat-select #select formControlName="channel_category" [compareWith]="compareCategories">
+                @for (category of channelCategories$ | async; track category) {
+                  <mat-option [value]="category">
+                    <!-- Category Icon -->
+                    @if (category?.image) {
+                      <mat-icon [svgIcon]="category?.image" class="s-7"></mat-icon>
+                    }
+                    {{ category.name | kpCategoryLabel | transloco }}
+                  </mat-option>
+                }
+              </mat-select>
+              <mat-error>{{ 'CHANNEL.FORM.ERROR.CATEGORY' | transloco }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>
+                {{ 'CHANNEL.FORM.TYPE' | transloco }}
+              </mat-label>
+              <mat-select formControlName="channel_type">
+                @for (type of channelTypes$ | async; track type) {
+                  <mat-option [value]="type.id" id="list-channel-form-types">
+                    {{ 'GENERAL.CHANNEL-TYPE.' + type.name | transloco }}
+                  </mat-option>
+                }
+              </mat-select>
+              <mat-error>{{ 'CHANNEL.FORM.ERROR.TYPE' | transloco }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>
+                {{ 'GENERAL.LANGUAGE' | transloco }}
+              </mat-label>
+              <mat-select formControlName="language">
+                @for (language of languages(); track language) {
+                  <mat-option [value]="language">
+                    <div class="flex items-center gap-6">
+                      <kp-language-color-tag [language]="language"></kp-language-color-tag>
+                      <span>{{ 'GENERAL.LANGUAGES.' + (language | lowercase) | transloco }}</span>
+                    </div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>
+                {{ 'GENERAL.DESCRIPTION' | transloco }}
+              </mat-label>
+              <textarea matInput formControlName="description" rows="5" id="input-channel-form-description"></textarea>
+              <mat-error>{{ 'CHANNEL.FORM.ERROR.DESCRIPTION' | transloco }}</mat-error>
+            </mat-form-field>
+
+            <mat-slide-toggle
+              class="flex"
+              color="accent"
+              formControlName="is_active"
+              aria-label="Ativo"
+              labelPosition="before"
+              id="toggle-channel-form-active"
+            >
+              <h3>{{ 'CHANNEL.FORM.ACTIVE' | transloco }}</h3>
+            </mat-slide-toggle>
+
+            <div class="mt-10">
+              @if (channel?.id) {
+                <a mat-stroked-button class="mr-8" [routerLink]="['/', 'channels', 'details', channel.id]">{{
+                  'GENERAL.CANCEL' | transloco
+                }}</a>
+              }
+
+              @if (!channel?.id) {
+                <a mat-stroked-button class="mr-8" [routerLink]="['/', 'pulses-feed']">{{
+                  'GENERAL.CANCEL' | transloco
+                }}</a>
+              }
+
+              <button
+                mat-flat-button
+                [disabled]="informationFormGroup.invalid || (channelIsLoading$ | async)"
+                type="submit"
+                id="button-channel-form-save"
+                color="primary"
+              >
+                {{ 'GENERAL.NEXT' | transloco }}
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step state="COVER">
+          <ng-template matStepLabel>
+            <span class="hidden sm:block">{{ 'CHANNEL_FORM.STEP.COVER' | transloco }}</span>
+          </ng-template>
+          @if (channelCardInfo$ | async; as channelCardInfo) {
+            <app-channel-form-cover
+              [channelCard]="channelCardInfo"
+              (coverChange)="onCoverChange($event)"
+              (back)="stepper.previous()"
+              (save)="onFinish()"
+            ></app-channel-form-cover>
+          }
+        </mat-step>
+      </mat-stepper>
+    </kp-content-box>
+  </div>
+</div>

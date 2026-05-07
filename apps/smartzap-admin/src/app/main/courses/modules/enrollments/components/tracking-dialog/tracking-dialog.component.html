@@ -1,0 +1,58 @@
+<div mat-dialog-title class="flex items-center justify-between gap-4">
+  <span class="text-2xl font-bold">
+    {{ 'TRACKING.TITLE' | transloco }}
+  </span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content class="px-0 pb-0">
+  <div class="stats-grid mx-6 my-4" [class.stats-grid--5-cols]="enrollment?.status === 'STARTED'">
+    <div class="stat-card">
+      <span class="stat-card__label">{{ 'TRACKING.ENROLLMENT_STATUS' | transloco }}</span>
+      <kp-status-chip
+        [matTooltip]="'STATUS.' + enrollment?.status || 'empty' | uppercase | transloco"
+        [color]="enrollment?.status || '' | kpEnrollmentStatusColor"
+      >
+        {{ 'STATUS.' + enrollment?.status || 'empty' | uppercase | transloco }}
+      </kp-status-chip>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">{{ 'TRACKING.LAST_ACCESS' | transloco }}</span>
+      <span class="stat-card__value">{{ lastAccess ? (lastAccess | date: 'shortDate') : '-' }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">{{ 'TRACKING.PROGRESS' | transloco }}</span>
+      <span class="stat-card__value">
+        {{
+          enrollment?.progress || enrollment?.progress === 0 ? (enrollment.progress / 100 | kpNormalizePercent) : '-'
+        }}
+      </span>
+    </div>
+    @if (enrollment?.status === 'STARTED') {
+      <div class="stat-card">
+        <span class="stat-card__label">{{ 'TRACKING.POINTS' | transloco }}</span>
+        <span class="stat-card__value">{{ enrollment?.points || 0 | number: '1.1-1' }}</span>
+      </div>
+    }
+    <div class="stat-card">
+      <span class="stat-card__label">{{ 'GENERAL.PERFORMANCE' | transloco }}</span>
+      <span class="stat-card__value">
+        {{
+          enrollment?.performance || enrollment?.performance === 0 ? (enrollment.performance | kpNormalizePercent) : '-'
+        }}
+      </span>
+    </div>
+  </div>
+
+  <div class="tracking-table-shell mx-6 mb-6">
+    <app-tracking-list
+      [datasource]="datasource$ | async"
+      [enrollment]="enrollment"
+      [isLoading]="isLoading$ | async"
+      [isVisibilitySendLink]="isVisibilitySendLink"
+      (renewAccessSelected)="sendRenewAccessSelected($event)"
+    ></app-tracking-list>
+  </div>
+</div>

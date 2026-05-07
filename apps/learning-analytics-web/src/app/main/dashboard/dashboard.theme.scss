@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin dashboard-theme {
+  .dashboard-card {
+    background: var(--mat-sys-surface);
+    border-color: var(--mat-sys-outline-variant);
+    border-radius: var(--mat-sys-corner-medium);
+
+    .card-divider {
+      border-top: 1px solid var(--mat-sys-outline-variant);
+    }
+  }
+
+  @include mat.slider-overrides(
+    (
+      inactive-track-color: var(--mat-sys-secondary-fixed-dim),
+    )
+  );
+}

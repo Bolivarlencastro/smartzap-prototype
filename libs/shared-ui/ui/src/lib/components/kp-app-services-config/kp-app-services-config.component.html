@@ -1,0 +1,20 @@
+<div class="flex items-center justify-between text-sm font-semibold">
+  <span>{{ 'UI.GENERAL.SERVICES' | transloco }}</span>
+  <span>Status</span>
+</div>
+<mat-divider class="my-4"></mat-divider>
+
+@for (element of dataSource(); track element; let last = $last) {
+  <div class="flex items-center justify-between text-sm font-semibold">
+    <span>{{ 'UI.GENERAL.APPS_SERVICES.' + element | transloco }}</span>
+    <mat-slide-toggle (change)="onChangeAppStatus($event, element)" [checked]="appServicesConfig()[element]">
+      <div class="w-12 text-end font-semibold">
+        {{ (appServicesConfig()[element] ? 'UI.GENERAL.ACTIVE' : 'UI.GENERAL.INACTIVE') | transloco }}
+      </div>
+    </mat-slide-toggle>
+  </div>
+
+  @if (!last) {
+    <mat-divider class="my-4"></mat-divider>
+  }
+}

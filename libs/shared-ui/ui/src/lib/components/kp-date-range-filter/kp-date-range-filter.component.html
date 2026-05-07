@@ -1,0 +1,39 @@
+<!-- BUTTON -->
+<button
+  mat-stroked-button
+  class="h-9 px-3 text-sm flex items-center gap-2 border rounded-lg"
+  type="button"
+  [ngClass]="{ 'bg-primary text-on-primary rounded-tr-none rounded-br-none border-none': hasAppliedValue }"
+  (click)="picker.open()"
+>
+  @if (hasAppliedValue) {
+    <mat-icon class="s-6">check</mat-icon>
+  } @else {
+    <mat-icon class="filled s-6 text-primary">{{ icon }}</mat-icon>
+  }
+
+  <span class="whitespace-nowrap font-normal">{{ hasAppliedValue ? formattedAppliedDate : label }}</span>
+</button>
+
+@if (hasAppliedValue) {
+  <button
+    mat-button
+    type="button"
+    (click)="cleanFilter($event)"
+    class="h-9 rounded-none rounded-tr-lg rounded-br-lg bg-primary text-on-primary flex items-center min-w-4 p-2"
+  >
+    <mat-icon class="s-6">close</mat-icon>
+  </button>
+}
+<!-- / BUTTON -->
+
+<!-- DATEPICKER -->
+<form [formGroup]="form" class="relative">
+  <mat-date-range-input [rangePicker]="picker" class="invisible absolute top-1/2 right-0">
+    <input matStartDate formControlName="startDate" />
+    <input matEndDate formControlName="endDate" />
+  </mat-date-range-input>
+
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</form>
+<!-- / DATEPICKER -->

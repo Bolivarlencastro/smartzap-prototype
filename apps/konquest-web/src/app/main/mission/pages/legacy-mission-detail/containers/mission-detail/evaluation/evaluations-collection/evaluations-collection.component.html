@@ -1,0 +1,99 @@
+<div class="min-h-96 evaluations-collection" id="evaluations-container">
+  <mat-table
+    matSort
+    matSortStart="desc"
+    matSortDisableClear="true"
+    (matSortChange)="sortDate($event)"
+    class="w-full"
+    [dataSource]="sortedData"
+    id="evaluations-table"
+    aria-label="User Evaluations Table"
+  >
+    <ng-container matColumnDef="user" [sticky]="true">
+      <mat-header-cell *matHeaderCellDef class="min-w-52 max-w-52 fixed-column-right-border">
+        {{ 'MISSION.DETAIL.EVALUATIONS.TABLE.USER' | transloco }}
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        [matTooltip]="row.user?.email || row.user?.name"
+        class="fixed-column-right-border min-w-52 max-w-52 gap-1"
+      >
+        <img class="evaluations-collection-avatar" [src]="row.user?.avatar || defaultUserAvatar" alt="User Avatar" />
+        <div class="break-words line-clamp-3">{{ row.user?.name || row.user?.email }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">
+        {{ 'COMMENT.LABEL' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-52">
+        <div (click)="showComment(row.comment)" class="break-words line-clamp-3 cursor-pointer">
+          {{ row.comment }}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="evaluation">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24">
+        {{ 'MISSION.DETAIL.EVALUATIONS.TABLE.EVALUATION' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-24 max-w-24">
+        {{ row.rating_avg }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="questions-rating-avg">
+      <mat-header-cell *matHeaderCellDef class="min-w-20 max-w-20">
+        {{ 'MISSION.DETAIL.EVALUATIONS.TABLE.QUESTIONS_AVERAGE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-20 max-w-20">
+        {{ row.questions_rating_avg }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nps">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24">
+        {{ 'MISSION.DETAIL.EVALUATIONS.TABLE.NPS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-24 max-w-24">
+        {{ row.nps }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created-date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-28 max-w-28">
+        {{ 'MISSION.DETAIL.EVALUATIONS.TABLE.CREATED_DATE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-28 max-w-28">
+        {{ row.created_date | date: 'shortDate' }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="menu">
+      <mat-header-cell *matHeaderCellDef class="flex justify-center min-w-20 max-w-20">{{
+        'GENERAL.MENU' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="flex justify-center min-w-20 max-w-20">
+        <div
+          (click)="showComment(row.comment)"
+          [ngClass]="'comment-container ' + row.sentiment_analysis | lowercase"
+          class="flex justify-center items-center"
+        >
+          <mat-icon>open_in_new</mat-icon>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row [hidden]="isLoading" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <div *matNoDataRow>
+      @if (!isLoading) {
+        <div class="text-center mt-8 text-sm">{{ 'MISSION.DETAIL.EVALUATIONS.TABLE.EMPTY' | transloco }}</div>
+      }
+    </div>
+  </mat-table>
+  <ng-template #comment let-comment>
+    <div>{{ comment }}</div>
+  </ng-template>
+</div>

@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="flex gap-x-6" [class.px-4]="!hideCoverUpload">
+  @if (!hideCoverUpload) {
+    <kp-file
+      [coverImage]="coverImage"
+      [itemIcon]="itemIcon"
+      [moduleName]="moduleName"
+      [showImageHint]="showImageHint"
+      (selectCoverImage)="onSelectCoverImage($event)"
+    ></kp-file>
+  }
+
+  <div class="flex flex-col w-full pt-4">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        {{ 'UI.KP_CONTENT_FORM_DIALOG.FIELD_PLACEHOLDER_CONTENT' | transloco }}
+      </mat-label>
+      <input matInput formControlName="name" data-test="inputTextNewFileContent" />
+      @if (name.errors?.required) {
+        <mat-error>{{ 'UI.GENERAL.REQUIRED_FIELD' | transloco }}</mat-error>
+      }
+      @if (name.errors?.maxlength) {
+        <mat-error>{{ 'UI.GENERAL.REQUIRED_CHARACTERISTICS' | transloco }}</mat-error>
+      }
+    </mat-form-field>
+
+    @if (isPulse || showDescription) {
+      <mat-form-field appearance="outline">
+        <mat-label>
+          {{ 'UI.GENERAL.DESCRIPTION' | transloco }}
+        </mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error>{{ 'UI.GENERAL.REQUIRED_FIELD' | transloco }}</mat-error>
+      </mat-form-field>
+    }
+
+    @if (selectedFileName) {
+      <mat-hint>{{ selectedFileName }}</mat-hint>
+    }
+
+    @if (showCheckbox) {
+      <div class="w-full mt-4 flex items-center">
+        <mat-checkbox #checkboxCover color="primary" (change)="useFileAsCover($event.checked)" class="text-xs mr-4">
+          <span>{{ 'UI.KP_CONTENT_FORM_DIALOG.FIELD_LABEL_USE_FILE_AS_COVER' | transloco }}</span>
+        </mat-checkbox>
+      </div>
+    }
+  </div>
+</form>

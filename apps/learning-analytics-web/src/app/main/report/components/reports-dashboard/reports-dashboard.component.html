@@ -1,0 +1,48 @@
+<div class="konquest-report-dashboard mx-4">
+  <div class="my-5">
+    {{ 'REPORTS.KONQUEST_TAB.MESSAGES.DOWNLOAD_TIP' | transloco }}
+  </div>
+
+  <!-- PDF Report -->
+  <ng-container *ngTemplateOutlet="cardsTemplete; context: pdfContext"> </ng-container>
+  <!-- / PDF Report -->
+
+  <!-- Missions Report -->
+  <ng-container *ngTemplateOutlet="cardsTemplete; context: missionsContext"> </ng-container>
+  <!-- / Missions Report -->
+
+  <!-- Trails Report -->
+  <ng-container *ngTemplateOutlet="cardsTemplete; context: trailsContext"> </ng-container>
+  <!-- / Trails Report -->
+
+  <!-- Pulses Report -->
+  <ng-container *ngTemplateOutlet="cardsTemplete; context: pulsesContext"> </ng-container>
+  <!-- / Pulses Report -->
+
+  <!-- Users Report -->
+  <ng-container *ngTemplateOutlet="cardsTemplete; context: usersContext"> </ng-container>
+  <!-- / Users Report -->
+</div>
+
+<!-- Card row template -->
+<ng-template #cardsTemplete let-items="items" let-cols="cols" let-colored="colored" let-title="title" let-icon="icon">
+  @if (title && items.length) {
+    <div class="flex items-center mb-4 mt-4">
+      <mat-icon [svgIcon]="icon" class="mr-4 s-26"></mat-icon>
+      <h2 class="text-xl font-semibold mr-4">{{ title | transloco }}</h2>
+      <mat-divider class="flex-1"></mat-divider>
+    </div>
+  }
+
+  <div class="grid gap-4" [ngClass]="[cols]">
+    @for (report of items; track report) {
+      <app-report-card
+        [colored]="colored"
+        [label]="'REPORT.' + report.reportType | transloco"
+        [svgIcon]="report.icon"
+        (cardSelected)="onSelectReport(report)"
+      ></app-report-card>
+    }
+  </div>
+</ng-template>
+<!-- / Card row template -->

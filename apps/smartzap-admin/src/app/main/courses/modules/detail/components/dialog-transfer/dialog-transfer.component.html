@@ -1,0 +1,37 @@
+<div mat-dialog-title class="text-xl border-b border-default">
+  {{ 'TRANSFER.TITLE' | transloco }}
+</div>
+
+<mat-dialog-content>
+  <mat-selection-list #transfers [multiple]="false">
+    @for (userRole of usersWithRoles$ | async; track userRole) {
+      <mat-list-option [value]="userRole">
+        <div mat-list-item class="flex items-center gap-x-4">
+          <img
+            class="w-8 h-8 rounded-full"
+            matListAvatar
+            [src]="userRole?.user?.avatar || defaultUserAvatar"
+            alt="Avatar"
+          />
+          <span class="user-name">{{ userRole?.user?.name }}</span>
+        </div>
+      </mat-list-option>
+    }
+  </mat-selection-list>
+</mat-dialog-content>
+
+<div mat-dialog-actions class="flex justify-end border-t border-default">
+  <button mat-button id="button-confirm-cancel" (click)="dialogRef.close(false)">
+    {{ 'GENERAL.CANCEL' | transloco }}
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    id="button-confirm-ok"
+    [disabled]="!transfers.selectedOptions.selected[0]"
+    (click)="dialogRef.close(transfers.selectedOptions.selected[0].value)"
+  >
+    {{ 'GENERAL.OK' | transloco }}
+  </button>
+</div>

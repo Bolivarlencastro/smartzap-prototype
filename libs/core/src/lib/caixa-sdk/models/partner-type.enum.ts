@@ -1,0 +1,4 @@
+export enum PartnerType {
+  CORRESPONDENTE = 'CORRESPONDENTE',
+  LOTERICO = 'LOTERICO',
+}

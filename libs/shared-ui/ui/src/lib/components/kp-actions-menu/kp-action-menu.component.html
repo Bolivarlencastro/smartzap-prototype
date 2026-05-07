@@ -1,0 +1,43 @@
+@if (mainAction) {
+  <div class="flex gap-1 pt-4 xxs:pt-0">
+    <span
+      [matTooltip]="'UI.GENERAL.REACHED_LIMIT_SEATS_MESSAGE' | transloco"
+      [matTooltipDisabled]="!shouldDisplaySeatsTooltip"
+    >
+      <button
+        matButton="filled"
+        [color]="color"
+        [disabled]="mainAction.disabled"
+        [attr.data-test]="mainAction.id"
+        (click)="mainActionClick()"
+      >
+        {{ mainAction?.label | transloco }}
+      </button>
+    </span>
+
+    @if (hasSecondaryActions && !isMobile) {
+      <button
+        data-test="secondary-actions-dropdown"
+        matIconButton
+        [color]="color"
+        class="bg-secondary-container"
+        [disabled]="disabled"
+        [matMenuTriggerFor]="secondaryActionsMenu"
+      >
+        <mat-icon class="text-on-secondary-container">more_vert</mat-icon>
+      </button>
+      <mat-menu #secondaryActionsMenu="matMenu" class="action-button-menu" [xPosition]="'before'">
+        @for (action of remainingActions; track actionsTrackBy($index, action)) {
+          <button
+            [disabled]="action.disabled"
+            [attr.data-test]="action.id"
+            mat-menu-item
+            (click)="onActionClick(action)"
+          >
+            {{ action?.label | transloco }}
+          </button>
+        }
+      </mat-menu>
+    }
+  </div>
+}

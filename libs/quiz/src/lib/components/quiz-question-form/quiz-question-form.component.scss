@@ -1,0 +1,45 @@
+:host {
+  display: block;
+
+  --mat-expansion-container-elevation-shadow: none;
+  --mat-expansion-header-collapsed-state-height: 56px;
+  --mat-expansion-header-expanded-state-height: 56px;
+  --mat-expansion-header-focus-state-layer-color: transparent;
+  --mat-expansion-header-hover-state-layer-color: transparent;
+}
+
+.quiz-question-form-expansion-panel {
+  border: 1px solid var(--mat-sys-outline-variant);
+}
+
+.quiz-question-form-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.quiz-question-form-option-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quiz-question-form-option-field {
+  flex: 1;
+}
+
+.quiz-question-form-add-option {
+  margin-top: 8px;
+}
+
+.quiz-question-form-bank-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.quiz-question-form-tags-field {
+  width: 100%;
+  margin-top: 12px;
+}

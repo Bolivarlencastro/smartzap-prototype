@@ -1,0 +1,48 @@
+<div class="tracking-table">
+  <div class="tracking-header flex gap-2 px-6 py-3 border-b">
+    <div class="flex-1 basis-4/12">
+      <span class="text-sm font-semibold text-neutral-600">{{ 'TRACKING.CONTENT' | transloco }}</span>
+    </div>
+    <div class="text-center hidden sm:block flex-1">
+      <span class="text-sm font-semibold text-neutral-600">{{ 'TRACKING.FIRST_ACCESS' | transloco }}</span>
+    </div>
+    <div class="text-center hidden sm:block flex-1">
+      <span class="text-sm font-semibold text-neutral-600">{{ 'TRACKING.LAST_ACCESS' | transloco }}</span>
+    </div>
+    <div class="text-center hidden sm:block flex-1">
+      <span class="text-sm font-semibold text-neutral-600">{{ 'TRACKING.CONSUME' | transloco }}</span>
+    </div>
+    <div class="text-center flex-1">
+      <span class="text-sm font-semibold text-neutral-600">{{ 'TRACKING.STATUS' | transloco }}</span>
+    </div>
+    @if (isVisibilitySendLink) {
+      <div class="text-center flex-1">
+        <span class="text-sm font-semibold text-neutral-600">{{ 'TRACKING.RESEND' | transloco }}</span>
+      </div>
+    }
+  </div>
+
+  @if (isLoading) {
+    <div class="flex flex-col items-center justify-center py-16">
+      <mat-spinner color="accent" strokeWidth="4" diameter="50"></mat-spinner>
+    </div>
+  } @else if (!datasource?.length) {
+    <div class="tracking-empty-state">
+      <div class="tracking-empty-state__icon">
+        <mat-icon>history</mat-icon>
+      </div>
+      <div class="tracking-empty-state__content">
+        <p class="tracking-empty-state__title">Nenhuma atividade registrada</p>
+        <p class="tracking-empty-state__description">Este usuário ainda não acessou nenhum conteúdo deste curso.</p>
+      </div>
+    </div>
+  } @else {
+    @for (tracking of datasource; track tracking) {
+      <app-tracking-list-item
+        [tracking]="tracking"
+        [showResendLink]="isVisibilitySendLink"
+        (resendLink)="emitterRenewAccess(tracking)"
+      ></app-tracking-list-item>
+    }
+  }
+</div>

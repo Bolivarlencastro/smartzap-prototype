@@ -1,0 +1,93 @@
+.content-list {
+  width: 100%;
+  max-width: 100%;
+  min-height: 40px;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.content-list-item {
+  padding: 0 10px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 12px;
+  transition: background-color 0.5s;
+
+  .content-list-item-actions {
+    display: none;
+    transition: 1s ease-in;
+
+    .mat-mdc-icon-button {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+
+  &:hover {
+    .content-list-item-actions {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &:last-child {
+    border-bottom: none !important;
+  }
+
+  .content-list-item-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .content-list-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.content-list-item.cdk-drag-disabled {
+  cursor: default;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.content-list.cdk-drop-list-dragging .content-list-item:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.add-question {
+  line-height: 20px !important;
+  padding: 0 6px !important;
+  font-size: 11px !important;
+}
+
+.quiz-questions {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}

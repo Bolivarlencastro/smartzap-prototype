@@ -1,0 +1,67 @@
+.upload-dialog-container {
+  --mat-sys-surface: var(--mat-sys-surface-container);
+
+  position: fixed;
+  width: 350px;
+  bottom: 0;
+  height: auto;
+  right: 0;
+  border-radius: 15px 0 0;
+  z-index: 999;
+
+  .mat-expansion-panel-body {
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+
+  .upload-list-item {
+    padding: 5px 0;
+    overflow-wrap: anywhere;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .action-icons {
+      .mat-mdc-icon-button {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .done {
+          color: #2d9f60;
+        }
+
+        .done-red {
+          color: #f44336;
+        }
+
+        .loader:hover {
+          display: block !important;
+        }
+
+        .cancel {
+          display: none !important;
+        }
+
+        &:hover {
+          .cancel {
+            display: block !important;
+          }
+
+          .loader,
+          .done,
+          .done-red {
+            display: none !important;
+          }
+
+          .processing {
+            cursor: normal;
+          }
+        }
+      }
+    }
+  }
+}

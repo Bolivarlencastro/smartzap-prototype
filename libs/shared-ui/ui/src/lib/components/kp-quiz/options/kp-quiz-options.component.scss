@@ -1,0 +1,71 @@
+.kp-quiz-options {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .option {
+    margin: 1.2em 0;
+    padding: 0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    &-label {
+      padding: 0.5em 0.5em 0.5em 0;
+      cursor: pointer;
+      transition: all ease-in 450ms;
+      border: 2px solid var(--mat-sys-primary);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+
+      &--number {
+        padding: 0.9em;
+        font-weight: 700;
+        font-size: 2em;
+      }
+    }
+
+    input:checked ~ .option-label {
+      background-color: var(--mat-sys-primary);
+      color: white;
+    }
+
+    &--success {
+      background-color: #5dc794 !important;
+      color: white;
+
+      label {
+        background: transparent !important;
+        border-color: transparent !important;
+      }
+    }
+
+    &--error {
+      background-color: #ff5959 !important;
+      color: white;
+
+      label {
+        background: transparent !important;
+        border-color: transparent !important;
+      }
+    }
+
+    &--selected-survey {
+      background-color: var(--mat-sys-primary) !important;
+      color: white;
+
+      label {
+        background: transparent !important;
+        border-color: transparent !important;
+      }
+    }
+  }
+}

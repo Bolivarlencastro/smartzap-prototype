@@ -1,0 +1,21 @@
+<form [formGroup]="filterFormGroup" (ngSubmit)="onSubmit()">
+  <div mat-dialog-title class="flex justify-between items-center">
+    <span class="text-xl">{{ 'REPORTS.FILTERS.TITLE' | transloco }}</span>
+    <button mat-icon-button type="button" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content class="py-2">
+    <kp-filter-container [filterOptions]="filterOptions"></kp-filter-container>
+  </div>
+
+  <div mat-dialog-actions class="flex justify-end gap-2">
+    <button mat-button type="button" (click)="clearFilter()">
+      {{ 'REPORTS.FILTERS.CLEAR' | transloco }}
+    </button>
+    <button mat-flat-button color="accent" type="submit">
+      {{ 'REPORTS.GENERATE' | transloco }}
+    </button>
+  </div>
+</form>

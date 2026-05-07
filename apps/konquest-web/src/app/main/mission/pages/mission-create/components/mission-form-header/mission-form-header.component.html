@@ -1,0 +1,23 @@
+<div class="flex-grow">
+  <h2 class="text-2xl font-black mb-1">{{ title }}</h2>
+  <p>{{ label }}</p>
+</div>
+<div class="flex gap-2">
+  @if (!hidePrevious) {
+    <button type="button" mat-stroked-button color="primary" [disabled]="previousDisabled" (click)="onPreviousClick()">
+      {{ 'GENERAL.PREVIOUS' | transloco }}
+    </button>
+  }
+  @if (!hideNext) {
+    <button
+      data-test="mission-creation-button-next-step"
+      mat-flat-button
+      type="submit"
+      color="primary"
+      [disabled]="nextDisabled"
+      (click)="onNextClick()"
+    >
+      {{ 'MISSION.CREATE.NAVIGATION.SAVE_NEXT' | transloco }}
+    </button>
+  }
+</div>

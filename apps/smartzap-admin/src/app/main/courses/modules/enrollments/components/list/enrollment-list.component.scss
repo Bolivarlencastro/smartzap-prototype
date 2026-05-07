@@ -1,0 +1,78 @@
+.enrollment-list {
+  height: 100%;
+}
+
+.kp-card-table {
+  height: 100%;
+}
+
+.enrollments-empty-row {
+  min-height: calc(100% - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enrollments-empty-state {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.enrollments-empty-state__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(124 98 168 / 14%), rgb(124 98 168 / 6%));
+  color: #7c62a8;
+}
+
+.enrollments-empty-state__icon .mat-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+.enrollments-empty-state__content {
+  max-width: 480px;
+}
+
+.enrollments-empty-state__title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.enrollments-empty-state__description {
+  margin: 0;
+  color: rgb(0 0 0 / 60%);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.cdk-column-start_date,
+.cdk-column-end_date {
+  max-width: 100px;
+}
+
+.cdk-column-user__phone {
+  max-width: 150px;
+}
+
+.cdk-column-status {
+  max-width: 135px;
+}
+
+.cdk-column-performance,
+.cdk-column-actions {
+  max-width: 70px;
+}

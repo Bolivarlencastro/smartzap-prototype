@@ -1,0 +1,19 @@
+@use 'sass:map';
+
+@mixin kp-banner-v2-theme {
+  .kp-banner {
+    color: white !important;
+
+    .mat-stroked-button:not([disabled]) {
+      border-color: white !important;
+    }
+
+    .banner-content {
+      border-bottom: solid 1px #e8e8e8;
+    }
+  }
+
+  .carousel-slide-overlay {
+    background: linear-gradient(to top, rgb(0 0 0 / 66.7%) 0%, transparent) !important;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "my-account-e2e",
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+  "sourceRoot": "apps/my-account-e2e/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress"
+    },
+    "e2e-local": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "devServerTarget": "my-account:serve:development"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  }
+}

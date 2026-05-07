@@ -1,0 +1,15 @@
+<button mat-stroked-button [matMenuTriggerFor]="exportMenu" [disabled]="disabled">
+  <mat-icon iconPositionEnd>{{ icon }}</mat-icon>
+  <span class="mr-2">
+    {{ label | transloco }}
+  </span>
+</button>
+
+<mat-menu #exportMenu>
+  <button mat-menu-item (click)="optionSelected('csv')">
+    <span>CSV</span>
+  </button>
+  <button mat-menu-item (click)="optionSelected('pdf')">
+    <span>PDF</span>
+  </button>
+</mat-menu>

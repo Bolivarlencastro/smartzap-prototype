@@ -1,0 +1,86 @@
+@if (title) {
+  <span mat-dialog-title class="text-lg">
+    <span>{{ 'GENERAL.EDIT' | transloco }} {{ 'USERS.TABLE.NAME' | transloco }}</span>
+  </span>
+}
+@if (!title) {
+  <span mat-dialog-title class="text-lg">
+    <span> {{ 'ENROLLMENTS.TITLE' | transloco }}</span>
+    | {{ 'ENROLLMENTS.DIALOG_CREATE_TITLE' | transloco }}
+  </span>
+}
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="flex flex-col mt-2 gap-3.5">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>
+        {{ 'GENERAL.PHONE' | transloco }}
+      </mat-label>
+      <kp-phone-input
+        [enableSearch]="true"
+        [preferredCountries]="['br', 'us']"
+        name="phone"
+        formControlName="phone"
+        data-test="input-phone"
+      ></kp-phone-input>
+      <mat-error>{{ 'GENERAL.REQUIRED_INPUT' | transloco }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>
+        {{ 'GENERAL.NAME' | transloco }}
+      </mat-label>
+      <input matInput formControlName="name" data-test="input-name" />
+      <mat-error class="pb-8">{{ 'GENERAL.REQUIRED_INPUT' | transloco }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>
+        {{ 'GENERAL.EMAIL' | transloco }}
+      </mat-label>
+      <input matInput formControlName="email" data-test="input-email" />
+      <mat-error class="pb-8">{{ 'GENERAL.REQUIRED_INPUT' | transloco }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>
+        {{ 'GENERAL.TAGS' | transloco }}
+      </mat-label>
+      <input #tagInput matInput formControlName="tags" data-test="input-tag" maxlength="30" />
+      <mat-hint [align]="'end'">{{ tagInput.value?.length || 0 }}/30</mat-hint>
+    </mat-form-field>
+
+    @if (!data?.type) {
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>
+          {{ 'GENERAL.TIMEZONE' | transloco }}
+        </mat-label>
+        <input matInput formControlName="timezone" [matAutocomplete]="auto" />
+        <mat-autocomplete #auto="matAutocomplete">
+          @for (zone of filteredOptions | async; track zone) {
+            <mat-option [value]="zone">
+              {{ zone }}
+            </mat-option>
+          }
+        </mat-autocomplete>
+        <mat-error class="pb-8">{{ 'GENERAL.REQUIRED_INPUT' | transloco }}</mat-error>
+      </mat-form-field>
+    }
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="pt-12">
+  <button mat-button mat-dialog-close>
+    {{ 'GENERAL.CANCEL' | transloco }}
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    class="mr-3"
+    (click)="onSubmit()"
+    [disabled]="form.invalid"
+    data-test="button-ok"
+  >
+    {{ 'GENERAL.OK' | transloco }}
+  </button>
+</mat-dialog-actions>

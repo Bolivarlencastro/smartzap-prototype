@@ -1,0 +1,103 @@
+<!-- BUTTON -->
+<button
+  mat-stroked-button
+  class="h-9 px-3 text-sm flex items-center gap-2 border rounded-lg item"
+  type="button"
+  [ngClass]="{ 'bg-primary text-on-primary rounded-tr-none rounded-br-none border-none': hasAppliedValue() }"
+  [matMenuTriggerFor]="menu"
+  (menuOpened)="menuOpened()"
+>
+  @if (hasAppliedValue()) {
+    <mat-icon class="s-6">check</mat-icon>
+  } @else {
+    <mat-icon class="filled s-6 text-primary">{{ icon }}</mat-icon>
+  }
+
+  <span class="whitespace-nowrap font-normal">{{ label }}</span>
+</button>
+
+@if (hasAppliedValue()) {
+  <button
+    mat-button
+    type="button"
+    (click)="reset($event)"
+    class="h-9 rounded-none rounded-tr-lg rounded-br-lg bg-primary text-on-primary flex items-center min-w-4 p-2"
+  >
+    <mat-icon class="s-6">close</mat-icon>
+  </button>
+}
+<!-- / BUTTON -->
+
+<!-- MENU -->
+<mat-menu #menu="matMenu" xPosition="before" class="w-72 max-w-none">
+  <div class="flex flex-col px-1.5 gap-2" (click)="$event.stopPropagation()" kpPreventMenuClosedOnTab>
+    <mat-form-field appearance="outline" class="cursor-pointer" subscriptSizing="dynamic">
+      <mat-select [value]="selectedOption()" (selectionChange)="selectionChanged($event)" class="text-sm">
+        @for (option of rangeFilterOptions; track option.value) {
+          <mat-option [value]="option.value" class="text-sm">{{ option.label | transloco }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @switch (selectedOption()) {
+      @case (rangeFilterType.BETWEEN) {
+        <mat-form-field appearance="outline" class="cursor-pointer" subscriptSizing="dynamic">
+          <mat-date-range-input [rangePicker]="picker" [max]="maxDate">
+            <input
+              matStartDate
+              [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+              [formControl]="gteFC"
+              class="text-sm"
+            />
+            <input
+              matEndDate
+              [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+              [formControl]="lteFC"
+              class="text-sm"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      }
+      @case (rangeFilterType.GREATER_THAN) {
+        <mat-form-field appearance="outline" class="cursor-pointer" subscriptSizing="dynamic">
+          <input
+            matInput
+            [matDatepicker]="singlePicker"
+            [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+            [formControl]="gteFC"
+            [max]="maxDate"
+            class="text-sm"
+          />
+          <mat-datepicker-toggle matIconSuffix [for]="singlePicker"></mat-datepicker-toggle>
+          <mat-datepicker #singlePicker color="primary"></mat-datepicker>
+        </mat-form-field>
+      }
+      @case (rangeFilterType.LESS_THAN) {
+        <mat-form-field appearance="outline" class="cursor-pointer" subscriptSizing="dynamic">
+          <input
+            matInput
+            [matDatepicker]="singlePicker"
+            [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+            [formControl]="lteFC"
+            [max]="maxDate"
+            class="text-sm"
+          />
+          <mat-datepicker-toggle matIconSuffix [for]="singlePicker"></mat-datepicker-toggle>
+          <mat-datepicker #singlePicker color="primary"></mat-datepicker>
+        </mat-form-field>
+      }
+    }
+
+    <div class="flex justify-end mt-3 text-sm">
+      <button mat-button type="button" class="text-primary" [disabled]="!hasAppliedValue()" (click)="clean()">
+        {{ 'UI.GENERAL.CLEAR' | transloco }}
+      </button>
+      <button mat-button type="button" class="text-primary" [disabled]="invalidForm" (click)="apply()">
+        {{ 'UI.GENERAL.APPLY' | transloco }}
+      </button>
+    </div>
+  </div>
+</mat-menu>
+<!-- / MENU -->

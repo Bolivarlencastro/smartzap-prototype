@@ -1,0 +1,18 @@
+<fuse-layout>
+  <kp-menu
+    [apps]="apps$ | async"
+    [workspaceBaseHref]="baseHref$ | async"
+    [customMenuItems]="customMenuItems()"
+  ></kp-menu>
+  <kp-user-menu
+    [user]="user$ | async"
+    [isAdmin]="isAdmin$ | async"
+    [workspaceName]="(currentWorkspace$ | async)?.name"
+    [hasMultipleWorkspaces]="hasMultipleWorkspaces()"
+    (logout)="logout()"
+    (profile)="profile()"
+  ></kp-user-menu>
+  <div fuseVerticalNavigationFooter class="hidden xxs:flex p-4 justify-center">
+    <kp-chatbot></kp-chatbot>
+  </div>
+</fuse-layout>

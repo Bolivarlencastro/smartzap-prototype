@@ -1,0 +1,13 @@
+<div class="z-100 flex flex-col-reverse gap-2">
+  <div
+    class="rounded-full h-10 w-10 bg-secondary-container grid place-items-center cursor-default"
+    (click)="onAnchorClick($event)"
+  >
+    <mat-icon class="text-on-secondary-container">{{ icon }} </mat-icon>
+  </div>
+  @if (isOpen) {
+    <div class="flex flex-col-reverse gap-2" @fadeInOut>
+      <ng-content></ng-content>
+    </div>
+  }
+</div>

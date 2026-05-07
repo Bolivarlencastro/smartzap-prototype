@@ -1,0 +1,11 @@
+<div (click)="$event.stopPropagation()">
+  <mat-calendar
+    [minDate]="minDate"
+    [selected]="selectedDate"
+    (selectedChange)="onSelectedDateChange($event)"
+  ></mat-calendar>
+  <div class="flex justify-end gap-3 pr-5 text-sm h-7 text-primary">
+    <a class="cursor-pointer" (click)="close()">{{ 'UI.GENERAL.CANCEL' | transloco }}</a>
+    <a data-test="confirm-button" class="cursor-pointer" (click)="submit()">{{ 'UI.GENERAL.OK' | transloco }}</a>
+  </div>
+</div>

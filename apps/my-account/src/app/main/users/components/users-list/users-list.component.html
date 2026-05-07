@@ -1,0 +1,140 @@
+<div class="grow flex h-full">
+  @if (isLoading()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  <!-- User List -->
+  <mat-table [dataSource]="users()" matSort #table [class.hidden]="hiddenTable()">
+    <!-- Row -->
+    <mat-header-row *matHeaderRowDef="displayedColumns()"></mat-header-row>
+    <mat-row
+      *matRowDef="let user; columns: displayedColumns()"
+      class="cursor-pointer"
+      [routerLink]="[user.id]"
+    ></mat-row>
+
+    <ng-container matColumnDef="select" sticky>
+      <mat-header-cell *matHeaderCellDef class="min-w-[70px] max-w-[70px] -ml-1">
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection()?.hasValue() && isAllSelected()"
+          [indeterminate]="selection()?.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-[70px] max-w-[70px] -ml-1">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="toggleOneRow($event, element)"
+          [checked]="selection()?.isSelected(element)"
+        >
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Profile -->
+    <ng-container matColumnDef="name" sticky>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-72 fixed-column-right-border">{{
+        'GENERAL.NAME' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-72 fixed-column-right-border">
+        <div
+          [style.background]="'url(' + (user.avatar || defaultUserAvatar) + ')'"
+          class="h-11 w-11 min-w-content bg-cover bg-center rounded-full mr-3 shrink-0"
+        ></div>
+        <p data-test="user-list-field-name" class="line-clamp-3 text-base">{{ user.name | titlecase }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Email -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef class="min-w-72">{{ 'GENERAL.EMAIL' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-72">
+        <p data-test="user-list-field-email" class="text-base line-clamp-3">{{ user.email }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Phone -->
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">{{ 'GENERAL.PHONE' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-52">
+        <p data-test="user-list-field-email" class="text-base line-clamp-3">
+          {{ (user.phone | kpPhone) || '-' }}
+        </p>
+      </mat-cell>
+    </ng-container>
+
+    <!--Job Position-->
+    <ng-container matColumnDef="jobPosition">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">{{ 'GENERAL.JOB' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-52">
+        <p class="text-base line-clamp-3">{{ user.employee_infos?.[0]?.job_position?.name || '-' }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!--Activity Area-->
+    <ng-container matColumnDef="activityArea">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">{{ 'GENERAL.AREA' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-52">
+        <p class="text-base line-clamp-3">{{ user.employee_infos?.[0]?.area_of_activity || '-' }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!--Directorate-->
+    <ng-container matColumnDef="directorate">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">{{ 'GENERAL.DIRECTORATE' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-52">
+        <p class="text-base line-clamp-3">{{ user.employee_infos?.[0]?.director || '-' }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!--Subdirectorate-->
+    <ng-container matColumnDef="subdirectorate">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">{{ 'GENERAL.SUBDIRECTORATE' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-52">
+        <p class="text-base line-clamp-3">{{ user.employee_infos?.[0]?.manager || '-' }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!--Leader-->
+    <ng-container matColumnDef="leader">
+      <mat-header-cell *matHeaderCellDef class="min-w-52">{{ 'GENERAL.LEADER' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-52">
+        <p class="text-base line-clamp-3">{{ user.related_user_leader?.name || '-' }}</p>
+      </mat-cell>
+    </ng-container>
+
+    <!--Permission-->
+    <ng-container matColumnDef="permissions">
+      <mat-header-cell *matHeaderCellDef class="min-w-32">{{ 'GENERAL.PERMISSIONS' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="min-w-32 flex-1 gap-1">
+        @for (item of user.applicationRoles; track item.application) {
+          <div
+            class="permission-item rounded-full font-bold w-5 h-5 text-center border border-default shrink-0"
+            [matTooltip]="item.roles"
+          >
+            {{ item.application }}
+          </div>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Status -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef class="justify-end min-w-24">{{
+        'GENERAL.STATUS' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let user" class="justify-end min-w-24">
+        <mat-slide-toggle
+          [matTooltip]="(user.status ? 'USERS.FILTER.STATUS.ENABLED' : 'USERS.FILTER.STATUS.DISABLED') | transloco"
+          [checked]="user.status"
+          (change)="onChangeStatus(user)"
+          (click)="$event.stopPropagation()"
+        >
+        </mat-slide-toggle>
+      </mat-cell>
+    </ng-container>
+  </mat-table>
+</div>

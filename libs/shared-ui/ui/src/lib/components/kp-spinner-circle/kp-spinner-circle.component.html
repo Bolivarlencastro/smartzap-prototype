@@ -1,0 +1,19 @@
+<div class="grid grid-cols-1 grid-rows-1 place-items-center w-12">
+  <mat-progress-spinner
+    #behindCircleElement
+    [diameter]="diameter"
+    [value]="100"
+    color="primary"
+    class="row-start-1 row-end-2 col-start-1 col-end-2 opacity-50"
+  ></mat-progress-spinner>
+  <mat-progress-spinner
+    #circleElement
+    [diameter]="diameter"
+    [value]="progress * 100"
+    color="primary"
+    class="row-start-1 row-end-2 col-start-1 col-end-2"
+  ></mat-progress-spinner>
+  <div #content class="text-lg row-start-1 row-end-2 col-start-1 col-end-2">
+    <ng-content></ng-content>
+  </div>
+</div>

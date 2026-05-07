@@ -1,0 +1,17 @@
+<a
+  [routerLink]="path"
+  [routerLinkActive]="['active-bg']"
+  class="nav flex py-6 px-9 gap-4 item-container transition-all duration-200 cursor-pointer border-b-1 border-default min-h-[8rem]"
+  [class.border-t-1]="index === 0"
+  matRipple
+>
+  <div class="self-start flex justify-center items-center" [routerLinkActive]="['text-primary']">
+    <span class="material-symbols-outlined">
+      {{ icon }}
+    </span>
+  </div>
+  <div>
+    <h3 class="font-bold title" [routerLinkActive]="['text-primary']">{{ title | transloco }}</h3>
+    <p>{{ description | transloco }}</p>
+  </div>
+</a>

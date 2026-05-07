@@ -1,0 +1,68 @@
+<kp-filter (searchChange)="searchTerm($event)">
+  <!-- MINE -->
+  @if (isContentCreator) {
+    <kp-mobile-toggle
+      class="hidden xxs:block"
+      [label]="'UI.FILTER.CREATED_BY_ME' | transloco"
+      icon="edit"
+      [selected]="quickFilter === quickFilterType.MINE"
+      (toggleChange)="changeQuickFilter(quickFilterType.MINE)"
+    ></kp-mobile-toggle>
+  }
+  <!-- / MINE -->
+
+  <!-- MY LIST -->
+  <kp-mobile-toggle
+    [label]="'UI.FILTER.FAVORITES' | transloco"
+    icon="bookmark"
+    [selected]="quickFilter === quickFilterType.MY_LIST"
+    (toggleChange)="changeQuickFilter(quickFilterType.MY_LIST)"
+  ></kp-mobile-toggle>
+  <!-- / MY LIST -->
+
+  <form [formGroup]="filterForm" class="flex items-center gap-2">
+    <!-- LANGUAGES -->
+    <kp-select-menu-trigger [label]="'UI.FILTER.LANGUAGE' | transloco">
+      <mat-icon class="s-6">language</mat-icon>
+      <mat-select kpSelectTriggerContent multiple formControlName="languages">
+        @for (language of languageOptions; track language.name) {
+          <mat-option [value]="language.name">
+            <div class="flex items-center gap-1">
+              <kp-language-color-tag class="mr-1" [language]="language.name"></kp-language-color-tag>
+              <span>{{ 'UI.GENERAL.LANGUAGES.' + (language.name | lowercase) | transloco }}</span>
+            </div>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+    <!-- / LANGUAGES -->
+
+    <!-- CATEGORIES -->
+    <kp-select-menu-trigger [label]="'UI.FILTER.CATEGORY' | transloco">
+      <mat-icon class="s-6">folder</mat-icon>
+      <mat-select kpSelectTriggerContent multiple formControlName="categories">
+        @for (category of categoryOptions; track category.id) {
+          <mat-option [value]="category.id">
+            <span>{{ category.name | kpCategoryLabel | transloco }}</span>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+    <!-- / CATEGORIES -->
+
+    <!-- PROVIDERS -->
+    @if (providerOptions?.length) {
+      <kp-select-menu-trigger [label]="'UI.GENERAL.PROVIDER' | transloco">
+        <mat-icon class="s-6">moving</mat-icon>
+        <mat-select kpSelectTriggerContent multiple formControlName="providers">
+          @for (provider of providerOptions; track provider.id) {
+            <mat-option [value]="provider.id">
+              <span>{{ provider.name }}</span>
+            </mat-option>
+          }
+        </mat-select>
+      </kp-select-menu-trigger>
+    }
+    <!-- / PROVIDERS -->
+  </form>
+</kp-filter>

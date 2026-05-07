@@ -1,0 +1,76 @@
+import { KeepsNavigationItem } from '@keeps-platform-frontend-workspace/layout';
+
+export const NAVIGATION_ITEMS: KeepsNavigationItem[] = [
+  {
+    id: 'workspace',
+    title: 'NAVIGATION.WORKSPACE',
+    type: 'basic',
+    icon: 'business',
+    link: '/workspace/profile',
+    roles: ['keeps_admin', 'company_admin'],
+  },
+  {
+    id: 'users',
+    title: 'NAVIGATION.USERS',
+    type: 'basic',
+    icon: 'group',
+    link: '/users',
+    roles: ['keeps_admin', 'company_admin'],
+  },
+  {
+    id: 'profile',
+    title: 'NAVIGATION.PROFILE',
+    type: 'basic',
+    icon: 'face',
+    link: '/user/profile',
+    roles: ['account_admin'],
+  },
+  {
+    id: 'backoffice',
+    title: 'NAVIGATION.BACK_OFFICE',
+    type: 'aside',
+    icon: 'settings',
+    roles: ['manage-users'],
+    children: [
+      {
+        id: 'backoffice',
+        title: 'Backoffice',
+        type: 'basic',
+        link: '/backoffice',
+        exactMatch: true,
+      },
+      {
+        id: 'providers',
+        title: 'Provedores',
+        type: 'basic',
+        link: '/backoffice/external-providers',
+        exactMatch: true,
+      },
+      {
+        id: 'transfer-enrollments',
+        title: 'Transferir matrículas',
+        type: 'basic',
+        link: '/backoffice/transfer-user-enrollments',
+        exactMatch: true,
+      },
+    ],
+  },
+  {
+    id: 'activity-log',
+    title: 'NAVIGATION.ACTIVITY_LOG',
+    type: 'basic',
+    icon: 'history',
+    link: '/activity-log',
+    exactMatch: true,
+    roles: ['keeps_admin', 'company_admin'],
+  },
+  {
+    id: 'tools-hub',
+    title: 'Hub',
+    type: 'basic',
+    icon: 'app_registration',
+    link: '/tools-hub',
+    exactMatch: true,
+    roles: ['keeps_admin', 'company_admin'],
+  },
+];

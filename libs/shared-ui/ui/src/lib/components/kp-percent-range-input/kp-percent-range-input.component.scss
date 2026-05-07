@@ -1,0 +1,28 @@
+.kp-range-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.kp-range-input-element {
+  border: none;
+  background: none;
+  padding: 0;
+  outline: none;
+  font: inherit;
+  text-align: center;
+
+  &.from,
+  &.to {
+    max-width: calc(50% - 4px);
+  }
+
+  &.to {
+    flex-grow: 1;
+    text-align: start;
+    padding-left: 0.5rem;
+  }
+}
+
+.kp-range-input-spacer {
+  margin: 0 4px;
+}

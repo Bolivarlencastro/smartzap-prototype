@@ -1,0 +1,43 @@
+@if (!loading) {
+  <div class="flex flex-wrap items-center justify-between gap-1 xxs:gap-3 p-2 xxs:py-4 xxs:px-7">
+    @for (item of items; track item; let last = $last) {
+      <div class="flex items-center justify-center sm:justify-start status-item">
+        @if (item.svgIcon) {
+          <mat-icon class="s-2 xxs:s-6 mr-1.5 xxs:mr-4" [svgIcon]="item.svgIcon"></mat-icon>
+        } @else {
+          <mat-icon class="s-4 xxs:s-7 mr-1.5 xxs:mr-4">{{ item.icon }}</mat-icon>
+        }
+        <div data-test="mission-pop-up-resume-selector" class="flex flex-col text-2xxs xxs:text-sm truncate">
+          <p class="font-bold">
+            {{ item.label | transloco }}
+          </p>
+          <p>
+            {{ item.value }}
+          </p>
+        </div>
+      </div>
+      @if (!last) {
+        <div class="w-[1px] h-7 xxs:h-9 bg-black dark:bg-white opacity-10"></div>
+      }
+    }
+  </div>
+} @else {
+  <div class="flex flex-wrap items-center justify-between gap-1 xxs:gap-3 p-2 xxs:py-4 xxs:px-7">
+    @for (loader of loaderCount; track loader; let last = $last) {
+      <ngx-skeleton-loader [theme]="loaderTheme" [count]="2" class="flex flex-col gap-1"></ngx-skeleton-loader>
+      @if (!last) {
+        <div class="w-[1px] h-7 xxs:h-9 bg-black dark:bg-white opacity-10"></div>
+      }
+    }
+  </div>
+}
+
+@if (showProgressBar) {
+  <mat-progress-bar
+    color="accent"
+    [matTooltip]="progress | kpPerformance: '%'"
+    value="{{ progress | kpPerformance }}"
+  ></mat-progress-bar>
+} @else {
+  <mat-divider></mat-divider>
+}

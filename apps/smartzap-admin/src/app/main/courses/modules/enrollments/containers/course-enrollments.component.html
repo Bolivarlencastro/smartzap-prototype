@@ -1,0 +1,78 @@
+@if (course$ | async; as course) {
+  <mat-drawer-container class="blank h-full min-h-0" autosize>
+    <mat-drawer #drawer class="h-full" mode="side" position="end">
+      <app-course-enrollments-side-menu
+        [stats]="enrollmentStats()"
+        (closeMenu)="drawer.toggle()"
+      ></app-course-enrollments-side-menu>
+    </mat-drawer>
+
+    <div class="h-full flex flex-col">
+      <div class="h-32 flex items-center pl-6 pr-4 gap-2">
+        <button mat-icon-button [routerLink]="['/courses']" data-test="left-page">
+          <mat-icon class="s-8">chevron_left</mat-icon>
+        </button>
+        <span class="text-2xl truncate">{{ 'ENROLLMENTS.TITLE' | transloco }} - {{ course.name }}</span>
+        <div class="ml-auto flex items-center gap-2">
+          <button
+            mat-flat-button
+            color="primary"
+            [matMenuTriggerFor]="enrollmentsOptions"
+            data-test="button-new-enrollment"
+          >
+            <span>{{ 'ENROLLMENTS.BUTTON.NEW' | transloco }}</span>
+            <mat-icon class="ml-2 s-6">keyboard_arrow_down</mat-icon>
+          </button>
+          <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon svgIcon="analytics" class="s-6 text-primary"></mat-icon>
+          </button>
+          <mat-menu #enrollmentsOptions="matMenu" xPosition="before">
+            <button mat-menu-item (click)="createEnrollment(course.id)" data-test="button-individual-enrollment">
+              <mat-icon class="mr-4 s-6" svgIcon="add"></mat-icon>
+              <span>{{ 'ENROLLMENTS.BUTTON.INDIVIDUAL_ENROLL' | transloco }}</span>
+            </button>
+            <button mat-menu-item (click)="onImportEnrollments(course.id)" data-test="button-batch-enrollment">
+              <mat-icon class="mr-4 s-6" svgIcon="add"></mat-icon>
+              <span>{{ 'ENROLLMENTS.BUTTON.BATCH_ENROLL' | transloco }}</span>
+            </button>
+            <mat-divider></mat-divider>
+            <a mat-menu-item [href]="urlXlsUpload" target="_blank" class="hover:no-underline">
+              <mat-icon class="mr-4 s-6" svgIcon="file_download"></mat-icon>
+              <span>{{ 'ENROLLMENTS.BUTTON.DOWNLOAD' | transloco }}</span>
+            </a>
+          </mat-menu>
+        </div>
+      </div>
+
+      @if (filters$ | async; as filters) {
+        <kp-table-layout
+          class="grow min-h-0"
+          [totalItems]="(page$ | async)?.count || 0"
+          [pageIndex]="((page$ | async)?.page || 1) - 1"
+          [pageSize]="(page$ | async)?.per_page || 10"
+          [searchPlaceholder]="'SETTINGS.ENROLLMENTS.FILTER.SEARCH_LABEL'"
+          (pageChange)="onPageChanged($event)"
+          (searchChange)="onSearch($event, filters)"
+        >
+          <app-settings-enrollments-filter
+            kpTableFilterAfter
+            [filters]="filters"
+            (filterEvent)="onFilter($event)"
+          ></app-settings-enrollments-filter>
+
+          <app-enrollment-list
+            kpTable
+            [datasource]="(enrollments$ | async) || []"
+            [isLoading]="enrollmentsLoading$ | async"
+            (sortEvent)="onSortEnrollments($event)"
+            (removeEvent)="onRemove($event)"
+            (openActivities)="onOpenDetailUser($event)"
+            (reenroll)="onReenroll($event)"
+            (cancelEnrollment)="onCancel($event)"
+            (createEnrollment)="createEnrollment(course.id)"
+          ></app-enrollment-list>
+        </kp-table-layout>
+      }
+    </div>
+  </mat-drawer-container>
+}

@@ -1,0 +1,30 @@
+@if (group()) {
+  <div class="flex items-center gap-2 px-6 w-full h-20">
+    <button matIconButton routerLink="/settings/groups">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="text-2xl font-semibold">
+      <span class="font-thin">{{ 'GROUP_DETAIL.TITLE' | transloco }}</span>
+      | {{ group()?.name }}
+    </span>
+  </div>
+
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" [mat-stretch-tabs]="false" fitInkBarToContent>
+    @for (link of navLinks; track link) {
+      <a
+        data-test="groups-nav-bar-navigate"
+        mat-tab-link
+        [routerLink]="link.path"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+      >
+        {{ link.label | transloco }}
+      </a>
+    }
+  </nav>
+
+  <mat-tab-nav-panel #tabPanel class="grow flex flex-col overflow-hidden">
+    <router-outlet></router-outlet>
+  </mat-tab-nav-panel>
+}

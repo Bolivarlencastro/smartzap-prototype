@@ -1,0 +1,39 @@
+<div mat-dialog-title class="app-group-linked-dialog-header flex justify-between items-center">
+  <span class="text-lg">{{ 'ENROLLMENTS.LINKED_TRAILS_TITLE' | transloco }}</span>
+  <button
+    mat-icon-button
+    mat-dialog-close
+    [matTooltip]="'GENERAL.CLOSE' | transloco"
+    class="close-button"
+    aria-label="Close"
+  >
+    <mat-icon class="s-4">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSourceLearningTrails"
+    class="missions-table card-table"
+    aria-label="Learning Trails Table"
+  >
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'GENERAL.NAME' | transloco }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.learning_trail?.name }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedLinkedColumns"></tr>
+    <tr
+      mat-row
+      class="cursor-pointer"
+      (click)="onClickRow(row)"
+      *matRowDef="let row; columns: displayedLinkedColumns"
+    ></tr>
+  </table>
+</mat-dialog-content>

@@ -1,0 +1,66 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+
+<!-- Navigation -->
+<fuse-vertical-navigation
+  class="dark kp-navigation-container kp-on-navigation-container print:hidden"
+  [appearance]="'compact'"
+  [mode]="isScreenSmall ? 'over' : 'side'"
+  [name]="'mainNavigation'"
+  [navigation]="navigation()"
+  [opened]="!isScreenSmall"
+>
+  <!-- Navigation header hook -->
+  <ng-container fuseVerticalNavigationContentHeader>
+    <!-- Logo -->
+    <div class="flex items-center justify-center h-20 mt-3 mb-4">
+      @if (enableGlobalSearch) {
+        <button
+          class="flex items-center justify-center bg-transparent border-0 cursor-pointer p-1 rounded-xl hover:opacity-80 transition-opacity"
+          (click)="logoClick.emit()"
+        >
+          <img class="w-12 rounded-md" [src]="logoSrc | async" alt="Logo Image" />
+        </button>
+      } @else {
+        <img class="w-12 rounded-md" [src]="logoSrc | async" alt="Logo Image" />
+      }
+    </div>
+  </ng-container>
+
+  <ng-container fuseVerticalNavigationFooter>
+    <ng-content select="[fuseVerticalNavigationFooter]"></ng-content>
+  </ng-container>
+</fuse-vertical-navigation>
+
+<!-- Wrapper -->
+<div class="flex flex-col flex-auto w-full min-w-0">
+  <!-- Header -->
+  <div
+    class="sticky top-0 xxs:relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-default print:hidden"
+  >
+    <!-- Navigation toggle button -->
+    <button
+      data-test="button-access-vertical-navigation-menu"
+      mat-icon-button
+      (click)="toggleNavigation('mainNavigation')"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Components -->
+    <div
+      class="flex items-center pl-2 space-x-0.5 sm:space-x-2"
+      [ngClass]="{ 'ml-auto': !enableGlobalSearch, 'w-full': enableGlobalSearch }"
+    >
+      <ng-content select="[primaryMenu]"></ng-content>
+      <fuse-fullscreen class="hidden md:block" [tooltip]="fullscreenTooltip"></fuse-fullscreen>
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-col flex-auto">
+    @if (true) {
+      <router-outlet></router-outlet>
+    }
+  </div>
+</div>

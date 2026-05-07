@@ -1,0 +1,34 @@
+<span class="text-lg" mat-dialog-title>
+  {{ 'MISSION.DETAIL.STUDY_GOAL' | transloco }}
+</span>
+
+<div mat-dialog-content class="w-300">
+  @if (isExternalMission) {
+    <div class="mb-10">
+      <mat-icon class="s-4 warn-fg">warning</mat-icon>
+      {{ 'MISSION.DETAIL.EXTERNAL_MISSION_WARNING' | transloco }}
+    </div>
+  }
+
+  <mat-form-field class="w-full">
+    <input
+      matInput
+      [(ngModel)]="targetDate"
+      [matDatepicker]="dp3"
+      [min]="minDate"
+      id="input-mission-detail-dialog-date"
+      [placeholder]="'MISSION.DETAIL.SELECT_DATE_CONCLUSION' | transloco"
+      disabled
+    />
+    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="flex justify-center">
+  <button class="mr-8" mat-stroked-button id="button-mission-detail-dialog-cancel" mat-dialog-close>
+    {{ 'GENERAL.CANCEL' | transloco }}
+  </button>
+  <button mat-flat-button color="primary" id="button-mission-detail-dialog-start" (click)="saveGoal()" cdkFocusInitial>
+    {{ 'MISSION.DETAIL.START_MISSION' | transloco }}
+  </button>
+</div>

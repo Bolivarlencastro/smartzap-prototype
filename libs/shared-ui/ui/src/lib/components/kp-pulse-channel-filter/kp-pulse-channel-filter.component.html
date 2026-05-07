@@ -1,0 +1,102 @@
+<kp-filter [currentSearchTerm]="currentSearchTerm" (searchChange)="searchTerm($event)">
+  <!-- QUICK FILTER -->
+  <div class="quick-filter-container hidden xxs:block">
+    <mat-button-toggle-group class="h-8" [(ngModel)]="quickFilter" (change)="changeQuickFilter()">
+      <mat-button-toggle [value]="quickFilterType.PULSES">{{ 'UI.GENERAL.PULSES' | transloco }} </mat-button-toggle>
+      @if (quickFilter === quickFilterType.MINE) {
+        <mat-button-toggle [value]="quickFilterType.MINE">{{ 'UI.GENERAL.CHANNELS' | transloco }} </mat-button-toggle>
+      } @else {
+        <mat-button-toggle data-test="button-channel-access" [value]="quickFilterType.HOME"
+          >{{ 'UI.GENERAL.CHANNELS' | transloco }}
+        </mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </div>
+  <!-- / QUICK FILTER -->
+
+  <form [formGroup]="filterForm" class="flex items-center gap-2">
+    @if (quickFilter === quickFilterType.PULSES || quickFilter === quickFilterType.HOME) {
+      <!-- CATEGORIES -->
+      <kp-select-menu-trigger [label]="'UI.FILTER.CATEGORY' | transloco">
+        <mat-icon class="s-6 text-primary">folder</mat-icon>
+        <mat-select kpSelectTriggerContent multiple formControlName="categories">
+          @for (category of categoryOptions; track category.id) {
+            <mat-option [value]="category.id">
+              <span>{{ category.name | kpCategoryLabel | transloco }}</span>
+            </mat-option>
+          }
+        </mat-select>
+      </kp-select-menu-trigger>
+      <!-- / CATEGORIES -->
+
+      <!-- LANGUAGES -->
+      <kp-select-menu-trigger [label]="'UI.FILTER.LANGUAGE' | transloco">
+        <mat-icon class="s-6 text-primary">language</mat-icon>
+        <mat-select kpSelectTriggerContent multiple formControlName="languages">
+          @for (language of languageOptions; track language.name) {
+            <mat-option [value]="language.name">
+              <div class="flex items-center gap-1">
+                <kp-language-color-tag class="mr-1" [language]="language.name"></kp-language-color-tag>
+                <span>{{ 'UI.GENERAL.LANGUAGES.' + (language.name | lowercase) | transloco }}</span>
+              </div>
+            </mat-option>
+          }
+        </mat-select>
+      </kp-select-menu-trigger>
+      <!-- / LANGUAGES -->
+    }
+    @if (quickFilter === quickFilterType.PULSES) {
+      <!-- CONTENT TYPES -->
+      <kp-select-menu-trigger [label]="'UI.FILTER.CONTENT_TYPE' | transloco">
+        <mat-icon class="s-1 filled text-primary">circle</mat-icon>
+        <mat-select kpSelectTriggerContent multiple formControlName="contentTypes">
+          @for (contentType of contentTypeOptions; track contentType.id) {
+            <mat-option [value]="contentType.id">
+              <div class="flex items-center gap-1">
+                <mat-icon
+                  class="s-5 mr-1"
+                  [ngStyle]="{ color: contentType?.name | KpContentIconColor }"
+                  [svgIcon]="contentType?.image"
+                ></mat-icon>
+                <span>{{ contentType.name | kpCategoryLabel | transloco }}</span>
+              </div>
+            </mat-option>
+          }
+        </mat-select>
+      </kp-select-menu-trigger>
+      <!-- / CONTENT TYPES -->
+
+      <!-- FAVORITES -->
+      <kp-mobile-toggle
+        [label]="'UI.FILTER.FAVORITES' | transloco"
+        icon="bookmark"
+        [selected]="favoritesValue"
+        (toggleChange)="changeToggleButton('favorites')"
+      ></kp-mobile-toggle>
+      <!-- / FAVORITES -->
+    }
+    @if (quickFilter === quickFilterType.HOME) {
+      <!-- SUBSCRIBED CHANNELS -->
+      <kp-mobile-toggle
+        data-test="button-channel-subscribed"
+        [label]="'UI.FILTER.SUBSCRIBED' | transloco"
+        icon="bookmark"
+        [selected]="subscribedChannelsValue"
+        (toggleChange)="changeToggleButton('subscribedChannels')"
+      ></kp-mobile-toggle>
+      <!-- / SUBSCRIBED CHANNELS -->
+    }
+    @if (quickFilter !== quickFilterType.PULSES) {
+      <!-- MINE -->
+      <kp-mobile-toggle
+        data-test="channels-create-by-me-selector"
+        class="hidden xxs:block"
+        [label]="'UI.FILTER.CREATED_BY_ME' | transloco"
+        icon="edit"
+        [selected]="quickFilter === quickFilterType.MINE"
+        (toggleChange)="changeQuickFilter(true)"
+      ></kp-mobile-toggle>
+      <!-- / MINE -->
+    }
+  </form>
+</kp-filter>

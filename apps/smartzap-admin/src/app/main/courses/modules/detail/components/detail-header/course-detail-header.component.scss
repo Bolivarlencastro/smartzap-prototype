@@ -1,0 +1,40 @@
+@use 'libs/shared-ui/ui/src/lib/styles/mixins' as ui-mixins;
+
+.course-detail-header {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+
+  .page-layout-container {
+    position: relative;
+  }
+
+  .overlay {
+    @include ui-mixins.frame(8);
+
+    background-image: linear-gradient(to top, rgb(0 0 0 / 54%) 0%, rgb(0 0 0 / 8%) 42%, transparent 72%);
+  }
+
+  &__close-button {
+    @apply text-white;
+
+    background: rgb(15 23 42 / 28%);
+
+    &:hover {
+      background: rgb(15 23 42 / 42%);
+    }
+  }
+
+  &__topbar {
+    @apply absolute;
+    @apply top-6;
+    @apply left-6;
+    @apply right-6;
+    @apply z-10;
+    @apply flex;
+    @apply items-start;
+    @apply justify-between;
+  }
+}

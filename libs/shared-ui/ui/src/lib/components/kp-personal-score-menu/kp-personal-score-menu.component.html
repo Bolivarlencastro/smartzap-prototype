@@ -1,0 +1,150 @@
+<div (click)="$event.stopPropagation()">
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" fitInkBarToContent>
+    @for (tab of tabs; track tab) {
+      <a
+        mat-tab-link
+        (click)="changeTab(tab.value)"
+        [active]="activeTab === tab.value"
+        class="font-bold bg-primary-100 dark:bg-primary-900 text-xs h-9"
+      >
+        {{ tab.title | transloco }}
+      </a>
+    }
+  </nav>
+
+  <mat-divider class="m-0"></mat-divider>
+
+  <mat-tab-nav-panel #tabPanel>
+    <!-- RANKING -->
+    @switch (activeTab) {
+      @case ('ranking') {
+        <div class="max-h-[441px]" [ngClass]="{ 'bg-default p-3': isLoading }">
+          @if (!isLoading) {
+            <div class="overflow-auto flex flex-col p-3 gap-1 max-h-96">
+              <!-- PODIUM -->
+              <div
+                class="flex justify-between h-36 rounded-lg bg-default p-2.5 shrink-0"
+                [ngClass]="{ 'mb-1': otherUsers?.length }"
+              >
+                @for (user of podium; track user) {
+                  <div
+                    class="flex flex-col items-center truncate relative w-20"
+                    [ngClass]="{ 'self-end': user?.position !== 1 }"
+                  >
+                    <!-- BADGE -->
+                    <div
+                      class="h-6 w-6 rounded-full bg-default flex justify-center items-center absolute right-0 top-0"
+                    >
+                      <div
+                        class="h-5 w-5 rounded-full flex justify-center items-center"
+                        [style]="user?.position | kpPodiumBadge"
+                      >
+                        <span class="text-2xxs font-bold">{{ user?.position }}</span>
+                      </div>
+                    </div>
+                    <!-- / BADGE -->
+                    <div
+                      class="h-16 w-16 min-w-content bg-cover bg-center rounded-full shrink-0 mb-1.5"
+                      [style.background]="'url(' + (user?.avatar || defaultUserAvatar) + ')'"
+                    ></div>
+                    <span class="text-xs truncate max-w-full leading-none mb-1">{{
+                      user?.user || 'UI.GAMIFICATION.PERSONAL_SCORE.RANKING_TAB.DEFAULT_NAME' | transloco
+                    }}</span>
+                    <span class="text-2xxs leading-none"
+                      >{{ user?.points || 0 | number }}
+                      {{
+                        'UI.GAMIFICATION.PERSONAL_SCORE.RANKING_TAB.SCORE_SUFFIX' | transloco: { value: user?.points }
+                      }}</span
+                    >
+                  </div>
+                }
+              </div>
+              <!-- / PODIUM -->
+              <!-- OTHER USERS -->
+              @if (otherUsers?.length) {
+                @for (user of otherUsers; track user) {
+                  <div
+                    class="flex items-center rounded-md bg-default gap-2 p-2 h-16 w-full"
+                    [ngClass]="{ 'bg-primary text-on-primary': userId === user?.user_id }"
+                  >
+                    <span class="text-xs ml-2 w-4">{{ user?.position }}</span>
+                    <div
+                      class="h-8 w-8 min-w-content bg-cover bg-center rounded-full shrink-0"
+                      [ngClass]="{ border: userId === user?.user_id }"
+                      [style.background]="'url(' + (user?.avatar || defaultUserAvatar) + ')'"
+                    ></div>
+                    <span class="text-xs truncate max-w-32">{{ user?.user }}</span>
+                    <span class="text-2xxs ml-auto"
+                      >{{ user?.points | number }}
+                      {{
+                        'UI.GAMIFICATION.PERSONAL_SCORE.RANKING_TAB.SCORE_SUFFIX' | transloco: { value: user?.points }
+                      }}</span
+                    >
+                  </div>
+                }
+              }
+              <!-- / OTHER USERS -->
+            </div>
+            <mat-divider class="m-0"></mat-divider>
+            <div class="flex items-center justify-center py-2 px-3">
+              <button mat-stroked-button class="h-10 w-full text-primary text-xs" (click)="navigateToGeneralRanking()">
+                {{ 'UI.GAMIFICATION.PERSONAL_SCORE.RANKING_TAB.BUTTON_LABEL' | transloco }}
+              </button>
+            </div>
+          } @else {
+            <ngx-skeleton-loader
+              count="1"
+              animation="pulse"
+              [theme]="{
+                width: '100%',
+                borderRadius: '5px',
+                height: '144px',
+              }"
+            ></ngx-skeleton-loader>
+            <ngx-skeleton-loader
+              count="5"
+              animation="pulse"
+              [theme]="{
+                width: '100%',
+                borderRadius: '2px',
+                height: '48px',
+              }"
+            ></ngx-skeleton-loader>
+          }
+        </div>
+      }
+      <!-- / RANKING -->
+      <!-- STATISTICS -->
+      @case ('statistics') {
+        <div class="p-3 h-auto flex flex-col gap-1.5" [ngClass]="{ 'bg-default': isLoading }">
+          @if (!isLoading) {
+            @for (item of statistics; track item) {
+              <div class="h-12 w-full flex items-center border border-default p-4 gap-3 rounded-md">
+                <div class="w-5 flex justify-center items-center">
+                  @if (item?.svgIcon) {
+                    <mat-icon [svgIcon]="item?.svgIcon" class="s-4 text-primary"></mat-icon>
+                  }
+                  @if (item?.icon) {
+                    <mat-icon class="s-6 text-primary">{{ item?.icon }}</mat-icon>
+                  }
+                </div>
+                <span>{{ item?.label | transloco: { value: item?.value } }}</span>
+              </div>
+            }
+          } @else {
+            <ngx-skeleton-loader
+              count="7"
+              animation="pulse"
+              [theme]="{
+                width: '100%',
+                borderRadius: '2px',
+                height: '47px',
+              }"
+            ></ngx-skeleton-loader>
+          }
+        </div>
+      }
+      <!-- / STATISTICS -->
+    }
+  </mat-tab-nav-panel>
+</div>

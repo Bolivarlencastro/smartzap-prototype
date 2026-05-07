@@ -1,0 +1,12 @@
+<span class="text-lg" mat-dialog-title>{{ title | transloco }}</span>
+<div mat-dialog-content>
+  <kp-editor [value]="text" (valueChange)="onValueChanged($event)"></kp-editor>
+</div>
+<div mat-dialog-actions class="flex justify-end">
+  <button mat-flat-button color="primary" (click)="dialogRef.close(text)" id="button-edit-dialog-save">
+    {{ 'UI.GENERAL.SAVE' | transloco }}
+  </button>
+  <button mat-button (click)="dialogRef.close(false)" id="button-edit-dialog-cancel">
+    {{ 'UI.GENERAL.CANCEL' | transloco }}
+  </button>
+</div>

@@ -1,0 +1,142 @@
+{
+  "name": "checkpoint",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "cp",
+  "sourceRoot": "apps/checkpoint/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "plugins": ["kp-version.plugin.js"],
+        "outputPath": "dist/apps/checkpoint",
+        "index": "apps/checkpoint/src/index.html",
+        "main": "apps/checkpoint/src/main.ts",
+        "polyfills": "apps/checkpoint/src/polyfills.ts",
+        "tsConfig": "apps/checkpoint/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/checkpoint/src/assets"],
+        "styles": ["apps/checkpoint/src/styles.scss"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/checkpoint/src/environments/environment.ts",
+              "with": "apps/checkpoint/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "checkpoint:build:production"
+        },
+        "development": {
+          "buildTarget": "checkpoint:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "checkpoint:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/checkpoint"],
+      "options": {
+        "jestConfig": "apps/checkpoint/jest.config.ts",
+        "tsConfig": "apps/checkpoint/tsconfig.spec.json",
+        "ci": true,
+        "codeCoverage": true
+      },
+      "configurations": {
+        "ci": {
+          "cache": false
+        },
+        "dev": {
+          "coverageReporters": ["html", "text-summary", "lcov"]
+        }
+      },
+      "defaultConfiguration": "dev"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/checkpoint/**/*.scss"]
+      }
+    },
+    "i18n-extract": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager extract --project checkpoint"
+      }
+    },
+    "i18n:find": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager find --project checkpoint"
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Checkpoint Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "checkpoint-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "**/libs/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/checkpoint/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/main.ts, **/polyfills.ts, **/version.ts, **/environments/**, **/translate.ts, **/*.routes.ts, **/app.config.ts, **/*.module.ts, **/app.component.ts, **/test-setup.ts, src/main.ts",
+          "sonar.plugins.downloadOnlyRequired": "true",
+          "sonar.cpd.exclusions": "apps/checkpoint/src/environments/*"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "checkpoint:build"
+      }
+    }
+  }
+}

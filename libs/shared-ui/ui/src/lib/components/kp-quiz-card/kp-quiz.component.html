@@ -1,0 +1,105 @@
+<div class="quiz-card">
+  <!-- ── Loading skeleton ──────────────────────────────────────────────── -->
+  @if (loading()) {
+    <div class="quiz-card__skeleton">
+      <ngx-skeleton-loader
+        count="1"
+        animation="pulse"
+        [theme]="{ height: '3px', width: '100%', 'border-radius': '9999px', margin: '0 0 1.75rem' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        count="1"
+        animation="pulse"
+        [theme]="{ height: '1.1rem', width: '90%', 'border-radius': '0.5rem', margin: '0 0 0.5rem' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        count="1"
+        animation="pulse"
+        [theme]="{ height: '1.1rem', width: '65%', 'border-radius': '0.5rem', margin: '0 0 1.75rem' }"
+      ></ngx-skeleton-loader>
+      @for (_ of [0, 1, 2, 3]; track _) {
+        <ngx-skeleton-loader
+          count="1"
+          animation="pulse"
+          [theme]="{ height: '3.25rem', width: '100%', 'border-radius': '0.75rem', margin: '0 0 0.6rem' }"
+        ></ngx-skeleton-loader>
+      }
+      <ngx-skeleton-loader
+        count="1"
+        animation="pulse"
+        [theme]="{ height: '2.5rem', width: '100%', 'border-radius': '0.5rem', margin: '1rem 0 0' }"
+      ></ngx-skeleton-loader>
+    </div>
+  }
+
+  <!-- ── Quiz content ───────────────────────────────────────────────────── -->
+  <!-- NOTE: quiz-card__body must always be in the DOM so that the
+       @ViewChild(QuestionDirective, { static: true }) resolves on init.
+       Hiding via CSS instead of @if avoids the "undefined viewContainerRef" error. -->
+  <div [class.quiz-card__content--hidden]="loading()">
+    @if (currentIndex + 1 < items.length) {
+      <div class="quiz-card__progress-header">
+        <span class="quiz-card__counter"> {{ currentIndex + 1 }} / {{ items.length - 1 }} </span>
+        <div class="quiz-card__dots">
+          @for (item of items; track $index; let i = $index; let last = $last) {
+            @if (!last) {
+              <span
+                class="quiz-card__dot"
+                [class.quiz-card__dot--done]="i < currentIndex"
+                [class.quiz-card__dot--active]="i === currentIndex"
+              ></span>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="quiz-card__progress-track">
+        <div class="quiz-card__progress-fill" [style.width.%]="(currentIndex / (items.length - 1)) * 100"></div>
+      </div>
+    }
+
+    <div class="quiz-card__body">
+      <ng-template kpQuestionHost></ng-template>
+    </div>
+
+    @if (currentIndex + 1 < items.length) {
+      <div class="quiz-card__actions">
+        @if (orderWarnKey) {
+          <small class="quiz-card__order-hint" [innerHTML]="orderWarnKey | transloco"></small>
+        }
+
+        @if (!isAnswered()) {
+          <button
+            mat-flat-button
+            color="primary"
+            class="quiz-card__action-btn quiz-answer-question-button"
+            (click)="onAnswerer()"
+            [disabled]="!isSelected() || answeringQuiz()"
+            data-test="answer-question-quiz"
+          >
+            {{ 'UI.QUIZ.ANSWER_QUESTION' | transloco }}
+          </button>
+        }
+
+        @if (isAnswered()) {
+          <button
+            mat-flat-button
+            color="primary"
+            class="quiz-card__action-btn"
+            (click)="next()"
+            data-test="quiz-finish-next-content"
+          >
+            {{ 'UI.QUIZ.NEXT_QUESTION' | transloco }}
+          </button>
+        }
+
+        @if (currentIndex > 0) {
+          <button mat-button class="quiz-card__action-btn quiz-card__action-btn--prev" (click)="prev()">
+            <mat-icon>arrow_back</mat-icon>
+            {{ 'UI.QUIZ.PREV_QUESTION' | transloco }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+</div>

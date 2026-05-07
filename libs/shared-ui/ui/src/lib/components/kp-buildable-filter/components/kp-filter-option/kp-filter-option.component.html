@@ -1,0 +1,37 @@
+<div class="flex gap-2 items-center">
+  <kp-filter-key-select
+    class="basis-72 shrink-0"
+    [value]="selectedOption?.filterKey"
+    [options]="options"
+    [first]="first"
+    (optionChange)="onSelectionChange($event)"
+  >
+  </kp-filter-key-select>
+
+  <div
+    class="flex-grow grid gap-2 justify-stretch"
+    [class.double-column]="showRangeSelector"
+    [ngClass]="{ 'double-column': showRangeSelector, 'single-column': !showRangeSelector }"
+  >
+    @if (showRangeSelector) {
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-select
+          [value]="selectedOption?.rangeType || 'equals'"
+          (selectionChange)="onRangeTypeChange($event.value)"
+          [placeholder]="'UI.KP_FILTER.PLACEHOLDERS.SELECT_FILTER' | transloco"
+        >
+          @for (option of rangeTypes; track option) {
+            <mat-option [value]="option.value">
+              {{ option.label | transloco }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <ng-container #valueContainer></ng-container>
+  </div>
+  <button mat-icon-button (click)="removeOption()" type="button">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

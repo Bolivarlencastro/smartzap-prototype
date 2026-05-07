@@ -1,0 +1,61 @@
+.workspaces {
+  @apply min-h-screen pb-5;
+
+  background-color: var(--kp-navigation-container);
+}
+
+.workspaces-header {
+  @apply flex flex-row items-center;
+}
+
+.workspaces-brand {
+  @apply w-full p-6;
+}
+
+.workspaces-logo {
+  @apply w-50;
+}
+
+.workspaces-actions {
+  @apply flex items-center gap-3 p-6;
+}
+
+.workspaces-action {
+  @apply inline-flex items-center justify-center;
+}
+
+.workspaces-icon-button {
+  color: var(--kp-on-navigation-container);
+}
+
+.workspaces-icon-button:hover {
+  background: color-mix(in srgb, var(--kp-on-navigation-container) 14%, transparent);
+}
+
+.workspaces-list-section {
+  @apply w-full;
+}
+
+.workspaces-empty-state {
+  @apply flex flex-col items-center justify-center;
+}
+
+.workspaces-empty-message {
+  @apply text-2xl text-on-primary;
+}
+
+.workspaces-logout-button {
+  @apply mt-6 uppercase;
+}
+
+.workspaces-logout-icon {
+  @apply s-6;
+}
+
+.workspaces-logout-label {
+  @apply ml-2;
+}
+
+.workspaces-create-button {
+  @apply fixed bottom-6 right-6;
+}

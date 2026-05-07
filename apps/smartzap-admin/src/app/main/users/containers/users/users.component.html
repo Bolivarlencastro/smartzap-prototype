@@ -1,0 +1,58 @@
+<mat-drawer-container class="blank grow min-h-0" autosize>
+  <!-- SIDE MENU -->
+  <mat-drawer #drawer class="h-full" mode="side" position="end">
+    <app-user-side-menu [summary]="summary()" (closeMenu)="drawer.toggle()"></app-user-side-menu>
+  </mat-drawer>
+  <!-- / SIDE MENU -->
+
+  <div class="h-full flex flex-col" fuseScrollbar>
+    <div class="h-32 flex items-center pl-8 pr-4">
+      <span class="text-2xl" data-test="users-title">
+        {{ 'USERS.TITLE' | transloco }}
+      </span>
+      <div class="ml-auto flex items-center gap-2">
+        <button mat-stroked-button color="accent" (click)="onGenerateReport('USERS')" class="accent-border shadow-md">
+          <div class="flex items-center justify-center">
+            <mat-icon class="s-6 mr-4" svgIcon="file_download"></mat-icon>
+            <span class="font-bold">{{ 'REPORTS.USERS' | transloco }}</span>
+          </div>
+        </button>
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon svgIcon="analytics" class="s-6 text-primary"></mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <kp-table-layout
+      class="grow min-h-0"
+      [totalItems]="(page$ | async)?.count || 0"
+      [pageIndex]="((page$ | async)?.page || 1) - 1"
+      [pageSize]="(page$ | async)?.per_page || 10"
+      [searchPlaceholder]="'USERS.INPUT.FILTER'"
+      (pageChange)="onPageChange($event)"
+      (searchChange)="onSearch($event)"
+    >
+      <app-user-filter
+        kpTableFilterAfter
+        [filters]="filters()"
+        [availableTags]="availableTags()"
+        (filterEvent)="onFilter($event)"
+      ></app-user-filter>
+
+      <app-user-list
+        kpTable
+        [selectedUsersCount]="selectedUsersCount$ | async"
+        [datasource]="users$ | async"
+        [isLoading]="isLoading$ | async"
+        [page]="page$ | async"
+        (sortEvent)="onSort($event)"
+        (removeEvent)="onRemove($event)"
+        (editEvent)="onEdit($event)"
+        (addUser)="onAddUser()"
+        (userSelected)="onUserSelected($event)"
+        (deleteSelected)="onDeleteSelected($event)"
+        (selectAll)="onSelectAll()"
+      ></app-user-list>
+    </kp-table-layout>
+  </div>
+</mat-drawer-container>

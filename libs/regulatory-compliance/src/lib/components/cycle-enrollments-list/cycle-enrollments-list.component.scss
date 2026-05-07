@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cycle-actions {
+  display: none;
+}
+
+.cycle-row:hover,
+.cycle-row:focus-within .mat-column-status {
+  .cycle-actions {
+    display: flex !important;
+  }
+
+  .cycle-status {
+    display: none;
+  }
+}
+
+.footer-bg {
+  background-color: var(--mat-sys-surface);
+}

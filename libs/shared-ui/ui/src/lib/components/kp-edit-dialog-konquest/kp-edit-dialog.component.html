@@ -1,0 +1,56 @@
+<div class="edit-dialog">
+  <span class="text-lg" mat-dialog-title>{{ title | transloco }}</span>
+
+  <div mat-dialog-content>
+    <form #dialogForm="ngForm">
+      <mat-form-field class="w-full fuse-mat-dense" subscriptSizing="dynamic">
+        <mat-label>{{ label || ('UI.GENERAL.NAME' | transloco) }}</mat-label>
+        <input matInput name="name" type="text" [(ngModel)]="model.name" maxlength="100" required />
+        @if (model.name) {
+          <button matSuffix mat-icon-button aria-label="Clear Name" (click)="model.name = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+
+      @if (showDescription) {
+        <mat-form-field class="w-full fuse-mat-dense mt-5" subscriptSizing="dynamic">
+          <mat-label>{{ 'UI.GENERAL.DESCRIPTION' | transloco }}</mat-label>
+          <textarea
+            matInput
+            [name]="'UI.GENERAL.DESCRIPTION' | transloco"
+            maxlength="256"
+            rows="8"
+            #description
+            [(ngModel)]="model.description"
+          ></textarea>
+          @if (model.description) {
+            <button matSuffix mat-icon-button (click)="model.description = ''">
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+          <mat-hint align="end"
+            >{{ description.value.length }}
+            / 256
+          </mat-hint>
+        </mat-form-field>
+      }
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="flex justify-end">
+    <button mat-stroked-button mat-dialog-close id="button-edit-dialog-cancel" class="mr-4">
+      {{ 'UI.GENERAL.CANCEL' | transloco }}
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onSubmit()"
+      [disabled]="dialogForm.invalid || dialogForm.pristine"
+      id="button-edit-dialog-save"
+    >
+      {{ 'UI.GENERAL.SAVE' | transloco }}
+    </button>
+  </div>
+</div>

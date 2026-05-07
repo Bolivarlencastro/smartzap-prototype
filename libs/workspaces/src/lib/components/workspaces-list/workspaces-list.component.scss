@@ -1,0 +1,115 @@
+.workspaces-list {
+  @apply px-3 sm:px-6;
+}
+
+.workspaces-list-table-wrapper {
+  @apply overflow-x-auto rounded-lg border border-default;
+
+  background-color: var(--mat-sys-surface);
+}
+
+.workspaces-list-table {
+  @apply w-full table-fixed;
+
+  background-color: var(--mat-sys-surface);
+}
+
+.workspaces-list-header-row {
+  background-color: var(--mat-sys-surface-container-high);
+}
+
+.workspaces-list-header-cell {
+  @apply border-b border-default px-4 py-3 text-[0.7rem] font-medium uppercase tracking-[0.06em] text-hint;
+}
+
+.workspaces-list-header-cell-logo {
+  @apply w-[4.5rem] pr-1;
+}
+
+.workspaces-list-header-cell-name {
+  @apply w-[15rem] px-2;
+}
+
+.workspaces-list-header-cell-reference {
+  @apply px-3 pl-3 pr-[0.4rem] text-right;
+}
+
+.workspaces-list-cell {
+  @apply border-b border-default px-4 py-3 text-default;
+}
+
+.workspaces-list-cell-logo {
+  @apply w-[4.5rem] pr-1;
+}
+
+.workspaces-list-cell-name {
+  @apply w-[15rem] px-2;
+}
+
+.workspaces-list-cell-reference {
+  @apply px-3 pl-3 pr-[0.4rem] text-right;
+}
+
+.workspaces-list-row {
+  @apply transition-colors duration-150;
+}
+
+.workspaces-list-row-clickable {
+  @apply cursor-pointer;
+}
+
+.workspaces-list-row-clickable:hover,
+.workspaces-list-row-clickable:focus-visible {
+  background-color: var(--mat-sys-surface-container-low);
+}
+
+.workspaces-list-logo-container {
+  @apply inline-flex h-10 w-10 min-w-10 items-center justify-center overflow-hidden rounded border-b-4 border-b-transparent;
+
+  background-color: var(--mat-sys-surface-container-highest);
+}
+
+.workspaces-list-logo-image {
+  @apply block h-full w-full object-cover;
+}
+
+.workspaces-list-logo-fallback {
+  @apply text-xs font-semibold uppercase text-hint;
+}
+
+.workspaces-list-workspace-name {
+  @apply inline-block max-w-full truncate text-[0.9rem] font-medium text-default;
+}
+
+.workspaces-list-row-clickable:hover .workspaces-list-workspace-name {
+  @apply underline;
+
+  color: var(--mat-sys-primary);
+}
+
+.workspaces-list-reference-wrapper {
+  @apply inline-flex items-center gap-1;
+}
+
+.workspaces-list-reference-text {
+  @apply text-xs text-hint;
+}
+
+.workspaces-list-reference-copy-button {
+  @apply text-hint hover:text-default;
+
+  height: 1.75rem !important;
+  width: 1.75rem !important;
+  min-width: 1.75rem !important;
+
+  &:hover {
+    background: color-mix(in srgb, var(--mat-sys-primary) 14%, transparent);
+  }
+}
+
+.workspaces-list-reference-copy-icon {
+  @apply text-base;
+
+  height: 1rem !important;
+  width: 1rem !important;
+}

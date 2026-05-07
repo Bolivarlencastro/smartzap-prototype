@@ -1,0 +1,35 @@
+@if (confirmTitle) {
+  <span mat-dialog-title class="text-xl">
+    {{ confirmTitle | transloco }}
+  </span>
+}
+<div mat-dialog-content>
+  @if (confirmMessage) {
+    <p [innerHTML]="confirmMessage | transloco"></p>
+  }
+  @if (showDescription) {
+    <mat-form-field class="w-full">
+      <textarea
+        matInput
+        [placeholder]="'UI.WORKSPACE_DIALOG.INFORM_REASON' | transloco"
+        [(ngModel)]="description"
+      ></textarea>
+    </mat-form-field>
+  }
+</div>
+<div mat-dialog-actions class="p-6 pt-5 flex justify-end">
+  @if (!hideCancelButton) {
+    <button mat-button id="button-confirm-cancel" (click)="dialogRef.close(false)">
+      {{ negativeButtonLabel || 'UI.GENERAL.CANCEL' | transloco }}
+    </button>
+  }
+  <button
+    mat-raised-button
+    color="primary"
+    id="button-confirm-ok"
+    [disabled]="minLenght && description?.length < minLenght"
+    (click)="dialogRef.close(description || true)"
+  >
+    {{ positiveButtonLabel || 'UI.GENERAL.OK' | transloco }}
+  </button>
+</div>

@@ -1,0 +1,49 @@
+{
+  "HEADER": {
+    "TITLE": "Analytics IA"
+  },
+  "LOADING": {
+    "ANALYZING_REPORT": "Analizando informe",
+    "SEPARATING_DATA": "Separando datos",
+    "CREATING_STRUCTURES": "Creando estructuras",
+    "INDEXING_DATA": "Indexando datos",
+    "GENERATING_INSIGHTS": "Generando insights"
+  },
+  "MESSAGES": {
+    "DOWNLOAD_CSV": "Descargar CSV",
+    "ERROR": "No pude procesar tu solicitud. ¿Podrías intentarlo de nuevo?",
+    "GENERATE_PLOT": "Generar gráfico",
+    "GENERATE_TABLE": "Generar tabla"
+  },
+  "INPUT": {
+    "INITIAL_MESSAGE": "¿Cómo puedo ayudarte con este informe?",
+    "PLACEHOLDER": "Envía un mensaje a Analytics IA"
+  },
+  "REPORT_TYPE": {
+    "konquest-groups-channels-users-export": "Canales por Grupos",
+    "konquest-groups-missions-users-export": "Cursos por Grupos",
+    "konquest-mission-enrollment-quizzes": "Análisis de Cuestionarios de Curso",
+    "konquest-mission-evaluations-statistics-export": "Análisis de Evaluaciones de Curso",
+    "konquest-mission-presentation": "Visión de Curso",
+    "konquest-missions-enrollments-export": "Lista de Inscripciones de Cursos",
+    "konquest-missions-evaluations-export": "Evaluaciones del Curso",
+    "konquest-missions-export": "Lista de Cursos",
+    "konquest-missions-quizzes-answers-export": "Cuestionarios por Cursos",
+    "konquest-pulses-channels-export": "Lista de Pulsos por Canal",
+    "konquest-pulses-quizzes-answers-export": "Cuestionarios por Canales",
+    "konquest-trails-enrollments-export": "Lista de matrículas por Rutas",
+    "konquest-trails-export": "Lista de rutas",
+    "konquest-user-consumptions-export": "Consumo General del Usuario",
+    "konquest-user-general-statistics-export": "Estadísticas Generales de Usuario",
+    "konquest-user-presentation": "Visión de Usuario",
+    "konquest-users-access-by-date-export": "Usuarios Activos por Día",
+    "konquest-users-export": "Lista General de Usuarios",
+    "konquest-users-pulses-activities-export": "Consumo de Canales y Pulsos",
+    "konquest-workspace-presentation": "Visión General de Konquest",
+    "smartzap-course-presentation": "Visión General de Smartzap",
+    "konquest-trails-completion-rate-export": "Tasa de Conclusión de Rutas",
+    "smartzap-user-activities-export": "Actividades de Usuarios",
+    "smartzap-enrollments-export": "Inscripciones en Curso",
+    "myaccount-user-permissions-export": "Lista de permisos de usuario"
+  }
+}

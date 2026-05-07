@@ -1,0 +1,24 @@
+<div class="flex flex-wrap gap-6 justify-between items-center min-h-32 p-6 sticky bg-default border-b border-default">
+  <div class="text-2xl font-semibold">{{ 'USERS.LIST.TITLE' | transloco }}</div>
+  <div class="ml-0.5 font-medium text-secondary"></div>
+  <div class="flex flex-wrap gap-3 justify-between">
+    <a matButton="outlined" [routerLink]="['imports']">
+      <div data-test="button-user-imports" class="flex items-center justify-around">
+        <span class="material-symbols-outlined"> checklist_rtl </span>
+        <span class="ml-2 mr-1">{{ 'USERS.IMPORT_LIST.TITLE' | transloco }}</span>
+      </div>
+    </a>
+    <button data-test="button-open-dialog-import-users" matButton="outlined" (click)="onOpenDialog()">
+      <div class="flex items-center justify-around">
+        <span class="material-symbols-outlined"> upload </span>
+        <span class="ml-2 mr-1">{{ 'USERS.LIST.IMPORT_USER' | transloco }}</span>
+      </div>
+    </button>
+    <a matButton="filled" [routerLink]="['new']" [disabled]="newUserDisabled">
+      <div data-test="button-new-user" class="flex items-center justify-around">
+        <span class="material-symbols-outlined"> add </span>
+        <span class="ml-2 mr-1">{{ 'USERS.LIST.CREATE_NEW_USER' | transloco }}</span>
+      </div>
+    </a>
+  </div>
+</div>

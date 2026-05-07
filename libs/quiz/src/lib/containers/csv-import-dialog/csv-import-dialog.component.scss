@@ -1,0 +1,115 @@
+.csv-import-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.csv-import-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.csv-import-description {
+  margin: 0;
+  font-size: 14px;
+  color: var(--mat-sys-on-surface-variant);
+  line-height: 1.5;
+}
+
+.csv-import-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 24px;
+  border: 2px dashed var(--mat-sys-outline-variant);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--mat-sys-on-surface-variant);
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+
+  &:hover,
+  &--dragging {
+    border-color: var(--mat-sys-primary);
+    background-color: color-mix(in srgb, var(--mat-sys-primary) 6%, transparent);
+  }
+}
+
+.csv-import-dropzone-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: var(--mat-sys-primary);
+}
+
+.csv-import-file-input {
+  display: none;
+}
+
+.csv-import-loading {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.csv-import-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+
+  &--success {
+    background-color: color-mix(in srgb, var(--mat-sys-primary) 10%, transparent);
+    color: var(--mat-sys-on-surface);
+
+    .material-symbols-outlined {
+      color: var(--mat-sys-primary);
+    }
+  }
+
+  &--error {
+    background-color: var(--mat-sys-error-container);
+    color: var(--mat-sys-on-error-container);
+  }
+}
+
+.csv-import-preview {
+  margin-top: 8px;
+}
+
+.csv-import-preview-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.csv-import-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.csv-import-actions-spacer {
+  flex: 1;
+}

@@ -1,0 +1,89 @@
+<div class="grow flex h-full">
+  <mat-table [dataSource]="category()" [hidden]="hiddenTable()">
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef class="w-14 flex-none"></mat-header-cell>
+      <mat-cell *matCellDef="let row" class="w-14 flex-none pr-2 justify-end">
+        <mat-icon [svgIcon]="row.image" class="s-7"></mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>{{ 'GENERAL.NAME' | transloco }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="overflow-hidden">
+        <span class="break-words line-clamp-3 font-bold" [matTooltip]="row.name">{{ row.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="missions">
+      <mat-header-cell *matHeaderCellDef class="hidden sm:flex w-28 justify-center text-center flex-none">
+        {{ 'CATEGORY.TABLE.MISSIONS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex w-28 justify-center flex-none">
+        <button
+          mat-button
+          [matTooltip]="'CATEGORY.TABLE.MISSIONS' | transloco"
+          (click)="onOpenDialog(row.missions, 'CATEGORY.TABLE.MISSIONS')"
+        >
+          {{ row.missions?.length }}
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="channels">
+      <mat-header-cell *matHeaderCellDef class="hidden sm:flex w-28 justify-center text-center flex-none">
+        {{ 'CATEGORY.TABLE.CHANNELS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="hidden sm:flex w-28 justify-center flex-none">
+        <button
+          mat-button
+          [matTooltip]="'CATEGORY.TABLE.CHANNELS' | transloco"
+          (click)="onOpenDialog(row.channels, 'CATEGORY.TABLE.CHANNELS')"
+        >
+          {{ row.channels?.length }}
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="w-16 justify-center flex-none">
+        {{ 'GENERAL.MENU' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="w-16 justify-center flex-none">
+        <button
+          mat-icon-button
+          data-cy="collection-item-menu"
+          [matMenuTriggerFor]="menu"
+          [matTooltip]="'GENERAL.MENU' | transloco"
+          aria-label="Menu"
+        >
+          <mat-icon class="s-6">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item data-test="collection-item-menu-remove" (click)="deleteEvent.emit(row.id)">
+            <mat-icon class="s-6 mr-4">delete</mat-icon>
+            <span>{{ 'GENERAL.DELETE' | transloco }}</span>
+          </button>
+          <button mat-menu-item (click)="editEvent.emit(row)">
+            <mat-icon class="s-6 mr-4">edit</mat-icon>
+            <span>{{ 'GENERAL.EDIT' | transloco }}</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  @if (showSkeleton()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (emptyState()) {
+    <div class="h-full flex flex-col justify-center items-center text-sm grow">
+      <span>{{ 'CATEGORY.TABLE.EMPTY' | transloco }}</span>
+    </div>
+  }
+</div>

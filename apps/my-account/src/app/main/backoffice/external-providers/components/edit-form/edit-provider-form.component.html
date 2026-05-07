@@ -1,0 +1,36 @@
+<div class="p-3 w-full">
+  <div class="text-3xl font-normal">Provedor</div>
+
+  <form class="flex w-full mt-3" [formGroup]="formCreateProvider" id="providerForm">
+    <mat-form-field class="w-64">
+      <input formControlName="name" matInput #inputName maxlength="50" placeholder="Nome do Provedor" />
+      <mat-hint align="end">{{ inputName.value.length }}/50</mat-hint>
+    </mat-form-field>
+
+    <div class="ml-2 flex gap-2">
+      <div class="w-70">
+        <kp-image-file-upload
+          [control]="formCreateProvider.controls['icon']"
+          placeholder="Selecione um ícone"
+          (srcEvent)="updateImageSrc($event)"
+        ></kp-image-file-upload>
+      </div>
+      <div
+        [ngStyle]="{ 'background-image': backgroundImageSrc ? 'url(' + backgroundImageSrc + ')' : '' }"
+        class="h-20 w-20 bg-center bg-cover rounded-full ml-6 border"
+      ></div>
+    </div>
+  </form>
+  <div class="flex justify-end mt-5">
+    <button
+      type="button"
+      (click)="updateProvider()"
+      [disabled]="!formCreateProvider.valid"
+      mat-flat-button
+      color="primary"
+      class="text-sm"
+    >
+      Editar
+    </button>
+  </div>
+</div>

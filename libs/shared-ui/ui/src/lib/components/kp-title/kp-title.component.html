@@ -1,0 +1,82 @@
+@if (!loading) {
+  <div>
+    <p class="font-bold text-lg xxs:text-2xl pb-1 xxs:pb-0 xxs:leading-9 [word-break:break-word]">
+      {{ title?.title }}
+    </p>
+    <div class="text-xs flex gap-1 leading-none flex-wrap">
+      @if (title?.open !== undefined) {
+        <div class="flex gap-1 items-end">
+          <mat-icon class="s-4">{{ title?.open ? 'lock_open' : 'lock' }}</mat-icon>
+          <span>
+            {{ (title?.open ? 'UI.TITLE.OPEN' : 'UI.TITLE.CLOSED') | transloco }}
+          </span>
+        </div>
+      }
+      @if (title?.createdDate) {
+        <div class="flex gap-1 items-end">
+          <mat-icon class="s-4" [ngClass]="{ hidden: title?.removeCreatedDateIcon }">calendar_today</mat-icon>
+          <span>
+            {{ 'UI.TITLE.CREATED_ON' | transloco }}
+          </span>
+          <span>
+            {{ title?.createdDate | date: 'shortDate' }}
+          </span>
+        </div>
+      }
+      @if (title?.expirationDate) {
+        <div class="flex gap-1 items-end">
+          <mat-icon class="s-4" [ngClass]="{ hidden: title?.removeCreatedDateIcon }">hourglass</mat-icon>
+          <span>{{ 'UI.TITLE.TEMPORARY_MISSION_EXPIRATION_DATE' | transloco }} </span>
+          <span>
+            {{ title?.expirationDate | date: 'shortDate' }}
+          </span>
+        </div>
+      }
+      @if (title?.creatorName) {
+        <div class="flex gap-1 items-end">
+          <mat-icon class="s-4">assignment_ind</mat-icon>
+          <span>
+            {{ 'UI.TITLE.CREATED_BY' | transloco }}
+          </span>
+          <span>
+            {{ title?.creatorName }}
+          </span>
+        </div>
+      }
+      @if (showRating) {
+        <div class="flex gap-0.5 items-end">
+          <mat-icon class="s-4">star</mat-icon>
+          <span> {{ (title?.rating | number: '1.0-1' : 'en') || '-' }}</span>
+          @if (title?.ratings_total > 0) {
+            <span>({{ (title?.ratings_total | number: '1.0-1' : 'en') || '-' }}) </span>
+          }
+        </div>
+      }
+      @if (showMissionsCount) {
+        <div class="flex gap-0.5 items-end">
+          <mat-icon class="s-4 p-[1px]">rocket_launch</mat-icon>
+          <span
+            >{{ 'UI.GENERAL.MISSIONS' | transloco }}:&nbsp;{{
+              (title?.missionCount | number: '1.0-1' : 'en') || '-'
+            }}</span
+          >
+        </div>
+      }
+      @if (showPulsesCount) {
+        <div class="flex gap-0.5 items-end">
+          <mat-icon class="s-4 p-[1px]" svgIcon="pulse"></mat-icon>
+          <span
+            >{{ 'UI.GENERAL.PULSES' | transloco }}:&nbsp;{{
+              (title?.pulsesCount | number: '1.0-1' : 'en') || '-'
+            }}</span
+          >
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="flex flex-col">
+    <ngx-skeleton-loader [theme]="titleLoaderTheme"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="subtitleLoaderTheme"></ngx-skeleton-loader>
+  </div>
+}

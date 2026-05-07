@@ -1,0 +1,15 @@
+{
+  "extends": ["../../.stylelintrc.json"],
+  "ignoreFiles": ["!**/*", "artifacts/**/*.css", "src/app/layout/**/*.scss", "src/@fuse/**/*.scss"],
+  "overrides": [
+    {
+      "files": ["**/*.scss", "**/*.ts"],
+      "rules": {
+        "selector-class-pattern": null,
+        "no-descending-specificity": null,
+        "no-duplicate-selectors": null,
+        "media-feature-range-notation": null
+      }
+    }
+  ]
+}

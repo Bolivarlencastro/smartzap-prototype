@@ -1,0 +1,21 @@
+@if (!isDraggingOver) {
+  <button mat-flat-button type="button" class="kp-image-upload-button" (click)="uploadClick()">
+    <mat-icon>upload</mat-icon>
+    {{ 'UI.IMAGE_UPLOAD.SELECT_IMAGE' | transloco }}
+  </button>
+}
+
+<input
+  hidden
+  type="file"
+  accept="image/jpeg, image/png, image/webp, image/avif"
+  data-test="image-upload-input"
+  #fileInput
+  (change)="onFileInputChange($event)"
+/>
+@if (isDraggingOver) {
+  <div class="absolute inset-0 grid place-content-center justify-items-center pointer-events-none">
+    <mat-icon class="s-12">upload</mat-icon>
+    {{ 'UI.IMAGE_UPLOAD.DROP_IMAGE_TO_LOAD' | transloco }}
+  </div>
+}

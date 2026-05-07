@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  .kp-docs-viewer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .download-blocker {
+    bottom: 0;
+    right: 0;
+
+    &.text {
+      background: white;
+    }
+
+    &.presentation {
+      background: #444;
+      bottom: 1px;
+      right: 1px;
+    }
+
+    &.spreadsheet {
+      background: linear-gradient(180deg, rgb(63 65 68) 0%, rgb(53 55 57) 100%);
+    }
+  }
+}

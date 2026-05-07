@@ -1,0 +1,626 @@
+{
+  "API": {
+    "ERROR": {
+      "ENROLLMENT_IN_PROGRESS": "Informed user is already enrolled in a course.",
+      "UPLOAD_IMAGE": "This image could not be uploaded."
+    }
+  },
+  "BILLING": {
+    "ACCUMULATED_BALANCE": "Accumulated balance",
+    "CURRENT_CYCLE": "Current cycle",
+    "HISTORY": "History",
+    "HISTORY_BALANCE": "Balance",
+    "HISTORY_CREDIT": "Credit",
+    "HISTORY_CYCLE": "Cycle",
+    "HISTORY_USED": "Used",
+    "MESSAGE": "message",
+    "MESSAGES": "messages",
+    "MONTHLY_PLAN": "Monthly plan"
+  },
+  "CONTENT": {
+    "ADD": "Add Content",
+    "BUTTON": {
+      "BLOG": "Blog",
+      "EXCEL": "Excel",
+      "FILE": "File",
+      "IMAGE": "Image",
+      "LINK": "Link",
+      "OTHERS": "Others",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "POWERPOINT": "PowerPoint",
+      "PRESENTATION": "Slides",
+      "QUESTION": "Evaluative Quiz",
+      "SPREADSHEET": "Spreadsheet",
+      "SURVEY_QUESTION": "Survey Quiz",
+      "TEXT": "Text",
+      "TOOLTIP": {
+        "EXCEL": "XLS, XLSX",
+        "IMAGE": "JPEG, JPG, PNG, GIF",
+        "PDF": "PDF",
+        "PODCAST": "MP3",
+        "POWERPOINT": "PPTX",
+        "VIDEO": "MP4, M4A, WAV, MPEG",
+        "WORD": "DOCX"
+      },
+      "VIDEO": "Video",
+      "WORD": "Word"
+    },
+    "FIELD_LABEL_LINK": "Enter a valid url of ",
+    "FILE_SELECTED": "File Selected",
+    "NAME": "Content Name",
+    "QUIZ_NAME": "Quiz title"
+  },
+  "COURSE": {
+    "DETAIL": {
+      "AVATAR": "Course created by",
+      "BUTTON": {
+        "EDIT": "Edit",
+        "MANAGER": "Manage enrollments",
+        "PUBLISH": "Publish course",
+        "REPORTS": "Generate reports",
+        "TRANSFER": "Transfer"
+      },
+      "CONFIRM_DELETE_MESSAGE": "When you delete this course, enrollments in progress will be deleted and no further messages will be sent.\n\nBackup: your course will be saved and the backup available for download via the notifications menu for up to 60 days.",
+      "CONFIRM_DELETE_TITLE": "Confirm Delete",
+      "CONFIRM_EDIT_MESSAGE": "When editing this course, enrollments started prior to editing will not be changed, messages will be sent in the order and time frame prior to the change. If you want users to take the course in the new version, you must delete enrollments and re-enroll in this course. ",
+      "CONFIRM_EDIT_TITLE": "Attention!",
+      "DURATION": "{{value}} hours",
+      "EMPTY_SUMMARY": "This course does not have a description yet.",
+      "ENROLLED": "{{value}} people",
+      "FINISHED": "{{value}} people",
+      "SCORE": "{{value}} points",
+      "SUBTITLE": "Course created at {{value}}"
+    },
+    "FORM": {
+      "BUTTON": {
+        "LESSON": "Create lesson",
+        "NEW_CONTENT": "New Content",
+        "PUBLISH": "Publish the Course",
+        "QUESTION": "Question",
+        "REVIEW": "Review and Publish"
+      },
+      "DIALOG": {
+        "EDIT_CONTENT_TITLE": "Edit Course",
+        "EDIT_LESSON_TITLE": "Edit Lesson",
+        "REMOVE_CONTENT_MESSAGE": "Do you really want to delete this content?",
+        "REMOVE_CONTENT_TITLE": "Attention!",
+        "REMOVE_LESSON_MESSAGE": "Removing this lesson will also remove all linked content. Do you really want to remove this lesson?",
+        "REMOVE_LESSON_TITLE": "Attention!"
+      },
+      "EMPTY_CONTENT": "This course has no content yet.",
+      "ERROR": {
+        "BY_FIELD": {
+          "DESCRIPTION": {
+            "LINE BREAKS ARE NOT ACCEPTED": "Line breaks are not accepted in the description.",
+            "LONGER THAN MAXIMUM LENGTH 200": "You must enter a description of less than 200 characters"
+          },
+          "NAME": {
+            "LONGER THAN MAXIMUM LENGTH 100": "You must enter a name less than 100 characters"
+          }
+        },
+        "MAX_DESCRIPTION": "You must enter a description of less than 200 characters",
+        "REQUIRED_CATEGORY": "Please enter a category for the course.",
+        "REQUIRED_DESCRIPTION": "Required to provide a description for the course.",
+        "REQUIRED_LANGUAGE": "Please enter the language of the course.",
+        "REQUIRED_NAME": "Please provide the name of the course."
+      },
+      "FIELD_DESCRIPTION": {
+        "EXTRA_ADJUSTMENTS_TITTLE": "Extra Adjustments",
+        "EXTRA_ADJUSTMENTS_HINT": "Customize the course experience with navigation, dropout, and certification options.",
+        "PERFORMANCE_CALCULATION_TITTLE": "Performance Calculation",
+        "PERFORMANCE_CALCULATION_HINT": "Adjust the importance of Content and Quiz in the performance evaluation.",
+        "PERFORMANCE_CALCULATION_SLIDER": "The slider adjustment sets weights that directly influence the users' final grade!"
+      },
+      "INPUT": {
+        "ASSESSMENT": "Assessment",
+        "CATEGORY": "Category",
+        "CONTENT_ANTECIPATION": "Allow advancing content?",
+        "DESCRIPTION": "Description",
+        "DISABLE_SENDING_CERTIFICATE": "Disable sending of certificate?",
+        "DISPATCH_IN": "Send to",
+        "DISPATCH_IN_OPTION": "{{value}} day after enrollment",
+        "DISPATCH_IN_OPTION_PLURAL": "{{value}} days after enrollment",
+        "DROP_OUT": "Allow dropout?",
+        "IS_ACTIVE": "Active course?",
+        "LANGUAGE": "Language",
+        "LESSON": "Lesson Name",
+        "BANNER_IMAGE": "Banner Image",
+        "CARD_IMAGE": "Card Image",
+        "MESSAGE_DESCRIPTION": "Introductory Message",
+        "NAME": "Course Name"
+      },
+      "QUIZ": {
+        "QUESTION": {
+          "DELETE_NOTICE": "Delete question",
+          "DELETE_QUESTION": "Do you really want to delete this question from the quiz? This action cannot be undone.",
+          "DIALOG": {
+            "BUTTON_ADD_OPTION": "Add Option",
+            "FIELD_LABEL_OPTION": "Describe the {{value}}º option",
+            "FIELD_LABEL_QUESTION": "Please describe the issue",
+            "MESSAGE_WARNING": "Select the correct option!",
+            "TITLE_EDIT": "Edit Question",
+            "TITLE_NEW": "New Question",
+            "QUESTION_TYPE": "Question Type",
+            "CHOICE": "Multiple Choice",
+            "TEXT": "Open Text",
+            "PLACEHOLDER_TEXT": "Ex: What is your level of satisfaction with the course?"
+          },
+          "EMPTY_LIST_MESSAGE": "Register your first question"
+        }
+      },
+      "SUBTITLE": "Start by filling in the basic course information.",
+      "NAVIGATION": {
+        "SUBTITLE": "Structure the course in clear steps and only move forward when each block is ready.",
+        "INFORMATION": "Configure your course data.",
+        "IMAGES": "Define your course images.",
+        "CONFIGURATIONS": "Adjust the settings for course display and use.",
+        "CONTENTS": "Add content to your course.",
+        "FINISH": "Publish your course."
+      },
+      "TABS": {
+        "CONFIGURATIONS": "Settings",
+        "CONTENTS": "Contents",
+        "FINISH": "Finish",
+        "IMAGES": "Images",
+        "INFORMATION": "Information"
+      },
+      "TITLE": {
+        "EDIT": "Course edition",
+        "NEW": "Create a new course",
+        "TIMELINE": "Course Timeline"
+      },
+      "FINISH": {
+        "TITLE": {
+          "CREATING": "Course created successfully!",
+          "PROCESSING": "Course being processed!",
+          "REVIEWING": "Course awaiting review!",
+          "FINISHED": "Course published!"
+        },
+        "MESSAGE": {
+          "DEFAULT": "Review the details and publish your course when ready."
+        }
+      }
+    },
+    "MESSAGE": {
+      "ACTION_FALILURE": "We were unable to perform this action.",
+      "CREATED": "Course created.",
+      "DELETED": "Course removed.",
+      "EXAM_CREATE_ERROR": "Couldn't create Quiz",
+      "LESSON_CONTENT_CREATE_ERROR": "We were unable to save this content",
+      "LESSON_CONTENT_DELETE_ERROR": "It was not possible to delete this content",
+      "LESSON_CONTENT_EDIT_ERROR": "Couldn't edit content",
+      "LESSON_CONTENT_INVALID_FILE_ERROR": "We were unable to save this content. Check if the file is supported and try again",
+      "LESSON_CONTENT_TIMEOUT_ERROR": "The server took too long to process the file. Check the file size and try again",
+      "LESSON_CREATE_ERROR": "Couldn't create the lesson",
+      "LESSON_DELETE_ERROR": "The lesson could not be deleted",
+      "LESSON_EDIT_ERROR": "The lesson could not be edited",
+      "NOT_FOUND": "The course you are looking for does not exist.",
+      "DESCRIPTION_UPDATED": "Description updated successfully.",
+      "DESCRIPTION_UPDATE_ERROR": "Could not update the description.",
+      "PUBLISH": "Course published successfully.",
+      "PUBLISH_ERROR": "We were unable to publish this course",
+      "UPDATED": "Course updated."
+    }
+  },
+  "COURSES": {
+    "CREATE": "Create",
+    "SEARCH": "Search for...",
+    "TITLE": "Courses"
+  },
+  "COURSE_LIST": {
+    "CATEGORY": "Category",
+    "COMPLETED": "Finis.",
+    "CREATION": "Creation",
+    "SUBSCRIBERS": "Subscribers",
+    "OWNER": "Owner"
+  },
+  "COURSE_SIDE_MENU": {
+    "COURSE_TOTAL": "total courses",
+    "SUBTITLE": "See the main information in this data table.",
+    "TITLE": "Summary"
+  },
+  "ENROLLMENTS": {
+    "BUTTON": {
+      "BATCH_ENROLL": "Batch enroll",
+      "DIALOG_UPLOAD": "Select the File",
+      "DOWNLOAD": "Import template",
+      "INDIVIDUAL_ENROLL": "Single enroll",
+      "NEW": "Enroll"
+    },
+    "DIALOG_CREATE_TITLE": "User Registration and Registration",
+    "DIALOG_UPLOAD_SUBTITLE": "Registration and Enrollment",
+    "DIALOG_UPLOAD_TITLE": "Import Users",
+    "EMPTY_STATE": {
+      "CTA": "Enroll user",
+      "DESCRIPTION": "Add participants to this course to track start, progress, and completion in one place.",
+      "TITLE": "This course has no enrollments yet"
+    },
+    "ERROR": {
+      "INVALID_FILE": "Invalid file, must be .xlsx less than 10mb"
+    },
+    "IMPORT_ERROR_DIALOG_MESSAGE": "Some of the records in the spreadsheet could not be imported.",
+    "INPUT": {
+      "FILTER": "Enter the name of a user ..."
+    },
+    "MESSAGE": {
+      "IMPORT_ERROR": "The enrollments could not be imported.",
+      "IMPORT_WARN": "IMPORTANT: Phones must be filled in completely, with DDI and DDD (ex .: 55 48 999990000).",
+      "REMOVE_ERROR": "This registration could not be removed"
+    },
+    "TABLE": {
+      "END_DATE": "End",
+      "START_DATE": "Start"
+    },
+    "STATISTICS": {
+      "COMPLETED": "Completed",
+      "STARTED": "In progress",
+      "SUBTITLE": "Summary of this class enrollments",
+      "TITLE": "Statistics",
+      "TOTAL": "Total enrollments",
+      "TOTAL_PENDING_MESSAGES": "Pending messages",
+      "TOTAL_SENT_MESSAGES": "Sent messages",
+      "WAITING": "Waiting"
+    },
+    "TABS": {
+      "ENROLLMENTS_ERROS": "Registration errors",
+      "USERS_ERROS": "User Errors"
+    },
+    "TITLE": "Enrollments"
+  },
+  "ERRORS": {
+    "401": {
+      "MESSAGE": "Sorry, but you do not have access to the page you are looking for."
+    },
+    "UNABLE_TO_DELETE_QUESTION": "Unable to perform the deletion.",
+    "UNABLE_TO_EDIT_QUESTION": "The edit could not be performed."
+  },
+  "GENERAL": {
+    "APPLY": "Apply",
+    "ASSESSMENT": {
+      "CONTENT": "Evaluation by content consumption",
+      "FULL": "Content plus Quiz",
+      "QUIZ": "Evaluation only by Quizzes"
+    },
+    "APPS_SERVICES": {
+      "SMARTZAP_SETTINGS": {
+        "COURSES_PORTAL_URL": {
+          "INPUT_LABEL": "Courses portal URL",
+          "TOOLTIP": "URL used in SmartZap messages to direct users to the courses catalog."
+        },
+        "ENROLLMENT_IDLE_DAYS_LIMIT": {
+          "INPUT_LABEL": "Inactivity cancellation (days)",
+          "TOOLTIP": "Number of days without interaction before enrollment is automatically canceled. Value between 7 and 30 days."
+        },
+        "INTERACT_WITH_RANDOM_MESSAGE": {
+          "INPUT_LABEL": "Bot responses",
+          "TOOLTIP": "Sends a default reply when users send messages outside the course flow."
+        },
+        "MESSAGES_CONTENT_EMBED": {
+          "INPUT_LABEL": "WhatsApp content delivery",
+          "TOOLTIP": "Defines whether content is sent embedded in WhatsApp or through links. Workspace-level setting (read-only on this screen)."
+        },
+        "SEND_COURSE_REMINDER_MESSAGE": {
+          "INPUT_LABEL": "Re-engagement",
+          "TOOLTIP": "If the user does not request the next content within 24 hours, sends a reminder to continue the course."
+        },
+        "SEND_COURSES_RECOMMENDATION_MESSAGE": {
+          "INPUT_LABEL": "Course recommendations",
+          "TOOLTIP": "After course completion, sends a recommendation for another available catalog course after 1 day. No retroactive sends."
+        },
+        "USER_TOKEN_EXPIRATION": {
+          "INPUT_LABEL": "Link expiration (days)",
+          "TOOLTIP": "Defines in how many days sent links (such as quiz links) expire."
+        }
+      }
+    },
+    "BACK": "Back",
+    "CANCEL": "Cancel",
+    "CATEGORIES": "Categories",
+    "CATEGORY": {
+      "Communications": "Comunicaciones",
+      "Design": "Diseño",
+      "Development": "Desarrollo",
+      "Digital Marketing": "Marketing digital",
+      "Entrepreneurship": "Emprendimiento",
+      "Finance": "Finanzas",
+      "Financial Education": "Educación financiera",
+      "Health and Fitness": "Salud y forma física",
+      "Language": "Idiomas",
+      "Leadership": "Liderazgo",
+      "Lifestyle": "Estilo de vida",
+      "Management": "Gestión",
+      "Marketing": "Marketing",
+      "Office Productivity": "Productividad de oficina",
+      "Personal Development": "Desarrollo personal",
+      "Project Management": "Gestión de proyectos",
+      "Sales": "Ventas",
+      "Social Media": "Social Media",
+      "Strategy": "Estrategia",
+      "Technology": "Tecnología",
+      "Web Design": "Diseño web",
+      "all": "Todas las categorías"
+    },
+    "CHANGE_WORKSPACE": "Change Workspace",
+    "CLEAR": "Clear",
+    "CLOSE": "Close",
+    "CONFIGURATIONS_UPDATE_FAILED": "Error updating settings",
+    "CONFIGURATIONS_UPDATED": "Settings updated successfully!",
+    "CONTENT": "Content",
+    "DELETE": "Delete",
+    "DESCRIPTION": "Description",
+    "DURATION": "Duration",
+    "EDIT": "Edit",
+    "EMAIL": "Email",
+    "EMPTY_LIST": "No results found.",
+    "ENROLL": "Subscribe",
+    "ENROLLMENT": "Enrollments",
+    "ENROLLMENTS": "Subscribers",
+    "ERROR": "Errors",
+    "ERRORPHONE": "Phone is required",
+    "ERRORXLS": "The user has an enrollment in progress. Users can re-enroll in the same course when has an enrollment completed or drop outed",
+    "ERROR_NAME": "Name is required",
+    "EXPORT_REPORT": "Export The Report",
+    "FAVORITE": "Favorite",
+    "FILTER": "Filter",
+    "FINISHED": "Finished",
+    "GIVEUP": "Give up",
+    "GOAL": "Goal",
+    "LANGUAGE": "Language",
+    "LANGUAGES": {
+      "en": "English",
+      "es": "Spanish",
+      "es-co": "Spanish - Colombia",
+      "pt-br": "Portuguese - Brazil",
+      "pt-pt": ""
+    },
+    "LESSONS": "View",
+    "LINK": "Link",
+    "LOADING": "Loading ...",
+    "LOGOUT": "Log out",
+    "MENU": "Menu",
+    "MORE_INFO": "More Info",
+    "MY_PROGRESS": "My progress",
+    "NAME": "Name",
+    "NEW": "New",
+    "NEXT": "Next",
+    "PREVIOUS": "Previous",
+    "NO_DESCRIPTION": "No description",
+    "OK": "OK",
+    "OPEN": "Open",
+    "PERFORMANCE": "Performance",
+    "PERIOD": "Period",
+    "PHONE": "Phone",
+    "POINTS": "Points",
+    "PREVIUS": "Previous",
+    "PROFILE": "Profile",
+    "PUBLISH": "Publish",
+    "QUIZ": "Quiz",
+    "REMOVE": "Remove",
+    "REPORT": "Generate Reports",
+    "REQUIRED_INPUT": "Required field",
+    "RETAKE": "Resume",
+    "SAVE": "Save",
+    "SAVE_AND_ADVANCE": "Save and advance",
+    "SCORE": "Score",
+    "SEARCH": "Search",
+    "SELECTED_USERS": "Selected user(s)",
+    "START": "Start",
+    "STATUS": "Status",
+    "SUBSCRIPTION_REMOVED": "Subscription removed successfully",
+    "SUCCESSFULLY_ADDED": "Added successfully",
+    "SUCCESSFULLY_REMOVED": "Removed successfully",
+    "SUCCESSFULLY_SUBSCRIBED": "Successfully subscribed",
+    "SUMMARY": "Summary",
+    "SYNC": "Sync",
+    "TAGS": "Tags",
+    "TIME": "Time",
+    "TIMEZONE": "Timezone",
+    "USERS": "Users",
+    "VIEW": "View",
+    "WAIT": "Wait ...",
+    "WARN": "Warning!"
+  },
+  "KP-FILTER": {
+    "SAVE_AS_FAVORITE": "Save as Favorite"
+  },
+  "MAT-PAGINATOR": {
+    "FIRST_PAGE": "First page",
+    "ITEMS_PER_PAGE": "Items per page",
+    "LAST_PAGE": "Last page",
+    "NEXT_PAGE": "Next page",
+    "PAGE_OF": "from",
+    "PREV_PAGE": "Previous Page"
+  },
+  "NAVIGATION": {
+    "ADMIN": "Admin",
+    "CONFIGURATION": "Configuration",
+    "COURSES": "Courses",
+    "ENROLLMENTS": "Enrollments",
+    "GENERAL": "General",
+    "HELP": "Help",
+    "PUSH_MANAGER": "Push",
+    "SETTINGS": "Management Panel",
+    "USERS": "Users"
+  },
+  "PERIOD": {
+    "AFTERNOON": "Afternoon",
+    "MORNING": "Morning",
+    "NIGHT": "Night"
+  },
+  "REPORTS": {
+    "ACTIVITY": "User Activity",
+    "Activities Report CSV": "Report User Activity",
+    "COMPLETED": "Completed enrollments",
+    "Completed Enrollments Report CSV": "Completed Enrollments Report",
+    "DIALOG_TITLE": "Heads up!",
+    "DOWNLOAD": "Click to download",
+    "Error generating report": "Error generating report",
+    "In Progress Enrollments Report CSV": "Enrollment report in progress",
+    "PROCESSING": "Report in Process",
+    "PROCESSING_ERROR": "Error generating report",
+    "PROGRESS": "In-progress enrollments",
+    "QUIZZES": "Quiz answers",
+    "Quizzes Report CSV": "Quiz Reports",
+    "Smartzap Course Overview PDF": "PDF Course Overview Report",
+    "User Consumption Report CSV": "User Consumption Report",
+    "USERS": "Users report",
+    "USERS_CONSUMPTION": "Users Consumption",
+    "Users Report CSV": "Users report",
+    "FILTERS": {
+      "CLEAR": "Clear Filters",
+      "TITLE": "Report Filters"
+    },
+    "GENERATE": "Generate Report",
+    "WARN": "The report is being generated in the background. Wait for the notification to download",
+    "You have a course for review and publish": "You have a course for review and publish",
+    "Your course backup is available for download": "Your course backup is available for download"
+  },
+  "SETTINGS": {
+    "GENERAL": {
+      "SECTIONS": {
+        "COMMUNICATION": {
+          "DESCRIPTION": "Configure automated messaging routines and bot response behavior on WhatsApp.",
+          "TITLE": "Communication"
+        },
+        "ENROLLMENT_ACCESS": {
+          "DESCRIPTION": "Set inactivity cancellation rules and expiration periods for sent links.",
+          "TITLE": "Enrollment and Access"
+        },
+        "PORTAL": {
+          "DESCRIPTION": "Provide the courses portal used in messages to direct users to the catalog.",
+          "TITLE": "Courses Portal"
+        }
+      },
+      "TITLE": "General"
+    },
+    "ENROLLMENTS": {
+      "CANCEL_ENROLLMENT": "Cancel enrollment",
+      "CONFIRM_CANCEL_MESSAGE": "Do you really want to cancel this enrollment?",
+      "CONFIRM_CANCEL_TITLE": "Cancel enrollment",
+      "CONFIRM_DELETE_MESSAGE": "Do you really want to delete this enrollment?",
+      "CONFIRM_DELETE_TITLE": "Delete enrollment",
+      "CONFIRM_REENROLL_MESSAGE": "Do you want to re-enroll this user?",
+      "CONFIRM_REENROLL_TITLE": "Re-Enroll",
+      "DELETE_ENROLLMENT": "Delete enrollment",
+      "DOWNLOAD_CERTIFICATE": "Download certificate",
+      "EMPTY_STATE": {
+        "CTA": "View courses",
+        "DESCRIPTION": "User enrollments in published courses will appear here. To get started, open a course and enroll your first participants.",
+        "TITLE": "There are no enrollments to display yet"
+      },
+      "FILTER": {
+        "DATE": "Period",
+        "END_DATE": "Completion date",
+        "SEARCH_LABEL": "Search by user or phone",
+        "START_DATE": "Start date",
+        "STATUS": "Status",
+        "TITLE": "What are you looking for?"
+      },
+      "REENROLL": "Re-Enroll",
+      "REENROLL_ERROR_MESSAGE": "The user has an enrollment in progress in another course, it must be completed so that the user can be re-enrolled in another course.",
+      "REENROLL_ERROR_TITLE": "This action cannot be performed",
+      "STATISTICS": {
+        "SUBTITLE": "Track the main enrollment indicators",
+        "TITLE": "Summary",
+        "STARTED_ENROLLMENTS": "Open enrollments",
+        "TOTAL_PENDING_MESSAGES": "Forecast of messages to be sent",
+        "TOTAL_SENT_MESSAGES": "Total messages sent",
+        "TOTAL_SENT_MESSAGES_PERIOD": "Messages sent in the month",
+        "TOTAL_USERS": "Total users",
+        "WAITING_ENROLLMENTS": "Waiting confirmation"
+      },
+      "TABLE": {
+        "COURSE": "Course",
+        "END_DATE": "End",
+        "MESSAGES": "Msg.",
+        "NAME": "Name",
+        "PERFORMANCE": "Perf.",
+        "PHONE": "Phone",
+        "START_DATE": "Start",
+        "STATUS": "Status"
+      },
+      "TITLE": "Enrollments management",
+      "VIEW_ACTIVITIES": "View activities"
+    },
+    "TITLE": "Management panel"
+  },
+  "STATUS": {
+    "CANCELED": "Canceled",
+    "COMPLETED": "Completed",
+    "CREATING": "In Creation",
+    "DELIVERED": "Delivered",
+    "DELETING": "Deleting",
+    "DROPOUT": "Dropout",
+    "EMPTY": "No Status",
+    "FINISHED": "Published",
+    "INACTIVE": "Inactive",
+    "NULL": "No Status",
+    "PENDING": "Pending",
+    "PROCESSING": "Processing",
+    "REFUSED": "Refused",
+    "REVIEWING": "Awaiting Review",
+    "SENT": "Sent",
+    "STARTED": "Started",
+    "TOOLTIP": {
+      "CANCELED": "Enrollment canceled",
+      "COMPLETED": "User has completed studies",
+      "DROPOUT": "Dropout",
+      "REFUSED": "User did not accept to participate in the course",
+      "STARTED": "User started studies",
+      "WAITING": "Waiting for user to accept to participate"
+    },
+    "WAITING": "Waiting"
+  },
+  "TRACKING": {
+    "CONSUME": "Consumption",
+    "CONTENT": "Content",
+    "DELIVER_STATUS": {
+      "DELIVERED": "Delivered",
+      "ERROR": "Error",
+      "WAITING": "Waiting"
+    },
+    "EMAIL": "E-mail",
+    "ENROLLMENT_STATUS": "Status",
+    "FIRST_ACCESS": "First Access",
+    "LAST_ACCESS": "Last Access",
+    "LINK_SEND_ERROR": "Error sending link",
+    "LINK_SEND_SUCCESS": "Content resent to the user. This message will be computed in your billing.",
+    "PHONE": "Phone",
+    "POINTS": "Points",
+    "PROGRESS": "Progress",
+    "RESEND": "Resend link",
+    "STATUS": "Status",
+    "TITLE": "User course activities",
+    "USER": "User"
+  },
+  "TRANSFER": {
+    "ERROR": "Error while trying to transfer the course.",
+    "SUCCESS": "Transfer successful.",
+    "TITLE": "Transfer course"
+  },
+  "USERS": {
+    "ADD": "Add user",
+    "DIALOG_REMOVE_MESSAGE": "You are removing a user, all activities for that user will be deleted as well. Do you really want to continue?",
+    "DIALOG_REMOVE_SELECTED_MESSAGE": "You are removing one or more selected users. All activities of those users will be deleted as well. Do you really want to continue?",
+    "INPUT": {
+      "FILTER": "Search by user, email or phone"
+    },
+    "REMOVE_SELECTED": "Remove selected",
+    "SELECT_ALL": "Select all users",
+    "STATUS": {
+      "NOT_SYNCED": "Not synced",
+      "SYNCED": "Synced"
+    },
+    "TABLE": {
+      "NAME": "User",
+      "PHONE": "Cell phone"
+    },
+    "SYNC_ERRORS": {
+      "phone_conflict": "Phone conflict",
+      "phone_not_reported": "Phone not reported",
+      "phone_ok": "Account with unsynchronized phone number. Check the data in My Account!"
+    },
+    "TITLE": "User list"
+  }
+}

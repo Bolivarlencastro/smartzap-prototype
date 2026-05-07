@@ -1,0 +1,10 @@
+@use 'sass:map';
+
+@mixin mission-transfer-theme {
+  app-mission-transfer-dialog {
+    .detail-container {
+      background-color: var(--mat-sys-surface-container) !important;
+      color: var(--mat-sys-on-surface) !important;
+    }
+  }
+}

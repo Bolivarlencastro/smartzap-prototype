@@ -1,0 +1,33 @@
+<button
+  mat-stroked-button
+  type="button"
+  class="h-9 px-3 text-sm flex items-center border rounded-lg item"
+  [ngClass]="{
+    'bg-primary text-on-primary border-none': hasSelection,
+    'rounded-tr-none rounded-br-none': hasSelection && displayCloseButton,
+  }"
+  [disabled]="disabled"
+  (click)="select.toggle()"
+>
+  <div class="flex gap-2 items-center">
+    @if (hasSelection) {
+      <mat-icon class="s-6">check</mat-icon>
+    } @else {
+      <ng-content select="mat-icon"></ng-content>
+    }
+    <span class="font-normal">
+      {{ label }}
+    </span>
+  </div>
+</button>
+@if (hasSelection && displayCloseButton) {
+  <button
+    mat-button
+    type="button"
+    (click)="clearSelection()"
+    class="h-9 rounded-none rounded-tr-lg rounded-br-lg bg-primary text-on-primary flex items-center min-w-4 p-2"
+  >
+    <mat-icon class="s-6">close</mat-icon>
+  </button>
+}
+<ng-content></ng-content>

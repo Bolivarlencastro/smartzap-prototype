@@ -1,0 +1,62 @@
+<h2 mat-dialog-title class="quiz-dialog-title">
+  <span>{{ title() | transloco }}</span>
+  <button mat-icon-button (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<mat-dialog-content class="quiz-dialog-content">
+  <p class="quiz-dialog-description">{{ 'QUIZ.QUIZ_DIALOG.DESCRIPTION' | transloco }}</p>
+
+  <mat-form-field appearance="outline" class="quiz-dialog-name-field">
+    <input
+      matInput
+      [formField]="formService.quizForm.title"
+      [placeholder]="'QUIZ.QUIZ_DIALOG.NAME_PLACEHOLDER' | transloco"
+    />
+  </mat-form-field>
+
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
+    <mat-tab>
+      <ng-template mat-tab-label>{{ 'QUIZ.QUIZ_DIALOG.TABS.QUESTIONS' | transloco }} </ng-template>
+      <ng-template matTabContent>
+        @if (formService.questionCount() === 0) {
+          <div class="quiz-dialog-empty-state">
+            <p>{{ 'QUIZ.QUIZ_DIALOG.QUESTIONS_EMPTY' | transloco }}</p>
+          </div>
+        } @else {
+          <mat-accordion class="quiz-dialog-questions" multi>
+            @for (questionModel of formService.questionModels; track questionModel; let i = $index) {
+              <qz-quiz-question-form
+                [index]="i + 1"
+                [isEditing]="isEditing()"
+                [canDelete]="canDeleteQuestion()"
+                [questionForm]="questionModel"
+                (titleChange)="onTitleChange(i, $event)"
+                (deleted)="onDeleteQuestion(i)"
+                (addOption)="addQuestionOption(i)"
+                (removeOption)="removeQuestionOption(i, $event)"
+              />
+            }
+          </mat-accordion>
+        }
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>{{ 'QUIZ.QUIZ_DIALOG.TABS.SETTINGS' | transloco }} </ng-template>
+      <ng-template matTabContent>
+        <qz-quiz-settings-form [quizForm]="formService.quizForm" />
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+  <qz-quiz-dialog-footer
+    [isPublishDisabled]="isPublishDisabled()"
+    (cancelled)="onCancel()"
+    (published)="onPublish()"
+    (addQuestion)="onAddQuestion()"
+    (questionBankClicked)="onQuestionBankClicked()"
+    (importSpreadsheet)="onImportSpreadsheet()"
+  />
+</mat-dialog-actions>

@@ -1,0 +1,374 @@
+{
+  "CHANNELS": {
+    "DIALOG": {
+      "ENROLLED": {
+        "EMPTY_STATE": "Ningún subordinado de tu equipo inscrito en este canal."
+      },
+      "ENROLLED_COUNT": {
+        "PLURAL": "Subordinados Inscritos",
+        "SINGULAR": "Subordinado Inscrito"
+      },
+      "NOT_ENROLLED": {
+        "EMPTY_STATE": "Todos los subordinados de tu equipo están inscritos en este canal."
+      },
+      "PULSES": {
+        "EMPTY_STATE": "No hay pulsos en este canal."
+      },
+      "PULSE_IN_CHANNEL": {
+        "PLURAL": "Pulsos en el Canal",
+        "SINGULAR": "Pulso en el Canal"
+      },
+      "TITLE": "Detalles del Canal"
+    },
+    "FILTER": {
+      "SEARCH": "Buscar por nombre del canal..."
+    },
+    "LIST": {
+      "NAME": "Nombre",
+      "PULSES": "Pulses",
+      "ENROLLED_COUNT": "Inscritos",
+      "LAST_ACTIVITY": "Última actividad",
+      "GENERAL_PROGRESS": "Progreso general",
+      "EMPTY_TITLE": "No hay canales para mostrar",
+      "EMPTY_MESSAGE": "No hay canales disponibles para este equipo."
+    }
+  },
+  "COURSES": {
+    "DIALOG": {
+      "ASSOCIATED_TO_TRAILS": {
+        "EMPTY_STATE": "Este curso no está asociado a ninguna ruta."
+      },
+      "ENROLLED_COUNT": {
+        "PLURAL": "Subordinados Inscritos",
+        "SINGULAR": "Subordinado Inscrito"
+      },
+      "ENROLLMENTS": {
+        "EMPTY_STATE": "Ningún subordinado de tu equipo inscrito en este curso."
+      },
+      "NOT_ENROLLED": {
+        "EMPTY_STATE": "Todos los subordinados de tu equipo están matriculados en este curso."
+      },
+      "OVERDUE_COUNT": {
+        "PLURAL": "Matrículas Vencidas",
+        "SINGULAR": "Matrícula Vencida"
+      },
+      "TITLE": "Detalles del Curso"
+    },
+    "FILTER": {
+      "SEARCH": "Buscar por nombre del curso.."
+    },
+    "LIST": {
+      "NAME": "Nombre",
+      "DURATION": "Duración",
+      "ENROLLED_COUNT": "Inscripciones",
+      "OVERDUE_COUNT": "Aprendices atrasados",
+      "CONCLUSION_RATE": "Tasa de finalización",
+      "AVERAGE_PROGRESS": "Progreso promedio",
+      "EMPTY_TITLE": "Ningún curso para mostrar",
+      "EMPTY_MESSAGE": "No hay cursos disponibles para este equipo."
+    }
+  },
+  "EVENTS": {
+    "DIALOG": {
+      "ENROLLED_COUNT": {
+        "PLURAL": "Subordinados Inscritos",
+        "SINGULAR": "Subordinado Inscrito"
+      },
+      "LIVE": "Online",
+      "NOT_REGISTERED": {
+        "EMPTY_STATE": "Todos los subordinados están inscritos."
+      },
+      "PRESENTIAL": "Presencial",
+      "TEAM_PARTICIPANTS": {
+        "EMPTY_STATE": "Ningún subordinado inscrito."
+      },
+      "TITLE": "Detalles del Evento"
+    },
+    "FILTER": {
+      "SEARCH": "Buscar por nombre del evento.."
+    },
+    "LIST": {
+      "NAME": "Nombre",
+      "ENROLLED_COUNT": "Inscritos",
+      "DATE": "Fecha",
+      "STATUS": "Estado",
+      "PARTICIPATION_RATE": "Participación",
+      "ATTENDANCE_DISPLAY": "{hasData, select, true{{rate, number, ::percent} ({attended} de {enrolled})} other{-}}",
+      "EMPTY_TITLE": "No hay eventos para mostrar",
+      "EMPTY_MESSAGE": "No hay eventos disponibles para este equipo."
+    }
+  },
+  "ENROLLMENT": {
+    "PROGRESS": "Progreso",
+    "PERFORMANCE": "Rendimiento",
+    "GOAL_DATE": "Fecha Objetivo"
+  },
+  "ENROLLMENT_HISTORY": {
+    "TITLE": "Historial de Finalización (Últimos 12 meses)",
+    "MONTHS": "Ene. Feb. Mar. Abr. May. Jun. Jul. Ago. Sep. Oct. Nov. Dic.",
+    "FINISHED": "Finalizadas",
+    "TOTAL": "Total"
+  },
+  "TRAILS": {
+    "DIALOG": {
+      "COURSE_COUNT": {
+        "PLURAL": "Cursos",
+        "SINGULAR": "Curso"
+      },
+      "COURSE_IN_TRAIL": {
+        "EMPTY_STATE": "No hay cursos en esta ruta."
+      },
+      "ENROLLED_COUNT": {
+        "PLURAL": "Subordinados Inscritos",
+        "SINGULAR": "Subordinado Inscrito"
+      },
+      "ENROLLMENTS": {
+        "EMPTY_STATE": "Ningún subordinado de tu equipo inscrito en esta ruta."
+      },
+      "NOT_ENROLLED": {
+        "EMPTY_STATE": "Todos los subordinados de tu equipo están matriculados en esta ruta."
+      },
+      "PULSE_IN_TRAIL": {
+        "EMPTY_STATE": "No hay pulsos en esta ruta."
+      },
+      "TITLE": "Detalles de la Ruta"
+    },
+    "FILTER": {
+      "SEARCH": "Buscar por el nombre de la ruta..."
+    },
+    "LIST": {
+      "NAME": "Nombre",
+      "DURATION": "Duración",
+      "ENROLLED_COUNT": "Inscripciones",
+      "OVERDUE_COUNT": "Aprendices en atraso",
+      "CONCLUSION_RATE": "Tasa de finalización",
+      "AVERAGE_PROGRESS": "Progreso promedio",
+      "EMPTY_TITLE": "No hay rutas para mostrar",
+      "EMPTY_MESSAGE": "No existen rutas disponibles para este equipo."
+    }
+  },
+  "GENERAL": {
+    "ASSOCIATED_TO_TRAILS": {
+      "LABEL": "Asociado a Rutas"
+    },
+    "AVERAGE_PERFORMANCE": "Desempeño Promedio",
+    "AVERAGE_PROGRESS": "Progreso Promedio",
+    "CONSUMED_BY": {
+      "LABEL": "Consumido por"
+    },
+    "COURSE_IN_TRAIL": {
+      "LABEL": "Cursos en la Ruta"
+    },
+    "ENROLLED": {
+      "LABEL": "Subordinados Inscritos"
+    },
+    "ENROLLMENTS": {
+      "LABEL": "Matrículas"
+    },
+    "EXPORT_DATA": "Exportar Datos",
+    "GO_BACK": "Volver",
+    "NOT_CONSUMED": {
+      "LABEL": "No Visto"
+    },
+    "NOT_ENROLLED": {
+      "LABEL": "No Matriculados"
+    },
+    "NOT_REGISTERED": {
+      "LABEL": "No Inscritos"
+    },
+    "OF": "de",
+    "PULSE_IN_CHANNEL": {
+      "LABEL": "Pulsos en el Canal"
+    },
+    "PULSE_IN_TRAIL": {
+      "LABEL": "Pulsos en la Ruta"
+    },
+    "TEAM_PARTICIPANTS": {
+      "LABEL": "Participantes del Equipo"
+    },
+    "TO": "a",
+    "TOTAL_PULSES": {
+      "PLURAL": "pulsos",
+      "SINGULAR": "pulso"
+    },
+    "VIEWED_IN": "Visto en"
+  },
+  "LED": {
+    "CHANNEL": {
+      "EMPTY_MESSAGE": "Este subordinado no tiene matrículas de canal."
+    },
+    "COURSE": {
+      "ENROLLMENT_ACTIVITY": {
+        "CONSUMPTION": "CONSUMO",
+        "CONTENT": "CONTENIDO",
+        "DURATION": "DURACIÓN",
+        "EMPTY_MESSAGE": "NINGÚN CONTENIDO DISPONIBLE",
+        "FIRST_ACCESS": "PRIMER ACCESO",
+        "LAST_ACCESS": "ÚLTIMO ACCESO",
+        "PERFORMANCE": "DESEMPEÑO",
+        "POINTS": "PUNTOS",
+        "PROGRESS": "PROGRESO",
+        "STATUS": "ESTADO",
+        "TITLE": "Actividades de la Matrícula"
+      }
+    },
+    "EVENT": {
+      "EMPTY_MESSAGE": "Este subordinado no tiene matrículas de evento.",
+      "EVENT_STATUS": {
+        "CLOSED": "Realizado",
+        "LABEL": "Status",
+        "SCHEDULED": "Programado"
+      },
+      "PRESENCE_STATUS": {
+        "ABSENT": "No participó",
+        "ENROLLED": "Inscrito",
+        "PRESENT": "Participó"
+      }
+    },
+    "FILTER": {
+      "SEARCH": "Buscar por nombre o cargo..."
+    },
+    "LIST": {
+      "ENGAGEMENT": "Compromiso",
+      "EMPTY_MESSAGE": "No hay datos de subordinados para mostrar.",
+      "EMPTY_TITLE": "No hay subordinados en el equipo",
+      "GENERAL_STATUS": "Estado general",
+      "LAST_ACTIVITY": "Última actividad",
+      "NAME": "Subordinado",
+      "NEXT_DUE_DATE": "Próximo vencimiento",
+      "REQUIRED_PROGRESS": "Progreso obligatorio"
+    },
+    "OVERVIEW": {
+      "ALERT_STATUS": {
+        "LAST_ACTIVITY": {
+          "PLURAL": "Última Actividad: Hace {{value}} días",
+          "SINGULAR": "Última Actividad: Hace {{value}} día"
+        },
+        "TITLE": {
+          "DUE_SOON": "En Atención",
+          "OVERDUE": "En Riesgo",
+          "UP_TO_DATE": "Al Día"
+        },
+        "TRAINING_COUNT": {
+          "DUE_SOON": "Entrenamiento(s) por Vencer",
+          "OVERDUE": "Entrenamiento(s) Atrasado(s)",
+          "UP_TO_DATE": "Sin pendientes obligatorios"
+        }
+      },
+      "SUMMARY_CARD": {
+        "COMPLETED_ENROLLMENTS": "Matrículas Completadas",
+        "COMPLETION_RATE": "Tasa de Finalización",
+        "RANKING": {
+          "POINTS": {
+            "PLURAL": "pts",
+            "SINGULAR": "pt"
+          },
+          "POSITION": "{{value}}# en el Ranking"
+        }
+      }
+    },
+    "PULSE": {
+      "EMPTY_MESSAGE": "Este subordinado no ha consumido ningún pulso."
+    },
+    "TRAIL": {
+      "TRAIL_COURSES": {
+        "SUBTITLE": "Sigue el progreso de {{value}} en los cursos de esta ruta.",
+        "TITLE_PREFIX": "Progreso en la Ruta"
+      }
+    }
+  },
+  "LED_OVERVIEW": {
+    "OVERVIEW": "Visión General",
+    "COURSES": "Cursos",
+    "TRAILS": "Rutas",
+    "PULSES": "Pulses",
+    "EVENTS": "Eventos",
+    "CHANNELS": "Canales"
+  },
+  "OVERVIEW": {
+    "SUMMARY": {
+      "ACTIVE_LED_RATE": {
+        "TITLE": "Tasa de Subordinados Activos",
+        "TOOLTIP": "% de subordinados que han accedido en los últimos 30 días."
+      },
+      "AVERAGE_HOURS_PER_LED": {
+        "TITLE": "Promedio de Horas por Subordinado",
+        "TOOLTIP": "Promedio de horas de entrenamiento por subordinado."
+      },
+      "COMPLETION_RATE": {
+        "TITLE": "Tasa de Finalización",
+        "TOOLTIP": "(Matrículas completadas / Matrículas totales) * 100"
+      },
+      "NO_VALUE_MESSAGE": "No hay datos del equipo para calcular.",
+      "REQUIRED_COURSES_PROGRESS": {
+        "TITLE": "Progreso de Cursos Obligatorios",
+        "TOOLTIP": "% de finalización de las matrículas obligatorias."
+      },
+      "TOTAL_ENROLLMENTS": {
+        "TITLE": "Total de Matrículas",
+        "TOOLTIP": "Suma de matrículas en Cursos y Rutas por el equipo."
+      }
+    },
+    "TEAM_SUMMARY": {
+      "EXPIRING_REGULATIONS": {
+        "EMPTY_MESSAGE": "No hay subordinados en el equipo para mostrar datos.",
+        "TITLE": "Normativas por Vencer"
+      },
+      "INACTIVE_LED": {
+        "EMPTY_MESSAGE": "Ningún subordinado inactivo por más de 15 días. ¡Buen trabajo!",
+        "TITLE": "Subordinados Inactivos"
+      },
+      "OPTIONAL_ENROLLMENTS": {
+        "EMPTY_MESSAGE": "Ningún subordinado con pendientes en matrículas libres.",
+        "TITLE": "Matrículas Libres"
+      },
+      "REQUIRED_ENROLLMENTS": {
+        "EMPTY_MESSAGE": "No hay elementos de atención inmediata. ¡El equipo está al día!",
+        "TITLE": "Matrículas Obligatorias"
+      },
+      "TEAM_RANKING": {
+        "EMPTY_MESSAGE": "No hay subordinados para mostrar en el ranking.",
+        "TITLE": "Ranking del Equipo",
+        "TOOLTIP": "Este ranking muestra la clasificación de los miembros de tu equipo. Para ver el ranking general de tu empresa, accede al ítem 'Ranking' en el menú lateral."
+      }
+    }
+  },
+  "PULSES": {
+    "DIALOG": {
+      "ASSOCIATED_TRAILS": {
+        "EMPTY_STATE": "Este pulso no forma parte de ninguna ruta."
+      },
+      "CONSUMED_BY": {
+        "EMPTY_STATE": "Ningún subordinado de tu equipo ha consumido este pulso."
+      },
+      "NOT_CONSUMED": {
+        "EMPTY_STATE": "Todos los subordinados de tu equipo han visto este pulso."
+      },
+      "TITLE": "Detalles del Pulso",
+      "VIEWS": "Visualizaciones del Equipo"
+    },
+    "LIST": {
+      "NAME": "Nombre",
+      "TYPE": "Tipo",
+      "DURATION": "Duración",
+      "VIEWS": "Visualizaciones",
+      "CONSUMPTION_RATE": "Consumo promedio",
+      "EMPTY_TITLE": "No hay pulses para mostrar",
+      "EMPTY_MESSAGE": "No hay pulses disponibles para este equipo."
+    },
+    "FILTER": {
+      "SEARCH": "Buscar por nombre del pulse..."
+    }
+  },
+  "ROUTES": {
+    "CHANNELS": "Canales",
+    "COURSES": "Cursos",
+    "EVENTS": "Eventos",
+    "LED": "Dirigidos",
+    "OVERVIEW": "Visión General",
+    "PULSES": "Pulsos",
+    "TRAILS": "Rutas"
+  },
+  "TITLE": "Panel del Líder",
+  "TITLE_TOOLTIP": "Todos los números y métricas reflejan a los subordinados actuales del líder, sin contar datos de ex subordinados."
+}

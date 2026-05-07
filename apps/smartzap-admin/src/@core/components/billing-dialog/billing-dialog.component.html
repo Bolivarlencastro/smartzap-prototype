@@ -1,0 +1,71 @@
+<div mat-dialog-title class="flex items-center justify-between gap-4">
+  <span class="text-2xl font-bold">Saldo de Mensagens</span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content class="px-0 pb-0">
+  @if (billing$ | async; as billing) {
+    <div class="stats-grid mx-6 my-4">
+      <div class="stat-card">
+        <span class="stat-card-label">{{ 'BILLING.ACCUMULATED_BALANCE' | transloco }}</span>
+        <span class="stat-card-value">{{ billing.availableZaps }}</span>
+        <span class="stat-card-sub">{{
+          (billing.availableZaps === 1 ? 'BILLING.MESSAGE' : 'BILLING.MESSAGES') | transloco
+        }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card-label">{{ 'BILLING.MONTHLY_PLAN' | transloco }}</span>
+        <span class="stat-card-value">{{ billing.monthlyPlan }}</span>
+        <span class="stat-card-sub">{{
+          (billing.monthlyPlan === 1 ? 'BILLING.MESSAGE' : 'BILLING.MESSAGES') | transloco
+        }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card-label">{{ 'BILLING.CURRENT_CYCLE' | transloco }}</span>
+        <span class="stat-card-value">{{ billing.currentBilling.startAt | date: 'shortDate' }}</span>
+        <span class="stat-card-sub">{{ billing.currentBilling.endAt | date: 'shortDate' }}</span>
+      </div>
+    </div>
+
+    <div class="tracking-table-shell mx-6 mb-6">
+      <div class="billing-table-header grid grid-cols-[2fr,1fr,1fr] sm:grid-cols-[2fr,1fr,1fr,1fr] gap-4 px-4 py-3">
+        <div class="text-sm font-bold">
+          <span>{{ 'BILLING.HISTORY_CYCLE' | transloco }}</span>
+        </div>
+        <div class="text-sm font-bold text-center">
+          <span>{{ 'BILLING.HISTORY_USED' | transloco }}</span>
+        </div>
+        <div class="text-sm font-bold text-center">
+          <span>{{ 'BILLING.HISTORY_BALANCE' | transloco }}</span>
+        </div>
+        <div class="text-sm font-bold text-center sm:block hidden">
+          <span>{{ 'BILLING.HISTORY_CREDIT' | transloco }}</span>
+        </div>
+      </div>
+      <div class="max-h-52 overflow-y-auto">
+        @for (charge of billing.charges; track charge) {
+          <div class="grid grid-cols-[2fr,1fr,1fr] sm:grid-cols-[2fr,1fr,1fr,1fr] gap-4 px-4 py-2">
+            <div class="text-sm">
+              <span class="line-clamp-2">
+                {{ charge.start_at | date: 'shortDate' }}
+                -
+                {{ charge.end_at | date: 'shortDate' }}
+              </span>
+            </div>
+            <div class="text-center text-sm">
+              <span>{{ charge.used }}</span>
+            </div>
+            <div class="text-center text-sm">
+              <span>{{ charge.balance }}</span>
+            </div>
+            <div class="text-center text-sm sm:block hidden">
+              <span>{{ charge.monthly_plan }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</mat-dialog-content>

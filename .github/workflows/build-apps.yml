@@ -1,0 +1,76 @@
+name: build app
+
+on:
+  workflow_call:
+    inputs:
+      matrix:
+        description: "The matrix configuration to run the build jobs"
+        type: string
+      build-configuration:
+        default: "development"
+        description: "The build configuration to use, development or production"
+        type: string
+      ref:
+        default: ''
+        type: string
+        description: "The branch, tag or SHA to checkout. If not provided, uses the branch that triggered the workflow"
+    outputs:
+      release-name:
+        description: "The release hash for the built apps"
+        value: ${{ jobs.define-release-name.outputs.release-name }}
+
+jobs:
+  define-release-name:
+    runs-on: ubuntu-latest
+    outputs:
+      release-name: ${{ steps.define-release-name.outputs.release-name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Define release name
+        id: define-release-name
+        run: |
+          echo "release-name=$(date +%Y%m%d-%H%M)-$(git rev-parse --short ${{ inputs.ref || github.sha}})" >> $GITHUB_OUTPUT
+
+  build-app:
+    name: ${{ matrix.app }}
+    runs-on: ubuntu-latest
+    needs: define-release-name
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(inputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.20.0
+          cache: "npm"
+
+      - name: Read NPM dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Build
+        id: build
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
+        run: |
+          npx nx run ${{ matrix.app }}:build --configuration=${{ inputs.build-configuration }} --deploy-url="/releases/${{ needs.define-release-name.outputs.release-name }}/" --base-href="/"
+
+      - name: Save build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}
+          if-no-files-found: ignore
+          path: ./dist/apps/${{ matrix.app }}

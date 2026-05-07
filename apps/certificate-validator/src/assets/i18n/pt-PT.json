@@ -1,0 +1,26 @@
+{
+  "header": {
+    "title": "Validação de Certificado"
+  },
+  "main": {
+    "cta": "Verifique a Autenticidade do Seu Certificado",
+    "label": "Introduza o código de validação do certificado para validar a sua autenticidade e visualizar os detalhes"
+  },
+  "validation-form": {
+    "label": "Código de validação do certificado",
+    "hint": "O código de validação encontra-se no rodapé do seu certificado",
+    "validate": "Validar",
+    "validating": "A validar..."
+  },
+  "validation-result": {
+    "valid": "Certificado Autêntico",
+    "invalid": "Certificado inválido",
+    "owner": "Titular",
+    "course": "Curso",
+    "issue-date": "Data de emissão",
+    "issuer": "Entidade emissora",
+    "download-copy": "Descarregar cópia do certificado",
+    "invalid-label": "O certificado com o código de validação <strong>{{value}}</strong> não foi encontrado na nossa base de dados ou foi revogado.",
+    "contact-tip": "Em caso de dúvidas, contacte a instituição emissora para verificação manual."
+  }
+}

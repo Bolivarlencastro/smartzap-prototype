@@ -1,0 +1,80 @@
+<div class="grow h-full flex">
+  <mat-table [hidden]="hideTable()" class="h-full" [dataSource]="led()" matSort (matSortChange)="onSort($event)">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef class="min-w-72" mat-sort-header>
+        {{ 'LEADER_PANEL.LED.LIST.NAME' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-72 flex gap-3 items-center">
+        <img class="rounded-full h-8 w-8" [src]="element.avatar || defaultUserAvatar" alt="User Avatar" />
+        <div class="flex flex-col">
+          <span>{{ element.name }}</span>
+          <span class="text-xs opacity-70">{{ element.job_position }}</span>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="required_progress">
+      <mat-header-cell *matHeaderCellDef class="min-w-40 max-w-40" mat-sort-header>
+        {{ 'LEADER_PANEL.LED.LIST.REQUIRED_PROGRESS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-40 max-w-40">
+        {{ element.required_progress }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="next_due_date">
+      <mat-header-cell *matHeaderCellDef class="min-w-40 max-w-40" mat-sort-header>
+        {{ 'LEADER_PANEL.LED.LIST.NEXT_DUE_DATE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-40 max-w-40">
+        {{ element.next_due_date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="last_activity">
+      <mat-header-cell *matHeaderCellDef class="min-w-40 max-w-40" mat-sort-header>
+        {{ 'LEADER_PANEL.LED.LIST.LAST_ACTIVITY' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-40 max-w-40">
+        {{ element.last_activity }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="engagement">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-32 max-w-32">
+        {{ 'LEADER_PANEL.LED.LIST.ENGAGEMENT' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-32 max-w-32">
+        {{ element.engagement || '-' }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="general_status">
+      <mat-header-cell *matHeaderCellDef class="min-w-36 max-w-36" mat-sort-header>
+        {{ 'LEADER_PANEL.LED.LIST.GENERAL_STATUS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-36 max-w-36">
+        {{ element.general_status || '-' }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" class="cursor-pointer" (click)="onRowClick(row)"></mat-row>
+  </mat-table>
+
+  @if (isLoading()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (showEmptyState()) {
+    <div class="h-full w-full flex flex-col justify-center items-center text-sm">
+      <div class="text-4xl">
+        <mat-icon inline>group_off</mat-icon>
+      </div>
+      <span class="font-bold">{{ 'LEADER_PANEL.LED.LIST.EMPTY_TITLE' | transloco }}</span>
+      <span class="mb-1">{{ 'LEADER_PANEL.LED.LIST.EMPTY_MESSAGE' | transloco }}</span>
+    </div>
+  }
+</div>

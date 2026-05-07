@@ -1,0 +1,16 @@
+<mat-form-field class="w-full" subscriptSizing="dynamic">
+  <mat-date-range-input
+    formGroupName="value"
+    [rangePicker]="picker"
+    [separator]="'UI.REPORT_FILTER_DIALOG.DATE_RANGE.SEPARATOR' | transloco"
+  >
+    <input
+      matStartDate
+      formControlName="start"
+      [placeholder]="'UI.REPORT_FILTER_DIALOG.DATE_RANGE.START_DATE' | transloco"
+    />
+    <input matEndDate formControlName="end" [placeholder]="'UI.REPORT_FILTER_DIALOG.DATE_RANGE.END_DATE' | transloco" />
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>

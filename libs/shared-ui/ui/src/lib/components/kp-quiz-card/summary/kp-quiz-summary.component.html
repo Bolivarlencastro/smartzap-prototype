@@ -1,0 +1,87 @@
+@if (vm$ | async; as vm) {
+  <div class="kp-quiz-summary" [@slideInLeft]>
+    <!-- Header -->
+    <div class="kp-quiz-summary__header">
+      <mat-icon class="kp-quiz-summary__trophy">emoji_events</mat-icon>
+      <h2 class="kp-quiz-summary__title">{{ 'UI.QUIZ_SUMMARY.FINALIZED' | transloco }}</h2>
+    </div>
+
+    <!-- Score skeleton -->
+    @if (vm.loadingScore) {
+      <div class="kp-quiz-summary__skeletons">
+        <ngx-skeleton-loader
+          count="1"
+          animation="pulse"
+          [theme]="{ 'height.px': 96, 'border-radius': '0.75rem', margin: 0 }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          count="1"
+          animation="pulse"
+          [theme]="{ 'height.px': 72, 'border-radius': '0.75rem', margin: 0 }"
+        ></ngx-skeleton-loader>
+      </div>
+    }
+
+    @if (!vm.loadingScore) {
+      <!-- Score card (only when API score is available) -->
+      @if (vm.score; as score) {
+        <div class="kp-quiz-summary__score-card mat-elevation-z1">
+          <span class="kp-quiz-summary__score-label">{{ 'UI.QUIZ_SUMMARY.SCORE' | transloco }}</span>
+          <div class="kp-quiz-summary__score-value">
+            <span class="kp-quiz-summary__score-points">{{ score.quiz_awarded_score | number: '1.0-0' }}</span>
+            <span class="kp-quiz-summary__score-available"
+              >/ {{ score.quiz_available_score | number: '1.0-0' }}
+              {{ 'UI.QUIZ_SUMMARY.AVAILABLE_PTS' | transloco }}</span
+            >
+          </div>
+          <div class="kp-quiz-summary__progress-bar">
+            <div class="kp-quiz-summary__progress-fill" [style.width.%]="vm.scorePercentage"></div>
+          </div>
+          <span class="kp-quiz-summary__percentage">{{ vm.scorePercentage }}%</span>
+        </div>
+      }
+
+      <!-- Results grid -->
+      <div class="kp-quiz-summary__results">
+        <div class="kp-quiz-summary__result kp-quiz-summary__result--correct">
+          <mat-icon>check_circle</mat-icon>
+          <span class="kp-quiz-summary__result-count">
+            {{ vm.score?.total_correct_answers ?? vm.summary?.correctAnswers | number: '1.0-0' }}
+          </span>
+          <span class="kp-quiz-summary__result-label">{{ 'UI.QUIZ_SUMMARY.CORRECT' | transloco }}</span>
+        </div>
+        <div class="kp-quiz-summary__result kp-quiz-summary__result--incorrect">
+          <mat-icon>cancel</mat-icon>
+          <span class="kp-quiz-summary__result-count">
+            {{
+              (vm.score
+                ? vm.score.total_questions - vm.score.total_correct_answers
+                : vm.summary?.total - vm.summary?.correctAnswers
+              ) | number: '1.0-0'
+            }}
+          </span>
+          <span class="kp-quiz-summary__result-label">{{ 'UI.QUIZ_SUMMARY.INCORRECT' | transloco }}</span>
+        </div>
+      </div>
+    }
+
+    <!-- Actions -->
+    <div class="kp-quiz-summary__actions">
+      @if (vm.showNextContent) {
+        <button
+          mat-flat-button
+          color="primary"
+          class="kp-quiz-summary__next-btn"
+          (click)="nextContent()"
+          data-test="next-content-quiz"
+        >
+          {{ 'UI.QUIZ.NEXT_CONTENT' | transloco }}
+        </button>
+      }
+      <button mat-button class="kp-quiz-summary__back-btn" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        {{ 'UI.QUIZ_SUMMARY.BACK_TO_QUESTIONS' | transloco }}
+      </button>
+    </div>
+  </div>
+}

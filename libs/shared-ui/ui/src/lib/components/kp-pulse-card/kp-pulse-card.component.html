@@ -1,0 +1,40 @@
+<!--Background-->
+<div class="pulse-card-background" [style.background-image]="backGroundImage"></div>
+
+@if (pulse?.is_active === false) {
+  <div class="kp-pulse-card-inactive">
+    <span>
+      {{ 'GENERAL.INACTIVE' | transloco }}
+    </span>
+  </div>
+}
+<!--Title and channel-->
+<div class="pulse-card-main-content mt-auto flex flex-col gap-1">
+  <p class="pulse-card-title line-clamp-2 font-bold text-white">{{ pulse?.name }}</p>
+  <p class="pulse-card-channel-name text-ellipsis text-white">
+    {{ pulse?.channel_name }}
+  </p>
+
+  <mat-progress-bar mode="determinate" [value]="0" class="pulse-card-progress-bar"></mat-progress-bar>
+</div>
+
+<div class="pulse-card-tags flex gap-1">
+  <kp-info-tag
+    [svgIcon]="pulse?.pulse_type.name | KpContentIconName"
+    [label]="pulse?.pulse_type.name | kpCategoryLabel | transloco"
+  ></kp-info-tag>
+  <kp-info-tag [icon]="'schedule'" [label]="pulse?.stats?.duration | kpDuration"></kp-info-tag>
+
+  <!--Favorite toggle-->
+  @if (showFavoriteButton) {
+    <button
+      mat-icon-button
+      class="ml-auto h-10"
+      data-test="pulse-toggle-favorite"
+      (click)="onFavoriteToggle($event)"
+      [disabled]="pulse?.is_active === false"
+    >
+      <mat-icon class="s-6 text-white" [class.filled]="pulse?.bookmark_id">bookmark </mat-icon>
+    </button>
+  }
+</div>

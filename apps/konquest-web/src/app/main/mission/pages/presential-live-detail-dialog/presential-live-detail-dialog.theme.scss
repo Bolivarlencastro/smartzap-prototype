@@ -1,0 +1,44 @@
+@use 'sass:map';
+
+@mixin presential-live-detail-dialog {
+  app-mission-enrollments-dialog,
+  app-mission-create-enrollments-dialog,
+  app-mission-attendances-dialog {
+    position: relative;
+
+    .empty-message {
+      background: var(--mat-sys-surface);
+    }
+
+    .search > .mat-form-field-appearance-outline {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+
+      .mat-form-field-infix {
+        border-top: 0;
+        padding: 1rem 0;
+      }
+
+      .mat-form-field-suffix,
+      .mat-form-field-outline {
+        top: 0;
+      }
+
+      .mat-form-field-flex {
+        margin-top: 0;
+        align-items: center;
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  .mission-enrollments-dialog .enrollments-table .cdk-header-row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .mission-attendances-dialog .background-hover-bg {
+    background-color: var(--mat-sys-surface-dim);
+  }
+}

@@ -1,0 +1,9 @@
+<div class="flex items-center relative">
+  @if (selector?.icon) {
+    <mat-icon class="s-7 mr-2.5 absolute">{{ selector.icon }}</mat-icon>
+  }
+  @if (!selector?.icon && selector?.svgIcon) {
+    <mat-icon [svgIcon]="selector?.svgIcon" class="s-7 mr-2.5 absolute"></mat-icon>
+  }
+  <span class="text-ellipsis overflow-hidden ml-9">{{ selector?.label }}</span>
+</div>

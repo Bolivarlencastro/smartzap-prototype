@@ -1,0 +1,37 @@
+:host {
+  --banner-padding: 16px;
+  --banner-actions-height: 40px;
+
+  position: relative;
+}
+
+.banner-content {
+  display: grid;
+  padding: var(--banner-padding);
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr min-content var(--banner-actions-height);
+  border-bottom: solid 1px #494949;
+}
+
+.banner-actions {
+  display: grid;
+  grid-template-columns: min-content 40px;
+  position: absolute;
+  gap: 4px;
+  bottom: var(--banner-padding);
+  left: var(--banner-padding);
+}
+
+@media (width >= 600px) {
+  .banner-content {
+    grid-template-columns: 1fr min-content;
+    grid-template-rows: 1fr;
+  }
+
+  .banner-actions {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    align-content: end;
+  }
+}

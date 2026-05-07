@@ -1,0 +1,35 @@
+{
+  "goalDate": "",
+  "status": "ENROLLED",
+  "required_mission": true,
+  "userUUID": "f8beef78-c214-4dc7-a0df-56ec2f7d0b0a",
+  "trailUUID": "",
+  "missionUUID": "",
+  "id": "",
+  "performance": "1.00",
+  "certificate": {
+    "reject": "Text reject certificate by admin",
+    "file": {
+      "fileName": "certificate.pdf",
+      "path": "cypress/fixtures/dev/enrollment/certificate/certificate.pdf"
+    }
+  },
+  "messages": {
+    "enrollmentNotFound": "Nenhuma matrícula encontrada."
+  },
+  "rating": 5,
+  "evaluations": {
+    "nps": "10",
+    "comment": "Text comment on evaluation",
+    "question_1_rating": "5",
+    "question_2_rating": "5",
+    "question_3_rating": "5",
+    "question_4_rating": "5",
+    "question_5_rating": "5",
+    "question_6_rating": "5"
+  },
+  "approve": {
+    "approved": true,
+    "reject_comment": null
+  }
+}

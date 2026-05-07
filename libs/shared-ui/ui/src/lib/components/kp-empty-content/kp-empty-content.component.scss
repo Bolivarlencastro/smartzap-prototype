@@ -1,0 +1,19 @@
+.kp-empty-content {
+  position: absolute;
+  inset: 0;
+  background: #fff; // rgba(0, 0, 0, 0.10);
+  opacity: 0.8;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}

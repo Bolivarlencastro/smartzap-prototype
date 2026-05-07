@@ -1,0 +1,22 @@
+<mat-dialog-actions class="flex items-center h-20 p-5">
+  @if (displayEnrollmentSettings) {
+    <kp-enrollment-settings-form
+      [cycles]="cycles"
+      [enrollmentConfig]="enrollmentConfig"
+      [isNormativeActive]="isNormativeActive"
+      (formSubmit)="setEnrollmentConfig($event)"
+      (resetEvent)="resetDataForm()"
+      (filterCycle)="onFilterCycle($event)"
+    ></kp-enrollment-settings-form>
+  }
+
+  <div class="buttons-actions flex gap-1 ml-auto">
+    <button mat-button mat-dialog-close>
+      <span class="text-primary">{{ 'GENERAL.CANCEL' | transloco }}</span>
+    </button>
+
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="submitDisabled">
+      {{ 'GENERAL.GROUP_LINK' | transloco }}
+    </button>
+  </div>
+</mat-dialog-actions>

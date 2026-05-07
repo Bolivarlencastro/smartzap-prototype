@@ -1,0 +1,55 @@
+<div class="mission-drag-content-list">
+  @if (!contents?.length) {
+    <div class="message-box warning">
+      {{ 'MISSION.CREATE.CONTENT.LIST.EMPTY_LIST_MESSAGE' | transloco }}
+    </div>
+  }
+
+  @if (contents?.length) {
+    <div cdkDropList class="content-list" (cdkDropListDropped)="drop($event)" [@animateStagger]="{ value: '200' }">
+      @for (content of contents; track content) {
+        <div
+          class="content-list-item"
+          [@animate]="{
+            value: '*',
+            params: { y: '100%', duration: '500ms' },
+          }"
+          cdkDrag
+        >
+          <div class="content-list-item-header" cdkDragHandle>
+            <mat-icon class="s-6 mr-8" color="accent" [svgIcon]="content?.learn_content_type?.name | KpContentIconName">
+            </mat-icon>
+            <div class="content-list-item-container truncate">
+              <span class="truncate">
+                {{ content.name | kpNoHtml }}
+              </span>
+              <div class="content-list-item-actions">
+                <!-- /  QUIZ ACTIONS -->
+                <button
+                  mat-icon-button
+                  type="button"
+                  [matTooltip]="'GENERAL.EDIT' | transloco"
+                  [attr.aria-label]="'GENERAL.EDIT' | transloco"
+                  (click)="onEditContent(content)"
+                >
+                  <mat-icon class="s-4">edit</mat-icon>
+                </button>
+                @if (canDeleteContent(content)) {
+                  <button
+                    mat-icon-button
+                    type="button"
+                    [matTooltip]="'GENERAL.DELETE' | transloco"
+                    [attr.aria-label]="'GENERAL.DELETE' | transloco"
+                    (click)="onRemoveContent(content)"
+                  >
+                    <mat-icon class="s-4">delete_outline </mat-icon>
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

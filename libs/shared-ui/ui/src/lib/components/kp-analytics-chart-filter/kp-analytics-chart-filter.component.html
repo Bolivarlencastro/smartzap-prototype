@@ -1,0 +1,22 @@
+<div class="flex items-center gap-6">
+  <span class="text-sm">{{ 'UI.ANALYTICS.FILTER.PERIOD' | transloco }}</span>
+  <mat-button-toggle-group [(ngModel)]="filterPeriodType" (change)="onFilterByPeriod()">
+    <mat-button-toggle [value]="chartFilterPeriod.ALL">{{ 'UI.ANALYTICS.FILTER.ALL' | transloco }}</mat-button-toggle>
+    <mat-button-toggle [value]="chartFilterPeriod.THIRTY_DAYS">{{
+      'UI.ANALYTICS.FILTER.THIRTY_DAYS' | transloco
+    }}</mat-button-toggle>
+    <mat-button-toggle [value]="chartFilterPeriod.SIXTY_DAYS">{{
+      'UI.ANALYTICS.FILTER.SIXTY_DAYS' | transloco
+    }}</mat-button-toggle>
+  </mat-button-toggle-group>
+  <kp-date-range-filter-v2
+    #customFilter
+    [parentFormGroup]="filterForm"
+    [maxDate]="maxDate"
+    gteFcName="start_date"
+    lteFcName="end_date"
+    icon="today"
+    [label]="'UI.ANALYTICS.FILTER.CUSTOM' | transloco"
+    (setFilter)="onCustomFilter()"
+  ></kp-date-range-filter-v2>
+</div>

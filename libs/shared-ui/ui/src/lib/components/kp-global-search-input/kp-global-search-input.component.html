@@ -1,0 +1,14 @@
+<form [formGroup]="form" class="h-full flex items-center bg-transparent">
+  <mat-form-field class="basis-full" subscriptSizing="dynamic">
+    <mat-icon [ngClass]="iconClass" class="w-[40px] scale-90" matPrefix>search</mat-icon>
+    <input
+      data-test="global-search-input"
+      id="filter-input"
+      matInput
+      formControlName="search"
+      autocomplete="off"
+      [placeholder]="placeholder | transloco"
+      [ngClass]="inputClass"
+    />
+  </mat-form-field>
+</form>

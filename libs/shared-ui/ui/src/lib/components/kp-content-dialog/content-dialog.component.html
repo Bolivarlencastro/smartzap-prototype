@@ -1,0 +1,237 @@
+<!-- DIALOG TITLE -->
+<h1 class="text-xl" mat-dialog-title>
+  {{ 'UI.KP_CONTENT_FORM_DIALOG.TITLE' | transloco }}
+  @if (selectedType) {
+    <span>
+      @if (isEvaluativeOrSurveyQuiz) {
+        ({{ 'UI.KP_CONTENT_DIALOG.BUTTON.' + selectedType | transloco }}
+        {{ 'UI.KP_CONTENT_DIALOG.BUTTON.' + subButtonSelected?.type | transloco }})
+      } @else {
+        ({{ 'UI.KP_CONTENT_DIALOG.BUTTON.' + selectedType | transloco }})
+      }
+    </span>
+  }
+</h1>
+<!-- / DIALOG TITLE -->
+<div mat-dialog-content class="flex flex-row gap-5">
+  <!-- FORM FOR LINK, QUIZ AND HTML -->
+  @if (!isInsideFile) {
+    <div class="flex flex-col ex-1 flex-grow items-center">
+      <!-- CONTENT TYPE BUTTONS -->
+      <kp-content-dialog-buttons [buttons]="buttons" (contentSelected)="onSelectContent($event)">
+      </kp-content-dialog-buttons>
+      <!-- / CONTENT TYPE BUTTONS -->
+
+      @if (contentForm) {
+        <form [formGroup]="contentForm" class="flex flex-col gap-1 w-full">
+          @if (showCoverImageUpload) {
+            <kp-file
+              class="mt-2 -mb-3"
+              [coverImage]="coverImage"
+              [itemIcon]="subButtonSelected?.svgIcon"
+              [moduleName]="moduleName"
+              [showImageHint]="showImageHint"
+              (selectCoverImage)="onSelectCoverImage($event)"
+            ></kp-file>
+          }
+          <!-- EXTERNAL LINK INPUT FOR LINK AND HTML -->
+          @if (isExternalLinkInput) {
+            <mat-form-field
+              #matFormFieldValue
+              [ngClass]="{
+                'mat-form-field-hide-placeholder ng-untouched ng-pristine mat-form-field-disabled': isLinkActive,
+              }"
+              class="mat-form-field-value pt-6"
+              appearance="outline"
+            >
+              <mat-label data-test="field-external-link">
+                <mat-icon matSuffix class="secondary-text"> link </mat-icon>
+                {{ 'UI.KP_CONTENT_FORM_DIALOG.FIELD_PLACEHOLDER_EXTERNAL_LINK' | transloco }}
+              </mat-label>
+              <input matInput [readonly]="!subButtonSelected" formControlName="value" data-test="input-external-link" />
+              <mat-error>
+                @if (value.errors?.required) {
+                  <span>{{ 'UI.GENERAL.REQUIRED_FIELD' | transloco }}</span>
+                }
+                @if (value.errors?.pattern) {
+                  <span
+                    >{{ 'UI.KP_CONTENT_FORM_DIALOG.FIELD_LABEL_LINK' | transloco }}{{ subButtonSelected?.title }}</span
+                  >
+                }
+              </mat-error>
+            </mat-form-field>
+          }
+          <!-- / EXTERNAL LINK INPUT FOR LINK AND HTML -->
+          <!-- NAME INPUT FOR LINK, QUIZ AND HTML -->
+          @if (isNameInput) {
+            <mat-form-field
+              [class.pt-6]="selectedType === 'QUIZ' || subButtonSelected?.type === 'SCORM'"
+              appearance="outline"
+            >
+              <mat-label>
+                <mat-icon matSuffix class="secondary-text"> check_circle </mat-icon>
+                {{ contentNamePlaceholder | transloco }}
+              </mat-label>
+              <input matInput [readonly]="isNameInputReadonly" formControlName="name" data-test="field-content-yt" />
+              @if (name.errors?.required) {
+                <mat-error>{{ 'UI.GENERAL.REQUIRED_FIELD' | transloco }}</mat-error>
+              }
+              @if (name.errors?.maxlength) {
+                <mat-error>{{ 'UI.GENERAL.REQUIRED_CHARACTERISTICS' | transloco }}</mat-error>
+              }
+            </mat-form-field>
+          }
+          <!-- / NAME INPUT FOR LINK, QUIZ AND HTML -->
+          <!-- DESCRIPTION INPUT FOR LINK AND HTML (SMARTZAP ONLY) -->
+          @if (
+            showDescription &&
+            contentForm?.contains('description') &&
+            selectedType !== 'QUIZ' &&
+            selectedType !== 'FILE'
+          ) {
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'UI.GENERAL.DESCRIPTION' | transloco }}</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          }
+          <!-- / DESCRIPTION INPUT FOR LINK AND HTML -->
+          <!-- ZIP FILE INPUT FOR GENIALLY AND TIME INPUT FOR GENIALLY AND H5P -->
+          @if (isHTMLTypeInput) {
+            <!-- ZIP FILE INPUT -->
+            @if (subButtonSelected?.type === 'GENIALLY' || subButtonSelected?.type === 'SCORM') {
+              <mat-form-field
+                #matFormFieldValue
+                [ngClass]="{
+                  'mat-form-field-hide-placeholder ng-untouched ng-pristine mat-form-field-disabled': isLinkActive,
+                }"
+                class="mat-form-field-value"
+                appearance="outline"
+              >
+                <mat-label>
+                  <mat-icon matSuffix class="secondary-text"> insert_drive_file </mat-icon>
+                  {{ 'UI.KP_CONTENT_DIALOG.BUTTON.ZIP_FILE' | transloco }}
+                </mat-label>
+                @if (selectedFileName) {
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    class="clear-button"
+                    color="primary"
+                    type="button"
+                    (click)="clearUploadInput(subButtonSelected)"
+                  >
+                    <mat-icon matSuffix class="secondary-text"> close </mat-icon>
+                  </button>
+                }
+                <button
+                  mat-flat-button
+                  matSuffix
+                  class="input-button mr-2"
+                  color="primary"
+                  type="button"
+                  [disabled]="value?.value.length > 0"
+                  (click)="searchFile(subButtonSelected)"
+                  [attr.aria-label]="'UI.GENERAL.SEARCH' | transloco"
+                >
+                  {{ 'UI.GENERAL.SEARCH' | transloco }}
+                </button>
+                <input
+                  data-test="input-genially"
+                  matInput
+                  readonly
+                  formControlName="value"
+                  [value]="zipFileInputValue"
+                  type="text"
+                />
+                <mat-error>{{ 'UI.GENERAL.REQUIRED_FIELD' | transloco }}</mat-error>
+              </mat-form-field>
+            }
+            <!-- / ZIP FILE INPUT -->
+            <!-- TIME INPUT -->
+            <mat-form-field appearance="outline">
+              <mat-label>
+                <mat-icon matSuffix class="secondary-text"> schedule </mat-icon>
+                {{ 'UI.KP_CONTENT_FORM_DIALOG.FIELD_PLACEHOLDER_TIME' | transloco }}
+              </mat-label>
+              <input
+                data-test="input-genially-time"
+                matInput
+                type="number"
+                [readonly]="!subButtonSelected"
+                formControlName="time"
+              />
+              <mat-error>
+                @if (time.errors?.required) {
+                  <span>{{ 'UI.GENERAL.REQUIRED_FIELD' | transloco }}</span>
+                }
+                @if (time.errors?.pattern) {
+                  <span>{{ 'UI.KP_CONTENT_FORM_DIALOG.FIELD_LABEL_TIME' | transloco }}</span>
+                }
+              </mat-error>
+            </mat-form-field>
+            <!-- / TIME INPUT -->
+          }
+          <!-- / ZIP FILE INPUT FOR GENIALLY AND TIME INPUT FOR GENIALLY AND H5P -->
+        </form>
+      }
+    </div>
+  }
+  <!-- / FORM FOR LINK, QUIZ AND HTML -->
+
+  <!-- FILE UPLOAD DIALOG -->
+  @if (isInsideFile) {
+    <kp-file-upload
+      class="w-full pb-8"
+      [itemIcon]="subButtonSelected?.svgIcon"
+      [showImageHint]="showImageHint"
+      [moduleName]="moduleName"
+      [selectedFileName]="selectedFileName"
+      [form]="contentForm"
+      [uploadFileInput]="uploadInput"
+      [showDescription]="showDescription"
+      (coverImageChange)="coverImageChange($event)"
+    ></kp-file-upload>
+  }
+  <input #uploadInput class="hidden" type="file" (change)="onSelectFile($event)" data-cy="file-upload" />
+  <!-- / FILE UPLOAD DIALOG -->
+
+  <!-- GIF AND IFRAME FOR LINK AND HTML -->
+  <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+  <ng-template #templatePortalContent>
+    <div class="gif-container flex-1 hidden sm:block">
+      <div class="w-full overflow-hidden" [innerHTML]="iframe"></div>
+      @if (!iframe && subButtonSelected?.type !== 'SCORM') {
+        <img class="rounded" [src]="gifSrcValue" alt="Gif" />
+      }
+    </div>
+  </ng-template>
+  <!-- / GIF AND IFRAME FOR LINK AND HTML -->
+</div>
+
+<!-- DIALOG ACTIONS -->
+@if (selectedType) {
+  <div mat-dialog-actions class="flex justify-end">
+    <button
+      mat-stroked-button
+      type="button"
+      (click)="back()"
+      data-test="button-back"
+      [attr.aria-label]="'UI.GENERAL.BACK' | transloco"
+    >
+      {{ 'UI.GENERAL.BACK' | transloco }}
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      data-test="button-save"
+      (click)="onSubmit()"
+      [attr.aria-label]="'UI.GENERAL.SAVE' | transloco"
+      [disabled]="!contentForm || contentForm.invalid"
+    >
+      {{ 'UI.GENERAL.SAVE' | transloco }}
+    </button>
+  </div>
+}
+<!-- / DIALOG ACTIONS -->

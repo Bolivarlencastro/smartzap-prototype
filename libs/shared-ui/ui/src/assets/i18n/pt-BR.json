@@ -1,0 +1,894 @@
+{
+  "ACTIVITY_LOG": {
+    "ACTION": "Ação",
+    "ACTIONS": {
+      "KONQUEST.FINISH_MSSION_ENROLLMENTS": "Finalizar",
+      "KONQUEST.DELETE_MISSION_ENROLLMENTS": "Excluir",
+      "KONQUEST.UPDATE_MISSION_ENROLLMENTS_GOAL_DATE": "Data meta",
+      "KONQUEST.RECREATE_MISSION_ENROLLMENTS": "Rematricular",
+      "KONQUEST.APPROVE_MISSION_ENROLLMENTS": "Reprovar certificado",
+      "KONQUEST.RESTART_MISSION_ENROLLMENTS": "Reiniciar",
+      "MYACCOUNT.INVITE_USERS": "Enviar convite",
+      "MYACCOUNT.UPDATE_USERS_STATUS": "Alteração de status"
+    },
+    "COLUMNS": {
+      "ACTION_DESCRIPTION": {
+        "ACTIVATE_USERS": {
+          "PLURAL": "Ativou {{value}} usuários",
+          "SINGULAR": "Ativou {{value}} usuário"
+        },
+        "DEACTIVATE_USERS": {
+          "PLURAL": "Desativou {{value}} usuários",
+          "SINGULAR": "Desativou {{value}} usuário"
+        },
+        "KONQUEST.FINISH_MSSION_ENROLLMENTS": {
+          "PLURAL": "Aprovou {{value}} matrículas com {{performance}}% de aproveitamento",
+          "SINGULAR": "Aprovou {{value}} matrícula com {{performance}}% de aproveitamento"
+        },
+        "KONQUEST.DELETE_MISSION_ENROLLMENTS": {
+          "PLURAL": "Excluiu {{value}} matrículas",
+          "SINGULAR": "Excluiu {{value}} matrícula"
+        },
+        "KONQUEST.UPDATE_MISSION_ENROLLMENTS_GOAL_DATE": {
+          "PLURAL": "Alterou a data meta para {{goalDate}} em {{value}} matrículas",
+          "SINGULAR": "Alterou a data meta para {{goalDate}} em {{value}} matrícula"
+        },
+        "KONQUEST.RECREATE_MISSION_ENROLLMENTS": {
+          "PLURAL": "Rematriculou {{value}} matrículas",
+          "SINGULAR": "Rematriculou {{value}} matrícula"
+        },
+        "KONQUEST.APPROVE_MISSION_ENROLLMENTS": {
+          "PLURAL": "Rejeitou certificado de {{value}} matrículas",
+          "SINGULAR": "Rejeitou certificado de {{value}} matrícula"
+        },
+        "KONQUEST.RESTART_MISSION_ENROLLMENTS": {
+          "PLURAL": "Reiniciou {{value}} matrículas",
+          "SINGULAR": "Reiniciou {{value}} matrícula"
+        },
+        "MYACCOUNT.INVITE_USERS": {
+          "PLURAL": "Enviou convite para {{value}} usuários",
+          "SINGULAR": "Enviou convite para {{value}} usuário"
+        }
+      },
+      "ROLE": "Role",
+      "TIME": "Horário"
+    },
+    "DATE": "Data",
+    "LABEL": "Log de Atividades",
+    "STATUS": {
+      "CREATED": "Criada",
+      "DONE": "Concluída",
+      "DONE_WITH_EXCEPTIONS": "Parcialmente concluída",
+      "ERROR": "Erro",
+      "INVALID": "Inválido",
+      "PROCESSING": "Em processamento",
+      "READY": "Em fila"
+    },
+    "USER": "Usuário"
+  },
+  "ANALYTICS": {
+    "FILTER": {
+      "ALL": "Todo",
+      "CUSTOM": "Personalizado",
+      "PERIOD": "Período",
+      "SIXTY_DAYS": "60 dias",
+      "THIRTY_DAYS": "30 dias"
+    }
+  },
+  "BATCH_ACTIONS": {
+    "ACTIONS": {
+      "ACTIVATE_USERS": "Ativar",
+      "ADD_NOTE": "Adicionar observação",
+      "APPROVE_ENROLLMENT": "Finalizar",
+      "CLEAR_SELECTION": "Limpar seleção",
+      "DEACTIVATE_USERS": "Desativar",
+      "DELETE_ENROLLMENT": "Excluir",
+      "GOAL_DATE_ENROLLMENT": "Data meta",
+      "INVITE_USERS": "Enviar convite",
+      "MARK_AS_ABSENT": "Ausente",
+      "MARK_AS_PRESENT": "Presente",
+      "RE_ENROLL_ENROLLMENT": "Rematricular",
+      "REJECT_CERTIFICATE": "Reprovar certificado",
+      "REMOVE_USER": "Remover usuário",
+      "RESTART_ENROLLMENT": "Reiniciar",
+      "SEND_INVITE": "Enviar convite"
+    },
+    "COUNTER": {
+      "ALL_SELECTED": {
+        "LINK": "Limpar seleção.",
+        "MESSAGE": "Todas as {{ value }} matrículas desta workspace foram selecionadas."
+      },
+      "SIMPLE_SELECTION": {
+        "LINK": "Selecione todas as {{ value }} matrículas da workspace.",
+        "MESSAGE": {
+          "PLURAL": "{{ value }} matrículas nesta página estão selecionadas.",
+          "SINGULAR": "{{ value }} matrícula nesta página está selecionada."
+        }
+      }
+    },
+    "DIALOG": {
+      "ACTIVATE_USERS": {
+        "INITIAL_STEP": {
+          "POSITIVE_BUTTON_LABEL": "Ativar",
+          "SUBTITLE": "Deseja confirmar a ativação do(s) usuário(s) selecionado(s)?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Ativar\"",
+          "SUBTITLE": {
+            "PLURAL": "Deseja confirmar a ativação dos usuários selecionados? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Deseja confirmar a ativação do usuário selecionado? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Ativar usuário"
+      },
+      "APPROVE_ENROLLMENT": {
+        "INITIAL_STEP": {
+          "INPUT_LABEL": "Performance",
+          "POSITIVE_BUTTON_LABEL": "Finalizar",
+          "SUBTITLE": "Para finalizar as matrículas selecionadas, você deve indicar o percentual de aproveitamento abaixo."
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Finalizar\"",
+          "SUBTITLE": {
+            "PLURAL": "Você está prestes a finalizar {{ value }} matrículas. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Você está prestes a finalizar {{ value }} matrícula. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Finalizar Matrículas"
+      },
+      "DEACTIVATE_USERS": {
+        "INITIAL_STEP": {
+          "POSITIVE_BUTTON_LABEL": "Desativar",
+          "SUBTITLE": "Deseja confirmar a desativação do(s) usuário(s) selecionado(s)?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Desativar\"",
+          "SUBTITLE": {
+            "PLURAL": "Deseja confirmar a desativação dos usuários selecionados? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Deseja confirmar a desativação do usuário selecionado? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Desativar usuário"
+      },
+      "DELETE_ENROLLMENT": {
+        "INITIAL_STEP": {
+          "POSITIVE_BUTTON_LABEL": "Excluir",
+          "SUBTITLE": "Ao excluir, todos os dados do usuário serão removidos permanentemente. Deseja confirmar a exclusão da matrícula?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Excluir\"",
+          "SUBTITLE": {
+            "PLURAL": "Você está prestes a excluir {{ value }} matrículas. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Você está prestes a excluir {{ value }} matrícula. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Excluir Matrículas"
+      },
+      "GOAL_DATE_ENROLLMENT": {
+        "INITIAL_STEP": {
+          "INPUT_LABEL": "Data meta",
+          "POSITIVE_BUTTON_LABEL": "Alterar data",
+          "SUBTITLE": "Você está prestes a alterar a data de conclusão prevista para este curso. Defina a nova data meta para a conclusão das atividades."
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Definir data meta\"",
+          "SUBTITLE": {
+            "PLURAL": "Você está prestes a definir uma nova data meta para {{ value }} matrículas. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Você está prestes a definir uma nova data meta para {{ value }} matrícula. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Data Meta"
+      },
+      "INVITE_USERS": {
+        "INITIAL_STEP": {
+          "POSITIVE_BUTTON_LABEL": "Enviar",
+          "SUBTITLE": "Deseja confirmar o envio do convite ao(s) usuário(s) selecionado(s)?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Enviar\"",
+          "SUBTITLE": {
+            "PLURAL": "Deseja confirmar o envio do convite aos usuários selecionados? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Deseja confirmar o envio do convite ao usuário selecionado? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Enviar convite"
+      },
+      "RE_ENROLL_ENROLLMENT": {
+        "INITIAL_STEP": {
+          "INPUT_LABEL": "Data meta",
+          "POSITIVE_BUTTON_LABEL": "Rematricular",
+          "SUBTITLE": "Ao rematricular, o usuário precisará realizar todas as atividades novamente. Deseja confirmar a rematrícula para nova data meta?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Rematricular\"",
+          "SUBTITLE": {
+            "PLURAL": "Você está prestes a rematricular {{ value }} matrículas. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Você está prestes a rematricular {{ value }} matrícula. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Rematricular"
+      },
+      "REJECT_CERTIFICATE": {
+        "INITIAL_STEP": {
+          "INPUT_LABEL": "Informe o motivo",
+          "POSITIVE_BUTTON_LABEL": "Rejeitar",
+          "SUBTITLE": "Ao rejeitar um certificado, o usuário precisará adicionar um novo certificado para aprovação. Deseja realmente rejeitar estes certificados?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Rejeitar\"",
+          "SUBTITLE": {
+            "PLURAL": "Você está prestes a rejeitar o certificado de {{ value }} matrículas. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Você está prestes a rejeitar o certificado de {{ value }} matrícula. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Rejeitar Certificados"
+      },
+      "RESTART_ENROLLMENT": {
+        "INITIAL_STEP": {
+          "INPUT_LABEL": "Data meta",
+          "POSITIVE_BUTTON_LABEL": "Reiniciar",
+          "SUBTITLE": "Deseja permitir que o usuário reinicie a matrícula a partir do último ponto de progresso, mantendo os dados anteriores?"
+        },
+        "SUBMIT_STEP": {
+          "INPUT_LABEL": "Digite \"Reiniciar\"",
+          "SUBTITLE": {
+            "PLURAL": "Você está prestes a reiniciar {{ value }} matrículas. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação.",
+            "SINGULAR": "Você está prestes a reiniciar {{ value }} matrícula. Deseja prosseguir? Preencha o campo abaixo para confirmar a ação."
+          }
+        },
+        "TITLE": "Reiniciar Matrículas"
+      }
+    }
+  },
+  "BILLING": {
+    "BALANCE_LABEL": "saldo",
+    "INFO_BUTTON": "Info"
+  },
+  "CONTENT_ACTIVITY_TRACKER": {
+    "CONTENT": "Olá, você ainda está por ai? Aperte no botão para continuar.",
+    "CONTINUE": "Continuar..."
+  },
+  "COURSE": {
+    "DETAILS": {
+      "TITLE": "Cursos /",
+      "WIDGETS": {
+        "COMPLETED_RATE": {
+          "TEXT": "Taxa de Conclusão"
+        },
+        "CONTENT_AVAILABLE": {
+          "TEXT": "Total de horas",
+          "TITLE": "Conteúdos Disponíveis"
+        },
+        "CONTENT_CONSUMED": {
+          "TEXT": "Total de horas",
+          "TITLE": "Conteúdos Realizados"
+        },
+        "CONTENT_TYPES": {
+          "TITLE": "Conteúdos Disponíveis"
+        },
+        "CORRECT_ANSWER_RATE": {
+          "BUTTON": "Analisar",
+          "TITLE": "Taxa de Acerto das Perguntas"
+        },
+        "GIVE_UP": {
+          "TEXT": "Usuários",
+          "TITLE": "Total de Desistências"
+        },
+        "MOST_ENGAGED_CONTENT": {
+          "BUTTON": "Analisar",
+          "TITLE": "Conteúdo mais Engajado"
+        },
+        "NPS": {
+          "TITLE": "NPS"
+        },
+        "RATING": {
+          "TEXT": "Estrelas",
+          "TITLE": "Avaliação Média do Curso"
+        },
+        "TOTAL_USERS": {
+          "TEXT": "Matriculados",
+          "TITLE": "Total de <strong>Usuários</strong>"
+        }
+      }
+    }
+  },
+  "DASHBOARD": {
+    "CONTINUE": "Quero continuar"
+  },
+  "ENROLLMENT": {
+    "ACTIONS": {
+      "continue": "Continuar Curso",
+      "extendDeadline": "Prorrogar Prazo",
+      "generateCertificate": "Baixar Certificado",
+      "giveUp": "Abandonar",
+      "reEnroll": "Rematricular",
+      "retake": "Retomar",
+      "viewMission": "Visualizar Curso",
+      "viewTrail": "Visualizar Trilha"
+    },
+    "CONCLUSION": "Conclusão",
+    "GOAL": "Meta",
+    "NO_DATA": "Nenhuma matrícula encontrada.",
+    "OVERDUE": {
+      "PLURAL": "{{ value }} dias",
+      "SINGULAR": "{{ value }} dia"
+    },
+    "OVERDUE_LABEL": "Atraso",
+    "PERFORMANCE": "Performance",
+    "REQUIRED": "Obrigatória",
+    "START": "Início",
+    "STATUS": {
+      "COMPLETED": "Finalizada",
+      "ENROLLED": "Matriculada",
+      "ENROLLMENT_REPROVED": "Reprovada",
+      "EXPIRED": "Expirada",
+      "GIVE_UP": "Desistiu",
+      "INACTIVATED": "Inativa",
+      "PENDING_VALIDATION": "Ag. Aprovação",
+      "REFUSED": "Recusada",
+      "REPROVED": "Reprovada",
+      "REQUEST_EXTENSION": "Req. novo prazo",
+      "STARTED": "Iniciada"
+    }
+  },
+  "ENROLLMENT_LIST": {
+    "GOAL_FOR": "Meta para",
+    "LEARNING_TRAIL_LINKED": "Curso vinculado a uma trilha",
+    "OUTDATED": {
+      "PLURAL": "{{value}} dias em atraso",
+      "SINGULAR": "{{value}} dia em atraso"
+    },
+    "TO_EXPIRE": "Expira dia"
+  },
+  "FILTER": {
+    "CATEGORY": "Categoria",
+    "CONTENT_TYPE": "Formato",
+    "CREATED_BY_ME": "Criados por mim",
+    "FAVORITES": "Favoritos",
+    "LANGUAGE": "Idioma",
+    "SUBSCRIBED": "Inscrito"
+  },
+  "FILTER_MODAL": {
+    "FILTER": "Filtro"
+  },
+  "GENERAL": {
+    "ACTIVE": "Ativo",
+    "APPLY": "Aplicar",
+    "APPS_SERVICES": {
+      "KONQUEST_DASHBOARD": "Konquest - Dashboard",
+      "KONQUEST_GAMIFICATION": "Konquest - Gamificação",
+      "KONQUEST_LEARNING_TRAIL": "Konquest - Trilha de Aprendizagem",
+      "KONQUEST_MISSION": "Konquest - Cursos",
+      "KONQUEST_EVENT": "Konquest - Eventos",
+      "KONQUEST_PULSE": "Konquest - Pulses",
+      "KONQUEST_REGULATORY_COMPLIANCE": "Konquest - Normativas",
+      "LEARN_ANALYTICS": "Analytics",
+      "SMARTZAP": "SmartZap"
+    },
+    "BACK": "Voltar",
+    "CANCEL": "Cancelar",
+    "CATEGORIES": "Categorias",
+    "CATEGORY": {
+      "Communications": "Comunicação",
+      "Design": "Design",
+      "Development": "Desenvolvimento",
+      "Digital Marketing": "Marketing Digital",
+      "Entrepreneurship": "Empreendedorismo",
+      "Finance": "Finanças",
+      "Financial Education": "Educação Financeira",
+      "Health and Fitness": "Saúde e Bem estar",
+      "Language": "Línguas",
+      "Leadership": "Liderança",
+      "Lifestyle": "Estilo de Vida",
+      "Management": "Gestão",
+      "Marketing": "Marketing",
+      "Office Productivity": "Produtividade no escritório",
+      "Personal Development": "Desenvolvimento pessoal",
+      "Project Management": "Projetos",
+      "Sales": "Vendas",
+      "Social Media": "Mídia Social",
+      "Strategy": "Estratégia",
+      "Technology": "Tecnologia",
+      "Web Design": "Web Design",
+      "all": "Todas as categorias"
+    },
+    "CHANNELS": "Canais",
+    "CLEAR": "Limpar",
+    "CLOSE": "Fechar",
+    "CONFIRM": "Confirmar",
+    "CONTENT": {
+      "BLOG": "Blog",
+      "HTML": "Html",
+      "HTML FILE": "Html",
+      "IMAGE": "Imagem",
+      "OTHERS": "Outros",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "PRESENTATION": "Apresentação",
+      "QUESTION": "Quiz",
+      "SCORM": "Scorm",
+      "SPREADSHEET": "Planilha",
+      "TEXT": "Texto",
+      "VIDEO": "Vídeo"
+    },
+    "CONTENTS": "Conteúdos",
+    "CREATOR": "Criador",
+    "DELETE": "Excluir",
+    "DESCRIPTION": "Descrição",
+    "EDIT": "Editar",
+    "EMPTY_ENROLLED_LIST": "Não há matrículas em andamento",
+    "EMPTY_LIST_MESSAGE": "Não há registros",
+    "EXPORT": "Exportar",
+    "FILE": "Arquivo",
+    "FILES": "Arquivos",
+    "FILTER": "Filtro",
+    "FILTER_BUTTON": "Filtrar",
+    "FREE": "Livre",
+    "GLOBAL_SEARCH": "Pesquisa Global",
+    "HELP": "Ajuda",
+    "INACTIVE": "Inativo",
+    "LANGUAGE": "Idioma",
+    "LANGUAGES": {
+      "en": "Inglês",
+      "es": "Espanhol",
+      "es-co": "Espanhol - Colombia",
+      "pt-br": "Português - Brasil",
+      "pt-pt": "Português - Portugal"
+    },
+    "LOADING": "Carregando...",
+    "MISSIONS": "Cursos",
+    "MISSION_MIN_PERFORMANCE": "Performance mínima",
+    "MISSION_MODEL": {
+      "LIVE": "Online",
+      "PRESENTIAL": "Presencial"
+    },
+    "MORE_INFO": "Mais informações",
+    "NAME": "Nome",
+    "NORMATIVE": "Normativa",
+    "NOTIFICATION": {
+      "CANT_MARK_AS_READ": "Não foi possível marcar a notificação como lida.",
+      "KONQUEST_COURSE_OVERVIEW_REPORT_DONE": "Relatório da visão geral do curso emitido",
+      "KONQUEST_USER_OVERVIEW_REPORT_DONE": "Relatório da visão geral do usuário emitido",
+      "KONQUEST_WORKSPACE_ALL_USERS_REPORT_DONE": "Relatório de todos os usuários do workspace emitido",
+      "KONQUEST_WORKSPACE_ENROLLMENTS_REPORT_DONE": "Relatório de matrículas do workspace emitido",
+      "KONQUEST_WORKSPACE_EVALUATIONS_REPORT_DONE": "Relatório de avaliações do workspace emitido",
+      "KONQUEST_WORKSPACE_GROUPS_CHANNELS_USERS_REPORT_DONE": "Relatório do grupo de canais dos usuários emitido",
+      "KONQUEST_WORKSPACE_GROUPS_MISSIONS_USERS_REPORT_DONE": "Relatório do grupo de cursos dos usuários emitido",
+      "KONQUEST_WORKSPACE_MISSIONS_QUIZ_ACTIVITIES_REPORT_DONE": "Relatório de questionário dos cursos emitido",
+      "KONQUEST_WORKSPACE_MISSIONS_REPORT_DONE": "Relatório de cursos do workspace emitido",
+      "KONQUEST_WORKSPACE_OVERVIEW_REPORT_DONE": "Relatório da visão geral do workspace emitido",
+      "KONQUEST_WORKSPACE_PULSES_AND_CHANNELS_REPORT_DONE": "Relatório de canais e pulses do workspace emitido",
+      "KONQUEST_WORKSPACE_PULSES_QUIZ_ACTIVITIES_REPORT_DONE": "Relatório de questionário dos pulses emitido",
+      "KONQUEST_WORKSPACE_USER_ACCESS_BY_DATE_REPORT_DONE": "Relatório de acesso de usuários por data emitido",
+      "SMARTZAP_COURSE_OVERVIEW_REPORT_DONE": "Smartzap - Relatório da visão geral do curso emitido"
+    },
+    "OF": "de",
+    "OK": "Ok",
+    "PROVIDER": "Provedor",
+    "PULSES": "Pulses",
+    "REACHED_LIMIT_SEATS_MESSAGE": "Número de vagas atingido, contate um administrador da plataforma.",
+    "REMOVE": "Remover",
+    "REQUIRED": "Obrigatória",
+    "REQUIRED_CHARACTERISTICS": "Limite de caracteres atingido",
+    "REQUIRED_FIELD": "Campo obrigatório",
+    "SAVE": "Salvar",
+    "SEARCH": "Pesquisar",
+    "SELECT": "Selecione",
+    "SELECT_ALL": "Selecionar todas",
+    "SELECT_A_IMAGE": "Selecione uma imagem",
+    "SERVICES": "Serviços",
+    "STATUS": "Status",
+    "SUBMIT": "Enviar",
+    "SUBSCRIBE": "Inscrever-se",
+    "SUBSCRIBED": "Inscrito",
+    "SUPPORT": "Suporte",
+    "TAGS": "Tags",
+    "VIEW_ALL": "Veja todas"
+  },
+  "GLOBAL_SEARCH": {
+    "CLEAN_FILTER": "Limpar filtros",
+    "DEFAULT_PLACEHOLDER": "Pesquisar...",
+    "FILTERS": "Filtros",
+    "INPUT_TRIGGER": "Buscar cursos, trilhas, eventos...",
+    "MENU": "Menu",
+    "NO_ITEMS": "Filtro sem dados para esse tipo de conteúdo",
+    "OWNER": "Proprietário",
+    "RESULTS": "Resultados",
+    "SEARCH": "Buscar cursos, trilhas, eventos...",
+    "TO_COURSE": "para Cursos",
+    "TO_ENROLLMENT": "para Matrículas"
+  },
+  "IMAGE_PREVIEW": {
+    "DESCRIPTION": "A proporção da imagem deve ser {{value}}",
+    "EDIT_IMAGE_BUTTON": "Alterar imagem",
+    "REMOVE_IMAGE_BUTTON": "Remover",
+    "TITLE": "Clique para adicionar uma imagem"
+  },
+  "IMAGE_UPLOAD": {
+    "DROP_IMAGE_TO_LOAD": "Solte para enviar a imagem",
+    "SELECT_IMAGE": "Selecione ou arraste uma imagem"
+  },
+  "IMAGE_UPLOAD_INFO": {
+    "DEFAULT": {
+      "RES_INFO": "• 200x200 é o padrão de tamanho total da imagem;",
+      "TITLE": "Dúvidas sobre a imagem?"
+    },
+    "MISSION": {
+      "BANNER_RES_INFO": "• É recomendado utilizar uma imagem com o conteúdo centralizado no banner (entre 1920x500);",
+      "FAQ": "Acessar conteúdo completo",
+      "HELP_INFO": "• Em 'Acessar o conteúdo completo', você pode acessar o tópico 'Guia para ajustar o tamanho das imagens' para mais específicacões;",
+      "RES_INFO": "• 1920x1280 é o padrão de tamanho total da imagem;",
+      "TITLE": "Dúvidas sobre o wallpaper?"
+    }
+  },
+  "IMAGE_CROPPER_DIALOG": {
+    "TITLE": "Selecione o Recorte da imagem",
+    "SUBTITLE": "Arraste a área de seleção para escolher o recorte que será exibido no card / banner."
+  },
+  "KP-FILTER": {
+    "CATEGORY": "Categoria",
+    "FAVORITES": "Favoritos",
+    "SAVE_AS_FAVORITE": "Salvar como Favorito",
+    "SUBSCRIBED_CHANNELS": "Canais inscritos",
+    "FILTER": "Filtros"
+  },
+  "KP-UPLOAD-DIALOG": {
+    "HEADER_TEXT": "Carregando {{ value }}"
+  },
+  "KP_CONTENT_DIALOG": {
+    "BUTTON": {
+      "EVALUATIVE_QUIZ": "Avaliativo",
+      "EXCEL": "Excel",
+      "FILE": "Arquivo",
+      "GENIALLY": "Genially",
+      "GOOGLE_DRIVE": "Google Drive",
+      "HTML": "Ferramentas de Autoria",
+      "IMAGE": "Imagem",
+      "LINK": "Link",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "POWERPOINT": "PowerPoint",
+      "QUIZ": "Quiz",
+      "SOUNDCLOUD": "Soundcloud",
+      "SURVEY_QUIZ": "Pesquisa",
+      "TOOLTIP": {
+        "EVALUATIVE_QUIZ": "Para validar conhecimento.",
+        "EXCEL": "XLS, XLSX",
+        "FILE": "Insira arquivos do computador",
+        "HTML": "Adicione conteúdos como HSP e Genially ",
+        "IMAGE": "JPGE, JPG, PNG, WEBP",
+        "LINK": "Copie e cole links de outras plataformas",
+        "PDF": "PDF",
+        "PODCAST": "MP3",
+        "POWERPOINT": "PPTX",
+        "QUIZ": "Crie perguntas e respostas",
+        "SURVEY_QUIZ": "Para coletar opiniões.",
+        "VIDEO": "MP4",
+        "WORD": "DOCX"
+      },
+      "VIDEO": "Vídeo",
+      "VIMEO": "Vimeo",
+      "WORD": "Word",
+      "YOUTUBE": "Youtube",
+      "ZIP_FILE": "Arquivo ZIP"
+    },
+    "TYPE_NOT_ACCEPTED": "Você deve selecionar os tipos definidos para cada conteúdo. Por favor, tente novamente.",
+    "FILE_SIZE_EXCEEDED": "O arquivo excede o tamanho máximo permitido de {{ maxSizeMB }}MB.",
+    "SELECT_SAME_TYPE_ERROR": "Selecione um conteúdo do mesmo tipo para edição."
+  },
+  "KP_CONTENT_FORM_DIALOG": {
+    "COVER_IMAGE": "Imagem de capa",
+    "FIELD_LABEL_LINK": "Informe uma url válida do ",
+    "FIELD_LABEL_TIME": "Tempo em Minutos",
+    "FIELD_LABEL_USE_FILE_AS_COVER": "Usar conteúdo como imagem de capa",
+    "FIELD_PLACEHOLDER_CONTENT": "Nome do conteúdo",
+    "FIELD_PLACEHOLDER_EXAM": "Nome do Quiz",
+    "FIELD_PLACEHOLDER_EXTERNAL_LINK": "Link externo",
+    "FIELD_PLACEHOLDER_TIME": "Tempo em Minutos",
+    "TITLE": "Subir Conteúdo"
+  },
+  "KP_ENROLLMENT_SETTINGS_FORM": {
+    "CANCEL_BUTTON": "Cancelar",
+    "COMPLIANCE_ENROLLMENT_TYPE": "Normativa",
+    "CONFIG_BUTTON": "Config. matrícula",
+    "DESCRIPTION": "Defina as configurações para a matricula de usuários.",
+    "ENROLLMENT_TYPE": "Tipo de matrícula",
+    "FREE_ENROLLMENT_TYPE": "Livre",
+    "REQUIRED_ENROLLMENT_TYPE": "Obrigatória",
+    "RESUME": {
+      "NORMATIVE": "Matrícula <strong>normativa</strong> com meta para <strong>{{ date }}</strong> ciclo normativo <strong>{{ cycle }}</strong>",
+      "OPEN": "Matrícula <strong>livre</strong> com meta para <strong>{{ date }}</strong>",
+      "REQUIRED": "Matrícula <strong>obrigatória</strong> com meta para <strong>{{ date }}</strong>"
+    },
+    "SAVE_BUTTON": "Salvar",
+    "TARGET_DATE": "Data meta",
+    "TITLE": "Configurar matrícula"
+  },
+  "KP_FILTER": {
+    "PLACEHOLDERS": {
+      "ADD_FILTER": "Adicionar filtro",
+      "AND": "E",
+      "DATE": "DD/MM/AAAA",
+      "RANGE_BETWEEN": "Entre",
+      "RANGE_EQUALS": "Igual",
+      "RANGE_LESS": "Menor que",
+      "RANGE_MORE": "Maior que",
+      "SEARCH": "Pesquisar",
+      "SELECT_FILTER": "Selecione um filtro",
+      "SELECT_VALUE": "Selecionar",
+      "WHERE": "Onde"
+    }
+  },
+  "KP_QUIZ_FORM": {
+    "ADD_OPTION": "Adicionar alternativa",
+    "ANSWERS": "Respostas:",
+    "WRITE_A_OPTION": "Escreva uma alternativa"
+  },
+  "LEARNING_TRAIL": {
+    "DETAIL": {
+      "GIVE_UP": "Abandonar",
+      "RETAKE": "Retomar",
+      "START": "Iniciar"
+    }
+  },
+  "MISSION": {
+    "CARD": {
+      "ACTIONS": {
+        "ADD_BOOKMARK": "Adicionar favorito",
+        "CONTINUE": "Continuar",
+        "DETAILS": "Detalhes",
+        "EDIT": "Editar",
+        "ENROLL": "Matricular-se",
+        "REMOVE_BOOKMARK": "Remover favorito",
+        "REQUEST_NEW_DEADLINE": "Solicitar novo prazo",
+        "SHARE": "Compartilhar",
+        "START": "Iniciar",
+        "VIEW_AS_USER": "Ver como usuário"
+      }
+    },
+    "DETAIL": {
+      "MISSION_RESUME_DEFINED": "Este curso ainda não possui um resumo definido.",
+      "TAGS_NOT_REGISTERED": "Não existem tags cadastradas para esse curso."
+    },
+    "REQUIRED": "Obrigatória"
+  },
+  "MISSION_MODEL": "Tipo de curso",
+  "MISSION_MODELS": {
+    "EXTERNAL_PROVIDER": "Externa",
+    "INTERNAL": "Interna",
+    "LIVE": "Online",
+    "PRESENTIAL": "Presencial",
+    "SCORM": "Scorm"
+  },
+  "NOTIFICATION": {
+    "CLEAR": "Limpar notificação",
+    "CLEAR_ALL": "Limpar todas as notificações",
+    "NO_MESSAGES": "Você não possui mensagens.",
+    "TITLE": "Notificações"
+  },
+  "PAGES": {
+    "RATING": {
+      "TITLE": "Avaliar"
+    }
+  },
+  "QUIZ": {
+    "ANSWER_QUESTION": "Responder a Pergunta",
+    "NEXT_CONTENT": "Próximo Conteúdo",
+    "NEXT_QUESTION": "Próxima Pergunta",
+    "PREV_QUESTION": "Pergunta Anterior",
+    "ORDER_WARN": "A ordem de exibição das perguntas<br/>e alternativas é aleatória.",
+    "ORDER_WARN_QUESTIONS": "A ordem de exibição das perguntas é aleatória.",
+    "ORDER_WARN_OPTIONS": "A ordem de exibição das alternativas é aleatória.",
+    "QUESTION": "pergunta",
+    "QUESTIONS": "perguntas",
+    "WARN_MESSAGE": "Selecione <strong>{{value}}</strong> alternativa(s).",
+    "YOU_RIGHT": "Você acertou"
+  },
+  "QUIZ_SUMMARY": {
+    "FINALIZED": "Parabéns, você finalizou o Quiz!",
+    "SCORE": "Pontuação",
+    "CORRECT": "Correto",
+    "INCORRECT": "Incorreto",
+    "AVAILABLE_PTS": "pts disponíveis",
+    "RESULTS": "Resultados",
+    "BACK_TO_QUESTIONS": "Voltar às perguntas"
+  },
+  "REPORT_FILTER_DIALOG": {
+    "ADD_FILTER": "Adicionar filtro",
+    "AUTOCOMPLETE_SELECT": {
+      "NO_RESULTS": "Nenhum resultado encontrado",
+      "PLACEHOLDER": "Selecione"
+    },
+    "CLEAR_FILTERS": "Limpar filtros",
+    "CONNECTOR": {
+      "AND": "e",
+      "OR": "ou",
+      "WHERE": "onde"
+    },
+    "DATE_PLACEHOLDER": "Informe uma data",
+    "DATE_RANGE": {
+      "END_DATE": "00/00/0000",
+      "SEPARATOR": "a",
+      "START_DATE": "00/00/0000"
+    },
+    "ENTER_VALUE": "Informe um valor",
+    "GENERATE_REPORT": "Gerar relatório",
+    "OPERATOR": {
+      "GREATER_THAN": "maior que",
+      "IS_NOT": "não é",
+      "IT_IS": "é",
+      "LESS_THAN": "menor que"
+    },
+    "SELECT_FILTER": "Selecione um filtro",
+    "SELECT_OPTIONS": "Selecione as opções"
+  },
+  "TABLE_COLUMNS": {
+    "COLUMN_TITLE": "Colunas",
+    "TOGGLE_TITLE": "OCULTAR/REVELAR"
+  },
+  "TITLE": {
+    "CLOSED": "Fechada",
+    "CREATED_BY": "Por",
+    "CREATED_ON": "Criada em",
+    "OPEN": "Aberta",
+    "TEMPORARY_MISSION_EXPIRATION_DATE": "Encerra em"
+  },
+  "USER_MENU": {
+    "CHANGE_WORKSPACE": "Trocar de Workspace",
+    "LOGOUT": "Sair",
+    "PROFILE": "Perfil",
+    "SETTINGS": "Configurações"
+  },
+  "WORKSPACES": {
+    "DETAIL": {
+      "TITLE-COLOR": "Selecione uma cor da lista abaixo"
+    }
+  },
+  "WORKSPACE_ACCESS": {
+    "CHANNEL": {
+      "CLOSED_FOR_WORKSPACE": "Canal fechado",
+      "OPEN_FOR_WORKSPACE": "Canal aberto"
+    },
+    "MISSION": {
+      "CLOSED_FOR_WORKSPACE": "Curso fechado",
+      "OPEN_FOR_WORKSPACE": "Curso aberto"
+    },
+    "TRAIL": {
+      "CLOSED_FOR_WORKSPACE": "Trilha fechada",
+      "OPEN_FOR_WORKSPACE": "Trilha aberta"
+    }
+  },
+  "WORKSPACE_DIALOG": {
+    "INFORM_REASON": "Informe o motivo"
+  },
+  "GAMIFICATION": {
+    "PERSONAL_SCORE": {
+      "POINTS": "{points, plural, =0 {pontos} one {ponto} other {pontos}}",
+      "RANKING_TAB": {
+        "BUTTON_LABEL": "Ver ranking completo",
+        "DEFAULT_NAME": "Posição Livre",
+        "SCORE_SUFFIX": "{value, plural, =0 {pts} one {pt} other {pts}}",
+        "TITLE": "Ranking"
+      },
+      "STATISTICS_TAB": {
+        "COMPLETION_RATE": "{{value}} taxa de conclusão",
+        "HOURS": "{{value}} {value, plural, =0 {horas} one {hora} other {horas}} de aprendizado",
+        "LEARNING_TRAILS": "{{value}} {value, plural, =0 {trilhas concluídas} one {trilha concluída} other {trilhas concluídas}}",
+        "MISSIONS": "{{value}} {value, plural, =0 {cursos concluídos} one {curso concluído} other {cursos concluídos}}",
+        "PERFORMANCE": "{{value}} performance média",
+        "POSITION": "{{value}}º sua posição geral",
+        "PULSES": "{{value}} {value, plural, =0 {pulses consumidos} one {pulse consumido} other {pulses consumidos}}",
+        "TITLE": "Estatísticas"
+      }
+    }
+  },
+  "KP_TAGS": {
+    "DEVELOPMENT_AWAITING_REVIEW": "Ag. Revisão",
+    "DEVELOPMENT_CREATING": "Em Criação",
+    "DEVELOPMENT_FINISHED_EVENT": "Evento Encerrado",
+    "DEVELOPMENT_INACTIVE": "Inativa",
+    "DEVELOPMENT_INACTIVE_BY_INTEGRATION": "Inativado por integração",
+    "DEVELOPMENT_PROCESSING": "Processando",
+    "DEVELOPMENT_PUBLISHED": "Publicada",
+    "DISABLED_SECTION": "Desativada",
+    "ENROLLMENT_AWAITING_CERTIFICATE_APPROVAL": "Ag. Aprovação",
+    "ENROLLMENT_AWAITING_CONFIRMATION": "Ag. Confirmação",
+    "ENROLLMENT_CERTIFICATE_REPROVED": "Reprovada",
+    "ENROLLMENT_CONFIRMED": "Confirmado",
+    "ENROLLMENT_ENROLLED": "Matriculada",
+    "ENROLLMENT_EXPIRED": "Expirada",
+    "ENROLLMENT_FINISHED": "Finalizada",
+    "ENROLLMENT_GIVE_UP": "Desistiu",
+    "ENROLLMENT_INACTIVE": "Inativa",
+    "ENROLLMENT_REFUSED": "Recusada",
+    "ENROLLMENT_REQUIRED_NEW_DEADLINE": "Req. Novo Prazo",
+    "ENROLLMENT_STARTED": "Iniciada",
+    "EXPIRES_IN": "Expira em {{value}}",
+    "GOAL_DUE_BY": "{{value}} em atraso",
+    "GOAL_TO": "Meta {{value}}",
+    "MODEL_LIVE": "Online",
+    "MODEL_PRESENTIAL": "Presencial",
+    "MODIFIER_NORMATIVE": "Normativa",
+    "MODIFIER_REQUIRED": "Obrigatória",
+    "MODIFIER_TEMPORARY": "Temporária"
+  },
+  "KP_WHATSAPP_MARKDOWN_HELPER": {
+    "LABEL": "Suporta markdown do WhatsApp",
+    "SHOW_GUIDE": "Ver guia",
+    "HIDE_GUIDE": "Fechar guia",
+    "FORMATS": {
+      "ITALIC": {
+        "TITLE": "Itálico",
+        "DESCRIPTION": "Insira _ antes e depois do texto"
+      },
+      "BOLD": {
+        "TITLE": "Negrito",
+        "DESCRIPTION": "Insira * antes e depois do texto"
+      },
+      "STRIKETHROUGH": {
+        "TITLE": "Tachado",
+        "DESCRIPTION": "Insira ~ antes e depois do texto"
+      },
+      "MONOSPACE": {
+        "TITLE": "Monoespaçado",
+        "DESCRIPTION": "Insira ``` antes e depois do texto"
+      },
+      "BULLET_LIST": {
+        "TITLE": "Lista com marcadores",
+        "DESCRIPTION": "Insira * ou - e um espaço antes de cada item"
+      },
+      "NUMBERED_LIST": {
+        "TITLE": "Lista enumerada",
+        "DESCRIPTION": "Insira número, ponto e espaço antes de cada linha"
+      },
+      "QUOTE": {
+        "TITLE": "Citação",
+        "DESCRIPTION": "Insira > antes do texto"
+      },
+      "CODE": {
+        "TITLE": "Linha de código",
+        "DESCRIPTION": "Insira ` dos dois lados do texto"
+      }
+    }
+  },
+  "USERS": {
+    "DETAILS": {
+      "TITLE": "Usuários: ",
+      "WIDGETS": {
+        "ACTIVITIES_STATS": {
+          "COURSES_CONSUMED": "Cursos consumidos",
+          "FILTER": {
+            "LAST_30_DAYS": "Últimos 30 dias",
+            "LAST_7_DAYS": "Últimos 7 dias"
+          },
+          "PULSES_CONSUMED": "Pulses consumidos",
+          "TITLE": "Usuário Ativo"
+        },
+        "COMPLETED_RATE": {
+          "TEXT": "Taxa de Conclusão"
+        },
+        "PERFORMANCE": {
+          "TITLE": "<strong>Performance</strong> média"
+        },
+        "PERFORMANCE_CHART": {
+          "LABEL": "Número de cursos concluídos por faixa",
+          "TITLE": "Performance"
+        },
+        "TOP_CONTENT_CONSUMED": {
+          "TITLE": "Conteúdos Consumidos"
+        },
+        "TOP_ENROLLMENT_CATEGORIES": {
+          "TITLE": "TOP 5 Categorias (matriculadas)"
+        },
+        "TOTAL_COMPLETED_COURSES": {
+          "TITLE": "Total de <strong>Cursos Concluídos</strong>"
+        }
+      }
+    }
+  },
+  "TIME_CONVERSION_PIPE": {
+    "HOURS": "{{value}} {value, plural, =0 {horas} one {hora} other {horas}}",
+    "MINUTES": "{{ value }} min.",
+    "SECONDS": "{{ value }} seg."
+  }
+}

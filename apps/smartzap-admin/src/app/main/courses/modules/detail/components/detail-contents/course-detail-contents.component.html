@@ -1,0 +1,14 @@
+<div class="course-detail-contents mb-10 flex justify-start items-center gap-6">
+  @for (content of contents | keyvalue; track content) {
+    <div
+      data-test="content-details-in-course-popup"
+      class="rounded-full p-3 bg-white flex justify-center items-center shadow-[0_3px_6px_rgba(0,0,0,0.2)]"
+      [matBadge]="content.value"
+      matBadgeColor="accent"
+      matBadgeOverlap="true"
+      [matTooltip]="'CONTENT.BUTTON.' + content.key | uppercase | transloco"
+    >
+      <mat-icon class="s-6" color="accent" [svgIcon]="content.key | KpContentIconName"></mat-icon>
+    </div>
+  }
+</div>

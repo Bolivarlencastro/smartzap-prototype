@@ -1,0 +1,11 @@
+<div
+  class="overflow-y-scroll"
+  infiniteScroll
+  [style.height]="scrollHostHeight"
+  [infiniteScrollDistance]="scrollDistance"
+  [infiniteScrollThrottle]="scrollThrottle"
+  [scrollWindow]="windowScroll"
+  (scrolled)="onScroll()"
+>
+  <ng-content></ng-content>
+</div>

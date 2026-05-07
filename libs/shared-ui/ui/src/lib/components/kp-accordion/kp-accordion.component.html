@@ -1,0 +1,23 @@
+<mat-accordion class="accordion-no-shadow">
+  <mat-expansion-panel [expanded]="hasChildren() && panelOpenState()">
+    <mat-expansion-panel-header
+      class="px-2.5 font-normal flex justify-between items-center pointer-events-none rounded-b-none step"
+      [ngClass]="{ active: active() }"
+    >
+      <div class="grow flex items-center pointer-events-auto" (click)="goToSubjectStep($event)">
+        <kp-spinner-circle class="-ml-2" [diameter]="30" [progress]="progress()">
+          <span class="order">{{ order() }}</span>
+        </kp-spinner-circle>
+        <span class="description line-clamp-2 break-all" [matTooltip]="title()" [matTooltipDisabled]="disabledTooltip">
+          {{ title() }}</span
+        >
+      </div>
+      @if (hasChildren()) {
+        <button mat-icon-button (click)="setPanelOpenState($event)" class="flex items-center pointer-events-auto">
+          <mat-icon class="s-6">{{ arrowIcon }}</mat-icon>
+        </button>
+      }
+    </mat-expansion-panel-header>
+    <ng-content></ng-content>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,15 @@
+<quill-editor
+  class="w-full"
+  #quillEditor
+  [(ngModel)]="editorValue"
+  [ngClass]="languageClass"
+  [placeholder]="placeholder()"
+  [modules]="quillModules"
+  [formats]="quillFormats"
+  [customModules]="customModules"
+  (onEditorCreated)="onEditorCreated($event)"
+  [attr.data-test]="'kp-editor-' + quillEditorID"
+  (onEditorCreated)="onEditorCreated($event)"
+  (onContentChanged)="onContentChanged($event)"
+>
+</quill-editor>

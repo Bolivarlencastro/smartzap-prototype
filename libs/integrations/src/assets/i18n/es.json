@@ -1,0 +1,159 @@
+{
+  "ALURA_COURSE_MIRROR_DIALOG": {
+    "BUTTON_TOOLTIP": {
+      "ALURA_LINK": "Enlace Alura"
+    },
+    "BUTTONS": {
+      "CANCEL": "Cancelar",
+      "MIRROR": "Espejar"
+    },
+    "COLUMNS": {
+      "ALURA_STATUS": "Estado Alura",
+      "CATEGORY": "Categoría",
+      "CREATION_DATE": "Fecha de creación",
+      "MENU": "Menú",
+      "NAME": "Nombre"
+    },
+    "TITLE": "Espejar cursos"
+  },
+  "ALURA_STATUS": {
+    "DISABLED": "Deshabilitado",
+    "PUBLISHED": "Activo"
+  },
+  "MIRROR_DIALOG": {
+    "MIRROR_COURSES_SUCCESS": "¡Cursos reflejados con éxito!",
+    "MIRROR_COURSES_FAILURE": "Ocurrió un error al reflejar los cursos."
+  },
+  "DIALOG": {
+    "ACTIVATE": "Activar",
+    "COURSE_CATALOGUE": "Catálogo de cursos",
+    "COURSE_CONCLUSION": "Conclusión de cursos",
+    "COURSE_DETAILS": "Detalles de cursos",
+    "SUBTITLE": "Para integrar este servicio, es necesario agregar sus claves de API. Simplemente copie y pegue su clave de Alura en los campos a continuación.",
+    "TITLE": "Configurar tokens",
+    "TOKEN_ERROR": "Token incorrecto",
+    "PROGRESS": "Progreso",
+    "SSO": "SSO"
+  },
+  "INTEGRATION_LIST": {
+    "DEACTIVATION_DIALOG": {
+      "MESSAGE": "Está a punto de desactivar una integración. Si continúa con esta acción, todos los cursos reflejados y las matrículas vinculadas se desactivarán en su espacio de trabajo. ¿Desea continuar?",
+      "NEGATIVE_BUTTON": "Cancelar",
+      "POSITIVE_BUTTON": "Desactivar",
+      "TITLE": "Desactivar Integración"
+    },
+    "DESCRIPTIONS": {
+      "ADP": "Con la integración ADP, tendrás acceso a un servicio de mensajería instantánea multiplataforma basado en la nube. Simplifica la gestión de personal y recursos humanos.",
+      "ALURA": "Con la integración Alura, obtén acceso a cursos de programación, Front-end, Back-end, Data Science, UX, DevOps, Innovación y Gestión de la plataforma tecnológica más grande de Brasil.",
+      "AZURE": "La integración Azure/AdfS ofrece un servicio de mensajería instantánea multiplataforma basado en la nube. Refuerza la seguridad del inicio de sesión único y protege tus datos.",
+      "CONVENIA": "La integración Convenia ofrece un servicio de mensajería instantánea multiplataforma basado en la nube. Gestiona nóminas y recursos humanos con eficiencia.",
+      "DOMINIO": "Con la integración Domínio, tendrás acceso a un servicio de mensajería instantánea multiplataforma basado en la nube. Simplifica la gestión de recursos humanos.",
+      "FEEDZ": "La integración Feedz ofrece un servicio de mensajería instantánea multiplataforma basado en la nube. Mejora la participación y el desarrollo del equipo.",
+      "GOOGLE": "Con la integración Google, accede a una plataforma unificada de comunicación y colaboración. Facilita el inicio de sesión único y simplifica el acceso a tu cuenta.",
+      "GUPY": "La integración Gupy ofrece un servicio de mensajería instantánea multiplataforma basado en la nube. Mejora el proceso de reclutamiento y selección de talentos.",
+      "SENIOR": "La integración Senior ofrece una plataforma unificada para comunicación y colaboración, combinando chat, videoconferencias, almacenamiento de archivos e integración de aplicaciones. Gestiona tu equipo de manera efectiva.",
+      "SLACK": "Slack es un servicio de mensajería instantánea multiplataforma basado en la nube. Simplifica la comunicación de tu equipo y mantiene a todos en la misma página.",
+      "SOLIDES": "La integración Solides simplifica la gestión de personas con un servicio de mensajería instantánea multiplataforma basado en la nube. Potencia el desarrollo de tu equipo.",
+      "TEAMS": "Una plataforma unificada de comunicación y colaboración, mantén a tu equipo conectado a Konquest directamente en Teams.",
+      "TOTVS": "La integración Totvs RM proporciona un servicio de mensajería instantánea multiplataforma basado en la nube. Gestiona recursos humanos con eficacia y precisión."
+    },
+    "DELETE_COURSE_SUCCESS": "¡Eliminación realizada con éxito!",
+    "DELETE_COURSE_FAILURE": "Ocurrió un error al realizar la eliminación.",
+    "ERROR": {
+      "EXTERNAL": "Póngase en contacto con el soporte {{value}}",
+      "INTERNAL": "Póngase en contacto con nuestro soporte",
+      "TITLE": "Error en la integración.",
+      "BUTTON": "Configurar tokens"
+    },
+    "GROUPS": {
+      "COMMUNICATION": "Comunicación",
+      "COURSES": "Cursos",
+      "PEOPLE_MANAGEMENT": "Gestión de Personal",
+      "SSO": "SSO (Inicio de Sesión)"
+    },
+    "HIRE": "Contratar {{value}}",
+    "MANAGEMENT": {
+      "CONFIGURATIONS_ROUTE": "Configuraciones"
+    },
+    "REQUEST_INTEGRATION": "Solicitar Integración",
+    "INSTALL_INSTRUCTIONS": "Instrucciones de instalación",
+    "SOON": "(Próximamente)",
+    "TOGGLE": {
+      "DISABLE_FAILURE": "Se produjo un error al desactivar la integración.",
+      "DISABLE_SUCCESS": "¡Integración desactivada con éxito!",
+      "ENABLE_FAILURE": "Se produjo un error al activar la integración.",
+      "ENABLE_SUCCESS": "¡Integración activada con éxito!"
+    }
+  },
+  "MANAGEMENT_FILTER": {
+    "CATEGORY": "Categoría",
+    "MIRROR_DATE": "Fecha de espejado",
+    "STATUS": "Estado"
+  },
+  "MANAGEMENT_HEADER": {
+    "MIRROR_COURSES": "Cursos espejo"
+  },
+  "MANAGEMENT_LIST": {
+    "BUTTON_TOOLTIP": {
+      "ALURA_LINK": "Enlace Alura",
+      "DELETE": "Eliminar",
+      "EDIT": "Editar"
+    },
+    "COLUMNS": {
+      "ACTIVATION": "Activación",
+      "ALURA_STATUS": "Estado Alura",
+      "CATEGORY": "Categoría",
+      "MENU": "Menú",
+      "MIRROR_DATE": "Fecha de espejado",
+      "NAME": "Nombre"
+    },
+    "DELETE_COURSE_DIALOG": {
+      "CONFIRM_BUTTON": "Eliminar",
+      "MESSAGE": "Al confirmar la eliminación, todos los contenidos e historiales del(los) curso(s) serán eliminados. ¿Está seguro de que desea confirmar?",
+      "TITLE": "Eliminar curso(s)"
+    },
+    "EMPTY_LIST": {
+      "LINK": "Espeja los cursos de Alura",
+      "MESSAGE": "¡Integración activa!",
+      "MESSAGE_WITH_FILTER": "No se encontraron cursos."
+    },
+    "SELECTED_ITEM_MESSAGE": {
+      "PLURAL": "{{value}} cursos seleccionados",
+      "SINGULAR": "{{value}} curso seleccionado"
+    }
+  },
+  "TEAMS_INSTRUCTIONS": {
+    "TITLE": "Instalar bot en Microsoft Teams",
+    "SUB_TITLE": "Sigue los pasos a continuación para añadir el bot a tu espacio de trabajo.",
+    "STEP_1": {
+      "TITLE": "Descarga el paquete del bot",
+      "INFO": "Haz clic en el botón de abajo para descargar el archivo .zip del bot en tu ordenador."
+    },
+    "STEP_2": {
+      "TITLE": "Abre Microsoft Teams",
+      "INFO": "Accede a Teams (versión de escritorio o web)."
+    },
+    "STEP_3": {
+      "TITLE": "Ve a Aplicaciones",
+      "INFO": "En el menú lateral izquierdo, haz clic en Aplicaciones."
+    },
+    "STEP_4": {
+      "TITLE": "Cargar una aplicación personalizada",
+      "INFO_1": "En la esquina inferior izquierda, haz clic en Administrar tus aplicaciones.",
+      "INFO_2": "Elige \"Cargar una aplicación\" en la parte superior de la página."
+    },
+    "STEP_5": {
+      "TITLE": "Sube el paquete .zip del bot",
+      "INFO": "Elige \"Cargar una aplicación personalizada\" y selecciona el paquete del bot que acabas de descargar."
+    },
+    "STEP_6": {
+      "TITLE": "Completa la instalación",
+      "INFO": "Después de la carga, sigue las instrucciones de Teams para finalizar la instalação del bot en tu entorno."
+    },
+    "STEP_7": {
+      "TITLE": "Activa la integración",
+      "INFO": "Activa la integración cambiando el interruptor en la lista de integraciones."
+    },
+    "BUTTON_DOWNLOAD_ZIP": "Descargar paquete .zip"
+  }
+}

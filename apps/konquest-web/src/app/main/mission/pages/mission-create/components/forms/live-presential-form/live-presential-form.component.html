@@ -1,0 +1,125 @@
+<form [formGroup]="livePresentialFormGroup" class="flex flex-col gap-1 pt-6 pr-2">
+  <div data-test="step-live-presential-selector" class="flex gap-2 mb-8 flex-wrap">
+    @if (showAddressInput) {
+      <mat-form-field data-test="input-mission-presential-adress" class="basis-3/5" appearance="outline">
+        <mat-label>{{ 'MISSION.CREATE.PRESENTIAL_LIVE.LOCATION' | transloco }}</mat-label>
+        <input matInput formControlName="address" />
+        @if (livePresentialFormGroup.hasError('required', 'address')) {
+          <mat-error>
+            {{ 'MISSION.CREATE.LIVE_PRESENTIAL.ERROR.LOCATION' | transloco }}
+          </mat-error>
+        }
+      </mat-form-field>
+    } @else {
+      <mat-form-field data-test="input-mission-live-link" class="basis-3/5" appearance="outline">
+        <mat-label>{{ 'MISSION.CREATE.PRESENTIAL_LIVE.LINK' | transloco }}</mat-label>
+        <input matInput formControlName="url" />
+        <mat-hint>https://meet.google.com, https://www.google.com </mat-hint>
+        @if (livePresentialFormGroup.hasError('required', 'url')) {
+          <mat-error>
+            {{ 'MISSION.CREATE.LIVE_PRESENTIAL.ERROR.CALL_LINK' | transloco }}
+          </mat-error>
+        }
+      </mat-form-field>
+    }
+
+    <mat-form-field class="flex-1" appearance="outline">
+      <mat-label>{{ 'MISSION.CREATE.PRESENTIAL_LIVE.VACANCIES' | transloco }}</mat-label>
+      <input matInput formControlName="seats" type="number" />
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col">
+    <ng-container formArrayName="dates">
+      @for (
+        date of dates.controls;
+        track datesTrackBy(controlIndex, date);
+        let isFirst = $first;
+        let controlIndex = $index
+      ) {
+        <div class="w-full">
+          <ng-container [formGroupName]="controlIndex">
+            @if (!date.get('deleted').value) {
+              <div class="flex flex-col md:flex-row gap-2 w-full">
+                <mat-form-field appearance="outline" class="basis-1/3">
+                  <mat-label>{{ 'MISSION.CREATE.PRESENTIAL_LIVE.DATE' | transloco }}</mat-label>
+                  <input
+                    data-test="live-presential-date-selector"
+                    matInput
+                    formControlName="date"
+                    (dateChange)="markDateAsTouched(controlIndex)"
+                    (change)="markDateAsTouched(controlIndex)"
+                    placeholder="00/00/0000"
+                    [matDatepicker]="picker"
+                    [errorStateMatcher]="showOnErrorStateMatcher"
+                  />
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="basis-1/3">
+                  <mat-label>{{ 'MISSION.CREATE.PRESENTIAL_LIVE.START_HOUR' | transloco }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="start_at"
+                    (change)="markDateAsTouched(controlIndex)"
+                    placeholder="00:00"
+                    mask="Hh:m0"
+                    [dropSpecialCharacters]="false"
+                    [errorStateMatcher]="showOnErrorStateMatcher"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="basis-1/3">
+                  <mat-label>{{ 'MISSION.CREATE.PRESENTIAL_LIVE.END_HOUR' | transloco }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="end_at"
+                    (change)="markDateAsTouched(controlIndex)"
+                    placeholder="00:00"
+                    mask="Hh:m0"
+                    [dropSpecialCharacters]="false"
+                    [errorStateMatcher]="showOnErrorStateMatcher"
+                  />
+                </mat-form-field>
+                <div
+                  [ngClass]="{ invisible: date.disabled }"
+                  class="flex items-center justify-center md:justify-end mb-5 md:w-20 md:flex-none"
+                >
+                  @if (!isFirst) {
+                    <button
+                      data-test="live-presential-remove-schedule"
+                      (click)="removeDate(controlIndex)"
+                      mat-icon-button
+                    >
+                      <mat-icon>remove_circle_outline</mat-icon>
+                    </button>
+                  }
+                  <button data-test="live-presential-add-new-schedule" (click)="addNewDate()" mat-icon-button>
+                    <mat-icon>add_circle_outline</mat-icon>
+                  </button>
+                </div>
+              </div>
+            }
+          </ng-container>
+        </div>
+      }
+    </ng-container>
+
+    <div class="flex flex-col gap-3">
+      @if (livePresentialFormGroup.hasError('min', 'seats')) {
+        <div class="flex flex-row items-center gap-3">
+          <mat-icon color="warn">info</mat-icon>
+          <span class="text-sm warn-fg">{{
+            'MISSION.PRESENTIAL.NOT_ENOUGH_VACANCIES'
+              | kpPluralizeTranslate: { value: livePresentialFormGroup.getError('min', 'seats')['min'] }
+          }}</span>
+        </div>
+      }
+      @for (errorMessage of errorMessages; track errorMessage) {
+        <div class="flex flex-row items-center gap-3">
+          <mat-icon color="warn">info</mat-icon>
+          <span class="text-sm text-warn">{{ errorMessage | transloco }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</form>

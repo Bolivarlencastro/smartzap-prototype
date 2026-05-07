@@ -1,0 +1,47 @@
+<div class="upload-dialog-container">
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header class="py-10">
+      <mat-panel-title>
+        {{ 'UI.KP-UPLOAD-DIALOG.HEADER_TEXT' | transloco: { value: files?.length } }}
+        {{
+          files?.length === 1
+            ? ('UI.GENERAL.FILE' | transloco | lowercase)
+            : ('UI.GENERAL.FILES' | transloco | lowercase)
+        }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    @for (uploadFile of files; track uploadsTrackBy(i, uploadFile); let i = $index) {
+      <div class="upload-list-item flex justify-between items-center gap-4">
+        <div class="flex max-w-full">
+          {{ uploadFile.name }}
+        </div>
+        <div class="action-icons flex justify-center items-center">
+          <button mat-icon-button (click)="onClickRemove(uploadFile)">
+            @if (uploadFile.percentage <= 100 && uploadFile.loading) {
+              <mat-progress-spinner
+                color="primary"
+                [class.processing]="uploadFile.percentage === 100"
+                [class.loader]="uploadFile.percentage < 100"
+                diameter="25"
+                [mode]="uploadFile.percentage < 100 ? 'determinate' : 'indeterminate'"
+                [value]="uploadFile.percentage"
+              >
+              </mat-progress-spinner>
+            }
+            @if (!uploadFile.loading) {
+              @if (uploadFile.percentage === 100) {
+                <mat-icon data-test="check-in-circle" class="done">check_circle </mat-icon>
+              }
+              @if (uploadFile.percentage < 100) {
+                <mat-icon class="done-red">cancel </mat-icon>
+              }
+            }
+            @if (!(uploadFile.percentage === 100 && uploadFile.loading)) {
+              <mat-icon class="cancel">cancel </mat-icon>
+            }
+          </button>
+        </div>
+      </div>
+    }
+  </mat-expansion-panel>
+</div>

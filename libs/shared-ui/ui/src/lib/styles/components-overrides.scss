@@ -1,0 +1,57 @@
+@use 'sass:map';
+
+@mixin fix-components-theme {
+  ngx-skeleton-loader > .loader {
+    margin-bottom: 0;
+    background: var(--mat-sys-surface-container-high) !important;
+
+    &.progress::before {
+      background-image: linear-gradient(
+        90deg,
+        var(--mat-sys-surface-container-highest),
+        var(--mat-sys-surface-bright),
+        var(--mat-sys-surface-container-highest)
+      ) !important;
+    }
+  }
+
+  .iv-image,
+  .iv-snap-image {
+    max-width: initial !important;
+    max-height: initial !important;
+  }
+
+  .iv-fullscreen-close {
+    padding: 24px;
+    background: rgb(0 0 0 / 50%);
+    border-radius: 60px;
+  }
+
+  // Remove arrow for input type number
+  /* stylelint-disable */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  /* stylelint-enable */
+
+  input,
+  textarea {
+    &::placeholder {
+      @apply text-default;
+
+      opacity: 0.6 !important;
+    }
+  }
+}
+
+/* stylelint-disable-next-line */
+ngx-extended-pdf-viewer #toolbarViewerRight svg {
+  display: inline;
+  vertical-align: baseline;
+}

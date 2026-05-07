@@ -1,0 +1,192 @@
+<div class="enrollment-list w-full h-full overflow-x-auto">
+  <cdk-table class="kp-card-table h-full" [dataSource]="displayedData()" matSort (matSortChange)="sortData($event)">
+    <!-- User name Definition -->
+    <ng-container cdkColumnDef="user__name">
+      <cdk-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'SETTINGS.ENROLLMENTS.TABLE.NAME' | transloco }}
+      </cdk-header-cell>
+      <cdk-cell *cdkCellDef="let element" class="break-words line-clamp-3">
+        @if (isLoading) {
+          <div class="h-4 w-32 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span [matTooltip]="element.user?.name | titlecase" data-test="list-enrollment-name">
+            {{ element.user?.name | titlecase }}
+          </span>
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- Phone Definition -->
+    <ng-container matColumnDef="user__phone">
+      <cdk-header-cell *matHeaderCellDef class="hidden sm:flex text-center">
+        {{ 'SETTINGS.ENROLLMENTS.TABLE.PHONE' | transloco }}
+      </cdk-header-cell>
+      <cdk-cell *matCellDef="let element" class="hidden sm:flex truncate text-center" data-test="list-enrollment-phone">
+        @if (isLoading) {
+          <div class="h-4 w-24 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          {{ element.user?.phone ? (element.user.phone | kpPhone) : '-' }}
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- Start Date Definition -->
+    <ng-container matColumnDef="start_date">
+      <cdk-header-cell *matHeaderCellDef class="hidden sm:flex" mat-sort-header>
+        <span data-test="list-enrollment-start-date">
+          {{ 'ENROLLMENTS.TABLE.START_DATE' | transloco }}
+        </span>
+      </cdk-header-cell>
+      <cdk-cell *matCellDef="let element" class="hidden sm:flex">
+        @if (isLoading) {
+          <div class="h-4 w-16 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <ng-container
+            *ngTemplateOutlet="enrollmentDates; context: { enrollment: element, dateToRender: 'start_date' }"
+          ></ng-container>
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- End Date Definition -->
+    <ng-container matColumnDef="end_date">
+      <cdk-header-cell *matHeaderCellDef class="hidden sm:flex" mat-sort-header>
+        <span data-test="list-enrollment-end-date">
+          {{ 'ENROLLMENTS.TABLE.END_DATE' | transloco }}
+        </span>
+      </cdk-header-cell>
+      <cdk-cell *matCellDef="let element" class="hidden sm:flex">
+        @if (isLoading) {
+          <div class="h-4 w-16 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <ng-container
+            *ngTemplateOutlet="enrollmentDates; context: { enrollment: element, dateToRender: 'end_date' }"
+          ></ng-container>
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- Performance Definition -->
+    <ng-container matColumnDef="performance">
+      <cdk-header-cell *matHeaderCellDef class="hidden sm:flex" mat-sort-header>
+        <span data-test="list-enrollment-performance">
+          {{ 'SETTINGS.ENROLLMENTS.TABLE.PERFORMANCE' | transloco }}
+        </span>
+      </cdk-header-cell>
+      <cdk-cell *matCellDef="let element" class="hidden sm:flex">
+        @if (isLoading) {
+          <div class="h-4 w-12 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span kpTransformInDash [status]="element.status">{{
+            element?.performance || element?.performance === 0 ? (element.performance | kpNormalizePercent) : '-'
+          }}</span>
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- Status Definition -->
+    <ng-container matColumnDef="status">
+      <cdk-header-cell *matHeaderCellDef mat-sort-header class="hidden sm:flex">
+        <span>
+          {{ 'GENERAL.STATUS' | transloco }}
+        </span>
+      </cdk-header-cell>
+      <cdk-cell *matCellDef="let element" class="hidden sm:flex">
+        @if (isLoading) {
+          <div class="h-6 w-20 rounded-full bg-gray-200 animate-pulse"></div>
+        } @else {
+          <kp-card-tag
+            [label]="'STATUS.' + (element.status || 'EMPTY') | transloco"
+            [dotColor]="element.status || '' | kpEnrollmentStatusColor"
+            [keepOpen]="true"
+            [matTooltip]="'STATUS.TOOLTIP.' + (element.status || 'empty') | uppercase | transloco"
+            data-test="list-enrollment-status"
+          ></kp-card-tag>
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- Actions Definition -->
+    <ng-container matColumnDef="actions">
+      <cdk-header-cell *matHeaderCellDef class="hidden sm:flex justify-center">{{
+        'GENERAL.MENU' | transloco
+      }}</cdk-header-cell>
+      <cdk-cell *matCellDef="let element" class="hidden sm:flex justify-center">
+        @if (isLoading) {
+          <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
+        } @else {
+          <button mat-icon-button [matMenuTriggerFor]="actionsMenu" data-test="menu-list">
+            <mat-icon class="s-6">more_vert</mat-icon>
+          </button>
+          <mat-menu #actionsMenu="matMenu">
+            @if (element.status === 'COMPLETED' || element.status === 'STARTED') {
+              <button mat-menu-item (click)="handleOpenActivities(element)">
+                {{ 'SETTINGS.ENROLLMENTS.VIEW_ACTIVITIES' | transloco }}
+              </button>
+            }
+            @if (element.status === 'STARTED' || element.status === 'WAITING') {
+              <button mat-menu-item (click)="handleCancel(element)" data-test="cancel-enrollment">
+                {{ 'SETTINGS.ENROLLMENTS.CANCEL_ENROLLMENT' | transloco }}
+              </button>
+            }
+            @if (element.status === 'COMPLETED' || element.status === 'CANCELED' || element.status === 'REFUSED') {
+              <button mat-menu-item (click)="handleReenroll(element)" data-test="reenroll-enrollment">
+                {{ 'SETTINGS.ENROLLMENTS.REENROLL' | transloco }}
+              </button>
+            }
+            <button mat-menu-item (click)="handleDelete(element)" data-test="delete-enrollment">
+              {{ 'SETTINGS.ENROLLMENTS.DELETE_ENROLLMENT' | transloco }}
+            </button>
+            @if (displayDownloadCertificate(element)) {
+              <a mat-menu-item [href]="element?.certificate_url" target="_blank">
+                {{ 'SETTINGS.ENROLLMENTS.DOWNLOAD_CERTIFICATE' | transloco }}
+              </a>
+            }
+          </mat-menu>
+        }
+      </cdk-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <cdk-header-row
+      *cdkHeaderRowDef="displayedColumns"
+      class="font-bold m-0 px-3 border-b border-default"
+    ></cdk-header-row>
+    <cdk-row class="element-row m-0 px-3" *cdkRowDef="let row; columns: displayedColumns"></cdk-row>
+
+    <div class="text-center w-full border-t enrollments-empty-row" *cdkNoDataRow>
+      @if (!isLoading) {
+        <div class="enrollments-empty-state" data-test="empty-list">
+          <div class="enrollments-empty-state__icon">
+            <mat-icon>school</mat-icon>
+          </div>
+          <div class="enrollments-empty-state__content">
+            <h3 class="enrollments-empty-state__title">
+              {{ 'ENROLLMENTS.EMPTY_STATE.TITLE' | transloco }}
+            </h3>
+            <p class="enrollments-empty-state__description">
+              {{ 'ENROLLMENTS.EMPTY_STATE.DESCRIPTION' | transloco }}
+            </p>
+          </div>
+          <button mat-flat-button color="primary" (click)="handleCreateEnrollment()">
+            {{ 'ENROLLMENTS.EMPTY_STATE.CTA' | transloco }}
+          </button>
+        </div>
+      }
+    </div>
+  </cdk-table>
+</div>
+
+<ng-template #enrollmentDates let-enrollment="enrollment" let-dateToRender="dateToRender">
+  @switch (enrollment?.status) {
+    @case ('WAITING') {
+      -
+    }
+    @case ('REFUSED') {
+      -
+    }
+    @default {
+      <p>{{ (enrollment[dateToRender] | date: 'shortDate') || '-' }}</p>
+    }
+  }
+</ng-template>

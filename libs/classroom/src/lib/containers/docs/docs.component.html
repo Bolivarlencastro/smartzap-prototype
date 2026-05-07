@@ -1,0 +1,23 @@
+@if (url$ | async; as url) {
+  <kp-content-activity-tracker-wrapper
+    class="class-docs"
+    [startAutomatically]="false"
+    [disableActivityEvents]="isViewingAsUser()"
+    (activityEvent)="onTrackingActivity($event)"
+    #tracker
+  >
+    <iframe
+      [src]="url | kpDocsUrl | kpSafeUrl"
+      class="w-full h-full"
+      allow="fullscreen"
+      mozallowfullscreen="true"
+      webkitallowfullscreen="true"
+      sandbox="allow-same-origin allow-scripts allow-forms"
+      title="Docs Content Frame"
+    ></iframe>
+
+    @if (usingOfficeViewer(url)) {
+      <div class="h-[21px] w-50 absolute download-blocker" [ngClass]="contentType$ | async | lowercase"></div>
+    }
+  </kp-content-activity-tracker-wrapper>
+}

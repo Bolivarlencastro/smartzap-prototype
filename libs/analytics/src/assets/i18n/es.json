@@ -1,0 +1,28 @@
+{
+    "COURSE_DETAILS_DIALOG": {
+        "CHARTS": {
+            "LABELS": {
+                "ENROLLMENTS_COMPLETED": "Completados",
+                "ENROLLMENTS_STARTED": "Iniciados",
+                "ENROLLMENTS_TOTAL": "Inscriptos"
+            }
+        },
+        "ERROR": {
+            "NOT_FOUND": "Curso no encontrado",
+            "UNKNOWN": "Erro a buscar el dado"
+        },
+        "TITLE": "Estadísticas del curso",
+        "SUBTITLE": "Sigue los principales datos del curso en relación a las matriculaciones, los contenidos disponibles y realizados, las tasas del curso y los detalles de tus cuestionarios y contenidos. Verifica cómo va la evaluación NPS.",
+        "WIDGETS": {
+            "NPS": {
+                "CON": "Detractores",
+                "NEUTRAL": "Neutrales",
+                "PRO": "Promotores"
+            }
+        }
+    },
+    "USER_DETAILS_DIALOG": {
+        "TITLE": "Mis estadísticas",
+        "SUBTITLE": "Realice un seguimiento de los cursos que ha completado, su rendimiento promedio y los tipos de contenido al que accedió. Consulte las categorías más populares y alinee su estudio con sus áreas de interés. Con estos conocimientos, optimice su aprendizaje y alcance sus objetivos."
+    }
+}

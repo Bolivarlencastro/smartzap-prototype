@@ -1,0 +1,38 @@
+@if (isMobile) {
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" fitInkBarToContent aria-label="Profile Nav Mobile">
+    @for (item of items; track item) {
+      <a mat-tab-link [routerLink]="item.path" [active]="isActive(item.path)" class="font-bold text-xs p-0">
+        {{ item.title | transloco }}
+      </a>
+    }
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    <mat-divider></mat-divider>
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </mat-tab-nav-panel>
+} @else {
+  <div class="flex h-[calc(100vh-64px)]">
+    <div class="basis-4/12 border-r-1 border-default overflow-y-auto">
+      <h1 class="px-9 pt-16 pb-4 font-bold text-2xl">{{ title }}</h1>
+      <nav aria-label="Profile Nav Web">
+        @for (item of items; track item; let i = $index) {
+          <app-inner-nav-item
+            [title]="item.title"
+            [description]="item.description"
+            [path]="item.path"
+            [icon]="item.icon"
+            [index]="i"
+          >
+          </app-inner-nav-item>
+        }
+      </nav>
+    </div>
+    <div class="p-16 flex justify-center w-full active-bg overflow-y-auto">
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+  </div>
+}
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

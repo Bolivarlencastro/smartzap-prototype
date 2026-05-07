@@ -1,0 +1,9 @@
+<app-mission-provider-form
+  #providerForm
+  [providers]="providers$ | async"
+  [mission]="mission$ | async"
+  (formSubmit)="saveMission($event)"
+  (previous)="previous()"
+  (next)="next()"
+  (searchProvider)="searchProvider($event)"
+></app-mission-provider-form>

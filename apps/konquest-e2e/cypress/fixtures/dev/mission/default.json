@@ -1,0 +1,36 @@
+{
+  "name": "Math.random().toString(36).slice(2)",
+  "statusType": "Fechada",
+  "language": "Português",
+  "language_api": "pt-BR",
+  "description": "Descrição missão automação cypress",
+  "satisfactionSurvey": true,
+  "temporary": false,
+  "assessment_type": "FULL",
+  "holder_image": "https://i.stack.imgur.com/ILTQq.png",
+  "vertical_holder_image": "https://i.stack.imgur.com/ILTQq.png",
+  "thumb_image": "https://i.stack.imgur.com/ILTQq.png",
+  "is_active": true,
+  "mission_model": "INTERNAL",
+  "mission_type": {
+    "id": "9e15d7f9-ef11-428b-9c14-5a5c31552a39",
+    "name": "Aberto"
+  },
+  "mission_category": "dbc9ffa1-1f59-428e-a18d-0e67a2770db8",
+  "user_creator": "3e405b8f-bb04-4585-b1aa-5082be93aa1e",
+  "development_status": "DONE",
+  "required_evaluation": true,
+  "missionUUID": "",
+  "inactive": false,
+  "external": {
+    "course_url": "https://app.branas.io/",
+    "course_type": "FREE",
+    "provider": "b7927b8c-20dd-431a-a006-1bebab0c7d64",
+    "duration_time": 2
+  },
+  "allow_self_enrollment_renewal": false,
+  "allow_self_reproved_enrollment_renewal": false,
+  "minimum_performance": 0,
+  "expiration_date": "",
+  "duration_time": "00:02"
+}

@@ -1,0 +1,35 @@
+@let isAnswered = isAnswered$ | async;
+@let answer = answer$ | async;
+
+<div class="kp-quiz-options">
+  <ul>
+    @for (option of options; track option; let i = $index) {
+      <li
+        class="option"
+        [ngClass]="{
+          'option--success': !isSurveyQuiz && isAnswered && option.correct_answer,
+          'option--error':
+            !isSurveyQuiz && isAnswered && !option.correct_answer && hasOptionBeenSelected(answer, option.id),
+          'option--selected-survey': isSurveyQuiz && isAnswered && hasOptionBeenSelected(answer, option.id),
+        }"
+        matRipple
+      >
+        <input
+          id="option-{{ i }}"
+          type="checkbox"
+          (change)="onSelectOption(option.id, $event.target.checked)"
+          [value]="option.id"
+          [disabled]="disabled()"
+        />
+        <label id="option-label-{{ i }}" class="option-label" for="option-{{ i }}">
+          <div class="option-label--number">
+            {{ 65 + i | kpQuizCharcode }}
+          </div>
+          <div class="option-label--description">
+            {{ option.option }}
+          </div>
+        </label>
+      </li>
+    }
+  </ul>
+</div>

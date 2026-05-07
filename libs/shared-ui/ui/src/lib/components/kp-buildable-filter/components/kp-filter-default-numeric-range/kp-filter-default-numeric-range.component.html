@@ -1,0 +1,36 @@
+@if (isRange) {
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full text-default">
+    <kp-numeric-range>
+      <input
+        kpNumericRangeStart
+        [formControlName]="selectedOption?.rangeConfig.fromKey"
+        [placeholder]="startPlaceHolder || ''"
+        [maxLength]="templateMaxLength"
+        [mask]="mask"
+        [suffix]="suffix || ''"
+        [dropSpecialCharacters]="dropSpecialCharacters"
+      />
+      <input
+        kpNumericRangeEnd
+        [formControlName]="selectedOption?.rangeConfig.toKey"
+        [placeholder]="endPlaceHolder || ''"
+        [maxLength]="templateMaxLength"
+        [mask]="mask"
+        [suffix]="suffix || ''"
+        [dropSpecialCharacters]="dropSpecialCharacters"
+      />
+    </kp-numeric-range>
+  </mat-form-field>
+} @else {
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full text-primary">
+    <input
+      matInput
+      [formControlName]="singleControlName"
+      [placeholder]="startPlaceHolder || ''"
+      [maxLength]="templateMaxLength"
+      [mask]="mask"
+      [suffix]="suffix || ''"
+      [dropSpecialCharacters]="dropSpecialCharacters"
+    />
+  </mat-form-field>
+}

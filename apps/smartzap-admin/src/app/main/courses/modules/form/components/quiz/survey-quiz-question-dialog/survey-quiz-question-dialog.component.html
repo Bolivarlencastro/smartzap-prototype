@@ -1,0 +1,86 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="flex items-center justify-between mat-background">
+    <span class="title dialog-title text-lg">{{ dialogTitle | transloco }}</span>
+    <button mat-icon-button (click)="close()" [attr.aria-label]="'GENERAL.CLOSE' | transloco">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div mat-dialog-content class="mat-background">
+    @if (isNew) {
+      <div class="flex flex-col gap-2 mb-5">
+        <span>{{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.QUESTION_TYPE' | transloco }}</span>
+        <div class="flex gap-2">
+          <div
+            class="question-input-type"
+            (click)="setQuestionInputType('CHOICE')"
+            [ngClass]="{ selected: isChoiceType }"
+          >
+            <mat-icon>rule</mat-icon>
+            <span>{{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.CHOICE' | transloco }}</span>
+          </div>
+
+          <div class="question-input-type" (click)="setQuestionInputType('TEXT')" [ngClass]="{ selected: isTextType }">
+            <mat-icon>notes</mat-icon>
+            <span>{{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.TEXT' | transloco }}</span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (isTextType) {
+      <mat-form-field class="w-full" appearance="outline" subscriptSizing="dynamic" floatLabel="always">
+        <mat-label>{{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.FIELD_LABEL_QUESTION' | transloco }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'COURSE.FORM.QUIZ.QUESTION.DIALOG.PLACEHOLDER_TEXT' | transloco"
+          [(ngModel)]="textTypeInput"
+        />
+      </mat-form-field>
+    } @else {
+      <form [formGroup]="choiceTypeForm">
+        <mat-form-field class="w-full mb-4" appearance="outline" subscriptSizing="dynamic">
+          <mat-label>{{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.FIELD_LABEL_QUESTION' | transloco }}</mat-label>
+          <input formControlName="title" matInput />
+        </mat-form-field>
+
+        <ng-container formArrayName="options">
+          @for (option of options.controls; track option; let i = $index) {
+            <div class="flex items-center mb-4">
+              <ng-container [formGroupName]="i">
+                <mat-form-field class="pl-10 w-full" appearance="outline" subscriptSizing="dynamic">
+                  <mat-label>
+                    {{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.FIELD_LABEL_OPTION' | transloco: { value: i + 1 } }}
+                  </mat-label>
+                  <input formControlName="option" matInput />
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="deleteOption(i)"
+                    [disabled]="isDeleteOptionDisabled"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </mat-form-field>
+              </ng-container>
+            </div>
+          }
+        </ng-container>
+      </form>
+    }
+  </div>
+
+  <div mat-dialog-actions class="py-6 flex justify-end items-center mat-background">
+    @if (isNew && isChoiceType) {
+      <button type="button" [disabled]="isAddOptionDisabled" (click)="addOption()" mat-stroked-button>
+        {{ 'COURSE.FORM.QUIZ.QUESTION.DIALOG.BUTTON_ADD_OPTION' | transloco }}
+      </button>
+    }
+
+    <button (click)="onSave()" mat-flat-button color="primary" [disabled]="isInvalid">
+      {{ 'GENERAL.SAVE' | transloco }}
+    </button>
+  </div>
+</div>

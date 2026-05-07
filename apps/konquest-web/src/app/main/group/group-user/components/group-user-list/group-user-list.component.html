@@ -1,0 +1,65 @@
+<div class="grow h-full flex">
+  <mat-table matSort (matSortChange)="sortData($event)" [dataSource]="data()" [hidden]="hiddenTable()">
+    <ng-container matColumnDef="avatar">
+      <mat-header-cell *matHeaderCellDef class="min-w-20 max-w-20"></mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-20 max-w-20">
+        <img class="h-8 w-8 rounded-full" [src]="row.user?.avatar || defaultUserAvatar" alt="Avatar" />
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="user__name" [sticky]="true">
+      <mat-header-cell class="min-w-52 fixed-column-right-border" *matHeaderCellDef mat-sort-header>{{
+        'GENERAL.NAME' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="flex items-center gap-3 h-full min-w-52 fixed-column-right-border">
+        <span class="break-words line-clamp-3">{{ row.user?.name || row.user?.email }}</span>
+        @if (row.deleted) {
+          <div class="bg-gray-200 rounded-full h-4 p-2 flex justify-center items-center border">
+            <span class="text-xxs text-gray-600">{{ 'GENERAL.INACTIVE' | transloco | uppercase }}</span>
+          </div>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="job">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-36">{{
+        'GROUP_USER.TABLE.JOB' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-36">
+        <span class="[word-break:break-word] line-clamp-3">{{ row.user?.job }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-36">
+        {{ 'GROUP_USER.TABLE.DATE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-36">{{ row.created_date | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="justify-center min-w-20 max-w-20">{{
+        'GENERAL.MENU' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="justify-center min-w-20 max-w-20">
+        <button
+          mat-icon-button
+          (click)="onRemove(row)"
+          [matTooltip]="'GENERAL.DELETE' | transloco"
+          [disabled]="row.deleted"
+        >
+          <mat-icon class="s-6">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  @if (showSkeleton()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+</div>

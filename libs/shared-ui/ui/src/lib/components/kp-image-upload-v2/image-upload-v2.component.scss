@@ -1,0 +1,9 @@
+:host {
+  @apply relative grid place-content-center overflow-hidden rounded-lg;
+  @apply border-2 border-dashed;
+  @apply bg-cover bg-center;
+
+  &.dragging-over {
+    @apply border-solid;
+  }
+}

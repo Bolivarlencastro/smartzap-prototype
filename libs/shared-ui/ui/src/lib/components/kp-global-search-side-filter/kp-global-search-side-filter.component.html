@@ -1,0 +1,15 @@
+<div class="h-full flex flex-col">
+  <div class="w-full pt-3.5 pl-3">{{ 'UI.GLOBAL_SEARCH.FILTERS' | transloco }}</div>
+
+  <!-- FILTER -->
+  @if (filterOptions) {
+    <kp-global-search-filter-form
+      class="overflow-auto"
+      [activeFilters]="activeFilters"
+      [filterOptions]="filterOptions"
+      (formSubmit)="filter($event)"
+      (cleanFilterEvent)="cleanFilter()"
+    ></kp-global-search-filter-form>
+  }
+  <!-- / FILTER -->
+</div>

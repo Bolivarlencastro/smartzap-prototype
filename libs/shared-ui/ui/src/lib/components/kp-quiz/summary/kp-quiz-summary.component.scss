@@ -1,0 +1,26 @@
+.kp-quiz-summary {
+  text-align: center;
+  height: calc(100vh - 82px);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  background-color: var(--mat-sys-primary);
+  color: white;
+  padding: 0 0.5rem;
+  border-radius: 10px;
+
+  h1 {
+    font-weight: 600;
+  }
+
+  .logo {
+    width: 3.5rem;
+    border-radius: 0.375rem;
+  }
+
+  .icon {
+    max-width: 150px;
+    height: 150px;
+  }
+}

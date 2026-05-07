@@ -1,0 +1,115 @@
+<section class="course-content-shell">
+  <div class="course-content-shell__header">
+    <div>
+      <h2>{{ 'COURSE.FORM.TABS.CONTENTS' | transloco }}</h2>
+      <p>{{ 'COURSE.FORM.NAVIGATION.CONTENTS' | transloco }}</p>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a mat-stroked-button type="button" routerLink="../settings">{{ 'GENERAL.PREVIOUS' | transloco }}</a>
+      <a
+        data-test="button-confirm-course-contents"
+        mat-flat-button
+        color="primary"
+        type="button"
+        routerLink="../finish"
+        [disabled]="!localContents.length"
+      >
+        {{ 'GENERAL.SAVE_AND_ADVANCE' | transloco }}
+      </a>
+    </div>
+  </div>
+
+  @if (!localContents.length) {
+    <div class="course-content-shell__empty">
+      <mat-icon class="course-content-shell__empty-icon">video_library</mat-icon>
+      <p>{{ 'COURSE.FORM.EMPTY_CONTENT' | transloco }}</p>
+      <button
+        data-test="button-new-content"
+        mat-flat-button
+        color="primary"
+        (click)="onCreateContent()"
+        [disabled]="isDisabled"
+      >
+        <mat-icon>add</mat-icon>
+        {{ 'COURSE.FORM.BUTTON.NEW_CONTENT' | transloco }}
+      </button>
+    </div>
+  }
+
+  <div class="content-list" cdkDropList (cdkDropListDropped)="onDrop($event)">
+    @for (content of localContents; track content.id; let i = $index) {
+      <div class="content-item" [class.content-item--quiz]="isQuiz(content)" cdkDrag [cdkDragDisabled]="isDisabled">
+        <div class="content-item__main">
+          <mat-icon class="content-item__drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+          <span class="content-item__order">{{ i + 1 }}</span>
+
+          <mat-icon
+            class="content-item__type-icon s-7"
+            [matTooltip]="'CONTENT.BUTTON.' + content?.type?.name | uppercase | transloco"
+            [svgIcon]="content?.type?.name | KpContentIconName"
+          ></mat-icon>
+
+          <div class="content-item__info">
+            <span class="content-item__name">{{ content.name }}</span>
+            <span class="content-item__date">{{ content.updated | date: 'longDate' }}</span>
+          </div>
+
+          @if (isQuiz(content)) {
+            <button
+              mat-stroked-button
+              class="content-item__quiz-btn"
+              (click)="onCreateQuestion(content)"
+              [disabled]="isDisabled"
+            >
+              <mat-icon>add</mat-icon>
+              {{ 'COURSE.FORM.BUTTON.QUESTION' | transloco }}
+            </button>
+          }
+
+          <div class="content-item__actions">
+            <button
+              mat-icon-button
+              type="button"
+              (click)="onEditContent(content)"
+              [matTooltip]="'GENERAL.EDIT' | transloco"
+              [disabled]="isDisabled"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              type="button"
+              (click)="onRemoveContent(content)"
+              [matTooltip]="'GENERAL.DELETE' | transloco"
+              [disabled]="isDisabled"
+            >
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        @if (isQuiz(content)) {
+          <mat-divider></mat-divider>
+          <div class="content-item__quiz-questions">
+            <app-quiz-questions-list [content]="content"></app-quiz-questions-list>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (localContents.length) {
+    <div>
+      <button
+        data-test="button-new-content"
+        mat-flat-button
+        color="primary"
+        (click)="onCreateContent()"
+        [disabled]="isDisabled"
+      >
+        <mat-icon>add</mat-icon>
+        {{ 'COURSE.FORM.BUTTON.NEW_CONTENT' | transloco }}
+      </button>
+    </div>
+  }
+</section>

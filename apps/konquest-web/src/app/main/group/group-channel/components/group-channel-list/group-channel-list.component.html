@@ -1,0 +1,46 @@
+<div class="grow flex h-full">
+  <mat-table matSort (matSortChange)="sortData($event)" [dataSource]="data()" [hidden]="hiddenTable()">
+    <ng-container matColumnDef="icon">
+      <mat-header-cell *matHeaderCellDef class="min-w-16 max-w-16"></mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-16 max-w-16">
+        <mat-icon class="s-6" svgIcon="canal-pulse"></mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="channel__name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-52">{{
+        'GROUP_CHANNEL.TABLE.TITLE.NAME' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-52">
+        <span class="[word-break:break-word] line-clamp-3">{{ row.channel?.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="channel__created_date">
+      <mat-header-cell *matHeaderCellDef class="min-w-36" mat-sort-header>
+        {{ 'GROUP_CHANNEL.TABLE.DATE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="min-w-36">{{ row.created_date | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="justify-center min-w-20 max-w-20">{{
+        'GENERAL.MENU' | transloco
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="justify-center min-w-20 max-w-20">
+        <button mat-icon-button (click)="onRemove(row)" [matTooltip]="'GENERAL.DELETE' | transloco">
+          <mat-icon class="s-6">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  @if (showSkeleton()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+</div>

@@ -1,0 +1,42 @@
+<form [formGroup]="filterForm" class="flex items-center gap-1">
+  <kp-date-range-filter-v2
+    [parentFormGroup]="filterForm"
+    gteFcName="createdDateGte"
+    lteFcName="createdDateLte"
+    icon="today"
+    [label]="'UI.ACTIVITY_LOG.DATE' | transloco"
+  ></kp-date-range-filter-v2>
+
+  <kp-select-menu-trigger [label]="'UI.ACTIVITY_LOG.USER' | transloco">
+    <mat-icon class="s-6 text-primary">person</mat-icon>
+    <mat-select kpSelectTriggerContent formControlName="userId">
+      @for (option of options()?.users; track option.value) {
+        <mat-option [value]="option.value">
+          <span>{{ option.label }}</span>
+        </mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+
+  <kp-select-menu-trigger [label]="'UI.ACTIVITY_LOG.ACTION' | transloco">
+    <mat-icon class="s-6 text-primary">play_arrow</mat-icon>
+    <mat-select kpSelectTriggerContent formControlName="actionKey">
+      @for (option of options()?.actionKey; track option) {
+        <mat-option [value]="option">
+          <span>{{ 'UI.ACTIVITY_LOG.ACTIONS.' + option | transloco }}</span>
+        </mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+
+  <kp-select-menu-trigger [label]="'UI.GENERAL.STATUS' | transloco">
+    <mat-icon class="s-1 filled text-primary">circle</mat-icon>
+    <mat-select kpSelectTriggerContent formControlName="status">
+      @for (option of options()?.status; track option) {
+        <mat-option [value]="option">
+          <span>{{ 'UI.ACTIVITY_LOG.STATUS.' + option | transloco }}</span>
+        </mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+</form>

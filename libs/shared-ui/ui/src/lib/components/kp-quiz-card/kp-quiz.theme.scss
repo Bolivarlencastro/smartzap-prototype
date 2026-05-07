@@ -1,0 +1,46 @@
+@use 'sass:map';
+
+@mixin keeps-quiz-theme {
+  .quiz-card {
+    &__dot--active,
+    &__dot--done {
+      background: var(--mat-sys-primary);
+    }
+
+    &__progress-fill {
+      background: var(--mat-sys-primary);
+    }
+
+    &__action-btn.mat-mdc-button-disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .quiz-question-option {
+    // Checked input state (before submit) — drives the --checked label class
+    input:checked ~ .quiz-question-option-label {
+      border-color: var(--mat-sys-primary);
+      background: color-mix(in srgb, var(--mat-sys-primary) 8%, transparent);
+
+      .quiz-option-badge {
+        background: color-mix(in srgb, var(--mat-sys-primary) 15%, transparent);
+        color: var(--mat-sys-primary);
+      }
+
+      .quiz-option-checkbox {
+        background: var(--mat-sys-primary);
+        border-color: var(--mat-sys-primary);
+      }
+    }
+
+    // Disabled state — :hover adds higher specificity, so must come after :checked
+    input:disabled ~ .quiz-question-option-label {
+      cursor: not-allowed;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

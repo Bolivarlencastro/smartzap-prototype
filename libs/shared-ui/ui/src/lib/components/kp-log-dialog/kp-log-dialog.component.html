@@ -1,0 +1,18 @@
+@if (data?.title) {
+  <span class="text-lg" mat-dialog-title>
+    {{ data?.title | transloco }}
+  </span>
+}
+@if (data?.log) {
+  <div mat-dialog-content>
+    <pre class="whitespace-pre-line">
+      {{ data?.log }}
+  </pre
+    >
+  </div>
+}
+<div mat-dialog-actions class="flex justify-end">
+  <button mat-stroked-button id="button-confirm-cancel" [mat-dialog-close]="false">
+    {{ 'UI.GENERAL.CLOSE' | transloco }}
+  </button>
+</div>

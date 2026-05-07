@@ -1,0 +1,201 @@
+{
+  "name": "smartzap-admin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/smartzap-admin/src",
+  "prefix": "app",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "plugins": ["kp-version.plugin.js"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared-ui/layout/src/lib", "libs/shared-ui/ui", ""]
+        },
+        "outputPath": "dist/apps/smartzap-admin",
+        "index": "apps/smartzap-admin/src/index.html",
+        "main": "apps/smartzap-admin/src/main.ts",
+        "polyfills": "apps/smartzap-admin/src/polyfills.ts",
+        "tsConfig": "apps/smartzap-admin/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/smartzap-admin/src/favicon.ico", "apps/smartzap-admin/src/assets"],
+        "styles": [
+          "libs/shared-ui/layout/src/lib/styles/tailwind.scss",
+          "libs/shared-ui/layout/src/lib/styles/main.scss",
+          "apps/smartzap-admin/src/app/app.theme.scss",
+          "apps/smartzap-admin/src/styles.scss",
+          "./node_modules/quill/dist/quill.snow.css"
+        ],
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "@messageformat",
+          "@jsverse",
+          "canvag",
+          "core-js",
+          "exceljs",
+          "iv-viewer",
+          "jspdf",
+          "jspdf-autotable",
+          "keycloak-js",
+          "ngrx-store-freeze",
+          "raf",
+          "rgbcolor"
+        ],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/smartzap-admin/ngsw-config.json"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "5mb",
+              "maximumError": "12mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/smartzap-admin/src/environments/environment.ts",
+              "with": "apps/smartzap-admin/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "prototype": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/smartzap-admin/src/environments/environment.ts",
+              "with": "apps/smartzap-admin/src/environments/environment.prototype.ts"
+            }
+          ]
+        },
+        "prototype-pages": {
+          "buildOptimizer": false,
+          "optimization": true,
+          "extractLicenses": true,
+          "sourceMap": false,
+          "namedChunks": false,
+          "serviceWorker": false,
+          "outputPath": "dist/apps/smartzap-admin-pages",
+          "baseHref": "/smartzap-prototype/",
+          "fileReplacements": [
+            {
+              "replace": "apps/smartzap-admin/src/environments/environment.ts",
+              "with": "apps/smartzap-admin/src/environments/environment.prototype-pages.ts"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "smartzap-admin:build:production"
+        },
+        "development": {
+          "buildTarget": "smartzap-admin:build:development"
+        },
+        "prototype": {
+          "buildTarget": "smartzap-admin:build:prototype"
+        },
+        "prototype-pages": {
+          "buildTarget": "smartzap-admin:build:prototype-pages"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/smartzap-admin"],
+      "options": {
+        "jestConfig": "apps/smartzap-admin/jest.config.ts",
+        "ci": true,
+        "codeCoverage": true,
+        "tsConfig": "apps/smartzap-admin/tsconfig.spec.json"
+      },
+      "configurations": {
+        "ci": {
+          "cache": false
+        },
+        "dev": {
+          "coverageReporters": ["html", "text-summary", "lcov"]
+        }
+      },
+      "defaultConfiguration": "dev"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/smartzap-admin/**/*.scss"]
+      }
+    },
+    "i18n-extract": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager extract --project smartzap-admin"
+      }
+    },
+    "i18n:find": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager find --project smartzap-admin"
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Smartzap Admin Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "smartzap-admin-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "**/libs/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/smartzap-admin/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/store/**, **/translate.ts, **/*.routes.ts, **/app.config.ts,, **/*.module.ts, **/app.component.ts, **/test-setup.ts, src/main.ts",
+          "sonar.plugins.downloadOnlyRequired": "true"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "smartzap-admin:build"
+      },
+      "configurations": {
+        "prototype-pages": {
+          "buildTarget": "smartzap-admin:build:prototype-pages"
+        }
+      }
+    }
+  }
+}

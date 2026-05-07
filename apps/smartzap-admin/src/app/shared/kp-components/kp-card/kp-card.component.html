@@ -1,0 +1,176 @@
+<fuse-card [flippable]="true" [face]="flipped ? 'back' : 'front'">
+  <!-- Front -->
+  <div class="kp-card flex flex-auto flex-col items-start justify-around" fuseCardFront (click)="flipped = !flipped">
+    <div class="flex gap-4 absolute top-0 right-4 z-10">
+      @if (data?.cardStatus; as status) {
+        <span class="kp-card-status-label" [style.background-color]="status.color">
+          {{ status.label | transloco }}
+        </span>
+      }
+    </div>
+
+    @if (showBookmark) {
+      @if (!showProgress) {
+        <button
+          mat-icon-button
+          class="kp-card-bookmark-icon"
+          [ngClass]="{
+            'kp-card-bookmark-icon-top': showBookmarkOnTop,
+          }"
+          color="accent"
+          (click)="onFavorite($event)"
+          aria-hidden="false"
+          [matTooltip]="'GENERAL.FAVORITE' | transloco"
+          aria-label="bookmark"
+          id="button-card-bookmark-front"
+        >
+          <mat-icon class="s-10">{{ data.bookmark_id || favorited ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+        </button>
+      }
+    }
+
+    <div class="kp-card-image-box h-60 w-full" [style.background-image]="image">
+      @if (!hideOverlay) {
+        <div class="kp-card-image-box-overlay"></div>
+      }
+    </div>
+
+    @if (showProgress) {
+      <div
+        class="kp-card-progress-box p-4 {{ progressClass }} flex flex-col items-center justify-center"
+        [matTooltip]="'GENERAL.MY_PROGRESS' | transloco"
+      >
+        <small class="kp-card-progress-text font-bold">{{ data.progress || 0 | number: '1.0-0' }} %</small>
+        <mat-progress-bar
+          class="kp-card-progress"
+          mode="determinate"
+          [color]="progressClass === 'kp-card-progress-primary' ? 'primary' : 'warn'"
+          [value]="data.progress"
+          id="card-progress-bar"
+        >
+        </mat-progress-bar>
+      </div>
+    }
+
+    <div class="kp-card-header py-2 px-6 mt-2 text-capitalized truncate w-full">
+      <h1 class="truncate font-bold m-0" [matTooltip]="data.title">
+        {{ data.title }}
+      </h1>
+    </div>
+
+    <mat-divider class="w-full mx-3"></mat-divider>
+
+    <div class="kp-card-content py-8 w-full flex flex-auto justify-around items-center">
+      @for (summary of data.summaries; track summary) {
+        <div class="flex flex-col items-center justify-center" [matTooltip]="summary.label | transloco">
+          @if (!summary.svgIcon) {
+            <mat-icon class="s-5">{{ summary.icon }}</mat-icon>
+          }
+          @if (summary.svgIcon) {
+            <mat-icon class="s-5" svgIcon="{{ summary.icon }}"></mat-icon>
+          }
+          <span class="mt-1 font-semibold fuse-navy-100-fg">{{ summary.value }}</span>
+        </div>
+      }
+    </div>
+
+    <div
+      class="kp-card-footer w-full p-6 pt-0 flex items-center {{ buttonLabel ? 'justify-between' : 'justify-start' }}"
+    >
+      <button mat-flat-button color="accent" class="truncate" (click)="onClick($event)" id="button-card-open">
+        {{ buttonLabel }}
+      </button>
+
+      @if (showAvatar) {
+        <div class="card-avatar">
+          <img
+            class="w-10 h-10 p-1 rounded-full"
+            alt="Avatar"
+            [matTooltip]="data.avatarName"
+            [src]="data.avatarImage || defaultUserAvatar"
+          />
+          @if (!buttonLabel) {
+            <span class="avatar-name">{{ data.avatarName }}</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+  <!-- / Front -->
+
+  <!-- Back -->
+  <div
+    class="p-4 pt-14 bg-primar-400 text-on-primary-400 flex flex-col flex-1 items-center"
+    fuseCardBack
+    (click)="unflip()"
+  >
+    @if (showBookmark) {
+      @if (!showProgress) {
+        <button
+          mat-icon-button
+          class="kp-card-bookmark-icon-back"
+          (click)="onFavorite($event)"
+          aria-hidden="false"
+          [matTooltip]="'GENERAL.FAVORITE' | transloco"
+          [attr.aria-label]="'GENERAL.FAVORITE' | transloco"
+          id="button-card-bookmark-back"
+        >
+          <mat-icon class="s-10">{{ data.bookmark_id && favorited ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+        </button>
+      }
+    }
+
+    <button mat-icon-button (click)="flipped = !flipped" class="absolute top-2 right-2" id="button-card-close-back">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="flex flex-auto flex-col w-full items-start justify-between max-h-full">
+      <div>
+        <h2 class="m-0 font-bold">
+          {{ data.title }}
+        </h2>
+      </div>
+
+      <div class="my-6 max-h-44 overflow-y-auto w-full break-words flex-1 overflow-auto">
+        {{ data.description || 'GENERAL.NO_DESCRIPTION' | transloco }}
+      </div>
+
+      <div class="w-full">
+        <div>
+          <mat-chip-listbox>
+            @for (tag of tags; track tag) {
+              <mat-chip-option [ngClass]="tag.color" class="kp-card-tag truncate" selected>
+                {{ tag.title }}
+              </mat-chip-option>
+            }
+          </mat-chip-listbox>
+        </div>
+
+        @if (data.views) {
+          <p class="my-4 font-bold">{{ data.views }} Visualizações</p>
+        }
+
+        <div class="my-4">
+          @if (data.categories) {
+            <mat-chip-listbox>
+              @for (category of data.categories; track category) {
+                <mat-chip-option class="kp-card-category truncate" selected>
+                  {{ category | transloco }}
+                </mat-chip-option>
+              }
+            </mat-chip-listbox>
+          }
+        </div>
+
+        <mat-divider class="mb-4"></mat-divider>
+
+        <div class="flex items-center justify-between">
+          <span>{{ data.createdAt | date }}</span>
+          <button mat-flat-button color="accent" class="truncate" (click)="onClick($event)" id="button-card-open-back">
+            {{ buttonLabel }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / Back -->
+</fuse-card>

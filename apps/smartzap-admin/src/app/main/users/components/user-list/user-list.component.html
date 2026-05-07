@@ -1,0 +1,183 @@
+<div class="user-list w-full">
+  <mat-table [dataSource]="displayedData()" (matSortChange)="sortData($event)" matSort>
+    <!-- Select definition -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef class="min-w-16 max-w-16 justify-center">
+        <mat-checkbox class="text-base" [checked]="isAllSelected" [disabled]="isLoading" (change)="toggleSelectAll()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-16 max-w-16 justify-center">
+        @if (isLoading) {
+          <div class="h-4 w-4 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <mat-checkbox (click)="toggleSelected(element)" [checked]="element.selected"></mat-checkbox>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Avatar definition -->
+    <ng-container matColumnDef="avatar">
+      <mat-header-cell *matHeaderCellDef class="min-w-20 max-w-20"></mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-20 max-w-20">
+        @if (isLoading) {
+          <div class="h-10 w-10 rounded-full bg-gray-200 animate-pulse"></div>
+        } @else {
+          <img alt="user-avatar" class="user-list-avatar" [src]="element.avatar || defaultUserAvatar" />
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- User name Definition -->
+    <ng-container matColumnDef="name" [sticky]="true">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-56">
+        @if (!hasUserSelected) {
+          <span>{{ 'USERS.TABLE.NAME' | transloco }}</span>
+        }
+        @if (hasUserSelected) {
+          <span>{{ selectedUsersCount }} {{ 'GENERAL.SELECTED_USERS' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-56">
+        @if (isLoading) {
+          <div class="h-4 w-32 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="line-clamp-1">{{ element.name | titlecase }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Email Definition -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="min-w-60">
+        @if (!hasUserSelected) {
+          <span>{{ 'GENERAL.EMAIL' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-60">
+        @if (isLoading) {
+          <div class="h-4 w-44 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="line-clamp-1">{{ element.email }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Phone Definition -->
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden md:flex min-w-40 max-w-40">
+        @if (!hasUserSelected) {
+          <span>{{ 'USERS.TABLE.PHONE' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-40 max-w-40">
+        @if (isLoading) {
+          <div class="h-4 w-28 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="line-clamp-1">{{ element.phone | kpPhone }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Tags Definition -->
+    <ng-container matColumnDef="tags">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden md:flex min-w-44 max-w-56">
+        @if (!hasUserSelected) {
+          <span>{{ 'GENERAL.TAGS' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-44 max-w-56 overflow-hidden">
+        @if (isLoading) {
+          <div class="h-6 w-16 rounded-full bg-gray-200 animate-pulse"></div>
+        } @else if (element.tags) {
+          <span class="py-1 px-4 text-sm rounded-full border bg-color divider-border">
+            {{ element.tags }}
+          </span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Status Definition -->
+    <ng-container matColumnDef="sync_check">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden md:flex min-w-32 max-w-32">
+        @if (!hasUserSelected) {
+          <span>{{ 'GENERAL.STATUS' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-32 max-w-32">
+        @if (isLoading) {
+          <div class="h-6 w-24 rounded-md bg-gray-200 animate-pulse"></div>
+        } @else {
+          <kp-card-tag
+            [label]="element?.sync_check | userStatusLabel | transloco"
+            [dotColor]="element?.sync_check | userStatusColor"
+            [keepOpen]="true"
+            [matTooltip]="element?.sync_check ? ('USERS.SYNC_ERRORS.'.concat(element?.sync_check) | transloco) : ''"
+          ></kp-card-tag>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Actions Definition -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="hidden md:flex min-w-24 max-w-24 justify-end">
+        @if (hasUserSelected) {
+          <button
+            mat-stroked-button
+            (click)="handleDeleteSelected()"
+            [class.warn-border]="hasUserSelected"
+            class="min-w-0 px-3"
+          >
+            <div class="flex items-center justify-center">
+              <mat-icon class="s-5">delete</mat-icon>
+            </div>
+          </button>
+        } @else {
+          <span>{{ 'GENERAL.MENU' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-24 max-w-24 justify-end">
+        @if (isLoading) {
+          <div class="flex gap-2">
+            <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
+            <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
+          </div>
+        } @else {
+          <button data-test="button-edit-user-on-smartzap" mat-icon-button (click)="editEvent.emit(element)">
+            <mat-icon class="s-6" [matTooltip]="'GENERAL.EDIT' | transloco"> edit </mat-icon>
+          </button>
+          <button
+            data-test="button-delete-user-on-smartzap"
+            mat-icon-button
+            (click)="removeEvent.emit(element.id)"
+            aria-label="Remove"
+            color="warn"
+          >
+            <mat-icon class="s-6" [matTooltip]="'GENERAL.REMOVE' | transloco"> delete </mat-icon>
+          </button>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <!-- Message definition-->
+  @if (!isLoading && !datasource?.length) {
+    <div class="empty-state-row">
+      <div class="empty-state">
+        <div class="empty-state__icon">
+          <mat-icon>people</mat-icon>
+        </div>
+        <div class="empty-state__content">
+          <h3 class="empty-state__title">Nenhum usuário encontrado</h3>
+          <p class="empty-state__description">Tente ajustar os filtros ou adicione um novo usuário.</p>
+        </div>
+        <button mat-flat-button color="primary" (click)="addUser.emit()">
+          {{ 'USERS.ADD' | transloco }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

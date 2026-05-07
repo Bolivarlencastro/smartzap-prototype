@@ -1,0 +1,26 @@
+{
+  "header": {
+    "title": "Certificate Validation"
+  },
+  "main": {
+    "cta": "Verify the Authenticity of Your Certificate",
+    "label": "Enter the certificate validation code to validate its authenticity and view the details"
+  },
+  "validation-form": {
+    "label": "Certificate Validation Code",
+    "hint": "The validation code is located at the footer of your certificate",
+    "validate": "Validate",
+    "validating": "Validating..."
+  },
+  "validation-result": {
+    "valid": "Authentic Certificate",
+    "invalid": "Invalid Certificate",
+    "owner": "Holder",
+    "course": "Course",
+    "issue-date": "Issue date",
+    "issuer": "Issuer",
+    "download-copy": "Download certificate copy",
+    "invalid-label": "The certificate with validation code <strong>{{value}}</strong> was not found in our database or has been revoked.",
+    "contact-tip": "If you have any questions, please contact the issuing institution for manual verification."
+  }
+}

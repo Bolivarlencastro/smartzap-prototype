@@ -1,0 +1,35 @@
+<div class="kp-quiz">
+  <ng-template kpQuestionHost></ng-template>
+
+  <div class="kp-quiz__actions">
+    @if (currentIndex < items.length) {
+      @if (currentIndex !== items.length - 1) {
+        <button mat-raised-button class="button-color flex" (click)="prev()" [disabled]="currentIndex === 0">
+          <span class="flex items-center gap-2">
+            <mat-icon class="icon flex items-center">arrow_back_ios</mat-icon>
+            Anterior
+          </span>
+        </button>
+        <div class="kp-quiz-page">{{ currentIndex + 1 }} de {{ items.length - 1 }}</div>
+        @if ((isAnswered$ | async) === false) {
+          <button
+            mat-raised-button
+            class="button-color"
+            (click)="onAnswerer()"
+            [disabled]="(isSelected$ | async) === false"
+          >
+            Responder
+          </button>
+        }
+        @if (currentIndex !== items.length - 1 && (isAnswered$ | async)) {
+          <button mat-raised-button class="button-color flex" (click)="next()">
+            <span class="flex items-center gap-2">
+              Próximo
+              <mat-icon class="icon flex items-center">arrow_forward_ios</mat-icon>
+            </span>
+          </button>
+        }
+      }
+    }
+  </div>
+</div>

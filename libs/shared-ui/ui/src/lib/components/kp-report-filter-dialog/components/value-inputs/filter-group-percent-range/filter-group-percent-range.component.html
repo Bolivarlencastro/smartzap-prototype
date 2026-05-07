@@ -1,0 +1,14 @@
+<mat-form-field class="w-full" subscriptSizing="dynamic">
+  <kp-percent-range-input
+    formControlName="value"
+    fromPlaceholder="0%"
+    toPlaceholder="100%"
+    minRange="0"
+    maxRange="100"
+    mask="percent"
+    [maxLength]="3"
+    suffix="%"
+    [normalizeFn]="normalizeFn"
+    [reverseNormalizeFn]="reverseNormalizeFn"
+  ></kp-percent-range-input>
+</mat-form-field>

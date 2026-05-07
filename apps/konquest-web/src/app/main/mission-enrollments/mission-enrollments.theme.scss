@@ -1,0 +1,49 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin mission-enrollments-theme {
+  app-missions-enrollments-dialog,
+  app-linked-learning-trails-dialog,
+  app-enrollments {
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+      height: 3em;
+      border: 0;
+      line-height: 1.5em;
+    }
+
+    .enrollments {
+      .mat-badge-after .mat-badge-content {
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        right: 0 !important;
+      }
+
+      .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+        color: white;
+      }
+    }
+  }
+
+  app-enrollment-tracking-dialog {
+    cdk-table.card-table {
+      cdk-header-row {
+        border-bottom: 0;
+        margin-bottom: 1rem;
+      }
+
+      cdk-row {
+        box-shadow: none !important;
+        border: 1px solid rgb(221 221 221 / 80%);
+
+        .border-row {
+          border: 1px solid rgb(221 221 221 / 80%);
+        }
+
+        cdk-cell {
+          border: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+.kp-channel-card {
+  background-color: var(--mat-sys-surface);
+
+  &-cover {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    &.inactive {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(#000, 0.5);
+        border-top-left-radius: inherit;
+        border-bottom-left-radius: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      span {
+        padding: 4px 12px;
+        background-color: #000;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1;
+        z-index: 2;
+      }
+    }
+  }
+}

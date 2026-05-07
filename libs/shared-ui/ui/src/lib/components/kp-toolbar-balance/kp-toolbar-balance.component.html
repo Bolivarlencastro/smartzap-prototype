@@ -1,0 +1,32 @@
+@if (compact) {
+  <button
+    mat-button
+    type="button"
+    class="toolbar-zaps-balance toolbar-zaps-balance--compact"
+    (click)="openDetails.emit()"
+  >
+    <mat-icon class="toolbar-zaps-balance__icon">monetization_on</mat-icon>
+    <span class="toolbar-zaps-balance__content">
+      <span class="toolbar-zaps-balance__value">{{ balance || 0 }}</span>
+      <span class="toolbar-zaps-balance__label">{{ 'UI.BILLING.BALANCE_LABEL' | transloco }}</span>
+    </span>
+  </button>
+} @else {
+  <div class="toolbar-zaps-balance h-full px-2.5 flex items-center text-xs">
+    <div class="text-center leading-none">
+      <p class="m-0 text-sm font-light">
+        {{ 'UI.BILLING.BALANCE_LABEL' | transloco }}
+      </p>
+      <span class="text-lg accent-color">
+        <span class="font-bold">{{ balance || 0 }}</span> ZAPS
+      </span>
+    </div>
+    <button
+      mat-stroked-button
+      class="leading-none ml-2.5 -mb-1 text-sm font-bold min-w-0 px-3 py-1 accent-color"
+      (click)="openDetails.emit()"
+    >
+      {{ 'UI.BILLING.INFO_BUTTON' | transloco }}
+    </button>
+  </div>
+}

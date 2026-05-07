@@ -1,0 +1,50 @@
+<div class="timeline-container">
+  <div class="timeline--header">
+    <h1 class="text-center">
+      {{ 'COURSE.FORM.TITLE.TIMELINE' | transloco }}
+    </h1>
+  </div>
+  <ul class="timeline my-4">
+    @for (content of contents; track content) {
+      <li>
+        <div class="timeline-badge flex flex-col items-center justify-center">
+          <mat-icon class="s-6" color="accent" [svgIcon]="content.type?.name | KpContentIconName"></mat-icon>
+        </div>
+        <div class="timeline-panel mat-elevation-z2">
+          <div class="timeline-heading">
+            <h3 class="timeline-title m-0 p-0 font-semibold primary-fg">
+              <mat-icon class="s-3">class</mat-icon>
+              {{ lessonsEntity[content.lesson_id].name }}
+            </h3>
+            <h4 class="timeline-content-title m-0 p-0 font-semibold truncate">
+              {{ content.name }}
+            </h4>
+          </div>
+          <div class="timeline-body">
+            <p class="m-0 p-0 text-sm">
+              {{ content.description }}
+            </p>
+            <p class="m-0 p-0">
+              <small class="text-muted text-xs">
+                <mat-icon class="s-9"> access_time</mat-icon>
+                {{ 'PERIOD.' + content.dispatch_period | transloco }}
+                -
+                {{
+                  'COURSE.FORM.INPUT.DISPATCH_IN_OPTION' + (content.dispatch_in > 1 ? '_PLURAL' : '')
+                    | transloco: { value: content.dispatch_in }
+                }}
+              </small>
+            </p>
+          </div>
+        </div>
+      </li>
+    }
+  </ul>
+  <div class="timeline-actions flex justify-center">
+    <a mat-stroked-button type="button" class="mr-3" routerLink="../contents">{{ 'GENERAL.BACK' | transloco }}</a>
+
+    <button data-test="publish-course-button" mat-flat-button (click)="publish.emit()" color="primary">
+      {{ 'COURSE.FORM.BUTTON.PUBLISH' | transloco }}
+    </button>
+  </div>
+</div>

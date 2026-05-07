@@ -1,0 +1,17 @@
+<div class="h-20 bg-default">
+  <div class="h-20 w-full bg-default flex">
+    <kp-global-search-input
+      class="grow"
+      [searchTerm]="searchTerm"
+      [placeholder]="'GENERAL.SEARCH_FOR' | transloco"
+      [iconClass]="inputIconClass"
+      (filterEvent)="onFilter($event)"
+    ></kp-global-search-input>
+    @if (groupUserFilter) {
+      <div class="flex items-center pr-10">
+        <span class="mr-3 text-sm">{{ 'GROUP_USER.FILTER' | transloco }}</span>
+        <mat-slide-toggle color="primary" (change)="toggleChange($event)"> </mat-slide-toggle>
+      </div>
+    }
+  </div>
+</div>

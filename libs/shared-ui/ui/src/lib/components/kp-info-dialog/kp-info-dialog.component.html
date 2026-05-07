@@ -1,0 +1,13 @@
+<div class="max-w-80">
+  <span mat-dialog-title class="text-xl">
+    {{ data.title | transloco }}
+  </span>
+  <div mat-dialog-content>
+    <p [innerHTML]="data.description | transloco"></p>
+  </div>
+  <div mat-dialog-actions class="pr-4 pb-4 flex justify-end">
+    <button mat-button mat-dialog-close class="text-primary">
+      {{ data.buttonLabel || 'UI.GENERAL.OK' | transloco }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<kp-infinite-scroll-container [hostHeight]="scrollContainerHeight" (scrolled)="onScroll()" class="relative">
+  @if (!isEmpty) {
+    <mat-table [dataSource]="items" [trackBy]="trackByFunction" class="vinculate-list-table">
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef [ngClass]="{ 'max-w-20 justify-center': !hasSelection }">
+          <mat-checkbox
+            (change)="toggleAllRows($event)"
+            [checked]="isAllSelected"
+            [indeterminate]="indeterminateCheck"
+            class="-mr-3"
+          >
+          </mat-checkbox>
+          @if (hasSelection) {
+            <p class="ml-4">{{ selectionLabel }}</p>
+          }
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="max-w-20 justify-center">
+          <mat-checkbox
+            data-test="checkbox-modal-row"
+            (click)="$event.stopPropagation()"
+            (change)="onItemSelectionChange($event, item)"
+            [checked]="isSelected(item)"
+            class="-mr-3"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="avatar">
+        <mat-header-cell *matHeaderCellDef class="max-w-20 justify-center"></mat-header-cell>
+        <mat-cell *matCellDef="let item" class="max-w-20 justify-center">
+          <img [src]="item[avatarKey] || defaultAvatar" alt="Avatar" class="w-10 h-10 rounded-full bg-cover" />
+        </mat-cell>
+      </ng-container>
+      @for (column of columns; track column; let index = $index) {
+        <ng-container [matColumnDef]="column.property">
+          <mat-header-cell *matHeaderCellDef>
+            @if (!hasSelection) {
+              {{ column.title | transloco }}
+            }
+          </mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let item">{{ accessProperty(item, column.property) }}</mat-cell>
+        </ng-container>
+      }
+      <ng-container matColumnDef="progress_bar">
+        <mat-header-cell *matHeaderCellDef class="p-0 h-auto min-h-0 border-0">
+          @if (loading && hasItems) {
+            <mat-progress-bar color="primary" mode="query" class="absolute"></mat-progress-bar>
+          }
+        </mat-header-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-header-row
+        *matHeaderRowDef="['progress_bar']; sticky: true"
+        class="top-14 p-0 h-auto min-h-0"
+      ></mat-header-row>
+      <mat-row data-test="option-modal-row" *matRowDef="let row; columns: displayedColumns" class="h-[72px]"></mat-row>
+    </mat-table>
+  }
+
+  @if (loading && !hasItems) {
+    <div class="py-2 flex items-center justify-center full-height-container">
+      <mat-progress-spinner mode="indeterminate" diameter="36" color="primary"></mat-progress-spinner>
+    </div>
+  }
+
+  @if (isEmpty) {
+    <div class="flex flex-col items-center justify-center full-height-container">
+      {{ emptyPlaceholder | transloco }}
+    </div>
+  }
+</kp-infinite-scroll-container>

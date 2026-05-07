@@ -1,0 +1,55 @@
+@if ({ filter: filter$ | async }; as data) {
+  <div
+    #missions
+    id="missions"
+    class="flex-1"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    [scrollWindow]="true"
+    (scrolled)="onScroll()"
+  >
+    <!--recommended -->
+    @if (shouldDisplayBanner$ | async; as displayBanner) {
+      <div [@slideInOut]="displayBanner" [@fadeInOut]="displayBanner">
+        <kp-banner-v2
+          [items]="recommendations$ | async"
+          (bannerAction)="onLearnContentAction($event)"
+          [contentType]="'mission'"
+        ></kp-banner-v2>
+        @if (recommendationsLoading$ | async) {
+          <ngx-skeleton-loader
+            count="1"
+            animation="pulse"
+            [theme]="{ 'height.px': (isMobile$ | async) ? 200 : 450, width: '100%' }"
+          ></ngx-skeleton-loader>
+        }
+      </div>
+    }
+    <!--/recommended-->
+    <kp-course-filter
+      [isContentCreator]="isCreator$ | async"
+      [quickFilter]="data.filter?.type"
+      [categories]="categories$ | async"
+      [providers]="providers$ | async"
+      [languages]="languages()"
+      (quickFilterChanged)="onQuickFilter($event)"
+      (searchTermChanged)="onSearch($event)"
+      (saveFilter)="onFilter($event)"
+    ></kp-course-filter>
+    <!-- content -->
+    <div class="max-w-[1328px] mx-auto p-0 xxs:p-6 sm:py-24 sm:pt-10 pb-14">
+      <!--filtered-missions-->
+      <kp-all-missions
+        data-test="mission-page-selector"
+        [missions]="missions$ | async"
+        [isLoading]="missionsLoading$ | async"
+        [isMobile]="isMobile$ | async"
+        [emptyMessage]="emptyMessage$ | async"
+        (cardAction)="onLearnContentAction($event)"
+      ></kp-all-missions>
+      <!--filtered-missions-->
+    </div>
+    <!--/content -->
+  </div>
+}

@@ -1,0 +1,57 @@
+<!--Connector-->
+<ng-container [formGroup]="filterFormGroup">
+  <div class="flex flex-row gap-3 justify-between items-center">
+    <div class="flex flex-row gap-3 flex-1">
+      @if (first) {
+        <div class="flex items-center w-10">
+          {{ 'UI.REPORT_FILTER_DIALOG.CONNECTOR.WHERE' | transloco | titlecase }}
+        </div>
+      } @else {
+        <div class="flex items-center w-10">
+          {{ 'UI.REPORT_FILTER_DIALOG.CONNECTOR.AND' | transloco | titlecase }}
+        </div>
+      }
+
+      <!--Selector-->
+      <mat-form-field class="w-60" subscriptSizing="dynamic">
+        <mat-select
+          formControlName="selector"
+          [placeholder]="'UI.REPORT_FILTER_DIALOG.SELECT_FILTER' | transloco"
+          [hideSingleSelectionIndicator]="true"
+        >
+          <mat-select-trigger>
+            <kp-filter-dialog-selector-template [selector]="currentSelector"></kp-filter-dialog-selector-template>
+          </mat-select-trigger>
+          @for (selector of groupSelectors; track selector) {
+            <mat-option [value]="selector.value">
+              <kp-filter-dialog-selector-template [selector]="selector"></kp-filter-dialog-selector-template>
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!--Operator / Filter Value-->
+      @if (filterFormGroup.value.selector) {
+        <div class="flex flex-row gap-3 flex-1">
+          <!--Filter value-->
+          <kp-filter-group-value
+            [currentSelector]="currentSelector"
+            [filterFormGroup]="filterFormGroup"
+            class="flex-1"
+          ></kp-filter-group-value>
+        </div>
+      }
+    </div>
+
+    <button
+      mat-icon-button
+      class="col-start-4"
+      type="button"
+      [matTooltip]="'UI.GENERAL.REMOVE' | transloco"
+      [attr.aria-label]="'UI.GENERAL.REMOVE' | transloco"
+      (click)="remove()"
+    >
+      <mat-icon class="s-4">close</mat-icon>
+    </button>
+  </div>
+</ng-container>

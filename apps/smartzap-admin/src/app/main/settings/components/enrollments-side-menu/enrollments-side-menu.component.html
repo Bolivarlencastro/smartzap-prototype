@@ -1,0 +1,40 @@
+<div class="h-full w-80 flex flex-col">
+  <div class="h-32 pl-8 pr-6 flex items-center">
+    <div class="flex flex-col gap-1">
+      <span class="mb-2">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TITLE' | transloco }}</span>
+      <span class="text-xs">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.SUBTITLE' | transloco }}</span>
+    </div>
+    <button mat-icon-button class="ml-auto" (click)="closeMenu.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="flex-1 pt-6 px-6 flex flex-col gap-3 overflow-y-auto">
+    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
+      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_USERS' | transloco }}</span>
+      <span class="text-sm font-medium">{{ statistics?.totalUsers || 0 }}</span>
+    </div>
+    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
+      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES' | transloco }}</span>
+      <span class="text-sm font-medium">{{ statistics?.totalSentMessages || 0 }}</span>
+    </div>
+    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
+      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.STARTED_ENROLLMENTS' | transloco }}</span>
+      <span class="text-sm font-medium">{{ statistics?.startedEnrollments || 0 }}</span>
+    </div>
+    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
+      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.WAITING_ENROLLMENTS' | transloco }}</span>
+      <span class="text-sm font-medium">{{ statistics?.waitingEnrollments || 0 }}</span>
+    </div>
+    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
+      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco }}</span>
+      <span class="text-sm font-medium">{{ statistics?.totalPendingMessages || 0 }}</span>
+    </div>
+    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
+      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES_PERIOD' | transloco }}</span>
+      <span class="text-sm font-medium">{{ statistics?.totalSentMessagesPeriod || 0 }}</span>
+    </div>
+  </div>
+</div>

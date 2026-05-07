@@ -1,0 +1,48 @@
+<div class="course-detail-resume">
+  <ng-container
+    *ngTemplateOutlet="
+      statusCard;
+      context: {
+        title: 'GENERAL.DURATION' | transloco,
+        icon: 'timer',
+        value: course.duration | kpDuration,
+      }
+    "
+  ></ng-container>
+
+  <mat-divider vertical></mat-divider>
+
+  <ng-container
+    *ngTemplateOutlet="
+      statusCard;
+      context: {
+        title: 'GENERAL.ENROLLMENTS' | transloco,
+        icon: 'person_outline',
+        value: 'COURSE.DETAIL.ENROLLED' | transloco: { value: course.total_users_enrolled || 0 },
+      }
+    "
+  ></ng-container>
+
+  <mat-divider vertical></mat-divider>
+
+  <ng-container
+    *ngTemplateOutlet="
+      statusCard;
+      context: {
+        title: 'GENERAL.FINISHED' | transloco,
+        icon: 'award',
+        value: 'COURSE.DETAIL.FINISHED' | transloco: { value: course.total_users_completed || 0 },
+      }
+    "
+  ></ng-container>
+</div>
+
+<ng-template #statusCard let-title="title" let-icon="icon" let-value="value">
+  <div class="course-detail-resume__item">
+    <mat-icon class="course-detail-resume__icon" [svgIcon]="icon"></mat-icon>
+    <div class="course-detail-resume__text" data-test="course-detail-status.status">
+      <p class="course-detail-resume__label">{{ title }}</p>
+      <p class="course-detail-resume__value">{{ value }}</p>
+    </div>
+  </div>
+</ng-template>

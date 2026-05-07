@@ -1,0 +1,125 @@
+{
+  "CONTENT_ERROR_DIALOG": {
+    "DESCRIPTION": "Hubo un problema al intentar cargar este contenido. Si el problema persiste, por favor contacte al soporte para obtener asistencia.",
+    "TITLE": "Error al cargar contenido"
+  },
+  "FINISH": {
+    "DIALOG": {
+      "MESSAGE": "Al finalizar, tu rendimiento será calculado en función del consumo de los contenidos. Si aún no has realizado todas las actividades, hazlo antes de finalizar para no afectar tu resultado.",
+      "NEGATIVE_BUTTON": "Volver",
+      "POSITIVE_BUTTON": "Finalizar",
+      "TITLE": "¿Deseas finalizar el curso?"
+    },
+    "FINISH_BUTTON": "Finalizar ahora",
+    "RESUME": {
+      "MIN_PERFORMANCE": "Perf. mín",
+      "OF": "de",
+      "PERFORMANCE": "Desempeño",
+      "POINTS": "Puntos",
+      "POINTS_EARNED": "Puntos ganados",
+      "QUIZ_PERFORMANCE": "Desempeño en el Quiz",
+      "WEATHER_ORBITA": "Tiempo en Órbita"
+    },
+    "SUBTITLE": "¡Felicidades! Has llegado al final del curso. Ahora, puedes finalizar el curso o seguir navegando por los contenidos y finalizarlo en otro momento.",
+    "TITLE": "Finalización del curso"
+  },
+  "COURSE_FINISH_DIALOG": {
+    "TITLE": "¿Desea finalizar el curso?",
+    "MESSAGE": "¿Desea finalizar el curso? Al finalizar, su rendimiento se calculará en función del consumo de los contenidos. Si aún no ha completado todas las actividades, hágalo antes de finalizar para no afectar su resultado.",
+    "NEGATIVE_BUTTON": "Volver",
+    "POSITIVE_BUTTON": "Finalizar"
+  },
+  "COURSE_RESULT": {
+    "CORRECT_ANSWERS": "Respuestas correctas",
+    "GENERATING_CERTIFICATE": "Generando certificado..."
+  },
+  "COURSE_APPROVED_DIALOG": {
+    "TITLE": "¡Excelencia alcanzada!",
+    "MESSAGE": "¡Felicidades! Ha completado el curso con excelencia. Siga así y continúe evolucionando. Su certificado de finalización está disponible.",
+    "POSITIVE_BUTTON": "Ver certificado"
+  },
+  "COURSE_REPROVED_DIALOG": {
+    "TITLE": "Curso completado",
+    "MESSAGE": "¡Felicidades por completar el curso! Aunque no haya cumplido con todos los requisitos de rendimiento, su esfuerzo es admirable. Siga esforzándose y mejorando sus habilidades.",
+    "POSITIVE_BUTTON": "Salir del curso"
+  },
+  "GET_OUT_DIALOG": {
+    "CANCEL_BUTTON_LABEL": "Continuar curso",
+    "DESCRIPTION": "¿Estás seguro de que deseas salir del curso? Si sales, podrás retomar la actividad desde donde la dejaste.",
+    "DESCRIPTION_WITH_GOAL_DATE": "¿Estás seguro de que deseas salir del curso? Si te vas, puedes retomar la actividad desde donde la dejaste.<br><br>Recuerda, la fecha meta de este curso es: {{value}}",
+    "POSITIVE_BUTTON_LABEL": "Quiero salir",
+    "TITLE": "Salir del curso"
+  },
+  "HELP_PANEL": {
+    "CONTENT_PANEL": {
+      "CERTIFICATE_BLOCKED": "Certificado Bloqueado",
+      "CERTIFICATE_DOWNLOAD": "Descargar Certificado",
+      "CERTIFICATE_UNLOCKED": "Certificado Desbloqueado",
+      "CONTENT_INFO": "Información del Contenido",
+      "SHARE_CERTIFICATE": "Compartir Certificado",
+      "SUBTITLE": "Área donde se muestra el material de aprendizaje.",
+      "TITLE": "Panel de Contenido",
+      "VIDEO_AUDIO_TRANSCRIPTION": "Transcripción de Vídeo/Audio"
+    },
+    "SIDE_MENU": {
+      "CERTIFICATE": "Certificado",
+      "DARK_MODE": "Modo Oscuro",
+      "EXIT_COURSE": "Salir del Curso",
+      "FULLSCREEN": "Pantalla Completa",
+      "HELP": "Ayuda",
+      "LIGHT_MODE": "Modo Claro",
+      "PROGRESS": "Progreso",
+      "SUBTITLE": "Encuentra rápidamente las funciones esenciales del curso.",
+      "SUMMARY": "Resumen",
+      "TITLE": "Menú Lateral"
+    },
+    "TITLE": "Panel de Ayuda",
+    "TOP_BAR": {
+      "ADVANCE_BLOCK": "Bloqueo de Avance",
+      "MENU": "Menú",
+      "SUBTITLE": "Controla el flujo del curso usando los botones del menú superior.",
+      "TITLE": "Barra Superior"
+    }
+  },
+  "NAVIGATION_PANEL": {
+    "SKIPPED_CONTENT_INFO": "Parece que no has completado este material. Por favor, asegúrate de consumir todo el contenido para completar la curso con éxito."
+  },
+  "PROGRESS_PANEL": {
+    "GOAL_DATE": {
+      "CHANGE_GOAL_DATE_SUCCESS": "¡La fecha objetivo se cambió correctamente!",
+      "CHANGE_LABEL": "Editar",
+      "DIALOG_DESCRIPTION": "Este panel muestra cuántos días faltan para la fecha objetivo de finalización del curso, así como la fecha establecida. Si el curso no es obligatorio, podrás editar esta fecha siempre que sea necesario, ajustando tu progreso según tu disponibilidad. La fecha objetivo es una forma eficaz de mantenerte comprometido y asegurar que completes todas las actividades dentro del período deseado.",
+      "DIALOG_TITLE": "Días para la Fecha Objetivo",
+      "REFERENCE_VALUE_LABEL": "TU FECHA OBJETIVO:",
+      "TITLE": "DÍAS PARA LA FECHA OBJETIVO"
+    },
+    "PROGRESS": {
+      "DIALOG_DESCRIPTION": "El progreso refleja cuánto has avanzado en el curso en relación con el total de actividades y contenido disponible. Cada actividad completada contribuye a aumentar tu porcentaje de progreso. Utiliza esta información para monitorear tu avance y asegurarte de que estás en el camino correcto para completar el curso dentro del tiempo estimado.",
+      "DIALOG_TITLE": "Progreso",
+      "TITLE": "TU PROGRESO"
+    }
+  },
+  "VIDEO_TRANSCRIPTION": "Transcripción del video",
+  "HEADER_NAV": {
+    "OF": "de",
+    "RETURN": "Volver",
+    "FORWARD": "Avanzar"
+  },
+  "BLOCKED_CONTENT": {
+    "TITLE": "Contenido Bloqueado",
+    "MESSAGE": "Este contenido está bloqueado. Para acceder a él, primero debes completar los contenidos anteriores. Finaliza la visualización de los pasos anteriores para desbloquear este contenido."
+  },
+  "FINISH_ENROLLMENT_ERROR": "Se produjo un error al finalizar su registro.",
+  "CERTIFICATE": {
+    "SUCCESS_LABEL": "¡Felicidades! Has finalizado el curso y ahora tienes acceso al certificado.",
+    "DOWNLOAD": "Descargar certificado",
+    "SHARE": "Compartir certificado"
+  },
+  "COURSE_EVALUATION": "Evalúa tu experiencia",
+  "GENERAL": {
+    "LEAVE": "Salir"
+  },
+  "QUIZ": {
+    "PREVIEW_BANNER": "Modo vista previa — las respuestas no se guardarán"
+  }
+}

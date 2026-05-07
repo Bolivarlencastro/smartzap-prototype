@@ -1,0 +1,70 @@
+<div class="flex flex-col gap-2 container">
+  @for (item of progressPanel()?.cards; track item.id) {
+    <div class="progress-panel-container bg-card rounded-md p-4 flex flex-col aspect-[16/9]">
+      <div class="flex justify-between items-center">
+        <span class="text-xs">{{ item.title | transloco }}</span>
+        <mat-icon class="s-4 cursor-pointer" (click)="openDialog(item.infoDialogData)">help</mat-icon>
+      </div>
+      <div class="flex flex-col justify-center items-center grow gap-2">
+        @switch (item.id) {
+          @case ('progress') {
+            <ng-container *ngTemplateOutlet="progress; context: { $implicit: item.value }"></ng-container>
+          }
+          @case ('goal-date') {
+            <ng-container
+              *ngTemplateOutlet="
+                goalDate;
+                context: {
+                  $implicit: item,
+                  required: progressPanel()?.required,
+                  isGoalDateMenuOpen: progressPanel()?.isGoalDateMenuOpen,
+                  displayGoalDateEdit: progressPanel()?.displayGoalDateEdit,
+                }
+              "
+            ></ng-container>
+          }
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #progress let-value>
+  <span data-test="classroom-enrollment-progress-selector" class="text-3xl">{{ (value | percent) || '-' }}</span>
+</ng-template>
+
+<ng-template
+  #goalDate
+  let-item
+  let-required="required"
+  let-isGoalDateMenuOpen="isGoalDateMenuOpen"
+  let-displayGoalDateEdit="displayGoalDateEdit"
+>
+  <span class="text-3xl">{{ (item.value | kpDaysUntil) ?? '-' }}</span>
+  <span class="text-xs">{{ 'CLASSROOM.PROGRESS_PANEL.GOAL_DATE.REFERENCE_VALUE_LABEL' | transloco }}</span>
+  @if (item.referenceValue) {
+    <span class="text-xs leading-none">{{ item.referenceValue | date: 'shortDate' }}</span>
+  } @else {
+    <span class="text-xs leading-none">--/--/--</span>
+  }
+  @if (displayGoalDateEdit) {
+    <a
+      data-test="goal-date-edit-button-on-classroom"
+      class="flex items-center cursor-pointer gap-px opacity-50"
+      [matMenuTriggerFor]="datepicker"
+      (menuOpened)="toggleGoalDateMenu(true)"
+      (menuClosed)="toggleGoalDateMenu(false)"
+    >
+      <mat-icon class="s-3">edit</mat-icon>
+      <span class="text-xs">{{ 'CLASSROOM.PROGRESS_PANEL.GOAL_DATE.CHANGE_LABEL' | transloco }}</span>
+    </a>
+    <mat-menu #datepicker="matMenu" class="w-96 pointer-events-none" [hasBackdrop]="false">
+      <kp-datepicker-menu
+        class="pointer-events-auto"
+        [currentDate]="item.referenceValue"
+        [opened]="isGoalDateMenuOpen"
+        (closeCalendar)="changeGoalDate($event)"
+      ></kp-datepicker-menu>
+    </mat-menu>
+  }
+</ng-template>

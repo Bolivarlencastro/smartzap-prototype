@@ -1,0 +1,18 @@
+import { Inject, Injectable } from '@angular/core';
+import { AbstractAPI } from '../../abstract-api';
+import { HttpClient } from '@angular/common/http';
+import { CORE_CONFIG, CoreConfig } from '../../core-config';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PushManagerClient extends AbstractAPI {
+  API_URL = `${this.coreConfig.apis.apiPushManagerUrl}`;
+
+  constructor(
+    protected override http: HttpClient,
+    @Inject(CORE_CONFIG) private readonly coreConfig: CoreConfig,
+  ) {
+    super(http);
+  }
+}

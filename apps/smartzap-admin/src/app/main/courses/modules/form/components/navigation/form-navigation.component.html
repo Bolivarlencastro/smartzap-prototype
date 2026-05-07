@@ -1,0 +1,28 @@
+<div class="w-96">
+  <nav>
+    @for (item of navItems; track item.order; let i = $index) {
+      <a
+        [routerLink]="item.disabled ? null : item.route"
+        routerLinkActive="active-item"
+        [routerLinkActiveOptions]="{ exact: i === 0 }"
+        class="flex w-96 py-6 px-9 gap-4 item-container"
+        [ngClass]="{
+          'text-disabled cursor-default': item.disabled,
+          'cursor-pointer': !item.disabled,
+        }"
+        [matRippleDisabled]="item.disabled"
+        matRipple
+      >
+        <div
+          class="w-7 h-7 self-start rounded-full border-2 text-sm flex justify-center items-center font-bold shrink-0 order-counter"
+        >
+          {{ item.order }}
+        </div>
+        <div>
+          <h3 data-test="step-title" class="font-bold title">{{ item.title | transloco }}</h3>
+          <p>{{ item.label | transloco }}</p>
+        </div>
+      </a>
+    }
+  </nav>
+</div>

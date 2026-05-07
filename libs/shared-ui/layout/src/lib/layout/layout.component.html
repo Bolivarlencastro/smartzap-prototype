@@ -1,0 +1,52 @@
+<ng-template #components>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #primaryMenu>
+  <ng-content select="[primaryMenu]"></ng-content>
+</ng-template>
+
+<ng-template #footerNav>
+  <ng-content select="[fuseVerticalNavigationFooter]"></ng-content>
+</ng-template>
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- Empty layout -->
+<!-- ----------------------------------------------------------------------------------------------------- -->
+@if (layout === 'empty') {
+  <empty-layout></empty-layout>
+}
+
+<!-- Compact -->
+@if (layout === 'compact') {
+  <compact-layout
+    [enableGlobalSearch]="enableGlobalSearch"
+    [fullscreenTooltip]="fullscreenTooltip"
+    (logoClick)="logoClick.emit()"
+  >
+    <ng-container primaryMenu *ngTemplateOutlet="primaryMenu"></ng-container>
+    <ng-container *ngTemplateOutlet="components"></ng-container>
+    <ng-container fuseVerticalNavigationFooter *ngTemplateOutlet="footerNav"></ng-container>
+  </compact-layout>
+}
+
+<!-- Dense -->
+@if (layout === 'dense') {
+  <dense-layout>
+    <ng-container *ngTemplateOutlet="components"></ng-container>
+  </dense-layout>
+}
+
+<!-- Futuristic -->
+@if (layout === 'futuristic') {
+  <futuristic-layout>
+    <ng-container *ngTemplateOutlet="components"></ng-container>
+  </futuristic-layout>
+}
+
+<!-- Thin -->
+@if (layout === 'thin') {
+  <thin-layout>
+    <ng-container *ngTemplateOutlet="components"></ng-container>
+  </thin-layout>
+}

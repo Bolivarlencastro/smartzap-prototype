@@ -1,0 +1,30 @@
+.tracking-collection {
+  cdk-table {
+    .cdk-row {
+      height: auto !important;
+
+      .cdk-cell {
+        padding: 1em 0;
+      }
+    }
+
+    .cdk-column-content-name {
+      min-width: 300px;
+      max-width: 300px;
+    }
+
+    .consumption-status {
+      &-green {
+        background-color: #70ccab;
+      }
+
+      &-orange {
+        background-color: #f2ae13;
+      }
+
+      &-grey {
+        background-color: #b5b5b5;
+      }
+    }
+  }
+}

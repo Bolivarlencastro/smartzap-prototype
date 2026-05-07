@@ -1,0 +1,29 @@
+$size: 120px;
+$thickness: 15px;
+$font-size: 1.2rem;
+$inner-size: calc($size - 2 * $thickness);
+
+.text-circle {
+  position: relative;
+  margin: 0 1rem;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+.text-circle .text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: $inner-size;
+  height: $inner-size;
+  margin-left: calc(-1 * $inner_size / 2);
+  margin-top: calc(-1 * $inner_size / 2);
+  z-index: 1;
+  font-size: $font-size;
+  line-height: $inner-size;
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+  color: #8b8b8b;
+}

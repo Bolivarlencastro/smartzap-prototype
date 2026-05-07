@@ -1,0 +1,86 @@
+<div class="course-detail-actions">
+  @if (!canEdit && course.status === 'FINISHED') {
+    <button
+      mat-flat-button
+      color="primary"
+      class="course-detail-actions__primary"
+      [routerLink]="['/courses', course.id, 'enrollments']"
+    >
+      {{ 'COURSE.DETAIL.BUTTON.MANAGER' | transloco }}
+    </button>
+  }
+
+  @if (canEdit) {
+    @switch (course.status) {
+      @case ('FINISHED') {
+        <button
+          mat-flat-button
+          color="primary"
+          class="course-detail-actions__primary"
+          [routerLink]="['/courses', course.id, 'enrollments']"
+        >
+          {{ 'COURSE.DETAIL.BUTTON.MANAGER' | transloco }}
+        </button>
+      }
+      @case ('REVIEWING') {
+        <button mat-flat-button color="primary" class="course-detail-actions__primary" (click)="handlePublish()">
+          {{ 'COURSE.DETAIL.BUTTON.PUBLISH' | transloco }}
+        </button>
+      }
+      @default {
+        <button
+          data-test="edit-course-button"
+          mat-flat-button
+          color="primary"
+          class="course-detail-actions__primary"
+          (click)="handleEdit()"
+        >
+          {{ 'COURSE.DETAIL.BUTTON.EDIT' | transloco }}
+        </button>
+      }
+    }
+  }
+
+  <button
+    data-test="course-menu-list"
+    mat-icon-button
+    class="course-detail-actions__menu-trigger"
+    [matMenuTriggerFor]="optionsMenu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #optionsMenu="matMenu" xPosition="before" class="action-button-menu">
+    @if (course.status === 'FINISHED') {
+      <a mat-menu-item [routerLink]="['/courses', course.id, 'enrollments']">
+        {{ 'COURSE.DETAIL.BUTTON.MANAGER' | transloco }}
+      </a>
+    }
+    @if (reportButtons?.length) {
+      @for (reportButton of reportButtons; track reportButton) {
+        <button
+          mat-menu-item
+          (click)="handleGenerateReport(reportButton.reportType)"
+          [attr.data-cy]="'choice-report-button-' + reportButton.reportType"
+        >
+          {{ reportButton.translateKey | transloco }}
+        </button>
+      }
+    }
+    @if (canEdit && course.status !== 'CREATING' && course.status !== 'PROCESSING') {
+      <button mat-menu-item (click)="handleEdit()">
+        {{ 'COURSE.DETAIL.BUTTON.EDIT' | transloco }}
+      </button>
+    }
+    @if (canEdit && course.status !== 'CREATING' && course.status !== 'PROCESSING') {
+      <button mat-menu-item (click)="handleTransfer()">
+        {{ 'COURSE.DETAIL.BUTTON.TRANSFER' | transloco }}
+      </button>
+    }
+    @if (canEdit) {
+      <button data-test="course-menu-option-delete" mat-menu-item (click)="handleRemove()">
+        {{ 'GENERAL.DELETE' | transloco }}
+      </button>
+    }
+  </mat-menu>
+</div>

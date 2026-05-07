@@ -1,0 +1,19 @@
+<mat-form-field appearance="outline" class="w-full" subscriptSizing="dynamic">
+  <mat-icon matSuffix>search</mat-icon>
+  <input
+    matInput
+    [placeholder]="'CONTRIBUTORS_DIALOG.SEARCH_USER' | transloco"
+    [matAutocomplete]="usersAuto"
+    [formControl]="searchControl"
+  />
+  <mat-autocomplete #usersAuto="matAutocomplete">
+    @for (user of users; track user) {
+      <mat-option [value]="user.name ? user.name : user.email" (onSelectionChange)="onSelection(user)">
+        <div class="flex items-center w-full gap-4">
+          <img class="h-8 w-8 rounded-full" [src]="user.avatar ? user.avatar : defaultUserAvatar" alt="User Avatar" />
+          <span data-test="kp-contributors.user_label" class="w-full">{{ user.name || user.email }}</span>
+        </div>
+      </mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

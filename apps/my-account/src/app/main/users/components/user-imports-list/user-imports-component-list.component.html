@@ -1,0 +1,107 @@
+<!-- User imports List -->
+<mat-table [dataSource]="imports()" #table class="grow">
+  <!-- Created date -->
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef class="min-w-[110px] max-w-[110px]">{{
+      'USERS.IMPORT_LIST.DATE' | transloco
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let item" class="min-w-[110px] max-w-[110px]">
+      <p>{{ item.created_date | date: 'shortDate' }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Created date -->
+  <ng-container matColumnDef="time">
+    <mat-header-cell *matHeaderCellDef class="min-w-[90px] max-w-[90px]">{{
+      'USERS.IMPORT_LIST.TIME' | transloco
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let item" class="min-w-[90px] max-w-[90px]">
+      <p>{{ item.created_date | date: 'shortTime' }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Status -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef class="min-w-60">{{ 'USERS.IMPORT_LIST.STATUS' | transloco }}</mat-header-cell>
+    <mat-cell *matCellDef="let item" class="min-w-60">
+      <kp-card-tag
+        [label]="item.status | userImportStatus | transloco | uppercase"
+        [dotColor]="item.status | userImportStatusColor"
+        [keepOpen]="true"
+      ></kp-card-tag>
+      @if (item.status_message) {
+        <mat-icon class="ml-2 text-xl" [inline]="true" [matTooltip]="item.status_message">help</mat-icon>
+      }
+    </mat-cell>
+  </ng-container>
+
+  <!-- Total to import -->
+  <ng-container matColumnDef="total_to_import">
+    <mat-header-cell *matHeaderCellDef class="justify-center max-w-32">
+      {{ 'USERS.IMPORT_LIST.TOTAL_TO_IMPORT' | transloco }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let item" class="justify-center max-w-32">
+      <p>{{ item.total_to_import | number }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Success count -->
+  <ng-container matColumnDef="success_count">
+    <mat-header-cell *matHeaderCellDef class="justify-center max-w-32">
+      {{ 'USERS.IMPORT_LIST.SUCCESS_COUNT' | transloco }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let item" class="justify-center max-w-32">
+      <p>{{ item.success_count | number }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Error count -->
+  <ng-container matColumnDef="error_count">
+    <mat-header-cell *matHeaderCellDef class="justify-center max-w-32">
+      {{ 'USERS.IMPORT_LIST.ERROR_COUNT' | transloco }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let item" class="justify-center max-w-32">
+      <p>{{ item.error_count | number }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Progress -->
+  <ng-container matColumnDef="progress">
+    <mat-header-cell *matHeaderCellDef class="justify-center max-w-32">
+      {{ 'USERS.IMPORT_LIST.PROGRESS' | transloco }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let item" class="justify-center max-w-32">
+      <p>{{ item.progress | percent }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Menu -->
+  <ng-container matColumnDef="menu">
+    <mat-header-cell *matHeaderCellDef class="justify-center min-w-26 max-w-26">{{
+      'USERS.IMPORT_LIST.MENU' | transloco
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let item" class="justify-center min-w-26 max-w-26 gap-2">
+      <a
+        matIconButton
+        [matTooltip]="'USERS.IMPORT_LIST.DOWNLOAD_FILE' | transloco"
+        [href]="item.file_url"
+        target="_blank"
+        ><mat-icon>download</mat-icon></a
+      >
+      <a
+        matIconButton
+        [matTooltip]="'USERS.IMPORT_LIST.ERRORS' | transloco"
+        [routerLink]="['errors', item.id]"
+        [disabled]="!item.error_count"
+        ><mat-icon>breaking_news</mat-icon></a
+      >
+    </mat-cell>
+  </ng-container>
+
+  <div *matNoDataRow class="flex h-full items-center justify-center font-bold text-xs">
+    {{ 'USERS.IMPORT_LIST.NO_RESULTS' | transloco }}
+  </div>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" class="min-h-18"></mat-row>
+</mat-table>

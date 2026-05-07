@@ -1,0 +1,30 @@
+<div class="quiz-options">
+  @for (option of optionsAnswers(); track option.id; let i = $index) {
+    <div class="quiz-question-option">
+      <input
+        id="option-{{ option.id }}"
+        type="checkbox"
+        [formControl]="$any(formArray.controls[i])"
+        (change)="onChangeOptions()"
+      />
+      <label
+        class="quiz-question-option-label"
+        [class.quiz-question-option-label--success]="option.correct && option.userSelected && answered()"
+        [class.quiz-question-option-label--not-selected]="option.correct && answered()"
+        [class.quiz-question-option-label--error]="formArray.controls[i].value && !option.correct && answered()"
+        [class.quiz-question-option-label--checked]="formArray.controls[i].value && !answered()"
+        for="option-{{ option.id }}"
+        matRipple
+      >
+        <span class="quiz-option-badge">{{ letters[i] }}</span>
+        <span class="quiz-option-text">{{ option.option }}</span>
+
+        @if (answered()) {
+          <mat-icon class="quiz-option-state-icon">{{ optionIconName(option, i) }}</mat-icon>
+        } @else {
+          <span class="quiz-option-checkbox" [class.quiz-option-checkbox--checked]="formArray.controls[i].value"></span>
+        }
+      </label>
+    </div>
+  }
+</div>

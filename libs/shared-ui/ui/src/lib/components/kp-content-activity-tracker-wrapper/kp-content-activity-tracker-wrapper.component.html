@@ -1,0 +1,13 @@
+<ng-content></ng-content>
+@if (isPageDisabled) {
+  <div class="block-screen">
+    <div class="block-screen--content">
+      <p class="mb-6">
+        {{ 'UI.CONTENT_ACTIVITY_TRACKER.CONTENT' | transloco }}
+      </p>
+      <button mat-flat-button (click)="onContinue()" color="primary">
+        {{ 'UI.CONTENT_ACTIVITY_TRACKER.CONTINUE' | transloco }}
+      </button>
+    </div>
+  </div>
+}

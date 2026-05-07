@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  .actions {
+    display: none;
+    padding-left: 8px;
+    justify-self: flex-end;
+  }
+
+  &:hover,
+  &:focus-within,
+  &.edit-mode {
+    .actions {
+      display: flex;
+    }
+  }
+}

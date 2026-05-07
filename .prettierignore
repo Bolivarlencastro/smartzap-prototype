@@ -1,0 +1,32 @@
+# Ignore artifacts:
+# package.json
+package-lock.json
+yarn.lock
+dist
+coverage
+node_modules
+artifacts
+.angular
+.github
+angular.json
+nx.json
+tsconfig.base.json
+.prettierrc
+apps/my-account/src/assets/i18n
+apps/learning-analytics-web/src/assets/i18n
+apps/konquest-web/src/assets/i18n
+apps/smartzap-admin/src/assets/i18n
+libs/shared-ui/ui/src/assets/i18n
+libs/workspaces/src/assets/i18n
+libs/profile/src/assets/i18n
+libs/regulatory-compliance/src/assets/i18n
+libs/custom-certificates/src/assets/i18n
+libs/gamification/src/assets/i18n
+libs/analytics/src/assets/i18n
+libs/integrations/src/assets/i18n
+apps/konquest-e2e/cypress/fixtures
+apps/learning-analytics-web/amchart-test-dependency
+
+/.nx/cache
+
+/.nx/workspace-data

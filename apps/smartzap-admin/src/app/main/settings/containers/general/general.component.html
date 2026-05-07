@@ -1,0 +1,140 @@
+<div class="blank pt-3">
+  <div class="flex items-center mt-4 mb-8 mx-5 px-3">
+    <mat-icon>settings</mat-icon>
+    <span class="text-2xl font-semibold ml-4">
+      {{ 'NAVIGATION.GENERAL' | transloco }}
+    </span>
+  </div>
+
+  <div class="my-8 mx-5 px-3">
+    <form [formGroup]="smartzapConfigForm" class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <section class="flex flex-col gap-5">
+        <header class="flex flex-col gap-1">
+          <h3 class="text-base font-semibold text-slate-900">
+            {{ 'SETTINGS.GENERAL.SECTIONS.COMMUNICATION.TITLE' | transloco }}
+          </h3>
+          <p class="text-sm text-slate-600">
+            {{ 'SETTINGS.GENERAL.SECTIONS.COMMUNICATION.DESCRIPTION' | transloco }}
+          </p>
+        </header>
+
+        <div class="flex items-center gap-1">
+          <mat-slide-toggle formControlName="messagesContentEmbed">
+            {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.MESSAGES_CONTENT_EMBED.INPUT_LABEL' | transloco }}
+          </mat-slide-toggle>
+          <mat-icon
+            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.MESSAGES_CONTENT_EMBED.TOOLTIP' | transloco"
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <mat-slide-toggle formControlName="sendCoursesRecommendationMessage">
+            {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.SEND_COURSES_RECOMMENDATION_MESSAGE.INPUT_LABEL' | transloco }}
+          </mat-slide-toggle>
+          <mat-icon
+            [matTooltip]="
+              'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.SEND_COURSES_RECOMMENDATION_MESSAGE.TOOLTIP' | transloco
+            "
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <mat-slide-toggle formControlName="sendCourseReminderMessage">
+            {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.SEND_COURSE_REMINDER_MESSAGE.INPUT_LABEL' | transloco }}
+          </mat-slide-toggle>
+          <mat-icon
+            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.SEND_COURSE_REMINDER_MESSAGE.TOOLTIP' | transloco"
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <mat-slide-toggle formControlName="interactWithRandomMessages">
+            {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.INTERACT_WITH_RANDOM_MESSAGE.INPUT_LABEL' | transloco }}
+          </mat-slide-toggle>
+          <mat-icon
+            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.INTERACT_WITH_RANDOM_MESSAGE.TOOLTIP' | transloco"
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-5">
+        <header class="flex flex-col gap-1">
+          <h3 class="text-base font-semibold text-slate-900">
+            {{ 'SETTINGS.GENERAL.SECTIONS.ENROLLMENT_ACCESS.TITLE' | transloco }}
+          </h3>
+          <p class="text-sm text-slate-600">
+            {{ 'SETTINGS.GENERAL.SECTIONS.ENROLLMENT_ACCESS.DESCRIPTION' | transloco }}
+          </p>
+        </header>
+
+        <div class="flex items-center gap-1">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" floatLabel="always" class="w-80">
+            <mat-label class="text-sm">
+              {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.ENROLLMENT_IDLE_DAYS_LIMIT.INPUT_LABEL' | transloco }}
+            </mat-label>
+            <input matInput formControlName="enrollmentIdleDaysLimit" mask="0*" />
+          </mat-form-field>
+          <mat-icon
+            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.ENROLLMENT_IDLE_DAYS_LIMIT.TOOLTIP' | transloco"
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" floatLabel="always" class="w-80">
+            <mat-label class="text-sm">
+              {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.USER_TOKEN_EXPIRATION.INPUT_LABEL' | transloco }}
+            </mat-label>
+            <input matInput [formControl]="userTokenExpirationForm" mask="0*" />
+          </mat-form-field>
+          <mat-icon
+            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.USER_TOKEN_EXPIRATION.TOOLTIP' | transloco"
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-5">
+        <header class="flex flex-col gap-1">
+          <h3 class="text-base font-semibold text-slate-900">
+            {{ 'SETTINGS.GENERAL.SECTIONS.PORTAL.TITLE' | transloco }}
+          </h3>
+          <p class="text-sm text-slate-600">
+            {{ 'SETTINGS.GENERAL.SECTIONS.PORTAL.DESCRIPTION' | transloco }}
+          </p>
+        </header>
+
+        <div class="flex items-center gap-1">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" floatLabel="always" class="w-80">
+            <mat-label class="text-sm">
+              {{ 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.COURSES_PORTAL_URL.INPUT_LABEL' | transloco }}
+            </mat-label>
+            <input matInput formControlName="coursesPortalUrl" />
+          </mat-form-field>
+          <mat-icon
+            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.COURSES_PORTAL_URL.TOOLTIP' | transloco"
+            matTooltipPosition="right"
+          >
+            info
+          </mat-icon>
+        </div>
+      </section>
+    </form>
+  </div>
+</div>

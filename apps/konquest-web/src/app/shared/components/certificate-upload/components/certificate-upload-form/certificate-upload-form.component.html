@@ -1,0 +1,34 @@
+<div class="flex flex-col">
+  <p class="mb-4">
+    {{ 'MISSION.DETAIL.CERTIFICATE_WARNING' | transloco }}
+  </p>
+
+  <input
+    hidden
+    type="file"
+    accept="image/png, application/pdf"
+    id="input-certificate"
+    #uploadInput
+    (change)="fileInputChange()"
+  />
+  <div
+    class="flex flex-col flex-none items-center justify-center h-32 border-dashed border rounded-md cursor-pointer"
+    (click)="uploadInput.click()"
+  >
+    <mat-icon class="s-7 mb-3" svgIcon="file_upload"></mat-icon>
+    @if (!selectedFile) {
+      <div class="flex flex-col items-center">
+        <p class="underline font-bold leading-none">
+          {{ 'MISSION.DETAIL.LOAD_CERTIFICATE' | transloco }}
+        </p>
+        <p class="text-[10px]">{{ 'MISSION.DETAIL.CERTIFICATE_FILE_TYPES' | transloco }}</p>
+      </div>
+    }
+
+    @if (selectedFile?.name) {
+      <p class="truncate" [matTooltip]="selectedFile?.name" matTooltipPosition="right">
+        {{ selectedFile?.name }}
+      </p>
+    }
+  </div>
+</div>

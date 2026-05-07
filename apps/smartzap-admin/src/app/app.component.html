@@ -1,0 +1,48 @@
+@let currentWorkspace = currentWorkspace$ | async;
+
+<fuse-layout
+  [enableGlobalSearch]="true"
+  [fullscreenTooltip]="'GENERAL.FULLSCREEN' | transloco"
+  (logoClick)="focusTopbarSearch()"
+>
+  <div primaryMenu class="smartzap-topbar-primary-menu">
+    <kp-global-search-trigger (open)="focusTopbarSearch()"></kp-global-search-trigger>
+
+    <kp-toolbar-balance
+      [balance]="availableBalance$ | async"
+      [compact]="true"
+      (openDetails)="onOpenDetails()"
+    ></kp-toolbar-balance>
+  </div>
+
+  <!-- NOTIFICATIONS -->
+  @if (notifications$ | async; as notifications) {
+    <kp-notification
+      [locale]="locale"
+      [notifications]="notifications"
+      [count]="notifications.length"
+      (removeItem)="onDiscardNotification($event)"
+      (selectItem)="onSelectNotification($event)"
+      (readAll)="clearAllNotifications()"
+    ></kp-notification>
+  }
+  <!-- / NOTIFICATIONS -->
+
+  <kp-menu
+    [apps]="apps$ | async"
+    [workspaceBaseHref]="baseHref$ | async"
+    [customMenuItems]="customMenuItems()"
+  ></kp-menu>
+  <kp-user-menu
+    [user]="user$ | async"
+    [isAdmin]="isAdmin$ | async"
+    [workspaceName]="currentWorkspace?.name"
+    [hasMultipleWorkspaces]="hasMultipleWorkspaces()"
+    (logout)="logout()"
+    (profile)="profile()"
+  ></kp-user-menu>
+
+  <div fuseVerticalNavigationFooter class="h-0 overflow-hidden opacity-0 pointer-events-none">
+    <kp-chatbot></kp-chatbot>
+  </div>
+</fuse-layout>

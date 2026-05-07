@@ -1,0 +1,26 @@
+<span class="text-lg" mat-dialog-title>{{ title | transloco }}</span>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="w-full">
+      <mat-label> {{ 'GENERAL.NAME' | transloco }}</mat-label>
+      <input matInput type="text" id="name" formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-1" subscriptSizing="dynamic">
+      <mat-label>{{ 'GENERAL.DESCRIPTION' | transloco }}</mat-label>
+      <textarea matInput formControlName="description" rows="6"></textarea>
+    </mat-form-field>
+
+    @if (useMarkdown) {
+      <kp-whatsapp-markdown-helper />
+    }
+  </form>
+</div>
+<div mat-dialog-actions class="flex justify-end">
+  <button mat-stroked-button (click)="dialogRef.close(false)" id="button-edit-dialog-cancel">
+    {{ 'GENERAL.CANCEL' | transloco }}
+  </button>
+  <button mat-flat-button color="primary" (click)="onSubmit()" id="button-edit-dialog-save">
+    {{ 'GENERAL.OK' | transloco }}
+  </button>
+</div>

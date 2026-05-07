@@ -1,0 +1,9 @@
+.list-content {
+  height: 44vh;
+  max-height: 44vh;
+  overflow: hidden auto;
+
+  .cdk-virtual-scroll-content-wrapper {
+    max-width: 100%;
+  }
+}

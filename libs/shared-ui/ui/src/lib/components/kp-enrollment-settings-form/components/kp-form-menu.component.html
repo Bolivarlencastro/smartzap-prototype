@@ -1,0 +1,56 @@
+<div class="w-full flex flex-col p-6" (click)="$event.stopPropagation()">
+  <span class="text-2xl mb-4">{{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.TITLE' | transloco }}</span>
+  <span class="text-sm mb-6">{{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.DESCRIPTION' | transloco }}</span>
+  <form class="w-full flex flex-col" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="w-full" subscriptSizing="dynamic">
+      <mat-label>{{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.TARGET_DATE' | transloco }}</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" [min]="minDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="cursor-pointer mt-4" subscriptSizing="dynamic">
+      <mat-label class="cursor-pointer">{{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.ENROLLMENT_TYPE' | transloco }} </mat-label>
+      <mat-select formControlName="enrollmentType">
+        @for (option of enrollmentTypeOptions; track trackByFn($index, option)) {
+          <mat-option [value]="option.value">{{ option.label | transloco }} </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @if (isNormative) {
+      <mat-form-field appearance="outline" class="w-full cursor-pointer mt-4 cycle" subscriptSizing="dynamic">
+        <mat-label>{{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.COMPLIANCE_ENROLLMENT_TYPE' | transloco }}</mat-label>
+        <input matInput formControlName="cycle" [matAutocomplete]="cyclesAc" />
+        <mat-autocomplete #cyclesAc [displayWith]="cycleDisplay">
+          @for (cycle of cycles; track trackByFn($index, cycle)) {
+            <mat-option [value]="cycle">
+              {{ cycle?.compliance?.name }}
+            </mat-option>
+          }
+        </mat-autocomplete>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    }
+
+    <div class="mt-6 flex justify-end items-center">
+      <div>
+        <button mat-button type="button" class="cursor-pointer" color="primary" (click)="closeMenu()">
+          <span class="text-primary dark:text-white">{{
+            'UI.KP_ENROLLMENT_SETTINGS_FORM.CANCEL_BUTTON' | transloco
+          }}</span>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="ml-3"
+          type="submit"
+          [disabled]="disabledSubmitButton"
+          data-test="batch-enrollments-settings"
+        >
+          {{ 'UI.KP_ENROLLMENT_SETTINGS_FORM.SAVE_BUTTON' | transloco }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

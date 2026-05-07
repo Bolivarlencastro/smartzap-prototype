@@ -1,0 +1,10 @@
+@if (icon) {
+  <div class="shadow rounded-md presential-online-bg py-1 px-2 flex items-center gap-1 w-fit">
+    <mat-icon class="s-6" [class]="iconColor">{{ icon }} </mat-icon>
+    {{ presentialLivelabel | transloco }}
+  </div>
+} @else {
+  <div class="rounded-md py-1 px-2 text-white" [style.background-color]="status | kpMissionDevelopmentStatusColor">
+    {{ status | kpMissionDevelopmentStatusLabel | transloco }}
+  </div>
+}

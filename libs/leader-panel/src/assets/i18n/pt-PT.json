@@ -1,0 +1,374 @@
+{
+  "CHANNELS": {
+    "DIALOG": {
+      "ENROLLED": {
+        "EMPTY_STATE": "Nenhum liderado da sua equipe inscrito neste canal."
+      },
+      "ENROLLED_COUNT": {
+        "PLURAL": "Liderados Inscritos",
+        "SINGULAR": "Liderado Inscrito"
+      },
+      "NOT_ENROLLED": {
+        "EMPTY_STATE": "Todos os liderados da sua equipe estão inscritos neste canal."
+      },
+      "PULSES": {
+        "EMPTY_STATE": "Nenhum pulse neste canal."
+      },
+      "PULSE_IN_CHANNEL": {
+        "PLURAL": "Pulses no Canal",
+        "SINGULAR": "Pulse no Canal"
+      },
+      "TITLE": "Detalhes do Canal"
+    },
+    "FILTER": {
+      "SEARCH": "Procurar pelo nome do canal..."
+    },
+    "LIST": {
+      "NAME": "Nome",
+      "PULSES": "Pulses",
+      "ENROLLED_COUNT": "Inscritos",
+      "LAST_ACTIVITY": "Última atividade",
+      "GENERAL_PROGRESS": "Progresso geral",
+      "EMPTY_TITLE": "Nenhum canal para apresentar",
+      "EMPTY_MESSAGE": "Não existem canais disponíveis para esta equipa."
+    }
+  },
+  "COURSES": {
+    "DIALOG": {
+      "ASSOCIATED_TO_TRAILS": {
+        "EMPTY_STATE": "Este curso não está associado a nenhuma trilha."
+      },
+      "ENROLLED_COUNT": {
+        "PLURAL": "Liderados Inscritos",
+        "SINGULAR": "Liderado Inscrito"
+      },
+      "ENROLLMENTS": {
+        "EMPTY_STATE": "Nenhum liderado da sua equipe inscrito neste curso."
+      },
+      "NOT_ENROLLED": {
+        "EMPTY_STATE": "Todos os liderados da sua equipe estão matriculados neste curso."
+      },
+      "OVERDUE_COUNT": {
+        "PLURAL": "Matrículas Expiradas",
+        "SINGULAR": "Matrícula Expirada"
+      },
+      "TITLE": "Detalhes do Curso"
+    },
+    "FILTER": {
+      "SEARCH": "Procurar pelo nome do curso..."
+    },
+    "LIST": {
+      "NAME": "Nome",
+      "DURATION": "Duração",
+      "ENROLLED_COUNT": "Inscrições",
+      "OVERDUE_COUNT": "Liderados em atraso",
+      "CONCLUSION_RATE": "Taxa de conclusão",
+      "AVERAGE_PROGRESS": "Progresso médio",
+      "EMPTY_TITLE": "Nenhum curso para exibir",
+      "EMPTY_MESSAGE": "Não há cursos disponíveis para esta equipa."
+    }
+  },
+  "EVENTS": {
+    "DIALOG": {
+      "ENROLLED_COUNT": {
+        "PLURAL": "Liderados Inscritos",
+        "SINGULAR": "Liderado Inscrito"
+      },
+      "LIVE": "Online",
+      "NOT_REGISTERED": {
+        "EMPTY_STATE": "Todos os liderados estão inscritos."
+      },
+      "PRESENTIAL": "Presencial",
+      "TEAM_PARTICIPANTS": {
+        "EMPTY_STATE": "Nenhum liderado inscrito."
+      },
+      "TITLE": "Detalhes do Evento"
+    },
+    "FILTER": {
+      "SEARCH": "Procurar pelo nome do evento..."
+    },
+    "LIST": {
+      "NAME": "Nome",
+      "ENROLLED_COUNT": "Inscritos",
+      "DATE": "Data",
+      "STATUS": "Estado",
+      "PARTICIPATION_RATE": "Participação",
+      "ATTENDANCE_DISPLAY": "{hasData, select, true{{rate, number, ::percent} ({attended} de {enrolled})} other{-}}",
+      "EMPTY_TITLE": "Nenhum evento para apresentar",
+      "EMPTY_MESSAGE": "Não existem eventos disponíveis para esta equipa."
+    }
+  },
+  "ENROLLMENT": {
+    "PROGRESS": "Progresso",
+    "PERFORMANCE": "Performance",
+    "GOAL_DATE": "Data Meta"
+  },
+  "ENROLLMENT_HISTORY": {
+    "TITLE": "Histórico de Conclusão (Últimos 12 meses)",
+    "MONTHS": "Jan. Fev. Mar. Abr. Mai. Jun. Jul. Ago. Set. Out. Nov. Dez.",
+    "FINISHED": "Finalizadas",
+    "TOTAL": "Total"
+  },
+  "TRAILS": {
+    "DIALOG": {
+      "COURSE_COUNT": {
+        "PLURAL": "Cursos",
+        "SINGULAR": "Curso"
+      },
+      "COURSE_IN_TRAIL": {
+        "EMPTY_STATE": "Nenhum curso nesta trilha."
+      },
+      "ENROLLED_COUNT": {
+        "PLURAL": "Liderados Inscritos",
+        "SINGULAR": "Liderado Inscrito"
+      },
+      "ENROLLMENTS": {
+        "EMPTY_STATE": "Nenhum liderado da sua equipe inscrito nesta trilha."
+      },
+      "NOT_ENROLLED": {
+        "EMPTY_STATE": "Todos os liderados da sua equipe estão matriculados nesta trilha."
+      },
+      "PULSE_IN_TRAIL": {
+        "EMPTY_STATE": "Nenhum pulse nesta trilha."
+      },
+      "TITLE": "Detalhes da Trilha"
+    },
+    "FILTER": {
+      "SEARCH": "Buscar pelo nome da trilha..."
+    },
+    "LIST": {
+      "NAME": "Nome",
+      "DURATION": "Duração",
+      "ENROLLED_COUNT": "Inscrições",
+      "OVERDUE_COUNT": "Liderados em atraso",
+      "CONCLUSION_RATE": "Taxa de conclusão",
+      "AVERAGE_PROGRESS": "Progresso médio",
+      "EMPTY_TITLE": "Nenhuma trilha para apresentar",
+      "EMPTY_MESSAGE": "Não existem trilhas disponíveis para esta equipa."
+    }
+  },
+  "GENERAL": {
+    "ASSOCIATED_TO_TRAILS": {
+      "LABEL": "Associado às Trilhas"
+    },
+    "AVERAGE_PERFORMANCE": "Performance Média",
+    "AVERAGE_PROGRESS": "Progresso Médio",
+    "CONSUMED_BY": {
+      "LABEL": "Consumido por"
+    },
+    "COURSE_IN_TRAIL": {
+      "LABEL": "Cursos na Trilha"
+    },
+    "ENROLLED": {
+      "LABEL": "Liderados Inscritos"
+    },
+    "ENROLLMENTS": {
+      "LABEL": "Matrículas"
+    },
+    "EXPORT_DATA": "Exportar Dados",
+    "GO_BACK": "Voltar",
+    "NOT_CONSUMED": {
+      "LABEL": "Não Visualizaram"
+    },
+    "NOT_ENROLLED": {
+      "LABEL": "Não Matriculados"
+    },
+    "NOT_REGISTERED": {
+      "LABEL": "Não Inscritos"
+    },
+    "OF": "de",
+    "PULSE_IN_CHANNEL": {
+      "LABEL": "Pulses no Canal"
+    },
+    "PULSE_IN_TRAIL": {
+      "LABEL": "Pulses na Trilha"
+    },
+    "TEAM_PARTICIPANTS": {
+      "LABEL": "Participantes da Equipe"
+    },
+    "TO": "a",
+    "TOTAL_PULSES": {
+      "PLURAL": "pulses",
+      "SINGULAR": "pulse"
+    },
+    "VIEWED_IN": "Visualizado em"
+  },
+  "LED": {
+    "CHANNEL": {
+      "EMPTY_MESSAGE": "Este liderado não possui nenhuma matrícula de canal."
+    },
+    "COURSE": {
+      "ENROLLMENT_ACTIVITY": {
+        "CONSUMPTION": "CONSUMO",
+        "CONTENT": "CONTEÚDO",
+        "DURATION": "DURAÇÃO",
+        "EMPTY_MESSAGE": "NENHUM CONTEÚDO DISPONÍVEL",
+        "FIRST_ACCESS": "PRIMEIRO ACESSO",
+        "LAST_ACCESS": "ÚLTIMO ACESSO",
+        "PERFORMANCE": "PERFORMANCE",
+        "POINTS": "PONTOS",
+        "PROGRESS": "PROGRESSO",
+        "STATUS": "STATUS",
+        "TITLE": "Atividades da Matrícula"
+      }
+    },
+    "EVENT": {
+      "EMPTY_MESSAGE": "Este liderado não possui nenhuma matrícula de evento.",
+      "EVENT_STATUS": {
+        "CLOSED": "Realizado",
+        "LABEL": "Status",
+        "SCHEDULED": "Agendado"
+      },
+      "PRESENCE_STATUS": {
+        "ABSENT": "Não participou",
+        "ENROLLED": "Inscrito",
+        "PRESENT": "Participou"
+      }
+    },
+    "FILTER": {
+      "SEARCH": "Procurar pelo nome ou cargo..."
+    },
+    "LIST": {
+      "ENGAGEMENT": "Engajamento",
+      "EMPTY_MESSAGE": "Não há dados de liderados para exibir.",
+      "EMPTY_TITLE": "Nenhum liderado na equipe",
+      "GENERAL_STATUS": "Status geral",
+      "LAST_ACTIVITY": "Última atividade",
+      "NAME": "Liderado",
+      "NEXT_DUE_DATE": "Próximo vencimento",
+      "REQUIRED_PROGRESS": "Progresso obrigatório"
+    },
+    "OVERVIEW": {
+      "ALERT_STATUS": {
+        "LAST_ACTIVITY": {
+          "PLURAL": "Última Atividade: Há {{value}} dias",
+          "SINGULAR": "Última Atividade: Há {{value}} dia"
+        },
+        "TITLE": {
+          "DUE_SOON": "Em Atenção",
+          "OVERDUE": "Em Risco",
+          "UP_TO_DATE": "Em Dia"
+        },
+        "TRAINING_COUNT": {
+          "DUE_SOON": "Treinamento(s) a Vencer",
+          "OVERDUE": "Treinamento(s) Atrasado(s)",
+          "UP_TO_DATE": "Nenhuma pendência obrigatória"
+        }
+      },
+      "SUMMARY_CARD": {
+        "COMPLETED_ENROLLMENTS": "Matrículas Concluídas",
+        "COMPLETION_RATE": "Taxa de Conclusão",
+        "RANKING": {
+          "POINTS": {
+            "PLURAL": "pts",
+            "SINGULAR": "pt"
+          },
+          "POSITION": "{{value}}# no Ranking"
+        }
+      }
+    },
+    "PULSE": {
+      "EMPTY_MESSAGE": "Este liderado não consumiu nenhum pulse."
+    },
+    "TRAIL": {
+      "TRAIL_COURSES": {
+        "SUBTITLE": "Acompanhe o avanço de {{value}} nos cursos desta trilha.",
+        "TITLE_PREFIX": "Progresso na Trilha"
+      }
+    }
+  },
+  "LED_OVERVIEW": {
+    "OVERVIEW": "Visão Geral",
+    "COURSES": "Cursos",
+    "TRAILS": "Trilhas",
+    "PULSES": "Pulses",
+    "EVENTS": "Eventos",
+    "CHANNELS": "Canais"
+  },
+  "OVERVIEW": {
+    "SUMMARY": {
+      "ACTIVE_LED_RATE": {
+        "TITLE": "Taxa de Liderados Ativos",
+        "TOOLTIP": "% de liderados que acessaram nos últimos 30 dias."
+      },
+      "AVERAGE_HOURS_PER_LED": {
+        "TITLE": "Média de Horas por Liderado",
+        "TOOLTIP": "Média de horas de treinamento por liderado."
+      },
+      "COMPLETION_RATE": {
+        "TITLE": "Taxa de Conclusão",
+        "TOOLTIP": "(Matrículas concluídas / Matrículas totais) * 100"
+      },
+      "NO_VALUE_MESSAGE": "Não há dados de equipe para calcular.",
+      "REQUIRED_COURSES_PROGRESS": {
+        "TITLE": "Progresso dos Cursos Obrigatórios",
+        "TOOLTIP": "% de conclusão das matrículas obrigatórias."
+      },
+      "TOTAL_ENROLLMENTS": {
+        "TITLE": "Total de Matrículas",
+        "TOOLTIP": "Soma das matrículas em Cursos e Trilhas pela equipe."
+      }
+    },
+    "TEAM_SUMMARY": {
+      "EXPIRING_REGULATIONS": {
+        "EMPTY_MESSAGE": "Não há liderados na equipe para exibir dados.",
+        "TITLE": "Normativas Vencendo"
+      },
+      "INACTIVE_LED": {
+        "EMPTY_MESSAGE": "Nenhum liderado inativo por mais de 15 dias. Ótimo trabalho!",
+        "TITLE": "Liderados Inativos"
+      },
+      "OPTIONAL_ENROLLMENTS": {
+        "EMPTY_MESSAGE": "Nenhum liderado com pendências em matrículas livres.",
+        "TITLE": "Matrículas Livres"
+      },
+      "REQUIRED_ENROLLMENTS": {
+        "EMPTY_MESSAGE": "Nenhum item de atenção imediata. A equipe está em dia!",
+        "TITLE": "Matrículas Obrigatórias"
+      },
+      "TEAM_RANKING": {
+        "EMPTY_MESSAGE": "Não há liderados para exibir no ranking.",
+        "TITLE": "Ranking da Equipe",
+        "TOOLTIP": "Este ranking mostra a classificação dos membros da sua equipe. Para ver o ranking geral da sua empresa, acesse o item 'Ranking' no menu lateral."
+      }
+    }
+  },
+  "PULSES": {
+    "DIALOG": {
+      "ASSOCIATED_TRAILS": {
+        "EMPTY_STATE": "Este pulse não faz parte de nenhuma trilha."
+      },
+      "CONSUMED_BY": {
+        "EMPTY_STATE": "Nenhum liderado da sua equipe consumiu este pulse."
+      },
+      "NOT_CONSUMED": {
+        "EMPTY_STATE": "Todos os liderados da sua equipe visualizaram este pulse."
+      },
+      "TITLE": "Detalhes do Pulse",
+      "VIEWS": "Visualizações da Equipe"
+    },
+    "LIST": {
+      "NAME": "Nome",
+      "TYPE": "Tipo",
+      "DURATION": "Duração",
+      "VIEWS": "Visualizações",
+      "CONSUMPTION_RATE": "Consumo médio",
+      "EMPTY_TITLE": "Nenhum pulse para apresentar",
+      "EMPTY_MESSAGE": "Não existem pulses disponíveis para esta equipa."
+    },
+    "FILTER": {
+      "SEARCH": "Procurar por nome do pulse..."
+    }
+  },
+  "ROUTES": {
+    "CHANNELS": "Canais",
+    "COURSES": "Cursos",
+    "EVENTS": "Eventos",
+    "LED": "Liderados",
+    "OVERVIEW": "Visão Geral",
+    "PULSES": "Pulses",
+    "TRAILS": "Trilhas"
+  },
+  "TITLE": "Painel do Líder",
+  "TITLE_TOOLTIP": "Todos os números e métricas se refletem aos liderados atuais do líder, sem contar dados de ex-liderados."
+}

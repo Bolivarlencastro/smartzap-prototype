@@ -1,0 +1,37 @@
+<div class="filter-bar">
+  @if (!hideSearch()) {
+    <div class="flex items-center grow">
+      <div class="flex items-center px-6 shrink-0">
+        <mat-icon>search</mat-icon>
+      </div>
+      <input
+        matInput
+        [formControl]="searchControl"
+        autocomplete="off"
+        class="grow bg-transparent"
+        [placeholder]="searchPlaceholder() | transloco"
+      />
+    </div>
+  }
+  <div class="flex gap-2 pr-4" [class.ml-auto]="hideSearch()">
+    <ng-content select="[kpTableFilterAfter]"></ng-content>
+  </div>
+</div>
+
+<div class="table-layout">
+  <ng-content select="[kpTable]"></ng-content>
+</div>
+
+@if (!hidePaginator()) {
+  <div class="paginator-area">
+    <mat-paginator
+      [length]="totalItems()"
+      [pageSize]="pageSize()"
+      [pageIndex]="pageIndex()"
+      [pageSizeOptions]="pageSizeOptions()"
+      [showFirstLastButtons]="showFirstLastButtons()"
+      (page)="onPageChange($event)"
+      class="w-full"
+    ></mat-paginator>
+  </div>
+}

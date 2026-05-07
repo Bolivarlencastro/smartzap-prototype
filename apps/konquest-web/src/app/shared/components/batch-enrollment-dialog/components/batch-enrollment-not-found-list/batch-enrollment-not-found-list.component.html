@@ -1,0 +1,13 @@
+<div class="border-t">
+  <div class="flex gap-4 items-center h-20 border-b px-6">
+    <mat-icon class="filled">info</mat-icon>
+    <p>{{ 'BATCH_ENROLLMENT.NOT_FOUND' | kpPluralizeTranslate: { value: notFounds?.length } }}</p>
+  </div>
+  <div class="overflow-y-scroll h-[calc(65vh_-_172px)]">
+    @for (notFound of notFounds; track notFound) {
+      <div class="h-20 flex items-center px-16 border-b">
+        {{ notFound }}
+      </div>
+    }
+  </div>
+</div>

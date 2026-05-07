@@ -1,0 +1,31 @@
+<kp-filter (searchChange)="searchTerm($event)">
+  <form [formGroup]="filterForm" class="flex items-center gap-2">
+    <!-- MINE -->
+    @if (isContentCreator) {
+      <kp-mobile-toggle
+        class="hidden xxs:block"
+        [label]="'UI.FILTER.CREATED_BY_ME' | transloco"
+        icon="edit"
+        [selected]="quickFilter === quickFilterType.MINE"
+        (toggleChange)="changeQuickFilter()"
+      ></kp-mobile-toggle>
+    }
+    <!-- / MINE -->
+
+    <!-- LANGUAGES -->
+    <kp-select-menu-trigger [label]="'UI.FILTER.LANGUAGE' | transloco">
+      <mat-icon class="s-6 text-primary">language</mat-icon>
+      <mat-select kpSelectTriggerContent multiple formControlName="languages">
+        @for (language of languageOptions; track language.name) {
+          <mat-option [value]="language.name">
+            <div class="flex items-center gap-1">
+              <kp-language-color-tag class="mr-1" [language]="language.name"></kp-language-color-tag>
+              <span>{{ 'UI.GENERAL.LANGUAGES.' + (language.name | lowercase) | transloco }}</span>
+            </div>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+    <!-- / LANGUAGES -->
+  </form>
+</kp-filter>

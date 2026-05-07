@@ -1,0 +1,21 @@
+{
+  "lesson": {
+    "course_id": "createdCourse.id",
+    "name": "licao",
+    "order": 1
+  },
+  "learnContent": {
+    "path": "cypress/fixtures/content/image/imageJPEG.jpeg",
+    "name": "My image Mock",
+    "fileName": "image-mock.jpeg"
+  },
+  "content": {
+    "name": "content name.png",
+    "order": 1,
+    "dispatch_in": 1,
+    "lesson_id": "lesson_id",
+    "learn_content": "learn_content_id",
+    "type_id": "2284bfce-fdfc-4477-9143-39c380cc653c",
+    "dispatch_period": "MORNING"
+  }
+}

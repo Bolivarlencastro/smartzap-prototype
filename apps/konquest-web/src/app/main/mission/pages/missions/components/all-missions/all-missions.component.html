@@ -1,0 +1,32 @@
+<div class="flex flex-col justify-center max-xxs:p-4">
+  @if (missions) {
+    <div
+      class="grid gap-4 grid-cols-1 min-[360px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center"
+    >
+      @for (mission of missions; track mission.contentId) {
+        <kp-learn-content-card
+          [learnContent]="mission"
+          [actions]="mission.actions"
+          [orientation]="'portrait'"
+          (cardAction)="onCardAction($event, mission)"
+          (click)="onCardAction('details', mission)"
+        ></kp-learn-content-card>
+      }
+      @if (isLoading) {
+        @for (index of [0, 1, 2, 3, 4, 5]; track index) {
+          <ngx-skeleton-loader
+            count="1"
+            animation="pulse"
+            [theme]="isMobile ? mobileLoaderTheme : webLoaderTheme"
+          ></ngx-skeleton-loader>
+        }
+      }
+    </div>
+  }
+
+  @if (missions?.length === 0 && !isLoading) {
+    <div class="message-box info mt-8 self-center">
+      {{ (emptyMessage | transloco) || ('MISSION.NOT.FOUND' | transloco) }}
+    </div>
+  }
+</div>

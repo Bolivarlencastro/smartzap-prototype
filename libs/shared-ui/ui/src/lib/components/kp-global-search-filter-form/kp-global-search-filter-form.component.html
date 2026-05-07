@@ -1,0 +1,46 @@
+<form class="h-full flex flex-col p-3 gap-1.5" [formGroup]="form">
+  <!-- ENROLLMENT FILTERS -->
+  <span class="text-xs mb-2">{{ 'UI.GLOBAL_SEARCH.TO_ENROLLMENT' | transloco }}</span>
+  @for (filter of filterOptions?.enrollmentFilters; track filter.value) {
+    <kp-select-menu-trigger [label]="filter.label | transloco">
+      <mat-icon
+        class="text-primary"
+        [ngClass]="{
+          's-1 filled mx-1': filter.value === 'enrollmentStatus',
+          's-6': filter.value !== 'enrollmentStatus',
+        }"
+        >{{ filter.icon }}</mat-icon
+      >
+      <mat-select kpSelectTriggerContent [multiple]="filter.multipleSelection" [formControlName]="filter.value">
+        @for (option of filter.options; track option.value) {
+          <mat-option [value]="option.value">
+            <span>{{ option.label | transloco }}</span>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+  }
+  <!-- / ENROLLMENT FILTERS -->
+
+  <!-- COURSE FILTERS -->
+  <span class="text-xs my-2">{{ 'UI.GLOBAL_SEARCH.TO_COURSE' | transloco }}</span>
+  @for (filter of filterOptions?.courseFilters; track filter.value) {
+    <kp-select-menu-trigger [label]="filter.label | transloco">
+      <mat-icon class="s-6 text-primary">{{ filter.icon }}</mat-icon>
+      <mat-select kpSelectTriggerContent [multiple]="filter.multipleSelection" [formControlName]="filter.value">
+        @for (option of filter.options; track option.value) {
+          <mat-option [value]="option.value">
+            <span>{{ option.label | transloco }}</span>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+  }
+  <!-- / COURSE FILTERS -->
+
+  <!-- CLEAN FILTER -->
+  <span class="text-xs mt-2 w-max cursor-pointer opacity-75 underline" (click)="cleanFilter()">{{
+    'UI.GLOBAL_SEARCH.CLEAN_FILTER' | transloco
+  }}</span>
+  <!-- / CLEAN FILTER -->
+</form>

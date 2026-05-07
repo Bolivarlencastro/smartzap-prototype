@@ -1,0 +1,15 @@
+<!--suppress HtmlUnknownTag -->
+<media-player
+  [class]="mediaPlayerClass"
+  [src]="url | vimeoUrlFilter"
+  #mediaPlayer
+  [kpPlaysInline]="url"
+  [ngClass]="{ 'classroom-video': isClassroomVideo }"
+>
+  <media-provider></media-provider>
+  @if (playerType === 'video') {
+    <media-video-layout color-scheme="dark"></media-video-layout>
+  } @else {
+    <media-audio-layout color-scheme="dark"></media-audio-layout>
+  }
+</media-player>

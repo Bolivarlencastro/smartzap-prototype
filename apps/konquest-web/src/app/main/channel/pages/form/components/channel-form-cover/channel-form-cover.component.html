@@ -1,0 +1,39 @@
+<div class="flex flex-col justify-center items-center">
+  <div
+    class="cursor-pointer relative shadow-lg rounded-xl flex items-center justify-center bg-cover bg-no-repeat bg-center h-56 w-56"
+    data-test="kp-channel-card.cover-background"
+    [ngStyle]="{
+      'background-image': 'url(' + (channelCard.cover_image || defaultCoverImage) + ')',
+    }"
+  >
+    <div
+      (click)="uploadCoverImageInput.click()"
+      data-test="kp-channel-card.file_upload"
+      class="upload-container transition-opacity cursor-pointer z-20 opacity-0 hover:opacity-100 rounded-full p-10 w-30 h-30 absolute bg-black/50 flex items-center justify-center"
+    >
+      <mat-icon class="s-7" svgIcon="file_upload"></mat-icon>
+    </div>
+  </div>
+  <mat-hint class="mb-10 mt-2">{{ 'CHANNEL.FORM.COVER_IMAGE' | transloco }}</mat-hint>
+
+  <kp-channel-card class="w-full sm:w-2/4 md:w-1/2 px-4 cursor-default" [channel]="channelCard"></kp-channel-card>
+  <mat-hint class="mt-2">{{ 'CHANNEL.FORM.PREVIEW_COVER_IMAGE' | transloco }}</mat-hint>
+
+  <input
+    #uploadCoverImageInput
+    accept=".jpg, .png, .webp"
+    hidden="true"
+    type="file"
+    (change)="onSelectCoverImage($event)"
+  />
+
+  <div class="mt-8 w-full flex justify-end items-center">
+    <button mat-stroked-button (click)="onBack()" class="mr-4" type="button" color="primary">
+      {{ 'GENERAL.BACK' | transloco }}
+    </button>
+
+    <button data-test="button-channel-finish" mat-flat-button (click)="onFinish()" type="submit" color="primary">
+      {{ 'GENERAL.FINISH' | transloco }}
+    </button>
+  </div>
+</div>

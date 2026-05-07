@@ -1,0 +1,45 @@
+{
+  "GENERAL": {
+    "ADDRESS": "Address",
+    "BIRTHDAY": "Birthday",
+    "CHANGE_PASSWORD": "Change password",
+    "COUNTRY": "Country",
+    "DISABLED_FIELD": "Only the workspace admin can edit this field.",
+    "EMAIL": "E-mail",
+    "FALLBACK_EMAIL": "Recovery e-mail",
+    "LANGUAGE": "Language",
+    "LANGUAGES": {
+      "en": "English",
+      "es": "Spanish",
+      "pt-br": "Portuguese - Brazil",
+      "pt-pt": "Portuguese - Portugal"
+    },
+    "NAME": "Name",
+    "NICKNAME": "Nickname",
+    "PHONE": "Phone",
+    "PROFILE": {
+      "ACCOUNT": "Account",
+      "ACCOUNT_DESC": "This is valuable info for us to provide you with a great user experience.",
+      "ACCOUNT_MENU_DESC": "View your private and public account details",
+      "ADDITIONAL_INFO": "Additional Info",
+      "ADDITIONAL_INFO_DESC": "This is the additional info for your account.<br>The information cannot be changed.",
+      "ADDITIONAL_INFO_MENU_DESC": "Job, field of work, etc.",
+      "AVATAR": "Avatar",
+      "AVATAR_DESC": "The image should be 200x200px and not exceed 1mb in size.",
+      "AVATAR_MENU_DESC": "Set a new avatar",
+      "PASSWORD": "Password",
+      "PASSWORD_DESC": "To set a new password, click the button below. You will be redirected to a new screen where you will be able to reset it.",
+      "PASSWORD_MENU_DESC": "Reset your password",
+      "area_of_activity": "Field",
+      "director": "Directorship",
+      "ein": "Enrollment",
+      "job": "Job",
+      "leader_email": "Leader e-mail",
+      "manager": "Subdirectorship"
+    },
+    "REQUIRED_FIELD": "Required field",
+    "SAVE": "Save",
+    "SEARCH": "Search",
+    "SETTINGS": "Settings"
+  }
+}

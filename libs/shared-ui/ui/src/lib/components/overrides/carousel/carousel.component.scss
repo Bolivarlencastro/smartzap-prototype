@@ -1,0 +1,72 @@
+@use 'src/lib/styles/mixins' as ui-mixins;
+
+.carousel {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+
+  &-indicators {
+    display: flex;
+    flex-direction: column !important;
+    position: absolute;
+    right: 20px;
+    z-index: 1;
+
+    @include ui-mixins.centerY;
+
+    outline: none;
+
+    & > button {
+      @include ui-mixins.size(10px);
+
+      width: 6px;
+      height: 36px;
+      border-radius: 10px;
+      margin: 7.5px;
+      border: 1px solid #fff !important;
+
+      &[disabled='true'] {
+        background-color: #fff;
+      }
+    }
+  }
+
+  & > button {
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(0 0 0 / 30%);
+    color: white;
+
+    @include ui-mixins.centerY;
+
+    &:first-of-type {
+      left: 1rem;
+    }
+
+    &:last-of-type {
+      right: 1rem;
+    }
+  }
+
+  &-list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    position: relative;
+  }
+
+  &-slide {
+    @include ui-mixins.size(100%, 0);
+
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+
+    &:hover {
+      cursor: grab;
+    }
+  }
+}

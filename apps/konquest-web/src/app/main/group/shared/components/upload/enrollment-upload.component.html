@@ -1,0 +1,8 @@
+<div class="enrollment-upload flex flex-col justify-center">
+  <button mat-flat-button color="primary" (click)="fileInput.click()" [disabled]="isLoading">
+    <mat-icon class="s-4 hidden sm:inline-block" svgIcon="microsoftexcel"></mat-icon>
+    <span class="ml-2">{{ buttonTitle | transloco }}</span>
+  </button>
+
+  <input hidden type="file" accept=".xlsx" #fileInput (change)="processFile(fileInput)" data-test="upload-sheet" />
+</div>

@@ -1,0 +1,150 @@
+{
+  "name": "my-account",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/my-account/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "plugins": ["kp-version.plugin.js"],
+        "outputPath": "dist/apps/my-account",
+        "index": "apps/my-account/src/index.html",
+        "main": "apps/my-account/src/main.ts",
+        "polyfills": "apps/my-account/src/polyfills.ts",
+        "tsConfig": "apps/my-account/tsconfig.app.json",
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared-ui/ui", ""]
+        },
+        "assets": ["apps/my-account/src/assets"],
+        "styles": [
+          "libs/shared-ui/layout/src/lib/styles/tailwind.scss",
+          "libs/shared-ui/layout/src/lib/styles/main.scss",
+          "apps/my-account/src/app/app.theme.scss",
+          "apps/my-account/src/styles.scss"
+        ],
+        "scripts": [],
+        "allowedCommonJsDependencies": ["@angularclass/hmr", "keycloak-js", "rxjs/internal/operators"],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/my-account/ngsw-config.json",
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/my-account/src/environments/environment.ts",
+              "with": "apps/my-account/src/environments/environment.prod.ts"
+            }
+          ],
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "9.5mb",
+              "maximumError": "20mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "my-account:build:production"
+        },
+        "development": {
+          "buildTarget": "my-account:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/my-account"],
+      "options": {
+        "jestConfig": "apps/my-account/jest.config.ts",
+        "ci": true,
+        "codeCoverage": true,
+        "tsConfig": "apps/my-account/tsconfig.spec.json"
+      },
+      "configurations": {
+        "ci": {
+          "cache": false
+        },
+        "dev": {
+          "coverageReporters": ["html", "text-summary", "lcov"]
+        }
+      },
+      "defaultConfiguration": "dev"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/my-account/**/*.scss"]
+      }
+    },
+    "i18n-extract": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager extract --project my-account"
+      }
+    },
+    "i18n:find": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "transloco-keys-manager find --project my-account"
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "My Account Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "my-account-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "**/libs/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/my-account/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/store/**, **/translate.ts, **/*.routes.ts, **/app.config.ts,, **/*.module.ts, **/backoffice/**, **/app.component.ts, **/test-setup.ts, src/main.ts",
+          "sonar.plugins.downloadOnlyRequired": "true"
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "my-account:build"
+      }
+    }
+  }
+}

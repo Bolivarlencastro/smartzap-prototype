@@ -1,0 +1,626 @@
+{
+  "API": {
+    "ERROR": {
+      "ENROLLMENT_IN_PROGRESS": "Usuario informado ya está inscrito en un curso.",
+      "UPLOAD_IMAGE": "No es posible realizar o cargar una imagen."
+    }
+  },
+  "BILLING": {
+    "ACCUMULATED_BALANCE": "Saldo acumulado",
+    "CURRENT_CYCLE": "Ciclo actual",
+    "HISTORY": "Histórico",
+    "HISTORY_BALANCE": "Saldo",
+    "HISTORY_CREDIT": "Crédito",
+    "HISTORY_CYCLE": "Ciclo",
+    "HISTORY_USED": "Utilizado",
+    "MESSAGE": "mensaje",
+    "MESSAGES": "mensajes",
+    "MONTHLY_PLAN": "Plan mensual"
+  },
+  "CONTENT": {
+    "ADD": "Agregar contenido",
+    "BUTTON": {
+      "BLOG": "Blog",
+      "EXCEL": "Excel",
+      "FILE": "Archivo",
+      "IMAGE": "Imagen",
+      "LINK": "Enlace",
+      "OTHERS": "Otros",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "POWERPOINT": "PowerPoint",
+      "PRESENTATION": "Diapositivas",
+      "QUESTION": "Quiz Evaluativo",
+      "SPREADSHEET": "Hoja de cálculo",
+      "SURVEY QUESTION": "Quiz Encuesta",
+      "TEXT": "Texto",
+      "TOOLTIP": {
+        "EXCEL": "XLS, XLSX",
+        "IMAGE": "JPEG, JPG, PNG, GIF",
+        "PDF": "PDF",
+        "PODCAST": "MP3",
+        "POWERPOINT": "PPTX",
+        "VIDEO": "MP4, M4A, WAV, MPEG",
+        "WORD": "DOCX"
+      },
+      "VIDEO": "Video",
+      "WORD": "Word"
+    },
+    "FIELD_LABEL_LINK": "Ingrese una URL válida del ",
+    "FILE_SELECTED": "Archivo Seleccionado",
+    "NAME": "Nombre del contenido",
+    "QUIZ_NAME": "Título del cuestionario"
+  },
+  "COURSE": {
+    "DETAIL": {
+      "AVATAR": "Curso creado por",
+      "BUTTON": {
+        "EDIT": "Editar",
+        "MANAGER": "Administrar inscripciones",
+        "PUBLISH": "Publica el curso",
+        "REPORTS": "Generar reportes",
+        "TRANSFER": "Transferir"
+      },
+      "CONFIRM_DELETE_MESSAGE": "Cuando elimine este curso, las inscripciones en curso se eliminarán y no se enviarán más mensajes.\n\nCopia de seguridad: su curso se guardará y estará disponible para su descarga a través del menú de notificaciones durante un máximo de 60 días.",
+      "CONFIRM_DELETE_TITLE": "Confirmar eliminación",
+      "CONFIRM_EDIT_MESSAGE": "Al editar este curso, las inscripciones iniciadas antes de la edición no se cambiarán, los mensajes se enviarán en el orden y el período de tiempo antes del cambio. Si desea que los usuarios tomen el curso en la nueva versión, debe eliminar las inscripciones actuales y volver a inscribirse en este curso.",
+      "CONFIRM_EDIT_TITLE": "¡Aviso!",
+      "DURATION": "{{value}} horas",
+      "EMPTY_SUMMARY": "Este curso aún no tiene una descripción.",
+      "ENROLLED": "{{value}} gente",
+      "FINISHED": "{{value}} gente",
+      "SCORE": "{{value}} lugares",
+      "SUBTITLE": "Curso creado en {{value}}"
+    },
+    "FORM": {
+      "BUTTON": {
+        "LESSON": "Crear lección",
+        "NEW_CONTENT": "Nuevo contenido",
+        "PUBLISH": "Publica el curso",
+        "QUESTION": "Pregunta",
+        "REVIEW": "Revisar y publicar"
+      },
+      "DIALOG": {
+        "EDIT_CONTENT_TITLE": "Editar Curso",
+        "EDIT_LESSON_TITLE": "Editar lección",
+        "REMOVE_CONTENT_MESSAGE": "¿Realmente quieres eliminar este contenido?",
+        "REMOVE_CONTENT_TITLE": "¡Aviso!",
+        "REMOVE_LESSON_MESSAGE": "Eliminar esta lección también eliminará todo el contenido vinculado. ¿Realmente quieres eliminar esta lección?",
+        "REMOVE_LESSON_TITLE": "¡Aviso!"
+      },
+      "EMPTY_CONTENT": "Este curso aún no tiene contenido.",
+      "ERROR": {
+        "BY_FIELD": {
+          "DESCRIPTION": {
+            "LINE BREAKS ARE NOT ACCEPTED": "No se aceptan saltos de línea en la descripción.",
+            "LONGER THAN MAXIMUM LENGTH 200": "Se requiere una descripción de menos de 200 caracteres"
+          },
+          "NAME": {
+            "LONGER THAN MAXIMUM LENGTH 100": "Se requiere un nombre de menos de 200 caracteres"
+          }
+        },
+        "MAX_DESCRIPTION": "Se requiere una descripción de menos de 200 caracteres",
+        "REQUIRED_CATEGORY": "Ingrese una categoría para el curso.",
+        "REQUIRED_DESCRIPTION": "Es necesario proporcionar una descripción del curso.",
+        "REQUIRED_LANGUAGE": "Ingrese el idioma del curso.",
+        "REQUIRED_NAME": "Ingrese el nombre del curso."
+      },
+      "FIELD_DESCRIPTION": {
+        "EXTRA_ADJUSTMENTS_TITTLE": "Ajustes Extra",
+        "EXTRA_ADJUSTMENTS_HINT": "Personaliza la experiencia del curso con opciones de navegación, abandono y certificación.",
+        "PERFORMANCE_CALCULATION_TITTLE": "Cálculo de Desempeño",
+        "PERFORMANCE_CALCULATION_HINT": "Ajusta la importancia de los Contenidos y el Cuestionario en la evaluación del desempeño.",
+        "PERFORMANCE_CALCULATION_SLIDER": "¡El ajuste del deslizador define los pesos que influyen directamente en la nota final de los usuarios!"
+      },
+      "INPUT": {
+        "ASSESSMENT": "Evaluación",
+        "CATEGORY": "Categoría",
+        "CONTENT_ANTECIPATION": "¿Permitir avanzar contenido?",
+        "DESCRIPTION": "Descripción",
+        "DISABLE_SENDING_CERTIFICATE": "¿Deshabilitar el envío de certificado?",
+        "DISPATCH_IN": "Mandar",
+        "DISPATCH_IN_OPTION": "{{value}} día después de la inscripción",
+        "DISPATCH_IN_OPTION_PLURAL": "{{value}} días después de la inscripción",
+        "DROP_OUT": "¿Permitir abandono?",
+        "IS_ACTIVE": "¿Curso activo?",
+        "LANGUAGE": "Idioma",
+        "LESSON": "Nombre de la lección",
+        "BANNER_IMAGE": "Imagen de Banner",
+        "CARD_IMAGE": "Imagen de Tarjeta",
+        "MESSAGE_DESCRIPTION": "Mensaje introductorio",
+        "NAME": "Nombre del curso"
+      },
+      "QUIZ": {
+        "QUESTION": {
+          "DELETE_NOTICE": "Eliminar pregunta",
+          "DELETE_QUESTION": "¿Realmente deseas eliminar esta pregunta del quiz? Esta acción no se puede deshacer.",
+          "DIALOG": {
+            "BUTTON_ADD_OPTION": "Agregar opción",
+            "FIELD_LABEL_OPTION": "Describa la {{value}}ª opción",
+            "FIELD_LABEL_QUESTION": "Describa el problema",
+            "MESSAGE_WARNING": "¡Seleccione la opción correcta!",
+            "TITLE_EDIT": "Editar pregunta",
+            "TITLE_NEW": "Nueva pregunta",
+            "QUESTION_TYPE": "Tipo de Pregunta",
+            "CHOICE": "Opción Múltiple",
+            "TEXT": "Texto Abierto",
+            "PLACEHOLDER_TEXT": "Ej: ¿Cuál es su nivel de satisfacción con el curso?"
+          },
+          "EMPTY_LIST_MESSAGE": "Registre su primera pregunta"
+        }
+      },
+      "SUBTITLE": "Empiece por completar la información básica del curso.",
+      "NAVIGATION": {
+        "SUBTITLE": "Estructure el curso en pasos claros y avance solo cuando cada bloque esté listo.",
+        "INFORMATION": "Configura los datos de tu curso.",
+        "IMAGES": "Define las imágenes de tu curso.",
+        "CONFIGURATIONS": "Ajusta la configuración para la visualización y el uso del curso.",
+        "CONTENTS": "Agrega los contenidos a tu curso.",
+        "FINISH": "Publica tu curso."
+      },
+      "TABS": {
+        "CONFIGURATIONS": "Configuraciones",
+        "CONTENTS": "Contenido",
+        "FINISH": "Finalizar",
+        "IMAGES": "Imágenes",
+        "INFORMATION": "Información"
+      },
+      "TITLE": {
+        "EDIT": "Edición del curso",
+        "NEW": "Crea un curso nuevo",
+        "TIMELINE": "Cronograma del curso"
+      },
+      "FINISH": {
+        "TITLE": {
+          "CREATING": "¡Curso creado con éxito!",
+          "PROCESSING": "¡Curso en procesamiento!",
+          "REVIEWING": "¡Curso en revisión!",
+          "FINISHED": "¡Curso publicado!"
+        },
+        "MESSAGE": {
+          "DEFAULT": "Revisa los detalles y publica tu curso cuando esté listo."
+        }
+      }
+    },
+    "MESSAGE": {
+      "ACTION_FALILURE": "No se pudo realizar esta acción.",
+      "CREATED": "Curso creado.",
+      "DELETED": "Curso eliminado.",
+      "EXAM_CREATE_ERROR": "No se pudo crear el cuestionario",
+      "LESSON_CONTENT_CREATE_ERROR": "No fue posible guardar este contenido",
+      "LESSON_CONTENT_DELETE_ERROR": "No fue posible eliminar este contenido.",
+      "LESSON_CONTENT_EDIT_ERROR": "No se pudo editar el contenido.",
+      "LESSON_CONTENT_INVALID_FILE_ERROR": "Error al guardar el contenido. Compruebe si el archivo es compatible e inténtelo de nuevo",
+      "LESSON_CONTENT_TIMEOUT_ERROR": "El servidor tardó demasiado en procesar el archivo. Verifique el tamaño del archivo e inténtelo de nuevo",
+      "LESSON_CREATE_ERROR": "No se pudo crear la lección",
+      "LESSON_DELETE_ERROR": "No se pudo borrar la lección",
+      "LESSON_EDIT_ERROR": "No se pudo editar la lección",
+      "NOT_FOUND": "El curso que estás buscando no existe.",
+      "DESCRIPTION_UPDATED": "Descripción actualizada con éxito.",
+      "DESCRIPTION_UPDATE_ERROR": "No se pudo actualizar la descripción.",
+      "PUBLISH": "Curso publicado con éxito.",
+      "PUBLISH_ERROR": "Este curso no se pudo publicar",
+      "UPDATED": "Curso actualizado."
+    }
+  },
+  "COURSES": {
+    "CREATE": "Crear",
+    "SEARCH": "Buscar...",
+    "TITLE": "Cursos"
+  },
+  "COURSE_LIST": {
+    "CATEGORY": "Categoría",
+    "COMPLETED": "Final.",
+    "CREATION": "Creación",
+    "SUBSCRIBERS": "Suscrito",
+    "OWNER": "Propietario"
+  },
+  "COURSE_SIDE_MENU": {
+    "COURSE_TOTAL": "cursos totales",
+    "SUBTITLE": "Consulte la información principal en esta tabla de datos.",
+    "TITLE": "Resumen"
+  },
+  "ENROLLMENTS": {
+    "BUTTON": {
+      "BATCH_ENROLL": "Registro en lote",
+      "DIALOG_UPLOAD": "Seleccionar el archivo",
+      "DOWNLOAD": "Plantilla de hoja de cálculo",
+      "INDIVIDUAL_ENROLL": "Registro individual",
+      "NEW": "Registrar"
+    },
+    "DIALOG_CREATE_TITLE": "Cadastro e Matrícula do Usuário",
+    "DIALOG_UPLOAD_SUBTITLE": "Cadastro e Matrícula",
+    "DIALOG_UPLOAD_TITLE": "Importar Usuários",
+    "EMPTY_STATE": {
+      "CTA": "Matricular usuario",
+      "DESCRIPTION": "Añada participantes a este curso para seguir inicio, progreso y finalización en un solo lugar.",
+      "TITLE": "Este curso todavía no tiene matrículas"
+    },
+    "ERROR": {
+      "INVALID_FILE": "Archivo no válido, debe ser .xlsx inferior a 10 MB"
+    },
+    "IMPORT_ERROR_DIALOG_MESSAGE": "Algunos de los registros de la hoja de cálculo no se pudieron importar.",
+    "INPUT": {
+      "FILTER": "Introduzca un nombre de usuario ..."
+    },
+    "MESSAGE": {
+      "IMPORT_ERROR": "No fue posible importar inscripciones.",
+      "IMPORT_WARN": "IMPORTANTE: Los teléfonos deben llenarse completamente, con DDI y DDD (por ejemplo: 55 48 999990000).",
+      "REMOVE_ERROR": "Este registro no se pudo eliminar"
+    },
+    "TABLE": {
+      "END_DATE": "Final",
+      "START_DATE": "Inicio"
+    },
+    "STATISTICS": {
+      "COMPLETED": "Completadas",
+      "STARTED": "En progreso",
+      "SUBTITLE": "Resumen de matrículas de este curso",
+      "TITLE": "Estadísticas",
+      "TOTAL": "Total de matrículas",
+      "TOTAL_PENDING_MESSAGES": "Mensajes pendientes",
+      "TOTAL_SENT_MESSAGES": "Mensajes enviados",
+      "WAITING": "En espera"
+    },
+    "TABS": {
+      "ENROLLMENTS_ERROS": "Errores de registro",
+      "USERS_ERROS": "Errores de usuario"
+    },
+    "TITLE": "Suscriptores"
+  },
+  "ERRORS": {
+    "401": {
+      "MESSAGE": "Lo sentimos, pero no tiene acceso a la página que está buscando."
+    },
+    "UNABLE_TO_DELETE_QUESTION": "No fue posible realizar la eliminación.",
+    "UNABLE_TO_EDIT_QUESTION": "No fue posible realizar la edición."
+  },
+  "GENERAL": {
+    "APPLY": "Aplicar",
+    "ASSESSMENT": {
+      "CONTENT": "Evaluación por el consumo del contenido",
+      "FULL": "Contenido más Quiz",
+      "QUIZ": "Evaluación solo por los Quizzes"
+    },
+    "APPS_SERVICES": {
+      "SMARTZAP_SETTINGS": {
+        "COURSES_PORTAL_URL": {
+          "INPUT_LABEL": "URL del portal de cursos",
+          "TOOLTIP": "URL usada en los mensajes de SmartZap para dirigir a los usuarios al catálogo de cursos."
+        },
+        "ENROLLMENT_IDLE_DAYS_LIMIT": {
+          "INPUT_LABEL": "Cancelación por inactividad (días)",
+          "TOOLTIP": "Cantidad de días sin interacción antes de cancelar automáticamente la matrícula. Valor entre 7 y 30 días."
+        },
+        "INTERACT_WITH_RANDOM_MESSAGE": {
+          "INPUT_LABEL": "Respuestas del bot",
+          "TOOLTIP": "Envía una respuesta estándar cuando el usuario manda mensajes fuera del flujo del curso."
+        },
+        "MESSAGES_CONTENT_EMBED": {
+          "INPUT_LABEL": "Envío de contenido por WhatsApp",
+          "TOOLTIP": "Define si el contenido se envía incrustado en WhatsApp o por enlace. Configuración de workspace (solo lectura en esta pantalla)."
+        },
+        "SEND_COURSE_REMINDER_MESSAGE": {
+          "INPUT_LABEL": "Reenganche",
+          "TOOLTIP": "Si el usuario no solicita el próximo contenido en 24 horas, envía un recordatorio para continuar el curso."
+        },
+        "SEND_COURSES_RECOMMENDATION_MESSAGE": {
+          "INPUT_LABEL": "Recomendación de cursos",
+          "TOOLTIP": "Después de completar un curso, envía recomendación de otro curso disponible del catálogo tras 1 día. No envía de forma retroactiva."
+        },
+        "USER_TOKEN_EXPIRATION": {
+          "INPUT_LABEL": "Expiración de enlaces (días)",
+          "TOOLTIP": "Define en cuántos días expiran los enlaces enviados (por ejemplo, enlaces de quiz)."
+        }
+      }
+    },
+    "BACK": "Regresar",
+    "CANCEL": "Cancelar",
+    "CATEGORIES": "Categorias",
+    "CATEGORY": {
+      "Communications": "Communications",
+      "Design": "Design",
+      "Development": "Development",
+      "Digital Marketing": "Digital Marketing",
+      "Entrepreneurship": "Entrepreneurship",
+      "Finance": "Finance",
+      "Financial Education": "Financial Education",
+      "Health and Fitness": "Health and Fitness",
+      "Language": "Languages",
+      "Leadership": "Leadership",
+      "Lifestyle": "Lifestyle",
+      "Management": "Management",
+      "Marketing": "Marketing",
+      "Office Productivity": "Office Productivity",
+      "Personal Development": "Personal Development",
+      "Project Management": "Project Management",
+      "Sales": "Sales",
+      "Social Media": "Social Media",
+      "Strategy": "Strategy",
+      "Technology": "Technology",
+      "Web Design": "Web Design",
+      "all": "All Categories"
+    },
+    "CHANGE_WORKSPACE": "Cambiar workspace",
+    "CLEAR": "Limpiar",
+    "CLOSE": "Cerrar",
+    "CONFIGURATIONS_UPDATE_FAILED": "Error al actualizar configuraciones",
+    "CONFIGURATIONS_UPDATED": "¡Configuraciones actualizadas con éxito!",
+    "CONTENT": "Contenido",
+    "DELETE": "Eliminar",
+    "DESCRIPTION": "Descripción",
+    "DURATION": "Duración",
+    "EDIT": "Para editar",
+    "EMAIL": "E-mail",
+    "EMPTY_LIST": "Ningún resultado encontrado.",
+    "ENROLL": "Registrarse",
+    "ENROLLMENT": "Inscripción",
+    "ENROLLMENTS": "Suscriptores",
+    "ERROR": "Errores",
+    "ERRORPHONE": "Se requiere teléfono",
+    "ERRORXLS": "El usuario tiene una inscripción en curso. Los usuarios pueden volver a inscribirse en el mismo curso cuando se haya completado o dado de baja una inscripción",
+    "ERROR_NAME": "Se requiere el nombre",
+    "EXPORT_REPORT": "Exportar el informe",
+    "FAVORITE": "Favorito",
+    "FILTER": "Filtrar",
+    "FINISHED": "Finalizado",
+    "GIVEUP": "Rendirse",
+    "GOAL": "Meta",
+    "LANGUAGE": "Idioma",
+    "LANGUAGES": {
+      "en": "Inglés",
+      "es": "Español",
+      "es-co": "Español - Colombia",
+      "pt-br": "Portugués - Brasil",
+      "pt-pt": ""
+    },
+    "LESSONS": "Para ver",
+    "LINK": "Enlace",
+    "LOADING": "Cargando...",
+    "LOGOUT": "Salir",
+    "MENU": "Menu",
+    "MORE_INFO": "Más información",
+    "MY_PROGRESS": "Mi progreso",
+    "NAME": "Nombre",
+    "NEW": "Nuevo",
+    "NEXT": "Próximo",
+    "PREVIOUS": "Anterior",
+    "NO_DESCRIPTION": "No hay una descripción",
+    "OK": "OK",
+    "OPEN": "Abierto",
+    "PERFORMANCE": "Rendimiento",
+    "PERIOD": "Curso del tiempo",
+    "PHONE": "Teléfono",
+    "POINTS": "Lugares",
+    "PREVIUS": "Anterior",
+    "PROFILE": "Perfil",
+    "PUBLISH": "Publicar",
+    "QUIZ": "Prueba",
+    "REMOVE": "Para eliminar",
+    "REPORT": "Generar informes",
+    "REQUIRED_INPUT": "Campo obligatorio",
+    "RETAKE": "Reanudar",
+    "SAVE": "Guardar",
+    "SAVE_AND_ADVANCE": "Guardar y avanzar",
+    "SCORE": "Puntuación",
+    "SEARCH": "Buscar",
+    "SELECTED_USERS": "Usuario(s) seleccionado(s)",
+    "START": "Comienzo",
+    "STATUS": "Estado",
+    "SUBSCRIPTION_REMOVED": "Suscripción eliminada correctamente",
+    "SUCCESSFULLY_ADDED": "Agregado exitosamente",
+    "SUCCESSFULLY_REMOVED": "Eliminado con éxito",
+    "SUCCESSFULLY_SUBSCRIBED": "Inscrito exitosamente",
+    "SUMMARY": "Resumen",
+    "SYNC": "Sync",
+    "TAGS": "Tags",
+    "TIME": "Hora",
+    "TIMEZONE": "Huso horario",
+    "USERS": "Usuarios",
+    "VIEW": "Para ver",
+    "WAIT": "Esperar...",
+    "WARN": "Advertencia"
+  },
+  "KP-FILTER": {
+    "SAVE_AS_FAVORITE": "Guardar como favorito"
+  },
+  "MAT-PAGINATOR": {
+    "FIRST_PAGE": "Primera pagina",
+    "ITEMS_PER_PAGE": "Elementos por página",
+    "LAST_PAGE": "Última página",
+    "NEXT_PAGE": "Siguiente página",
+    "PAGE_OF": "en",
+    "PREV_PAGE": "Pagina Anterior"
+  },
+  "NAVIGATION": {
+    "ADMIN": "Admin",
+    "CONFIGURATION": "Configuración",
+    "COURSES": "Cursos",
+    "ENROLLMENTS": "Matrículas",
+    "GENERAL": "General",
+    "HELP": "Ayuda",
+    "PUSH_MANAGER": "Push",
+    "SETTINGS": "Panel de Administración",
+    "USERS": "Usuarios"
+  },
+  "PERIOD": {
+    "AFTERNOON": "Noche",
+    "MORNING": "Mañana",
+    "NIGHT": "Noche"
+  },
+  "REPORTS": {
+    "ACTIVITY": "Actividad del usuario",
+    "Activities Report CSV": "Informar de la actividad del usuario",
+    "COMPLETED": "Inscripción completo",
+    "Completed Enrollments Report CSV": "Informe de inscripciones completadas",
+    "DIALOG_TITLE": "¡Aviso!",
+    "DOWNLOAD": "Haga clic para descargar",
+    "Error generating report": "Error al generar informe",
+    "In Progress Enrollments Report CSV": "Informe de inscripción en curso",
+    "PROCESSING": "Informe en proceso",
+    "PROCESSING_ERROR": "Error al generar el informe",
+    "PROGRESS": "Inscripción en curso",
+    "QUIZZES": "Pruebas",
+    "Quizzes Report CSV": "Informes de pruebas",
+    "Smartzap Course Overview PDF": "Informe de descripción general del curso en PDF",
+    "User Consumption Report CSV": "Informe de consumo de usuarios",
+    "USERS": "Informe de usuarios",
+    "USERS_CONSUMPTION": "Consumo de Usuarios",
+    "Users Report CSV": "Informe de usuarios",
+    "FILTERS": {
+      "CLEAR": "Limpiar Filtros",
+      "TITLE": "Filtros del Informe"
+    },
+    "GENERATE": "Generar Informe",
+    "WARN": "El informe se está generando en segundo plano. Espere a que se descargue la notificación",
+    "You have a course for review and publish": "Tienes un curso para revisar y publicar",
+    "Your course backup is available for download": "Tu respaldo de curso está disponible para descargar"
+  },
+  "SETTINGS": {
+    "GENERAL": {
+      "SECTIONS": {
+        "COMMUNICATION": {
+          "DESCRIPTION": "Configura rutinas automáticas de mensajes y el comportamiento de respuesta del bot en WhatsApp.",
+          "TITLE": "Comunicación"
+        },
+        "ENROLLMENT_ACCESS": {
+          "DESCRIPTION": "Define reglas de cancelación por inactividad y vigencia de los enlaces enviados.",
+          "TITLE": "Matrícula y Acceso"
+        },
+        "PORTAL": {
+          "DESCRIPTION": "Informa el portal de cursos usado en mensajes para dirigir a los usuarios al catálogo.",
+          "TITLE": "Portal de Cursos"
+        }
+      },
+      "TITLE": "General"
+    },
+    "ENROLLMENTS": {
+      "CANCEL_ENROLLMENT": "Cancelar inscripción",
+      "CONFIRM_CANCEL_MESSAGE": "¿Realmente desea cancelar esta inscripción?",
+      "CONFIRM_CANCEL_TITLE": "Cancelar inscripción",
+      "CONFIRM_DELETE_MESSAGE": "¿Realmente desea eliminar esta inscripción?",
+      "CONFIRM_DELETE_TITLE": "Eliminar inscripción",
+      "CONFIRM_REENROLL_MESSAGE": "¿Quieres reinscribir a este usuario?",
+      "CONFIRM_REENROLL_TITLE": "Reinscribirse",
+      "DELETE_ENROLLMENT": "Eliminar inscripción",
+      "DOWNLOAD_CERTIFICATE": "Descargar certificado",
+      "EMPTY_STATE": {
+        "CTA": "Ver cursos",
+        "DESCRIPTION": "Las matrículas de usuarios en cursos publicados aparecerán aquí. Para comenzar, acceda a un curso y matricule a sus primeros participantes.",
+        "TITLE": "Todavía no hay matrículas para mostrar"
+      },
+      "FILTER": {
+        "DATE": "Período",
+        "END_DATE": "Fecha de finalizacion",
+        "SEARCH_LABEL": "Buscar por usuario, teléfono",
+        "START_DATE": "Fecha de inicio",
+        "STATUS": "Estado",
+        "TITLE": "¿Qué buscas?"
+      },
+      "REENROLL": "Reinscribirse",
+      "REENROLL_ERROR_MESSAGE": "El usuario tiene una inscripción en curso en otro curso, debe completarse para que el usuario pueda reinscribirse en otro curso.",
+      "REENROLL_ERROR_TITLE": "Esta acción no se puede realizar",
+      "STATISTICS": {
+        "SUBTITLE": "Siga los principales indicadores de las inscripciones",
+        "TITLE": "Resumen",
+        "STARTED_ENROLLMENTS": "Inscripciones abiertas",
+        "TOTAL_PENDING_MESSAGES": "Previsión de mensajes a enviar",
+        "TOTAL_SENT_MESSAGES": "Total de mensajes enviados",
+        "TOTAL_SENT_MESSAGES_PERIOD": "Mensajes enviados en el mes",
+        "TOTAL_USERS": "Usuarios totales",
+        "WAITING_ENROLLMENTS": "Esperando confirmacion"
+      },
+      "TABLE": {
+        "COURSE": "Curso",
+        "END_DATE": "Final",
+        "MESSAGES": "Pbc.",
+        "NAME": "Nombre",
+        "PERFORMANCE": "Rend.",
+        "PHONE": "Teléfono",
+        "START_DATE": "Inicio",
+        "STATUS": "Estado"
+      },
+      "TITLE": "Gestion de inscripciones",
+      "VIEW_ACTIVITIES": "Ver actividades"
+    },
+    "TITLE": "Panel de Administración"
+  },
+  "STATUS": {
+    "CANCELED": "Cancelado",
+    "COMPLETED": "Terminado",
+    "CREATING": "En la creación",
+    "DELIVERED": "Entrego",
+    "DELETING": "Borrando",
+    "DROPOUT": "Abandono",
+    "EMPTY": "televisión estatal",
+    "FINISHED": "Publicado",
+    "INACTIVE": "Inactivo",
+    "NULL": "televisión estatal",
+    "PENDING": "Pendiente",
+    "PROCESSING": "Processando",
+    "REFUSED": "Rechazado",
+    "REVIEWING": "Pendiente de Revisión",
+    "SENT": "Enviado",
+    "STARTED": "Empezado",
+    "TOOLTIP": {
+      "CANCELED": "Inscripción cancelada",
+      "COMPLETED": "Estudios completados por el usuario",
+      "DROPOUT": "Abandono",
+      "REFUSED": "El usuario no aceptó participar en el curso.",
+      "STARTED": "Estudios iniciados por el usuario",
+      "WAITING": "Esperando que el usuario acepte participar"
+    },
+    "WAITING": "Espera"
+  },
+  "TRACKING": {
+    "CONSUME": "Consumo",
+    "CONTENT": "Contenido",
+    "DELIVER_STATUS": {
+      "DELIVERED": "Entrego",
+      "ERROR": "Errores",
+      "WAITING": "Espera"
+    },
+    "EMAIL": "E-mail",
+    "ENROLLMENT_STATUS": "Estado",
+    "FIRST_ACCESS": "Primer acceso",
+    "LAST_ACCESS": "Último acceso",
+    "LINK_SEND_ERROR": "Error al enviar el enlace",
+    "LINK_SEND_SUCCESS": "Contenido reenviado al usuario. Este mensaje será computado en su facturación.",
+    "PHONE": "Teléfono",
+    "POINTS": "Puntos",
+    "PROGRESS": "Progreso",
+    "RESEND": "Reenviar enlace",
+    "STATUS": "Estado",
+    "TITLE": "Actividades del curso de usuario",
+    "USER": "Usuario"
+  },
+  "TRANSFER": {
+    "ERROR": "Error al intentar transferir el curso.",
+    "SUCCESS": "Transferencia exitosa.",
+    "TITLE": "Descargar curso"
+  },
+  "USERS": {
+    "ADD": "Agregar usuario",
+    "DIALOG_REMOVE_MESSAGE": "Está eliminando un usuario, todas las actividades de ese usuario también se eliminarán. ¿De verdad quieres continuar?",
+    "DIALOG_REMOVE_SELECTED_MESSAGE": "Está eliminando uno o más usuarios seleccionados. Todas las actividades de esos usuarios también se eliminarán. ¿De verdad quieres continuar?",
+    "INPUT": {
+      "FILTER": "Buscar por usuario, teléfono o email"
+    },
+    "REMOVE_SELECTED": "Eliminar selección",
+    "SELECT_ALL": "Seleccionar todos",
+    "STATUS": {
+      "NOT_SYNCED": "No sincronizado",
+      "SYNCED": "Sincronizado"
+    },
+    "TABLE": {
+      "NAME": "Usuario",
+      "PHONE": "Teléfono móvil"
+    },
+    "SYNC_ERRORS": {
+      "phone_conflict": "Conflicto de teléfono",
+      "phone_not_reported": "Teléfono no reportado",
+      "phone_ok": "Cuenta con número de teléfono no sincronizado. ¡Verifique los datos en Mi cuenta!"
+    },
+    "TITLE": "Lista de usuarios"
+  }
+}

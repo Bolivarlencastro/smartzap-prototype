@@ -1,0 +1,32 @@
+<div class="flex flex-col items-center gap-4">
+  <div class="cursor-pointer shadow-lg rounded-xl flex items-center justify-center h-40 w-40 relative">
+    @if (!coverImage()) {
+      <mat-icon class="s-18 item-icon" [svgIcon]="itemIcon()"></mat-icon>
+    }
+    @if (isPulse) {
+      <div
+        (click)="uploadCoverImageInput.click()"
+        class="upload-container transition-opacity cursor-pointer z-20 opacity-0 hover:opacity-100 rounded-full p-10 w-30 h-30 absolute bg-black/50 flex items-center justify-center"
+      >
+        <mat-icon class="s-7 upload-icon" svgIcon="file_upload"></mat-icon>
+      </div>
+      @if (coverImage()) {
+        <div
+          class="absolute rounded-lg w-full h-full bg-cover bg-center z-10"
+          [style.background-image]="'url(' + coverImage() + ')'"
+        ></div>
+      }
+    }
+  </div>
+  @if (showImageHint()) {
+    <mat-hint>{{ 'UI.KP_CONTENT_FORM_DIALOG.COVER_IMAGE' | transloco }}</mat-hint>
+  }
+</div>
+
+<input
+  #uploadCoverImageInput
+  accept=".jpg, .png, .webp"
+  hidden="true"
+  type="file"
+  (change)="onSelectCoverImage($event)"
+/>

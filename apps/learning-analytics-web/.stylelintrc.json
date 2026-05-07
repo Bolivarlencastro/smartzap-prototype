@@ -1,0 +1,10 @@
+{
+  "extends": ["../../.stylelintrc.json"],
+  "ignoreFiles": ["!**/*", "artifacts/**/*.css", "src/app/layout/**/*.scss", "libs/fuse/src/lib/scss/**/*.scss"],
+  "overrides": [
+    {
+      "files": ["**/*.scss"],
+      "rules": {}
+    }
+  ]
+}

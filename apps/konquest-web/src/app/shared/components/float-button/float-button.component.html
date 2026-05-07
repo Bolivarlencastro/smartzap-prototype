@@ -1,0 +1,11 @@
+<button
+  mat-mini-fab
+  class="float-button"
+  data-cy="float-button"
+  color="accent"
+  [matTooltip]="tooltip"
+  (click)="clickEvent.emit()"
+  aria-label="Float Button"
+>
+  <mat-icon class="s-4">{{ iconName }}</mat-icon>
+</button>

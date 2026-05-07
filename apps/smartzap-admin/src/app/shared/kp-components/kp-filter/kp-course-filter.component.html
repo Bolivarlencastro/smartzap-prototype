@@ -1,0 +1,28 @@
+<form [formGroup]="form" class="flex items-center gap-2">
+  <kp-select-menu-trigger [label]="'GENERAL.STATUS' | transloco">
+    <mat-icon class="filled s-1 text-primary">circle</mat-icon>
+    <mat-select kpSelectTriggerContent multiple formControlName="statuses">
+      @for (status of availableStatuses; track status.value) {
+        <mat-option [value]="status.value">{{ status.label | transloco }}</mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+
+  <kp-select-menu-trigger [label]="'GENERAL.LANGUAGE' | transloco">
+    <mat-icon class="s-6 text-primary">language</mat-icon>
+    <mat-select kpSelectTriggerContent multiple formControlName="languages">
+      @for (lang of availableLanguages; track lang) {
+        <mat-option [value]="lang">{{ lang }}</mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+
+  <kp-select-menu-trigger [label]="'GENERAL.CATEGORIES' | transloco">
+    <mat-icon class="s-6 text-primary">folder</mat-icon>
+    <mat-select kpSelectTriggerContent multiple formControlName="categories">
+      @for (category of categories(); track category.id) {
+        <mat-option [value]="category.id">{{ category.name }}</mat-option>
+      }
+    </mat-select>
+  </kp-select-menu-trigger>
+</form>

@@ -1,0 +1,49 @@
+{
+  "name": "core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/core/src",
+  "prefix": "keeps-platform-frontend-workspace",
+  "tags": [],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/core"],
+      "options": {
+        "jestConfig": "libs/core/jest.config.ts",
+        "ci": true,
+        "codeCoverage": true,
+        "tsConfig": "libs/core/tsconfig.spec.json"
+      },
+      "configurations": {
+        "ci": {
+          "cache": false
+        },
+        "dev": {
+          "coverageReporters": ["html", "text-summary", "lcov"]
+        }
+      },
+      "defaultConfiguration": "dev"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Core Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "core-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "extra": {
+          "sonar.coverage.exclusions": "**/*.api.ts, **/*.client.ts, **/test-setup.ts,  **/*.module.ts, libs/core/src/lib/services/theming/theming.service.ts",
+          "sonar.cpd.exclusions": "libs/core/src/lib/environment/apps-stage.ts, libs/core/src/lib/environment/apps.ts"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "TITLE": "Quiz",
+  "QUIZ_DIALOG": {
+    "TITLE_CREATE": "Create Quiz",
+    "TITLE_EDIT": "Edit Quiz",
+    "DESCRIPTION": "Create questions for the quizzes and add as many answers as needed. Select the correct answer(s) for each question. Questions are presented in random order. The sequence below does not represent the order the user sees the quiz.",
+    "NAME_PLACEHOLDER": "New Quiz",
+    "TABS": {
+      "QUESTIONS": "Questions",
+      "SETTINGS": "Settings"
+    },
+    "QUESTIONS_EMPTY": "No question added.",
+    "FOOTER": {
+      "IMPORT_SPREADSHEET": "Import spreadsheet",
+      "QUESTION_BANK": "Question bank",
+      "ADD_QUESTION": "Add question",
+      "CANCEL": "Cancel",
+      "PUBLISH": "Publish quiz"
+    },
+    "CREATE_SUCCESS": "Quiz created successfully",
+    "CREATE_ERROR": "Failed to create quiz",
+    "UPDATE_SUCCESS": "Quiz updated successfully",
+    "UPDATE_ERROR": "Failed to update quiz"
+  },
+  "QUIZ_QUESTION_FORM": {
+    "HEADER": "Question {{index}}",
+    "DELETE_QUESTION": "Delete question",
+    "MARK_CORRECT": "Mark as correct",
+    "OPTION_PLACEHOLDER": "Write an alternative",
+    "DELETE_OPTION": "Delete alternative",
+    "ADD_OPTION": "+ Add alternative",
+    "ADD_TO_BANK": "Add to question bank",
+    "TAGS_PLACEHOLDER": "Tags (optional)",
+    "REMOVE_TAG": "Remove tag {{tag}}",
+    "DELETE_CONFIRM_TITLE": "Delete question",
+    "DELETE_CONFIRM_MESSAGE": "Are you sure you want to delete this question?"
+  },
+  "QUIZ_SETTINGS_FORM": {
+    "RANDOMIZE_QUESTIONS_LABEL": "Randomize question order",
+    "RANDOMIZE_OPTIONS_LABEL": "Randomize option order",
+    "QUESTIONS_TO_SHOW_LABEL": "Number of questions per attempt",
+    "QUESTIONS_TO_SHOW_PLACEHOLDER": "All",
+    "QUESTIONS_TO_SHOW_HINT": "Choose how many questions from the quiz bank will be shown in each attempt.",
+    "QUESTIONS_TO_SHOW_ERROR_EXCEEDS_COUNT": "The maximum number of questions to display is {{ max }}"
+  },
+  "QUESTION_BANK": {
+    "TITLE": "Add from Question Bank",
+    "SEARCH_PLACEHOLDER": "Search by question text...",
+    "CORRECT_ANSWERS": "Correct answers",
+    "EMPTY": "No questions found.",
+    "CANCEL": "Cancel",
+    "ADD_QUESTIONS": "Add {{ count }} Questions",
+    "DELETE_CONFIRM": {
+      "TITLE": "Remove question from bank",
+      "MESSAGE": "This action will permanently remove the question from the bank. Existing quizzes will not be affected.",
+      "CONFIRM_BUTTON": "Confirm"
+    }
+  },
+  "CSV_IMPORT_DIALOG": {
+    "TITLE": "Import questions",
+    "DESCRIPTION": "Fill in the template file and upload it in .csv format. Import requires review before confirmation.",
+    "DROPZONE_LABEL": "Drag the .csv file here",
+    "DROPZONE_SUBLABEL": "or click to select",
+    "SUCCESS_MESSAGE": "File {{fileName}} validated with {{count}} question(s) ready for review.",
+    "ERROR_MESSAGE": "Failed to process the file. Make sure it is a valid .csv file no larger than 1 MB.",
+    "PREVIEW_TITLE": "Import review",
+    "PREVIEW_SUBTITLE": "Review the questions before importing and choose which ones should be added to the bank.",
+    "ADD_ALL_TO_BANK": "Add all to bank",
+    "DOWNLOAD_TEMPLATE": "Download template",
+    "CANCEL": "Cancel",
+    "IMPORT": "Import",
+    "QUESTION_LABEL": "Question {{index}}",
+    "ADD_TO_BANK": "Add to question bank"
+  },
+  "QUIZ_WIZARD_DIALOG": {
+    "BACK": "Back",
+    "CLOSE": "Close",
+    "COMING_SOON": "Coming soon",
+    "SELECT_TYPE": {
+      "TITLE": "Select quiz type",
+      "SUBTITLE": "Choose the type of quiz you want to create.",
+      "ASSESSMENT": {
+        "TITLE": "Assessment",
+        "DESCRIPTION": "Validate knowledge with a correct answer."
+      },
+      "RESEARCH": {
+        "TITLE": "Research",
+        "DESCRIPTION": "Collect opinions without a correct answer."
+      }
+    },
+    "SELECT_METHOD": {
+      "TITLE": "How do you want to create the quiz?",
+      "SUBTITLE": "Choose the creation mode while keeping the same existing actions.",
+      "MANUAL": {
+        "TITLE": "Manual creation",
+        "DESCRIPTION": "Build the quiz from scratch, adding title, questions and settings."
+      },
+      "AI_ASSISTED": {
+        "TITLE": "Use AI assistant",
+        "DESCRIPTION": "Generate questions from a topic, text or file, without changing the current flow."
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+<div class="grow flex h-full">
+  <mat-table [hidden]="hiddenTable()" [dataSource]="learnContents()">
+    <ng-container matColumnDef="icon">
+      <mat-header-cell *matHeaderCellDef class="min-w-16 max-w-16"> </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-16 max-w-16">
+        <mat-icon class="text-base opacity-70 text-primary-400 dark:text-primary-300">{{ element.icon }}</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name" [sticky]="true">
+      <mat-header-cell *matHeaderCellDef class="min-w-52 fixed-column-right-border">
+        {{ 'CONTENT_MANAGEMENT.LIST.NAME' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-52 fixed-column-right-border">
+        <span class="[word-break:break-word] line-clamp-2">{{ element.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="creator">
+      <mat-header-cell *matHeaderCellDef class="min-w-36">
+        {{ 'CONTENT_MANAGEMENT.LIST.CREATOR' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-36">
+        <span class="[word-break:break-word] line-clamp-2">{{ element.creatorName }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef class="min-w-36">
+        {{ 'CONTENT_MANAGEMENT.LIST.CATEGORY' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-36">
+        <span class="[word-break:break-word] line-clamp-2">{{
+          element.meta.category | kpCategoryLabel | transloco
+        }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pulses_count">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24 justify-end">
+        {{ 'CONTENT_MANAGEMENT.LIST.PULSES_COUNT' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-24 max-w-24 justify-end">
+        {{ element.meta.pulsesCount | number }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="subscribers_count">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24 justify-end">
+        {{ 'CONTENT_MANAGEMENT.LIST.SUBSCRIBERS_COUNT' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-24 max-w-24 justify-end">
+        {{ element.meta.subscribersCount | number }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24">
+        {{ 'CONTENT_MANAGEMENT.LIST.STATUS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-24 max-w-24">
+        <kp-card-tag [type]="element.meta.isActive | kpTrailStatusTagType" [keepOpen]="true"></kp-card-tag>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="menu">
+      <mat-header-cell *matHeaderCellDef class="min-w-20 max-w-20 justify-end">
+        {{ 'CONTENT_MANAGEMENT.LIST.ACTIONS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-20 max-w-20 justify-end">
+        <button mat-icon-button id="edit" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu data-test="content-management-menu" #menu="matMenu">
+          @for (action of element.actions; track action) {
+            <button mat-menu-item (click)="onItemAction(action, element)">
+              {{ 'CONTENT_MANAGEMENT.ACTIONS.' + action | transloco }}
+            </button>
+          }
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  @if (showSkeleton()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (emptyState()) {
+    <div class="h-full flex flex-col justify-center items-center text-sm grow">
+      <span class="font-bold">{{ 'CONTENT_MANAGEMENT.EMPTY_STATE.CHANNEL_TITLE' | transloco }}</span>
+      <span class="mb-1">{{ 'CONTENT_MANAGEMENT.EMPTY_STATE.CHANNEL_DESCRIPTION' | transloco }}</span>
+      <button mat-button [routerLink]="['/channels/new']">
+        <mat-icon>add</mat-icon>
+        {{ 'CONTENT_MANAGEMENT.EMPTY_STATE.CHANNEL_BUTTON' | transloco }}
+      </button>
+    </div>
+  }
+</div>

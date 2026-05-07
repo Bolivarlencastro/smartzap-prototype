@@ -1,0 +1,2679 @@
+{
+  "API": {
+    "ERRORS": {
+      "DELETE_CATEGORY_CHANNEL": "It was not possible to delete the category. Category linked to a course or channel.",
+      "ERROR_TO_PARSE_IMSMANIFEST_XML": "Scorm file provided is not valid",
+      "ERROR_TO_PARSE_XML_OR_UPLOAD_SCORM": "Scorm file provided is not valid",
+      "IMANIFEST_FILE_NOT_FOUND": "Scorm package should contain Imanifest.xml file.",
+      "INVALID_URL_OR_NOT_ALLOWED_SERVICE": "Invalid url or not allowed service.",
+      "MISSION_ENROLLMENT_ALREADY_FINISHED": "Course Enrollment already finished.",
+      "MISSION_NOT_ENOUGH_DATA_TO_FINISH": "Course or user activities have no enough data to finish",
+      "USER_CONSUME_NOT_ENOUGH_TO_FINISH": "You didn't consume the minimum content necessary to complete the course.",
+      "USER_ENROLLMENT_PERFORMANCE_LOWER_THEN_MIN": "Underperforming performance to generate certificate. The course is reproved.",
+      "USER_MISSION_ENROLLMENT_IN_PROGRESS_ALREADY_EXISTS": "User already has an enrollment in progress."
+    }
+  },
+  "BATCH_ACTION": {
+    "MESSAGE": "We are processing the action. This procedure may take a few minutes to be reflected in the system."
+  },
+  "BATCH_ENROLLMENT": {
+    "ACTIONS": {
+      "ENROLL_OTHERS": "Enroll others",
+      "ENROLL_USERS": "Enroll users",
+      "FINISH": "Finish",
+      "SELECT_MORE": "Select more",
+      "EVENTS_ENROLL_USERS": "Add",
+      "EVENTS_ENROLL_OTHERS": "Add others"
+    },
+    "DOWNLOAD_TEMPLATE_SPREADSHEET": "Download template spreadsheet",
+    "ENROLLED_COUNTER": {
+      "PLURAL": "{{value}} users enrolled",
+      "SINGULAR": "{{value}} user enrolled"
+    },
+    "ENROLLED_SUCCESS_LABEL": {
+      "PLURAL": "Enrollments completed successfully!",
+      "SINGULAR": "Enrollment completed successfully!"
+    },
+    "FINISH": {
+      "ENROLLED": {
+        "PLURAL": "{{value}} linked users.",
+        "SINGULAR": "{{value}} linked user."
+      },
+      "NONE_ENROLLED": "Unable to link any users!",
+      "SUCCESSFULLY_ENROLLED": {
+        "PLURAL": "Users linked successfully!",
+        "SINGULAR": "User linked successfully!"
+      }
+    },
+    "MESSAGES": {
+      "FAILURE": "There was a problem and registration was not possible",
+      "PARSE_ERROR": "There was an error verifying users for import"
+    },
+    "NOT_FOUND": {
+      "PLURAL": "{{value}} emails from your spreadsheet aren't registered as users.",
+      "SINGULAR": "{{value}} email from your spreadsheet isn't registered as user"
+    },
+    "REACHED_LIMIT_SEATS_MESSAGE": "Selection exceeds available vacancies. Maximum of {{ value }} vacancy(ies) remaining.",
+    "RESUME": {
+      "ENROLLMENT_CONFIGURATION": "Enrollment settings:",
+      "WILL_ENROLL": {
+        "PLURAL": "{{value}} selected users will be enrolled!",
+        "SINGULAR": "{{value}} selected user will be enrolled!"
+      }
+    },
+    "SELECTION_LABEL": {
+      "PLURAL": "{{value}} selected users",
+      "SINGULAR": "{{value}} selected user"
+    },
+    "SELECT_VIA_IMPORT": "Select by import",
+    "TITLE": "Enroll users",
+    "EVENTS_TITLE": "Add user(s)"
+  },
+  "CARD": {
+    "FAVORITE": "Favorite",
+    "MY_PROGRESS": "My progress",
+    "VIEWS": "Views"
+  },
+  "CATEGORY": {
+    "DIALOG": {
+      "CREATE_TITLE": "New category",
+      "EDIT_TITLE": "Edit category",
+      "HINT": "Maximum 30 characters",
+      "ICONS": "Icons",
+      "INFO": "Select an Icon",
+      "REMOVE_CATEGORY_MESSAGE": "Are you sure you want to delete this category? This action cannot be undone.",
+      "REMOVE_CATEGORY_TITLE": "Delete category",
+      "SELECTED": {
+        "ICONS": "Selected Icon"
+      }
+    },
+    "MESSAGES": {
+      "EXISTING_CATEGORY": "Existing category",
+      "SUCCESSFULLY_UPDATED": "Category updated successfully",
+      "SUCESSFULLY_CREATED": "Category created successfully",
+      "SUCESSFULLY_REMOVED": "Category removed successfully"
+    },
+    "NO": {
+      "TIES": "No Links"
+    },
+    "TABLE": {
+      "CHANNELS": "Channels",
+      "EMPTY": "No categories found.",
+      "MISSIONS": "Courses"
+    }
+  },
+  "CERTIFICATE": {
+    "HISTORIC_EMPTY_MESSAGE": "There is no evaluation history for this certificate.",
+    "HISTORY_TITLE": "History of actions on the certificate"
+  },
+  "CHANNEL": {
+    "BACK_TO_CHANNELS": "Back to channels",
+    "MY_CHANNELS": "Created by me",
+    "BUTTON": {
+      "CREATE": "Create new Channel"
+    },
+    "CONSULT": {
+      "CONTRIBUTORS": {
+        "ERROR": "There was an error consulting contributors"
+      }
+    },
+    "DETAIL": {
+      "CHANNEL_CREATED_DATE": "Channel created on",
+      "CONFIRM": {
+        "DELETE_MESSAGE": "Are you sure you want to delete this channel? This action cannot be undone.",
+        "DELETE_TITLE": "Delete channel"
+      },
+      "CONTRIBUTORS": {
+        "PLURAL": "Contributors",
+        "SINGULAR": "Contributor"
+      },
+      "DISCUSSION": "Discussion",
+      "ENROLLMENTS": {
+        "PLURAL": "Subscribers",
+        "SINGULAR": "Subscriber"
+      },
+      "LINK": {
+        "GROUP": "Link group"
+      },
+      "NEW": {
+        "PULSE": "New Pulse"
+      },
+      "NO": {
+        "PULSE": {
+          "FOUND": "No pulse found."
+        }
+      },
+      "PULSES": {
+        "PLURAL": "Pulses",
+        "SINGULAR": "Pulse"
+      },
+      "QUIZ_SUCCESSFULLY_ADDED": "Quiz created successfully!",
+      "SUBSCRIBE": "Subscribe",
+      "SUBSCRIBED": "Subscribed",
+      "WRITE": {
+        "COMMENT": "Write a comment"
+      },
+      "SEE_MORE": "See more",
+      "DESCRIPTION": "Channel description",
+      "CREATED_BY": "Channel Creator",
+      "CREATED_IN": "Creation Date",
+      "DESCRIPTION_UPDATE_SUCCESS": "Description updated successfully.",
+      "DESCRIPTION_UPDATE_ERROR": "An error occurred while updating the description."
+    },
+    "FORM": {
+      "ACTIVE": "Active",
+      "CATEGORY": "Category",
+      "COVER_IMAGE": "Cover image",
+      "EDIT": "Edit Channel",
+      "ERROR": {
+        "CATEGORY": "Enter a category for the channel.",
+        "DESCRIPTION": "A description for the channel is required.",
+        "NAME": "Enter the name of the channel.",
+        "TYPE": "Enter a type for the channel."
+      },
+      "NEW": "Create Channel",
+      "PREVIEW_COVER_IMAGE": "Channel card preview",
+      "TYPE": "Type"
+    },
+    "INACTIVE": "Inactive",
+    "MESSAGES": {
+      "COMMENT": {
+        "CREATED": "Comment added successfully.",
+        "CREATE_ERROR": "An error has occurred in our system and your comment has unfortunately not been added.",
+        "DELETED": "Comment removed successfully.",
+        "DELETE_ERROR": "An error has occurred in our system and your comment unfortunately cannot be removed.",
+        "UPDATED": "Comment updated successfully.",
+        "UPDATE_ERROR": "An error has occurred in our system and your comment unfortunately cannot be edited."
+      }
+    },
+    "REMOVE": {
+      "CONTRIBUTORS": {
+        "ERROR": "There was an error removing a contributor",
+        "SUCCESS": "Contributor successfully removed."
+      }
+    },
+    "SAVE": {
+      "CONTRIBUTORS": {
+        "ERROR": "There was an error saving a contributor",
+        "SUCCESS": "Contributor saved success."
+      },
+      "SUCCESS": "Channel successfully saved."
+    },
+    "SUBSCRIBED_SUCCESS": "Channel successfully registered"
+  },
+  "CHANNELS": {
+    "NOT_FOUND": "No channels found.",
+    "SUBSCRIBED": {
+      "PLURAL": "{{value}} subscribers",
+      "SINGULAR": "{{value}} subscriber"
+    }
+  },
+  "CHANNEL_FORM": {
+    "STEP": {
+      "COVER": "Cover and finishing",
+      "INFORMATION": "Information"
+    }
+  },
+  "COMMENT": {
+    "CONFIRM_DELETE": "Do you really want to delete this comment? This action cannot be undone.",
+    "CONFIRM_DELETE_TITLE": "Delete comment",
+    "EDIT": "Edit comment",
+    "LABEL": "Comment"
+  },
+  "CONFIRM": {
+    "DIALOG": {
+      "REPORT_REASON": "Enter the reason",
+      "TITLE": "Confirm"
+    }
+  },
+  "CONTRIBUTORS": {
+    "ERROR": {
+      "CONSULT": "There was an error consulting contributors",
+      "REMOVED": "There was an error removing a contributor",
+      "SAVE": "There was an error saving a contributor"
+    },
+    "SUCCESS": {
+      "REMOVED": "Contributor successfully removed.",
+      "SAVE": "Contributor saved success."
+    }
+  },
+  "CONTRIBUTORS_DIALOG": {
+    "INVITED": {
+      "PLURAL": "{{value}} invited contributors",
+      "SINGULAR": "{{value}} invited contributor"
+    },
+    "SEARCH_USER": "Search users",
+    "TITLE": "Manage contributors"
+  },
+  "CONTENT_MANAGEMENT": {
+    "ACTIONS": {
+      "ADD_PULSE": "Add pulse",
+      "DELETE": "Delete",
+      "DUPLICATE": "Duplicate",
+      "EDIT": "Edit",
+      "EDIT_CONTRIBUTORS": "Contributors",
+      "ENROLL_USERS": "Enroll users",
+      "FINISH_EVENT": "Finish event",
+      "MANAGE_ENROLLMENTS": "Manage enrollments",
+      "MANAGE_PULSES": "Manage pulses",
+      "PUBLISH": "Publish",
+      "SHARE": "Share",
+      "TRANSFER": "Transfer",
+      "VIEW_AS_USER": "View as user",
+      "VIEW_EVALUATIONS": "Evaluations",
+      "VIEW_STATISTICS": "Statistics",
+      "VINCULATE_TO_GROUP": "Link to group"
+    },
+    "EMPTY_STATE": {
+      "COURSE_TITLE": "Courses will appear here.",
+      "COURSE_DESCRIPTION": "No courses found.",
+      "COURSE_BUTTON": "Create course",
+      "EVENT_TITLE": "Events will appear here.",
+      "EVENT_DESCRIPTION": "No events found.",
+      "EVENT_BUTTON": "Create event",
+      "TRAIL_TITLE": "Trails will appear here.",
+      "TRAIL_DESCRIPTION": "No trails found.",
+      "TRAIL_BUTTON": "Create trail",
+      "CHANNEL_TITLE": "Channels will appear here.",
+      "CHANNEL_DESCRIPTION": "No channels found.",
+      "CHANNEL_BUTTON": "Create channel"
+    },
+    "LIST": {
+      "NAME": "Name",
+      "CREATOR": "Creator",
+      "CATEGORY": "Category",
+      "CREATED_AT": "Created At",
+      "DURATION": "Duration",
+      "PERFORMANCE": "Minimum Performance",
+      "ENROLLED_COUNT": "Enrollments",
+      "STATUS": "Status",
+      "TYPE": "Type",
+      "ACTIONS": "Actions",
+      "NO_RESULTS": "No content found",
+      "OPEN": "Open",
+      "CLOSED": "Closed",
+      "COURSES_COUNT": "Courses",
+      "PULSES_COUNT": "Pulses",
+      "SUBSCRIBERS_COUNT": "Subscribers"
+    },
+    "HEADER": {
+      "COMPLETION_DATE": "Completion date",
+      "TITLE": "Content Management"
+    },
+    "MESSAGES": {
+      "DELETE_COURSE": {
+        "MESSAGE": "By deleting this course, all content and history will be deleted. If the course is linked to a trail, it will also be deleted from it. Do you wish to confirm?",
+        "TITLE": "Delete course"
+      },
+      "DELETE_EVENT": {
+        "MESSAGE": "By deleting this event, all content and history will be deleted. Do you wish to confirm?",
+        "TITLE": "Delete event"
+      },
+      "DELETE_CHANNEL": {
+        "TITLE": "Delete channel",
+        "MESSAGE": "By deleting this channel, all content and history will be deleted. Do you wish to confirm?"
+      }
+    },
+    "ROUTES": {
+      "COURSES": "Courses",
+      "EVENTS": "Events",
+      "TRAILS": "Trails",
+      "CHANNELS": "Channels"
+    },
+    "NO_SERVICES": "No service enabled",
+    "FILTERS": {
+      "CHANNELS": {
+        "INACTIVE": "Inactive"
+      }
+    }
+  },
+  "COURSE": {
+    "AUDIO": {
+      "NEXT_CONTENT": "Next Contents"
+    },
+    "BACK_BUTTON": "Leave",
+    "CONTINUE_AND_FINISH_LATER": "Continue the course and finish later",
+    "COURSE_DISABLED_MESSAGE": "This course is disabled",
+    "EVALUATION": {
+      "FIRST_STEP": {
+        "mission_evaluation_awareness": "Did the instructor demonstrate knowledge of the subject?",
+        "mission_evaluation_basic_concepts": "Were the explanations of the concepts clear?",
+        "mission_evaluation_content_format": "About the course, did you like the format and materials used to present the content?",
+        "mission_evaluation_content_time": "What about time, was it enough to carry out the course in peace?",
+        "mission_evaluation_practical_applicability": "Have the opportunity, do you feel able to apply what you are studying?",
+        "mission_evaluation_relevant_content": "Did you get relevant information?"
+      },
+      "SECOND_STEP": {
+        "TITLE": "How much did you like this course?"
+      },
+      "THIRD_STEP": {
+        "TITLE": "How much would you recommend this course to a friend or colleague?"
+      },
+      "TITLE": "What is your grade for each detail of the course?"
+    },
+    "EXIT": "Exit",
+    "FINISH_BACK_TOP": "Back to the top",
+    "FINISH_CONGRATULATIONS": "Congratulations!",
+    "FINISH_COURSE_MESSAGE": "Upon completion of your course, your performance will be calculated based on the consumption of the content. If you haven't done all the activities yet, do it before finishing to avoid impacting your result.",
+    "FINISH_COURSE_TITLE": "Do you want to finish the course?",
+    "FINISH_DESCRIPTION": "You have reached the end of the course!",
+    "FINISH_END_NOW": "End Now",
+    "FINISH_MISSION_LIST": "Course List",
+    "FINISH_RETURN_SCREEN": "Return Previous Screen",
+    "HEADER": {
+      "CHANGE_GOAL_DATE": "Alter",
+      "CHANGE_GOAL_DATE_MOBILE": "Modify",
+      "CHANGE_GOAL_DATE_SUCCESS": "Goal date successfully changed!",
+      "GOAL_DATE": "Goal date",
+      "GOAL_DATE_INFO": "Required course, complete within the defined goal."
+    },
+    "LOAD_COURSE_FAILURE": "There was an error while loading the course",
+    "MENU_EVALUATION": "Leave a review for this course",
+    "NEXT_CONTENT": "Next Contents",
+    "SKIPPED_CONTENT_INFO": "It appears that you have not completed this material. Please make sure to consume all content to successfully complete the course.",
+    "START": "Start Course"
+  },
+  "CREATE_BUTTON": {
+    "CREATE": "Create",
+    "TRAIL": "Trail",
+    "INTERNAL_MISSION": "Internal Course",
+    "EXTERNAL_MISSION": "External Course",
+    "SCORM_MISSION": "Scorm Course",
+    "LIVE_EVENT": "Online Event",
+    "PRESENTIAL_EVENT": "Presential Event",
+    "CHANNEL": "Channel",
+    "GROUP": "Group"
+  },
+  "CUSTOM_SECTIONS": {
+    "ACTIONS": {
+      "CREATE_FAILURE": "Error adding section",
+      "CREATE_SUCCESS": "Section added successfully!",
+      "CREATE_CONTENT_FAILURE": "Error adding content",
+      "CREATE_CONTENT_SUCCESS": "Content added successfully!",
+      "DELETE_DIALOG_TITLE": "Delete section",
+      "DELETE_DIALOG_SUBTITLE": "Are you sure you want to delete this section?",
+      "DELETE_FAILURE": "Error removing section",
+      "DELETE_SUCCESS": "Section removed successfully!",
+      "DELETE_CONTENT_FAILURE": "Error removing content",
+      "DELETE_CONTENT_SUCCESS": "Content removed successfully!",
+      "EDIT_FAILURE": "Error editing section",
+      "EDIT_SUCCESS": "Section edited successfully!"
+    },
+    "CONTENT_TABS": {
+      "CATEGORIES": "Categories",
+      "COURSES": "Courses",
+      "EVENTS": "Events",
+      "TRAILS": "Trails"
+    },
+    "HEADER": {
+      "CREATE_BUTTON": "Create Section",
+      "TITLE": "Custom Sections"
+    },
+    "LIST": {
+      "CONTENTS": {
+        "ADD_BUTTON": "Add content",
+        "ALL_COURSES": "Automatically display all courses",
+        "ALL_TRAILS": "Automatically display all learning paths",
+        "COURSE_ENROLLMENTS": "Automatically display course enrollments",
+        "EVENT_ENROLLMENTS": "Automatically display event enrollments",
+        "TRAIL_ENROLLMENTS": "Automatically display learning path enrollments"
+      },
+      "DISABLED_SECTION_TOOLTIP": "Adjust the schedule to reactivate this section.",
+      "EMPTY_COURSE_LIST_MESSAGE": {
+        "DESCRIPTION": "Organize courses into sections to make everything more accessible.",
+        "TITLE": "Your Course sections will appear here."
+      },
+      "EMPTY_HIGHLIGHT_LIST_MESSAGE": {
+        "DESCRIPTION": "Group content into sections for easier access and navigation.",
+        "TITLE": "Your Highlight sections will appear here."
+      },
+      "EMPTY_TRAIL_LIST_MESSAGE": {
+        "DESCRIPTION": "Organize trails into sections to make everything more accessible.",
+        "TITLE": "Your Trail sections will appear here."
+      },
+      "FILTER_LABELS": {
+        "ALL": "All",
+        "COURSES": "Courses",
+        "COURSE_ENROLLMENTS": "Course enrollments",
+        "ENROLLMENTS": "Enrollments",
+        "EVENTS": "Events",
+        "EVENT_ENROLLMENTS": "Event enrollments",
+        "LEARNING_TRAILS": "Learning Trails",
+        "LEARNING_TRAIL_ENROLLMENTS": "Learning trail enrollments"
+      },
+      "NO_SCHEDULE": "No schedule"
+    },
+    "SECTION_FORM": {
+      "TITLE": "Title",
+      "DESCRIPTION": "Description"
+    }
+  },
+  "DASHBOARD": {
+    "ENROLL": "I want to enroll",
+    "EXPIRES_IN": "Expires",
+    "FINISH_MISSION": "Finish these Courses already started",
+    "GOAL_FOR": "Target for",
+    "HEADER": {
+      "CONTINUE_MISSION_ENROLLMENTS": "Finish this started courses",
+      "RECOMMENDED_MISSIONS": "Start a new course",
+      "RECOMMENDED_TRAILS": "Recommended trails",
+      "RECOMMENDED_PULSES": "Recommended pulses",
+      "RECOMMENDED_CHANNELS": "Recommended channels",
+      "UPCOMING_EVENTS": "Upcoming events"
+    },
+    "LATE_IN": "overdue",
+    "START_NEW_MISSION": "Start a new course",
+    "TRAILS_RECOMMENDATION": "Recommended Learning Trails",
+    "WAITING_FOR_CERTIFICATE": "Awaiting certificate"
+  },
+  "ENROLLMENT": {
+    "COLLECTION": {
+      "FILTER_CHIPS": {
+        "end_date": "End date",
+        "end_date__gte": "End (from)",
+        "end_date__lte": "End (to)",
+        "mission__name": "Course",
+        "ordering": "Ordering",
+        "performance": "Performance",
+        "performance__lte": "Performance",
+        "search": "Search",
+        "start_date": "Start date",
+        "start_date__gte": "Start (from)",
+        "start_date__lte": "Start (to)",
+        "status": "Status",
+        "user__name": "User"
+      }
+    },
+    "DESCRIPTION": {
+      "APPROVE": "When manually approving the registration<br>you need to define the new performance.",
+      "APPROVE_CERTIFICATE": "By approving the certificate of the external registration<br>the user will finish the course.",
+      "DELETE": "By deleting the registration, the user will be able to take the course again and the usage data will be removed.<br><br>The user must start the course completely.",
+      "EXTEND": "When you extend the registration deadline,<br>the user will view the course in orbit.",
+      "REJECT_CERTIFICATE": "When disapproving the certificate of the external registration, the user must send another certificate.",
+      "RESTART": "When re-enrolling, the user will be able to take the course again and the usage data will be kept.<br><br>The user will be able to make only the contents that are missing."
+    },
+    "LABEL": {
+      "APPROVE": "Approve",
+      "APPROVE_CERTIFICATE": "Approve Certificate",
+      "DELETE": "Delete",
+      "EXTEND": "Extend",
+      "REJECT_CERTIFICATE": "Fail Certificate",
+      "RESTART": "Restart"
+    },
+    "STATUS": {
+      "COMPLETED": "Completed",
+      "ENROLLED": "Enrolled",
+      "ENROLLMENT_REPROVED": "Reproved",
+      "EXPIRED": "Expired",
+      "GIVE_UP": "Give Up",
+      "INACTIVATED": "Inactivated",
+      "PENDING_VALIDATION": "Pend. Validation",
+      "REFUSED": "Refused",
+      "REPROVED": "Reproved",
+      "REQUEST_EXTENSION": "Req. New Goal Date",
+      "STARTED": "Started"
+    },
+    "STATUS_TAG": {
+      "COMPLETE": "Completed",
+      "EXPIRED_BY": "{{ value }} overdue",
+      "EXPIRES_IN": "Expires in {{ value }}",
+      "GOAL_FOR": "Goal for {{ value }}",
+      "PENDING_CERTIFICATE_VALIDATION": "Waiting certificate"
+    },
+    "TABLE": {
+      "ACTION": {
+        "CONTINUE_MISSION": "Continue course",
+        "GENERATE_CERTIFICATE": "Generate Certificate",
+        "CERTIFICATE": "Certificate"
+      },
+      "COMPLETED": "Completed",
+      "EMPTY": "There aren't enrollments in progress",
+      "ENROLLED": "Enrolled",
+      "EXPIRED": "Expired",
+      "LOADING": "Loading enrollments",
+      "PENDING_VALIDATION": "Pend. Validation",
+      "REFUSED": "Refused",
+      "REPROVED": "Reproved",
+      "REQUEST_EXTENSION": "Req. New Goal Date",
+      "STARTED": "Started"
+    },
+    "TITLE": {
+      "APPROVE": "Approve Enrollment",
+      "APPROVE_CERTIFICATE": "Approve Certificate",
+      "DELETE": "Delete Enrollment",
+      "EXTEND": "Extend Deadline",
+      "EXTERNAL": "Provider / External Partner",
+      "HISTORIC": "Enrollment History",
+      "REJECT_CERTIFICATE": "Fail Certificate",
+      "RESTART": "Restart Enrollment"
+    },
+    "TOOLTIP": {
+      "COMPLETED": "Completed",
+      "ENROLLED": "Enrolled",
+      "EXPIRED": "Expired",
+      "PENDING_VALIDATION": "Pending Validation",
+      "REFUSED": "Refused",
+      "REPROVED": "Reproved",
+      "REQUEST_EXTENSION": "Request new goal date",
+      "STARTED": "Started and Enrolled"
+    },
+    "TRACKING": {
+      "CURRENT_STAGE": "Current Stage",
+      "LAST_ACCESS": "Last access",
+      "PERFORMANCE": "Performance",
+      "POINTS": "Points",
+      "PROGRESS": "Progress",
+      "REQUEST_EXTENSION": "Request deadline extension",
+      "STATUS": "Status",
+      "TABLE": {
+        "CONSUMPTION": "Consumption",
+        "CONSUMPTION_STATUS": "Consumption status",
+        "CONSUMPTION_STATUS_TOOLTIP": "The consumption time directly affects your performance",
+        "CONSUMPTION_STATUS_TYPE": {
+          "green": "Content completed",
+          "grey": "Content not started",
+          "orange": "Content not completed"
+        },
+        "CONTENT": "Content",
+        "CONTENT_DURATION": "Duration",
+        "EMPTY": "There are no data related to this enrollment",
+        "FIRST_ACCESS": "First access",
+        "LAST_ACCESS": "Last access",
+        "LOADING": "Loading data",
+        "WARNING_EMPTY_CONTENTS": "It was not possible to identify an enrollment in this content. But don't worry, your performance won't be affected."
+      },
+      "VIEW_MISSION": "View Course",
+      "VIEW_TRAIL": "View Trail",
+      "WAITING_REQUEST_EXTENSION": "Deadline extension request in progress"
+    }
+  },
+  "ENROLLMENTS": {
+    "APPROVE_CERTIFICATE_SUCCESS": "Certificate approved successfully!",
+    "APPROVE_SUCCESS": "Enrollment approved successfully!",
+    "BUTTONS": {
+      "approveCertificate": "Approve",
+      "approveEnrollment": "Approve",
+      "approvePresentialLiveEnrollment": "Approve",
+      "delete": "Delete",
+      "extendDeadline": "Request",
+      "extendDeadlineAdmin": "Extend",
+      "finishEnrollment": "Finish",
+      "giveUp": "Give up",
+      "history": "Confirm",
+      "reEnroll": "Re-Enroll",
+      "refuseEnrollment": "Refuse",
+      "rejectCertificate": "Reject",
+      "restart": "Restart",
+      "retake": "Retake",
+      "viewActivities": "View activities",
+      "viewMission": "View Course",
+      "viewTrail": "View Trail"
+    },
+    "CERTIFICATE": "Certificate",
+    "COLUMN": {
+      "END_DATE": "End",
+      "OVERDUE": "Overdue",
+      "PERFORMANCE": "Perf.",
+      "REQUIRED": "Req.",
+      "START_DATE": "Start"
+    },
+    "COMPLETED": "Completed",
+    "DELETE_SUCCESS": "Enrollment successfully deleted!",
+    "ERROR": {
+      "EXTEND_GOAL_DATE_FAILURE": "There was a error while trying to extend the goal date",
+      "mission_enrollment_invalid_status": "The enrollment is not in a valid status to be changed.",
+      "user_mission_enrollment_in_progress_already_exists": "User already has an enrollment in progress from this course."
+    },
+    "EVENT_ADMIN_PAGE_TITLE": "Event enrollment management",
+    "EXTEND_SUCCESS": "Enrollment extended successfully!",
+    "EXTEND_FAILURE": "An error occurred while extending the enrollment deadline.",
+    "FILTER": {
+      "CATEGORY": "Category",
+      "END_DATE": "End date",
+      "ENROLLMENT_CREATION_DATE": "Enrollment creation date",
+      "ENROLLMENT_OCCURRENCE_DATE": "Event completion date",
+      "INSTRUCTOR": "Instructor",
+      "PERFORMANCE": "Performance",
+      "START_DATE": "Start date",
+      "STATUS": "Status"
+    },
+    "FINISH_PRESENTIAL_SUCCESS": "Enrollmend finished successfully!",
+    "GIVE_UP_SUCCESS": "The enrollment was successfully cancelled.",
+    "LINKED_TRAILS_TITLE": "Linked trails",
+    "MESSAGE": {
+      "ADMIN": {
+        "approveCertificate": "This user performed their activities and submitted their evidence for approval.<br/><br/>Do you want to approve the enrollment informing the percentage of achievement?",
+        "approveEnrollment": "This user performed his activities below expectations.<br/><br/>Do you want to approve the enrollment informing a new percentage of achievement?",
+        "approvePresentialLiveEnrollment": "Do you want to approve this user's enrollment?",
+        "certificate": "Do you want to generate the certificate?",
+        "delete": "Do you really want to delete this enrollment? The student's history will be deleted.",
+        "extendDeadlineAdmin": "This course has expired and the user has requested a deadline extension.<br/><br/>Do you want to extend the deadline by entering a new date?",
+        "finishEnrollment": "Do you want to finish this user's enrollment?",
+        "reEnroll": "When re-enrolling the user, he must perform all activities again.<br/><br/>Do you want to re-enroll the user?",
+        "refuseEnrollment": "Do you want to refuse this user's enrollment?",
+        "rejectCertificate": "When rejecting this certificate, the user will need to add a new certificate for approval.<br/><br/>Do you really want to reject this certificate?",
+        "restart": "By restarting the enrollment, you will allow the user to carry out from the point he left off, keeping the previous use data and completing his remaining activities.<br/><br/>Do you want to restart?",
+        "retake": "When retaking the enrollment, the user will be able to carry out from the point he left off, keeping the previous use data and completing his remaining activities.<br/><br/>Do you want to retake?",
+        "viewMission": "You will be directed to the classroom for this course.<br/><br/>Do you want to redirect right now?",
+        "viewTrail": "You will be directed to the detail of this trail.<br/><br/>Do you want to redirect right now?"
+      },
+      "approveEnrollment": "You performed your activities below expectations.<br/><br/>Do you want to approve your enrollment informing a new percentage of achievement?",
+      "certificate": "You have completed your course. Do you want to generate the certificate?",
+      "delete": "When deleting the enrollment, you are released to start the course again, but the usage data will be removed.<br/><br/>You must start the course completely.",
+      "extendDeadline": "Your course expired on {{ payload.goalDate }}. You can request a deadline extension from the course administrator.<br/><br/>Do you want to request a deadline extension?",
+      "giveUp": "Do you really want to give up on this quest?",
+      "reEnroll": "You have already completed this course {{ payload }} times.<br/><br/>You will take the course again with new data, but keeping the information from previous enrollments.<br/><br/> Do you want to do this course with a new enrollment?",
+      "restart": "Upon restarting your enrollment, you will be free to take again, keeping the previous usage data and completing your remaining activities..<br/><br/>Do you want to restart?",
+      "retake": "When you retake your enrollment, you will be able to carry out where you left off, keeping the previous usage data and completing your remaining activities.<br/><br/>Do you want to retake?",
+      "viewMission": "You will be directed to the classroom for this course.<br/><br/>Do you want to redirect now?",
+      "viewTrail": "You will be directed to the detail of this course.<br/><br/>Do you want to redirect right now?"
+    },
+    "MISSION_ADMIN_PAGE_TITLE": "Course enrollment management",
+    "MISSIONS": {
+      "CONTINUE_MISSION": "Continue course",
+      "IN_ORBIT": "Courses in progress",
+      "NO_ORBITING": "There are no orbiting courses"
+    },
+    "MULTIPLE_ENROLLMENTS": "Number of enrollments in this course",
+    "NO_ACTIVITIES": "Still no activities",
+    "OVERDUE_BY": {
+      "PLURAL": "{{ value }} days overdue",
+      "SINGULAR": "{{ value }} day overdue"
+    },
+    "PENDING_VALIDATION": "Pending Validation",
+    "REFUSE_SUCCESS": "Enrollment refused successfully!",
+    "REJECT_CERTIFICATE_SUCCESS": "Certificate rejected successfully!",
+    "REPROVED": "Reproved",
+    "REQUEST_EXTEND_SUCCESS": "New deadline requested successfully!",
+    "RESTART_SUCCESS": "Enrollment restarted successfully!",
+    "RETAKE_SUCCESS": "Course retaken successfully!",
+    "RE_ENROLL_SUCCESS": "Enrollment has been successfully restarted.",
+    "TABLE": {
+      "EMPTY": "No enrollments found."
+    },
+    "TITLE": {
+      "approveCertificate": "Approve External Course",
+      "approveEnrollment": "Approve Enrollment",
+      "approvePresentialLiveEnrollment": "Approve Enrollment",
+      "certificate": "Generate certificate",
+      "delete": "Delete enrollment",
+      "extendDeadline": "Extend Deadline",
+      "extendDeadlineAdmin": "Extend Deadline",
+      "externalProvider": "External provider",
+      "finishEnrollment": "Finish enrollment",
+      "giveUp": "Give Up",
+      "history": "Enrollment history",
+      "reEnroll": "Re-enrollment",
+      "refuseEnrollment": "Refuse enrollment",
+      "rejectCertificate": "Reject certificate",
+      "restart": "Restart enrollment",
+      "retake": "Retake enrollment",
+      "viewActivities": "Enrollment Activities",
+      "viewMission": "Access Course",
+      "viewTrail": "Access Trail"
+    },
+    "TOOLTIP": {
+      "STATUS": {
+        "ADMIN": {
+          "COMPLETED": "Completed",
+          "ENROLLED": "Enrolled",
+          "ENROLLMENT_REPROVED": "",
+          "EXPIRED": "Expired",
+          "GIVE_UP": "Give up",
+          "INACTIVATED": "Inactivated",
+          "PENDING_VALIDATION": "Waiting for enrollment approval",
+          "REFUSED": "Refused",
+          "REPROVED": "Reproved",
+          "REQUEST_EXTENSION": "Awaiting approval of the deadline extension",
+          "STARTED": "Started"
+        },
+        "COMPLETED": "Completed",
+        "ENROLLED": "Enrolled",
+        "ENROLLMENT_REPROVED": "",
+        "EXPIRED": "Expired",
+        "GIVE_UP": "Give up",
+        "INACTIVATED": "Inactivated",
+        "PENDING_VALIDATION": "Wait until your manager approves your enrollment",
+        "REFUSED": "Refused",
+        "REPROVED": "Reproved",
+        "REQUEST_EXTENSION": "Wait until your manager approves the new requested deadline",
+        "STARTED": "Started"
+      }
+    },
+    "TRAIL_ADMIN_PAGE_TITLE": "Trail enrollment management",
+    "approveCertificate": "Approve certificate",
+    "approveEnrollment": "Approve enrollment",
+    "approvePresentialLiveEnrollment": "Approve enrollment",
+    "attachCertificate": "Finish course",
+    "certificate": "Generate certificate",
+    "continue": "Continue Course",
+    "delete": "Delete",
+    "extendDeadline": "Extend deadline",
+    "extendDeadlineAdmin": "Extend deadline",
+    "finishEnrollment": "Finish enrollment",
+    "giveUp": "Give up",
+    "history": "History",
+    "linkCycle": "Link cycle",
+    "previousEnrollments": "All enrollments",
+    "reEnroll": "Re-Enroll",
+    "refuseEnrollment": "Refuse enrollment",
+    "rejectCertificate": "Reject certificate",
+    "restart": "Restart",
+    "retake": "Retake",
+    "viewActivities": "View activities",
+    "viewMission": "View Course",
+    "viewTrail": "View Trail"
+  },
+  "ENROLLMENT_LIST": {
+    "LEARNING_TRAIL_LINKED": "Course linked to a trail"
+  },
+  "EVALUATIONS_FILTER": {
+    "COMMENT_TYPE": "Comment type",
+    "COMMENT_TYPE_OPTIONS": {
+      "NEGATIVE": "Negatives",
+      "NEUTRAL": "Neutrals",
+      "POSITIVE": "Positives"
+    },
+    "EVALUATION_DATE": "Evaluation date"
+  },
+  "EVENT_MANAGEMENT": {
+    "ACTION": {
+      "ADD_NOTE": "Add note",
+      "EDIT_EVENT": "Edit event",
+      "IMPORT_LIST": "Import attendance list",
+      "PRINT_LIST": "Print attendance list",
+      "REMOVE_USER": "Remove user",
+      "SEND_INVITE": "Send invite",
+      "FINISH_EVENT": "Finish event"
+    },
+    "ADD_NOTE": {
+      "INPUT_HINT": "Limit: {{value}} characters",
+      "INPUT_PLACEHOLDER": "Write your note about this user(s) here...",
+      "SUCCESS_MESSAGE": "Note added successfully!",
+      "TITLE": "Note"
+    },
+    "ADD_USERS_BUTTON": "Add user(s)",
+    "ATTENDANCE": {
+      "PLURAL": "Presents",
+      "SINGULAR": "Present"
+    },
+    "IMPORT_LIST": {
+      "SELECT_DATE": "Select the date",
+      "SELECT_IMPORT_SOURCE": "Select where you want to import participants from",
+      "TITLE": "Import attendance list"
+    },
+    "LIST": {
+      "ACTIONS": "Actions",
+      "EMAIL": "Email",
+      "EMPTY_LIST_MESSAGE": "No users found",
+      "NOTE": "Note",
+      "NOTE_PLACEHOLDER": "No note",
+      "PHONE": "Phone"
+    },
+    "ONLINE": "Online",
+    "PRESENCE": {
+      "ABSENT": "Absent",
+      "LABEL": "Attendance",
+      "PRESENT": "Present"
+    },
+    "PRESENTIAL": "In-person",
+    "REMOVE_USER": {
+      "DESCRIPTION": "Are you sure you want to remove this user(s) from the event?",
+      "POSITIVE_BUTTON": "Remove",
+      "SUCCESS_MESSAGE": "User(s) removed successfully!",
+      "TITLE": "Remove user(s)"
+    },
+    "SEATS": {
+      "PLURAL": "Vacancies",
+      "SINGULAR": "Vacancy"
+    },
+    "SEND_INVITE": {
+      "SUCCESS_MESSAGE": "Invite sent successfully!"
+    },
+    "SUBSCRIBER": {
+      "PLURAL": "Subscribers",
+      "SINGULAR": "Subscriber"
+    },
+    "QR_CODE_DIALOG": {
+      "COPY_LINK": "Copy link",
+      "COPY_SVG": "Copy SVG",
+      "PRINT": "Print"
+    }
+  },
+  "EXAM_QUESTIONS": {
+    "ANSWERS": "Answers:",
+    "QUIZ_ANSWERED": "Quiz Answered",
+    "SAVE_RESPONSES": "Save Responses"
+  },
+  "EXTEND_DEADLINE_DIALOG": {
+    "CANCEL_BUTTON": "Cancel",
+    "CONFIRM_BUTTON": "Extend",
+    "MISSION_DESCRIPTION": "<strong>{{ user }}</strong> has requested a new deadline for completing the course <strong>{{ name }}</strong>. The start date was <strong>{{ start_date }}</strong>, and the original unmet goal date was <strong>{{ goal_date }}</strong>.",
+    "TRAIL_DESCRIPTION": "<strong>{{ user }}</strong> started the <strong>{{ name }}</strong> trail on <strong>{{ start_date }}</strong>, and the original goal date is <strong>{{ goal_date }}</strong>.",
+    "INPUT_LABEL": "Goal date",
+    "TRAIL_SUBTITLE": "Fill in the field below to set a new target completion date for the course.",
+    "TITLE": "Extend goal date"
+  },
+  "FAQ": {
+    "SUPPORT_CHANNEL": "Support Channels"
+  },
+  "FILTER_MODAL": {
+    "FILTER": "Filter"
+  },
+  "FORM": {
+    "QUIZ": {
+      "ADD_QUESTIONS": "Add Question",
+      "DONE": "Concluded",
+      "INFORM_DATA_PULSE_QUIZ": "Enter the Pulse / Quiz data",
+      "INFORM_QUESTIONS": "Enter the Quiz Questions",
+      "MODEL_CREATED": "Congratulations you have created a Quiz template!",
+      "NEXT": "Next",
+      "NOT_ADD_QUESTIONS": "You haven't added any questions to your Quiz yet!",
+      "PREVIOUS": "Previous",
+      "QUESTIONS_REGISTRATION": "There are no registered questions!",
+      "TITLE": "Title",
+      "TITLE_ERROR": "Enter title"
+    }
+  },
+  "GAMIFICATION": {
+    "SUCCESS_MESSAGE": {
+      "GAMIFICATION": {
+        "DISABLED": "Gamification module disabled!",
+        "ENABLED": "Gamification module enabled!"
+      },
+      "MULTIPLIER_RANKING": {
+        "DISABLED": "Multiplier ranking disabled!",
+        "ENABLED": "Multiplier ranking enabled!"
+      },
+      "RANKING_BY_AREA": {
+        "DISABLED": "Ranking by area disabled!",
+        "ENABLED": "Ranking by area enabled!"
+      },
+      "RANKING_BY_BOARD": {
+        "DISABLED": "Ranking by board disabled!",
+        "ENABLED": "Ranking by board enabled!"
+      },
+      "RANKING_BY_LEADERSHIP": {
+        "DISABLED": "Ranking by leadership disabled!",
+        "ENABLED": "Ranking by leadership enabled!"
+      },
+      "RANKING_BY_SUB_DIRECTORATE": {
+        "DISABLED": "Ranking by sub-directorate disabled!",
+        "ENABLED": "Ranking by sub-directorate enabled!"
+      }
+    },
+    "TOGGLE": {
+      "LABEL": {
+        "GAMIFICATION": "Gamification",
+        "GENERAL_RANKING": "General ranking",
+        "MULTIPLIER_RANKING": "Multiplier ranking",
+        "RANKING_BY_AREA": "Ranking by area",
+        "RANKING_BY_BOARD": "Ranking by board",
+        "RANKING_BY_LEADERSHIP": "Ranking by leadership",
+        "RANKING_BY_SUB_DIRECTORATE": "Ranking by sub-directorate"
+      },
+      "TOOLTIP": {
+        "GENERAL_RANKING": "It is not possible to disable the general ranking.",
+        "RANKING_BY_AREA": "You need to have at least 70% of your users linked to an activity area to activate this ranking.",
+        "RANKING_BY_BOARD": "You need to have at least 70% of users linked to a board to activate this ranking.",
+        "RANKING_BY_LEADERSHIP": "You need to have at least 70% of your users linked to a leadership to activate this ranking.",
+        "RANKING_BY_SUB_DIRECTORATE": "You need to have at least 70% of your users linked to a sub-directorate to activate this ranking."
+      }
+    }
+  },
+  "GENERAL": {
+    "ACTION": "Action",
+    "ACTIVITY_AREA": "Activity area",
+    "ADD": "Add",
+    "ADDRESS": "Address",
+    "ASSESSMENT": {
+      "CONTENT": "Evaluation by content consumption",
+      "FULL": "Content plus Quiz",
+      "QUIZ": "Assessment by Quizzes only"
+    },
+    "BACK": "Back",
+    "BOARD": "Board",
+    "BY": "By",
+    "CANCEL": "Cancel",
+    "CATEGORY": {
+      "Communications": "Communications",
+      "Design": "Design",
+      "Development": "Development",
+      "Digital Marketing": "Digital Marketing",
+      "Entrepreneurship": "Entrepreneurship",
+      "Finance": "Finance",
+      "Financial Education": "Financial Education",
+      "Health and Fitness": "Health and Fitness",
+      "Language": "Language",
+      "Leadership": "Leadership",
+      "Lifestyle": "Lifestyle",
+      "Management": "Management",
+      "Marketing": "Marketing",
+      "Office Productivity": "Office Productivity",
+      "Personal Development": "Personal Development",
+      "Project Management": "Projects",
+      "Sales": "Sales",
+      "Social Media": "Social Media",
+      "Strategy": "Strategy",
+      "Technology": "Technology",
+      "Web Design": "Web Design",
+      "all": "All Categories"
+    },
+    "CERTIFICATE": "Get Certificate",
+    "SHARE_CERTIFICATE": "Share Certificate",
+    "CHANNEL-TYPE": {
+      "Close For Workspace": "Closed for the workspace",
+      "Open For Workspace": "Open for the workspace",
+      "Paid": "Paid",
+      "Public": "Public",
+      "null": "-"
+    },
+    "CHANNELS": "Channels",
+    "CLEAN": "Clean",
+    "CLEAR_FILTER": "Clean the Filter",
+    "CLOSE": "Close",
+    "COMMENT": "Write a comment",
+    "COMMENTS": "Comments",
+    "CONCLUSION": "Conclusion",
+    "CONFIRM": "Confirm",
+    "CONTENT": {
+      "BLOG": "Blog",
+      "HTML": "Html",
+      "HTML FILE": "Html",
+      "IMAGE": "Image",
+      "OTHERS": "Others",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "PRESENTATION": "Presentation",
+      "QUESTION": "Question",
+      "SCORM": "Scorm",
+      "SPREADSHEET": "Spreadsheet",
+      "TEXT": "Text",
+      "VIDEO": "Video"
+    },
+    "CONTENTS": "Contents",
+    "CONTINUE": "Continue",
+    "COPIED_TO_CLIPBOARD": "Copied to clipboard",
+    "COURSES": "Courses",
+    "CREATE": "Create",
+    "CREATE_CERTIFICATE": "Create certificate",
+    "DATE": "Date",
+    "DAY": "Day",
+    "DEACTIVATE": "Deactivate",
+    "DELETE": "Delete",
+    "DESCRIPTION": "Description",
+    "DETAILS": "Details",
+    "DUPLICATE": "Duplicate",
+    "DURATION": "Duration",
+    "EDIT": "Edit",
+    "EDIT_RESUME_TITLE": "Edit Resume",
+    "END": "Finish",
+    "ENROLL": "Enroll",
+    "ENROLLMENTS": "Enrollments",
+    "ERROR": {
+      "UPLOAD": "An error occurred while trying to upload the image."
+    },
+    "EVALUATION": "Evaluation",
+    "EVALUATIONS": "Evaluations",
+    "EXPORT": "Export",
+    "EXTERNAL_MISSION": "External course",
+    "FILE": "File",
+    "FILTER": "Filter",
+    "FILTERS": "Filters",
+    "FINISH": "Finish",
+    "FINISHED": "Finished",
+    "FULLSCREEN": "Fullscreen mode",
+    "GOAL": "Goal",
+    "GOAL_DATE": "Goal Date",
+    "GROUP_LINK": "Link",
+    "HOUR": "Hour",
+    "IMPORT": "Import",
+    "INACTIVE": "Inactive",
+    "LANGUAGE": "Language",
+    "LANGUAGES": {
+      "en": "English",
+      "es": "Spanish",
+      "es-co": "Spanish - Colombia",
+      "pt-br": "Portuguese (BR)",
+      "pt-pt": "Portuguese (PT)"
+    },
+    "LINK": "Link",
+    "LOADING": "Loading...",
+    "LOADING_CERTIFICATE": "Your certificate is being generated.",
+    "MANAGE": "Manage",
+    "MENU": "Menu",
+    "MISSION": "Course",
+    "MISSIONS": "Courses",
+    "MISSION_STATUS": {
+      "DONE": "Published",
+      "INACTIVATED": "Inactive",
+      "IN_PROGRESS": "Course in progress",
+      "IN_REVIEW": "Course under review",
+      "PROCESSING": "Course in process"
+    },
+    "NAME": "Name",
+    "NEXT": "Next",
+    "NEXT_CONTENT": "Next Content",
+    "NO_DESCRIPTION": "No description",
+    "NO_RESULTS_FOUND": "No results found",
+    "OF": "of",
+    "OK": "Ok",
+    "OPEN": "Open",
+    "OTHERS": "other",
+    "PERFORMANCE": "Performance",
+    "POINTS": "Points",
+    "PREVIEW": "Preview",
+    "PREVIOUS": "Previous",
+    "PUBLISH": "Publish",
+    "PULSES": "Pulses",
+    "QUESTION": "Question",
+    "QUIZ": "Quiz",
+    "REGISTER": "Register",
+    "REMOVE": "Remove",
+    "REQUIRED": "Required",
+    "REQUIRED_FIELD": "Required field",
+    "SAVE": "Save",
+    "SCORE": "Score",
+    "SEARCH": "Search",
+    "SEARCH_FOR": "Search for...",
+    "SEE_ALL": "See all",
+    "SEE_DETAILS": "See Details",
+    "SELECT": "Select",
+    "SELECT_A_IMAGE": "Select a image",
+    "SELECT_CERTIFICATES": "Select certificate",
+    "SHARE": "Share",
+    "SHOW_LESS": "Show less",
+    "SHOW_MORE": "Show more",
+    "SKIP": "Skip",
+    "START": "Start",
+    "STATUS": "Status",
+    "SUBMIT": "Submit",
+    "SUBSCRIPTION_REMOVED": "Subscription canceled successfully",
+    "SUB_DIRECTORATE": "Sub directorate",
+    "SUCCESSFULLY_SUBSCRIBED": "Subscribed successfully",
+    "SUPPORT": "Support",
+    "TO": "to",
+    "TRANSFER": "Transfer",
+    "TYPE": "Type",
+    "UNAVAILABLE_WORKSPACE": "Workspace unavailable",
+    "UNEXPECTED_ERROR_HAPPENED": "Unexpected error happened",
+    "USER": "User",
+    "VIEW": "View",
+    "VIEW_AS_USER": "View as User",
+    "WARN": "Warning",
+    "YES": "Yes"
+  },
+  "GLOBAL_SEARCH": {
+    "ALL": "All",
+    "CATEGORIES": "Category",
+    "CHANNELS": "Channels",
+    "DUE_DATE": "Due Date",
+    "ENROLLABE_ITEM_END_DATE": "Conclusion",
+    "ENROLLABE_ITEM_GOAL_DATE": "Goal",
+    "ENROLLABE_ITEM_OVERDUE": {
+      "PLURAL": "days",
+      "SINGULAR": "day"
+    },
+    "ENROLLABE_ITEM_OVERDUE_DAYS": "Overdue",
+    "ENROLLABE_ITEM_PERFORMANCE": "Performance",
+    "ENROLLABE_ITEM_START_DATE": "Start",
+    "ENROLLMENTS": "Enrollments",
+    "ENROLLMENT_STATUS": "Status",
+    "ENROLLMENT_TYPE": "Priority",
+    "EVENTS": "Events",
+    "FREE": "Free",
+    "IN_SEVEN_DAYS": "in 7 days",
+    "IN_THIRTY_DAYS": "in 30 days",
+    "ITEM_DURATION": "Duration",
+    "LATE": "Late",
+    "LONG": "Long",
+    "MANDATORY": "Mandatory",
+    "MEDIUM": "Medium",
+    "COURSES": "Courses",
+    "PROVIDERS": "Provider",
+    "PULSES": "Pulses",
+    "SHORT": "Short",
+    "TIME": "Duration",
+    "TRAILS": "Trails"
+  },
+  "GROUP": {
+    "ERROR_DIALOG": {
+      "GROUP_LEARNING_TRAIL_ALREADY_EXISTS": "This learning trail is already linked to the group",
+      "GROUP_MISSION_ALREADY_EXISTS": "This course is already linked to the group",
+      "GROUP_NOT_FOUND": "Group not found",
+      "GROUP_USER_ALREADY_EXISTS": "This user is already linked to the group",
+      "LEARNING_TRAIL_CREATOR_USER_CANNOT_BE_ENROLLED": "Learning Trail creator can't be enrolled in your own trail.",
+      "LEARNING_TRAIL_ENROLLMENT_ALREADY_EXISTS": "Learning Trail Enrollment already exists",
+      "LINKING USER TO KONQUEST": "Linking user to Konquest, try again later.",
+      "LINKING_USER_TO_KONQUEST": "Linking user to Konquest, try again later.",
+      "MESSAGE": "Sorry, unfortunately some data was not linked.",
+      "MESSAGE_COUNT_REGISTRATION": "Total records with problems:",
+      "MISSION_CONTRIBUTOR_OR_CREATOR_CANNOT_BE_ENROLLED": "Contributing user or quest creator cannot be enrolled.",
+      "MISSION_ENROLLMENT_ALREADY_EXISTS": "This enrollment already exists",
+      "NOT_FOUND_LEARNING_TRAILS_OR_USERS": "Not found Learning Trail or Users",
+      "NOT_FOUND_MISSIONS_OR_USERS": "Not found Course or Users",
+      "AN_UNEXPECTED_ERROR_HAS_OCCURRED": "An unexpected error has occurred",
+      "USER NOT FOUND": "User not found",
+      "USER_ALREADY_LINKED": "User already linked to the group.",
+      "USER_IS_NOT_LINKED_TO_ANY_MISSION_GROUP": "Unable to enroll the user in the quest. Make sure he belongs to this course's group",
+      "USER_MISSION_ENROLLMENT_IN_PROGRESS_ALREADY_EXISTS": "The user already has an enrollment in progress.",
+      "USER_NOT_FOUND": "User not found",
+      "UNABLE_TO_ENROLL_IN_AN_IN_INACTIVE_MISSION": "It's not allowed to enroll a user in an inactive course.",
+      "UNEXPECTED_ERROR_HAPPENED": "Unexpected error happened",
+      "TRAIL_CREATOR_CANNOT_BE_ENROLLED": "The trail creator cannot be enrolled."
+    },
+    "SUCCESS": {
+      "IMPORT": "Import complete",
+      "LINKED_SUCCESS": "Linked successfully!",
+      "LINKED_USER": "Linked user"
+    }
+  },
+  "GROUPS": {
+    "BUTTON": {
+      "DOWNLOAD": "Download Template",
+      "IMPORT_CHANNELS": "Import channels",
+      "IMPORT_MISSIONS": "Import Courses",
+      "IMPORT_USERS": "Import Users"
+    },
+    "DIALOG": {
+      "CREATE_TITLE": "Create Group",
+      "EDIT_TITLE": "Edit group",
+      "HINT": "Maximum 50 characters",
+      "REMOVE_GROUP_MESSAGE": "Do you really want to delete this group? This action is permanent.",
+      "REMOVE_GROUP_TITLE": "Delete group"
+    },
+    "DIALOG_IMPORT": {
+      "FILE_NOT_SELECTED": "No file selected",
+      "IMPORT_FILE": "Import spreadsheet",
+      "IMPORT_USERS": "If you want to enroll users in all courses linked to the group, activate and set the target date.",
+      "SELECT_FILE": "Select a File",
+      "SUBTITLE": "Do you want to enroll users in all courses linked to the group?",
+      "TITLE_MISSIONS": "Import courses",
+      "TITLE_TRAILS": "Select the trails x groups file",
+      "TITLE_USERS": "Import users"
+    },
+    "MESSAGES": {
+      "EXISTING_GROUP": "Already existing group",
+      "SUCCESSFULLY_UPDATED": "Group updated successfully",
+      "SUCESSFULLY_CREATED": "Group created successfully",
+      "SUCESSFULLY_REMOVED": "Group removed successfully"
+    },
+    "TABLE": {
+      "CHANNELS": "Channels",
+      "EMPTY": "No groups found.",
+      "INTEGRATION_GROUP": "This group is linked to the integration and cannot be edited or deleted.",
+      "INTEGRATION_GROUP_DISABLED": "Your integration has been deactivated. The group cannot be accessed.",
+      "MISSIONS": "Courses",
+      "TRAILS": "Trails",
+      "USERS": "Users"
+    }
+  },
+  "GROUP_CHANNEL": {
+    "BUTTON": {
+      "CREATE": "Link Channel"
+    },
+    "DIALOG": {
+      "CREATE_TITLE": "Link Channels",
+      "REMOVE_CHANNEL_MESSAGE": "Are you sure you want to delete this channel? Related content will not be deleted.",
+      "REMOVE_CHANNEL_TITLE": "Delete channel"
+    },
+    "SELECTION_LABEL": {
+      "PLURAL": "{{value}} selected channels",
+      "SINGULAR": "{{value}} selected channel"
+    },
+    "TABLE": {
+      "DATE": "Inclusion in the group",
+      "TITLE": {
+        "NAME": "Channel"
+      }
+    }
+  },
+  "GROUP_DETAIL": {
+    "BACK_LINK": "Groups and Permissions",
+    "TAB": {
+      "LINKED_CHANNELS": "Linked Channels",
+      "LINKED_MISSIONS": "Linked Courses",
+      "LINKED_TRAILS": "Linked Trails",
+      "LINKED_USERS": "Linked Users"
+    },
+    "TITLE": "Group"
+  },
+  "GROUP_LEARNING_TRAIL": {
+    "BUTTON": {
+      "CREATE": "Link Trail"
+    },
+    "DIALOG": {
+      "CREATE_TITLE": "Link Trails",
+      "REMOVE_TRAIL_MESSAGE": "Are you sure you want to delete this trail? Participant progress will be deleted.",
+      "REMOVE_TRAIL_TITLE": "Delete learning trail"
+    },
+    "SELECTION_LABEL": {
+      "PLURAL": "{{value}} selected trails",
+      "SINGULAR": "{{value}} selected trail"
+    },
+    "TABLE": {
+      "DATE": "Inclusion in the group",
+      "TITLE": {
+        "NAME": "Trail"
+      }
+    }
+  },
+  "GROUP_MISSION": {
+    "BUTTON": {
+      "CREATE": "Link Course"
+    },
+    "DIALOG": {
+      "CREATE_TITLE": "Link Courses",
+      "REMOVE_MISSION_MESSAGE": "Do you really want to delete this course? Participant progress and history will be deleted.",
+      "REMOVE_MISSION_TITLE": "Delete course"
+    },
+    "SELECTION_LABEL": {
+      "PLURAL": "{{value}} selected courses",
+      "SINGULAR": "{{value}} selected course"
+    },
+    "TABLE": {
+      "DATE": "Inclusion in the group",
+      "TITLE": {
+        "NAME": "Course"
+      },
+      "UNABLE_TO_REMOVE_INTEGRATION_MISSION": "Unable to delete courses linked via integration."
+    }
+  },
+  "GROUP_USER": {
+    "BUTTON": {
+      "CREATE": "Link User (s)"
+    },
+    "DIALOG": {
+      "CREATE_TITLE": "Link User (s)",
+      "REMOVE_ENROLLMENTS": "Delete enrollments?",
+      "REMOVE_USER_MESSAGE": "Do you really want to delete this user?"
+    },
+    "FILTER": "Reveal and filter inactive users in the group",
+    "SELECTION_LABEL": {
+      "PLURAL": "{{value}} users selected",
+      "SINGULAR": "{{value}} user selected"
+    },
+    "TABLE": {
+      "DATE": "Inclusion in the Group",
+      "JOB": "Job Position",
+      "TITLE": {
+        "EMAIL": "Email",
+        "NAME": "Name"
+      }
+    }
+  },
+  "HOME": {
+    "BANNER": {
+      "ACTIONS": {
+        "CONTINUE": "Continue",
+        "DETAILS": "Details",
+        "START": "Start",
+        "VIEW_MORE": "View more"
+      },
+      "SETTINGS": {
+        "CLOSE_CONFIRM_DIALOG": {
+          "MESSAGE": "You have unsaved changes. Do you want to continue editing or discard changes?",
+          "TITLE": "Unsaved changes"
+        },
+        "CONFIRM_RECOMMENDATION_DIALOG": {
+          "MESSAGE": "Do you really want to disable manual mode? Upon confirmation, all settings will be deleted and the banner will return to automatic mode.",
+          "POSITIVE_BUTTON": "Disable",
+          "TITLE": "Confirm deactivation"
+        },
+        "CONTENTS": {
+          "CONTENT_LIMIT_REACHED": "Maximum limit of 3 slides reached!",
+          "EXTERNAL_LINK": "External link",
+          "EXTERNAL_LINK_IMAGE_LABEL": "Image (1920x640px .jpg .png .webp)",
+          "EXTERNAL_LINK_TITLE_LABEL": "Title",
+          "EXTERNAL_LINK_URL_PLACEHOLDER": "Add an external link (URL)",
+          "INTERNAL_CONTENT": "Internal content",
+          "INTERNAL_CONTENT_PLACEHOLDER": "Add a learning trail, course, or event"
+        },
+        "CUSTOM_MODE_SUBTITLE": "All users see content defined by you.",
+        "CUSTOM_MODE_TITLE": "Custom mode",
+        "DEFAULT_MODE_SUBTITLE": "Each user receives personalized content via AI.",
+        "DEFAULT_MODE_TITLE": "Automatic mode",
+        "MAIN_BUTTON_TOOLTIP": "Configure banner",
+        "PUBLISH_MESSAGE_SUCCESS": "Banner published successfully!",
+        "PUBLISH_MESSAGE_FAILURE": "Error publishing banner",
+        "RECOMMENDATION_MODE_MESSAGE_SUCCESS": "Automatic mode activated!",
+        "SCHEDULE": {
+          "ACTIVATION": "Activation",
+          "DEACTIVATION": "Deactivation",
+          "ERROR_MESSAGE": "Deactivation date cannot be before activation date",
+          "TITLE": "Schedule"
+        },
+        "TITLE": "Banner Settings"
+      }
+    },
+    "COURSES": "Courses",
+    "EMPTY_MESSAGES": {
+      "NO_CONTENTS": "No contents found",
+      "NO_SECTIONS": "No sections found"
+    },
+    "EMPTY_STATE": {
+      "PAGE": {
+        "TITLE": "No sections available at the moment",
+        "DESCRIPTION": "As soon as new sections are published by administrators, they will appear here."
+      },
+      "SECTION": {
+        "COURSE": {
+          "TITLE": "No courses around here at the moment",
+          "DESCRIPTION": "As soon as new courses are selected for this section, they will appear here."
+        },
+        "COURSE_ALL": {
+          "TITLE": "There are no published courses in this workspace yet",
+          "DESCRIPTION": "As soon as there are, they will automatically appear here."
+        },
+        "COURSE_ENROLLED": {
+          "TITLE": "You are not enrolled in any courses yet",
+          "DESCRIPTION": "Explore the catalog and enroll to see your courses here."
+        },
+        "EVENTS": {
+          "TITLE": "No featured events for now",
+          "DESCRIPTION": "Keep an eye out to participate in upcoming experiences."
+        },
+        "EVENTS_ENROLLED": {
+          "TITLE": "You don't have any scheduled events yet",
+          "DESCRIPTION": "As soon as you register for an event, it will appear here."
+        },
+        "LEARNING_TRAIL": {
+          "TITLE": "No trails available in this section right now",
+          "DESCRIPTION": "Check back soon to discover new journeys."
+        },
+        "LEARNING_TRAIL_ALL": {
+          "TITLE": "There are no published trails in this workspace yet",
+          "DESCRIPTION": "As soon as there are, they will automatically appear here."
+        },
+        "LEARNING_TRAIL_ENROLLED": {
+          "TITLE": "You are not enrolled in any trail yet",
+          "DESCRIPTION": "Join a trail to track your progress here."
+        }
+      }
+    },
+    "EVENTS": "Events",
+    "HIGHLIGHTS": "Highlights",
+    "LEARNING_TRAILS": "Learning trails",
+    "SEE_ALL_BUTTON": "See all"
+  },
+  "IMAGE": {
+    "NEXT_CONTENTS": "Next Contents"
+  },
+  "IMAGE_UPLOAD": {
+    "FILE_INVALID": "Invalid file, size must be less than 10MB"
+  },
+  "INTEGRATIONS": {
+    "DEACTIVATION_DIALOG": {
+      "MESSAGE": "You are about to deactivate an integration. If you proceed with this action, all mirrored courses and linked enrollments will be deactivated in your workspace. Do you want to continue?",
+      "NEGATIVE_BUTTON": "Cancel",
+      "POSITIVE_BUTTON": "Deactivate",
+      "TITLE": "Deactivate Integration"
+    },
+    "DESCRIPTIONS": {
+      "ADP": "With the ADP integration, you'll have access to a multi-platform cloud-based instant messaging service. Simplify personnel and human resources management.",
+      "ALURA": "With the Alura integration, gain access to programming, Front-end, Back-end, Data Science, UX, DevOps, Innovation, and Management courses from Brazil's largest technology platform.",
+      "AZURE": "The Azure/AdfS integration offers a multi-platform cloud-based instant messaging service. Reinforce single sign-on security and protect your data.",
+      "CONVENIA": "The Convenia integration offers a multi-platform cloud-based instant messaging service. Efficiently manage payroll and human resources.",
+      "DOMINIO": "With the Domínio integration, you'll have access to a multi-platform cloud-based instant messaging service. Simplify human resources management.",
+      "FEEDZ": "The Feedz integration offers a multi-platform cloud-based instant messaging service. Enhance team engagement and development.",
+      "GOOGLE": "With the Google integration, access a unified communication and collaboration platform. Facilitate single sign-on and simplify access to your account.",
+      "GUPY": "The Gupy integration offers a multi-platform cloud-based instant messaging service. Improve talent recruitment and selection processes.",
+      "SENIOR": "The Senior integration offers a unified platform for communication and collaboration, combining chat, video conferencing, file storage, and app integration. Manage your team effectively.",
+      "SLACK": "Slack is a multi-platform cloud-based instant messaging service. Simplify your team's communication and keep everyone on the same page.",
+      "SOLIDES": "The Solides integration simplifies people management with a multi-platform cloud-based instant messaging service. Empower your team's development.",
+      "TEAMS": "A unified communication and collaboration platform, keep your team connected to Konquest directly on Teams.",
+      "TOTVS": "The Totvs RM integration provides a multi-platform cloud-based instant messaging service. Manage human resources effectively and accurately."
+    },
+    "ERROR": {
+      "EXTERNAL": "Contact {{value}} support",
+      "INTERNAL": "Contact our support",
+      "TITLE": "Integration error.",
+      "BUTTON": "Configure tokens"
+    },
+    "GROUPS": {
+      "COMMUNICATION": "Communication",
+      "COURSES": "Courses",
+      "PEOPLE_MANAGEMENT": "People Management",
+      "SSO": "SSO (Login)"
+    },
+    "HIRE": "Hire {{value}}",
+    "MANAGEMENT": {
+      "CONFIGURATIONS_ROUTE": "Configurations"
+    },
+    "REQUEST_INTEGRATION": "Request Integration",
+    "SOON": "(Coming Soon)",
+    "TOGGLE": {
+      "DISABLE_FAILURE": "An error occurred while disabling the integration.",
+      "DISABLE_SUCCESS": "Integration successfully disabled!",
+      "ENABLE_FAILURE": "An error occurred while enabling the integration.",
+      "ENABLE_SUCCESS": "Integration successfully enabled!"
+    }
+  },
+  "KP_CONTENT_FORM_DIALOG": {
+    "QUESTION": "Question"
+  },
+  "KP_IMAGE_VIEWER": {
+    "TOOLTIP": "Click on the image to enlarge or zoom"
+  },
+  "LEARNING_TRAIL": {
+    "ACTIVE": "Active",
+    "ALL_TRAILS": "All trails",
+    "CONTINUE_TRAIL": "Continue trail",
+    "CREATE": {
+      "EXPIRATION_DATE": "Expiration date",
+      "EXPIRATION_DATE_REQUIRED": "Inform an expiration date",
+      "NEW": {
+        "DEFAULT": "Learning Trails"
+      },
+      "NAVIGATION": {
+        "NAV_MENU_TITLE": "Create learning trail",
+        "NAV_MENU_SUBTITLE": "Creation steps:",
+        "TITLE": {
+          "INFO": "Information",
+          "IMAGES": "Images",
+          "CONTENT": "Contents",
+          "FINISH": "Finish"
+        },
+        "LABEL": {
+          "INFO": "Configure the data of your trail",
+          "IMAGES": "Define the images of your trail",
+          "CONTENT": "Add contents to your trail",
+          "FINISH": "Publish your trail"
+        }
+      },
+      "REUSE_GENERATED_IMAGE": {
+        "BANNER_MESSAGE": "Do you want to use this same image for the track banner? You will be able to adjust the crop for the banner format.",
+        "CARD_MESSAGE": "Do you want to use this same image for the track card? You will be able to adjust the crop for the card format.",
+        "NEGATIVE_BUTTON_LABEL": "No, thanks",
+        "POSITIVE_BUTTON_LABEL": "Yes, use",
+        "TITLE": "Reuse Image"
+      }
+    },
+    "CREATED_AT": "Created at",
+    "DETAIL": {
+      "BATCH_ENROLLMENTS": "Batch Enrollments",
+      "CERTIFICATE": "Certificate",
+      "CONSUMPTION": "Consumption",
+      "CONTINUE": "Continue trail",
+      "DELETE_SUCCESS": "Learning Trail successfully deleted",
+      "FINISHED_AT": "Finished at",
+      "GIVE_UP": "Give Up",
+      "GIVE_UP_CONFIRMATION": {
+        "MESSAGE": "When you leave this Trail, you will be automatically unenrolled from all Courses linked to the Trail.",
+        "TITLE": "Are you sure you want to leave this Trail?"
+      },
+      "PROGRESS": "Progress",
+      "REMOVE_TRAIL_MESSAGE": "By deleting this trail, all participant progress will be deleted. Do you wish to proceed?",
+      "REMOVE_TRAIL_TITLE": "Delete learning trail",
+      "RETAKE": "Retake",
+      "START": "Start",
+      "TOOLTIP": {
+        "CERTIFICATE": "Get Certificate",
+        "GIVE_UP": "Upon exiting, all courses logged on this track will be canceled.",
+        "RETAKE": "You will automatically be enrolled in all courses on that track, with a target as per the predefined date.",
+        "START": "You will automatically be enrolled in all courses on that track, with a target as per the predefined date."
+      },
+      "VINCULATE_TO_GROUP": "Link group"
+    },
+    "DURATION": "Duration",
+    "EXPIRES_IN": "Expires in",
+    "INACTIVE": "Inactive",
+    "LIST": {
+      "NO_ENROLLMENT": "There are no tracks in progress",
+      "NO_LEARNING_TRAILS": "There are currently no tracks available"
+    },
+    "MISSIONS": "Courses",
+    "MY_LEARNING_TRAILS": "Created by me",
+    "SCORE": "Score",
+    "STEP": {
+      "ACTIVE": "Active trail",
+      "ADD_NEW_CONTENT_INFORMATION": "Search for courses and pulses to add to your new track.",
+      "CONTENT": "Content",
+      "DELETE_CONTENT_MESSAGE": "Do you really want to delete this content? This action cannot be undone.",
+      "DELETE_CONTENT_TITLE": "Delete Content",
+      "DESCRIPTION": "Description",
+      "ERROR": {
+        "THIS_LEARNING_TRAIL_NOT_VIEWED": "Attention, this learning trail cannot be viewed by any user.",
+        "ADD_CONTENT_ERROR": "Content is already linked to this Trail"
+      },
+      "FINAL": "Final",
+      "FINISH": "Finish",
+      "IMAGES": {
+        "BANNER": "Banner",
+        "CARD": "Card",
+        "SUBTITLE": "Define the images for your learning trail.",
+        "TITLE": "Images"
+      },
+      "INFORMATION": "Information",
+      "INFORMATION_BASIC": "Start by filling in the basic learning trail information.",
+      "NEW_LEARNING_TRAIL": "Add Trail",
+      "NEXT": "Next",
+      "NO_MISSION_PULSE": "Courses or pulses missing",
+      "PREVIOUS": "Previous",
+      "RESUME_OF_YOUR_NEW_TRAIL": "Resume of your new trail",
+      "SEARCH_PULSE_MISSION": "Search for Pulse or Course",
+      "TOOLTIP": {
+        "EXPIRATION_DATE_HELP": "Date chosen for registration deadline"
+      },
+      "TYPE": "Type"
+    },
+    "TOTAL_IN_PROGRESS": {
+      "PLURAL": "Total of {{value}} Trails in progress",
+      "SINGULAR": "Total of {{value}} Trail in progress"
+    },
+    "TRAILS_IN_PROGRESS": "Trails in progress",
+    "WHAT_WE_GOING_TO_LEARN_TODAY": "What we going to learn today?"
+  },
+  "LEARNING_TRAIL_DETAIL": {
+    "DUE_DAYS_TAG": {
+      "PLURAL": "{{value}} days overdue",
+      "SINGULAR": "{{value}} day overdue"
+    },
+    "EXPIRE_TAG": "Expires in {{value}}",
+    "REQUIRED_TAG": "Required",
+    "TRAIL_GOAL_TAG": "Goal date {{value}}"
+  },
+  "LINK_CYCLE": {
+    "DIALOG_CANCEL_BUTTON": "Cancel",
+    "DIALOG_DESCRIPTION": "Link enrollment to a normative cycle.",
+    "DIALOG_SELECT_PLACEHOLDER": "Search",
+    "DIALOG_SUBMIT_BUTTON": "Link",
+    "DIALOG_TITLE": "Link cycle",
+    "ENROLLMENT_LINKED_SUCCESSFULLY": "Enrollment linked successfully.",
+    "ENROLLMENT_LINK_FAILURE": "There was an error while linking the enrollment."
+  },
+  "MARKETPLACE": {
+    "BUTTON": {
+      "CATALOG": "Download catalog",
+      "HIRE": "Hire",
+      "SITE": "Visit website"
+    },
+    "DESCRIPTION": {
+      "ALURA": "Alura is an online education platform recognized in the corporate market, specializing in the development of technical and behavioral skills. It offers learning paths in areas such as technology, design, marketing, business, and soft skills. With practical materials, video lessons, and applicable projects, Alura promotes continuous learning and team development, enabling companies to keep their employees updated and competitive. It is a solution that easily integrates with LMS/LXP platforms to create personalized and impactful learning experiences.",
+      "FUTURIZE": "Futurize is a company with over 15 years of experience in corporate education, specializing in creating solutions that promote effective learning and engagement in organizations. The company offers innovative and customizable content for LMS, focused on areas such as leadership, diversity, project management, mental health, sales, and more. Its methodologies include microlearning, gamification, and problem-based learning (PBL), providing practical and applicable experiences. Additionally, Futurize stands out for its personalized approach, which recognizes the individuality of learners and adapts content to their specific needs. The company also offers mentorship programs for leadership development and creates content such as e-books, webinars, and interactive materials that easily integrate with LMS/LXP platforms.",
+      "VILON_ACADEMY": "Vilon Academy is a company specialized in human and organizational development, standing out in the market since 2006. Focused on creating continuous learning environments, Vilon offers customized solutions to meet the needs of companies and teams. Its programs include development paths, workshops, high-impact experiences, mentoring, and coaching, covering topics such as leadership, communication, conflict management, and emotional health. Vilon's methodology values co-creation, creativity, and innovation, providing transformative experiences that promote sustainable growth for individuals and organizations. Additionally, Vilon works in alignment with the culture and objectives of each client, offering relevant and tailored content for diverse audiences."
+    }
+  },
+  "MAT-PAGINATOR": {
+    "FIRST_PAGE": "First page",
+    "ITEMS_PER_PAGE": "Items per page",
+    "LAST_PAGE": "Last page",
+    "NEXT_PAGE": "Next page",
+    "PAGE_OF": "of",
+    "PREV_PAGE": "Previous Page"
+  },
+  "MISSION": {
+    "AG_REVIEW": "Ag. Review",
+    "ALL": {
+      "TITLE": "All courses"
+    },
+    "ATTENDANCE_LIST": {
+      "ALL_DATES": "All days",
+      "ATTENDANCE_LIST_CLOSED": "Attendance list closed successfully!",
+      "ATTENDANCE_LIST_REOPENED": "Attendance list reopened successfully!",
+      "ATTENDANCE_PERCENTAGE": "attendance",
+      "BATCH_UPDATE_PRESENTED_SUCCESS": "Attendance confirmations updated successfully!",
+      "CLOSE_LIST": "Close this attendance list",
+      "CONFIRMATION": {
+        "EMAIL": "E-mail",
+        "NAME": "Name",
+        "NO": "No",
+        "PRESENCE": "Presence",
+        "SEARCH_PLACEHOLDER": "Search by name or e-mail",
+        "SELECT_ALL": "Select all",
+        "TITLE": "Attendance confirmation",
+        "YES": "Yes"
+      },
+      "CONFIRMATION_PERCENTAGE": "confirmations",
+      "EMPTY_LIST_MESSAGE": "Users not found",
+      "IMPORT_LIST": "Import list",
+      "IMPORT_LIST_CONFIRMATION_SUBTITLE": "Additionally, those who are not yet registered in the system will be automatically enrolled.",
+      "IMPORT_LIST_CONFIRMATION_TITLE": "Note: Users without enrollment will be automatically enrolled in this event with a completed status.",
+      "IMPORT_LIST_ERROR": "Oops! The file you imported is in an incorrect format and could not be processed. Please check the file and try again.",
+      "IMPORT_LIST_SUCCESS_SUBTITLE": "Please review the synchronized enrollments to ensure all data is correct.",
+      "IMPORT_LIST_SUCCESS_TITLE": "The imported file was successfully processed!",
+      "IMPORT_SUCCESS": "We are processing the attendance list. This process may take a few minutes to be reflected in the system.",
+      "LAST_CONFIRMATIONS": {
+        "MESSAGE": "A list of present enrollments will be presented here after the first confirmation.",
+        "TITLE": "Last confirmations"
+      },
+      "PRESENT": {
+        "PLURAL": "present",
+        "SINGULAR": "present"
+      },
+      "PRINT": "Print full list",
+      "REOPEN_LIST": "Reopen attendance list",
+      "SELECTION_LABEL": {
+        "PLURAL": "{{value}} selected users",
+        "SINGULAR": "{{value}} selected user"
+      },
+      "SOON": "Coming soon",
+      "TITLE": "Attendance list",
+      "UNTIL": "until",
+      "UPDATE_PRESENTED_SUCCESS": "Attendance confirmation updated successfully!",
+      "USERS_ENROLLED": {
+        "PLURAL": "{{value}} enrolled users",
+        "SINGULAR": "{{value}} enrolled user"
+      },
+      "USERS_IMPORT_STATUS_COLUMN": {
+        "ENROLLED": "Enrolled",
+        "NOT_REGISTERED": "Not registered",
+        "REGISTERED": "Registered"
+      },
+      "USERS_NOT_REGISTERED": {
+        "PLURAL": "{{value}} users not registered",
+        "SINGULAR": "{{value}} user not registered"
+      },
+      "USERS_REGISTERED": {
+        "PLURAL": "{{value}} registered users",
+        "SINGULAR": "{{value}} registered user"
+      }
+    },
+    "AVERAGE_RATING": "Average Rating",
+    "CREATE": {
+      "CERTIFICATE": {
+        "SAVE_CERTIFICATE_SUCCESS": "Certificate created successfully."
+      },
+      "CONTENT": {
+        "DELETE_CONTENT_MESSAGE": "Are you sure you want to delete this course content? This action is permanent.",
+        "DELETE_CONTENT_TITLE": "Delete content",
+        "DELETE_QUIZ_QUESTION_MESSAGE": "Do you really want to delete this question? The related results will also be deleted.",
+        "DELETE_QUIZ_QUESTION_TITLE": "Delete question",
+        "DELETE_STAGE_MESSAGE": "Do you really want to delete this topic? The linked contents will also be deleted.",
+        "DELETE_STAGE_TITLE": "Delete topic",
+        "EDIT_CONTENT_TITLE": "Delete content",
+        "EDIT_STAGE": "Edit topic",
+        "LIST": {
+          "EMPTY_LIST_MESSAGE": "This topic has no contents."
+        },
+        "NAME_CONTENT": "Content name",
+        "QUIZ_LABEL": "Quiz name"
+      },
+      "CREATED": {
+        "ACCESS_MISSION": "Access course",
+        "ACCESS_EVENT": "Access event",
+        "ADDITIONAL_EVENT_MESSAGE": "The event automatically ends at the end of the day. Certificates are sent 2 days later to those with attendance. If ended manually, certificates are sent immediately.",
+        "MESSAGE": {
+          "CLOSED": "You can't publish a closed event",
+          "DEFAULT": "When you publish the course it will be processed and then ready for review.",
+          "PUBLISHED_LIVE_PRESENTIAL": "Your event has already been published."
+        },
+        "MESSAGE_EVENT": {
+          "ONLINE": "Online event",
+          "IN": "in",
+          "PERIODO": "during the period",
+          "PRESENTIAL": "Presential event",
+          "TO": "to"
+        },
+        "PUBLISH_MISSION": "Publish course",
+        "PUBLISH_EVENT": "Publish event",
+        "TITLE": {
+          "DONE": "Course published",
+          "INACTIVATED": "Inactive course",
+          "IN_PROGRESS": "Course created successfully",
+          "IN_REVIEW": "Course awaiting review",
+          "PROCESSING": "Processing course"
+        },
+        "TITLE_EVENT": {
+          "CLOSED": "Event closed",
+          "DONE": "Event published",
+          "IN_PROGRESS": "Event created successfully"
+        }
+      },
+      "DEVELOPMENT_STATUS_TAG": {
+        "CLOSED": "Closed",
+        "DONE": "Published",
+        "INACTIVATED": "Inactive",
+        "IN_PROGRESS": "Creating",
+        "IN_REVIEW": "Under Review",
+        "PROCESSING": "Processing"
+      },
+      "ERROR": {
+        "ADD_GROUP": "There was an error associating the group with this course.",
+        "ADD_TOPIC": "There was an error adding the course topic.",
+        "CONTENT_EDIT": "There was an error editing the course content.",
+        "CONTENT_REMOVED": "There was an error removing the course content.",
+        "CREATE_MISSION": "There was an error saving the course.",
+        "DELETE_GROUP": "There was an error disassociating the group from this course.",
+        "IMAGE_UPLOAD": "There was an error saving the image.",
+        "LOAD_STAGES": "There was an error loading the topics for this course.",
+        "ORDER_CONTENT": "There was an error sorting the course topics.",
+        "ORDER_STAGES": "There was an error sorting the course stages.",
+        "SAVE_DATES": "There was an error saving the event dates.",
+        "TOPIC_EDIT": "There was an error editing the course topic.",
+        "TOPIC_REMOVED": "There was an error removing the course topic.",
+        "SUPPORT_MATERIAL": "An error occurred while adding the supporting material."
+      },
+      "EXTERNAL": {
+        "DURATION": "Duration",
+        "ERROR": {
+          "DURATION": "Enter the duration of the course",
+          "LINK": "Enter the course link",
+          "PROVIDER": "Select the external provider"
+        },
+        "LINK": "Link",
+        "PROVIDER": "Provider"
+      },
+      "IMAGES": {
+        "BANNER": "Banner",
+        "BANNER_TIP": "The used image should have a resolution of 1920x640",
+        "CARD": "Card",
+        "CARD_TIP": "The used image should have a resolution of 400x713"
+      },
+      "INFO": {
+        "ASSESSMENT_TYPE": "Assessment",
+        "CATEGORY": "Category",
+        "ERROR": {
+          "ASSESSMENT_TYPE": "Select the assessment method",
+          "CATEGORY": "Select the course category",
+          "DESCRIPTION": "Enter the course description",
+          "LANGUAGE": "Select the course language",
+          "MISSION_TYPE": "Select the course type",
+          "NAME": "Enter the course name"
+        },
+        "INNER_CODE": "Inner code",
+        "TYPE": "Type"
+      },
+      "LEAVE_CONFIRMATION": "Changes to the form have not been saved and will be discarded, do you want to proceed?",
+      "LIVE_PRESENTIAL": {
+        "ERROR": {
+          "CALL_LINK": "Enter the call link",
+          "INVALID_END_TIME": "End time cannot be equal to or less than 10 minutes after the start time.",
+          "INVALID_START_TIME": "Start time cannot be earlier than the current time.",
+          "LOCATION": "Enter the event location",
+          "OVERLAPPING_DATES": "Event date and time cannot conflict."
+        }
+      },
+      "NAVIGATION": {
+        "LABEL": {
+          "CONTENTS": "Add contents to your course",
+          "SUPPORT_MATERIAL": "Attach files for participants",
+          "EXTERNAL": "Add provider data and course workload",
+          "FINISH": "Publish your course",
+          "FINISH_PRESENTIAL": "Publish your presential event",
+          "FINISH_LIVE": "Publish your online event",
+          "IMAGES": "Set up your course images",
+          "IMAGES_PRESENTIAL": "Set up your presential event images",
+          "IMAGES_LIVE": "Set up your online event images",
+          "INFO": "Configure your course data",
+          "INFO_PRESENTIAL": "Configure your presential event data",
+          "INFO_LIVE": "Configure your online event data",
+          "LIVE": "Add link, vacancies, date and times for online event",
+          "PRESENTIAL": "Add location, vacancies, date and times",
+          "SETTINGS": "Adjust display and usage settings for the course",
+          "SETTINGS_PRESENTIAL": "Adjust display and usage settings for the presential event",
+          "SETTINGS_LIVE": "Adjust display and usage settings for the online event"
+        },
+        "NAV_MENU_SUBTITLE": "Creation steps:",
+        "NAV_MENU_TITLE": {
+          "EXTERNAL_PROVIDER": "Create external course",
+          "INTERNAL": "Create internal course",
+          "LIVE": "Create online event",
+          "PRESENTIAL": "Create presential event",
+          "SCORM": "Create scorm course"
+        },
+        "SAVE_NEXT": "Save and next",
+        "SUBTITLE": {
+          "CONTENTS": "Add the contents by filling in all the fields carefully so that your course is complete",
+          "SUPPORT_MATERIAL": "Attach files that will be available to event participants",
+          "FILL_ALL_FIELDS": "Fill in the fields with all the information",
+          "IMAGES": "Choose the images for the banner display and for the course card",
+          "IMAGES_EVENT": "Choose the images for the banner display and for the event card",
+          "INSTRUCTORS": "Add the instructors of this course",
+          "SETTINGS": {
+            "CONTRIBUTORS": "Add the contributors of this course",
+            "GROUPS": "Add the groups that will be linked to this course",
+            "SETTINGS": "Enable or disable functions for this course",
+            "SETTINGS_EVENT": "Enable or disable functions for this event",
+            "CONTRIBUTORS_EVENT": "Add the contributors of this event",
+            "GROUPS_EVENT": "Add the groups that will be linked to this event"
+          }
+        },
+        "TITLE": {
+          "CONTENTS": "Contents",
+          "SUPPORT_MATERIAL": "Support Materials",
+          "EXTERNAL": "Provider",
+          "FINISH": "Finalize",
+          "IMAGES": "Images",
+          "INFO": "Information",
+          "LIVE": "Online",
+          "PRESENTIAL": "Presential",
+          "SETTINGS": "Settings"
+        }
+      },
+      "PRESENTIAL_LIVE": {
+        "DATE": "Date",
+        "END_HOUR": "End hour",
+        "INSTRUCTORS": "Instructors",
+        "INSTRUCTORS_LABEL": "Add an instructor",
+        "LINK": "Video call link",
+        "LOCATION": "Event location",
+        "START_HOUR": "Start hour",
+        "VACANCIES": "Vacancies"
+      },
+      "QUIZ": {
+        "LIST": {
+          "EMPTY_LIST_MESSAGE": "Register your first question",
+          "TOTAL_QUESTIONS": "Total Questions: {{value}}"
+        },
+        "PREVIEW": {
+          "MESSAGE": "There are no registered questions.",
+          "TITLE": "Quiz Preview"
+        }
+      },
+      "REUSE_GENERATED_IMAGE": {
+        "BANNER_MESSAGE": "Do you want to use this same image for the course banner? You will be able to adjust the crop for the banner format.",
+        "CARD_MESSAGE": "Do you want to use this same image for the course card? You will be able to adjust the crop for the card format.",
+        "NEGATIVE_BUTTON_LABEL": "No, thanks",
+        "POSITIVE_BUTTON_LABEL": "Yes, use",
+        "TITLE": "Reuse Image"
+      },
+      "SETTINGS": {
+        "ACTIVE": "Course active",
+        "ALLOW_ANY_ENROLLMENT": "Pre-approve enrollments",
+        "ALLOW_ANY_ENROLLMENT_INFO": "Upon activation, you will not receive notifications to accept or decline enrollments.",
+        "ALLOW_SELF_ENROLLMENT_RENEWAL": "Allow re-enrollment",
+        "ALLOW_SELF_ENROLLMENT_RENEWAL_INFO": "This setting overrides your workspace's baseline re-enrollment rule.",
+        "ALLOW_SELF_REPROVED_ENROLLMENT_RENEWAL": "Allow re-registration for disapproved",
+        "AUTO_ATTENDANCE": "Automatic attendance",
+        "AUTO_ATTENDANCE_INFO": "Automatically confirms attendance when accessing the event",
+        "CONFIG": "Settings",
+        "CONTENT_PROGRESS_RESTRICTION": "Content progress lock",
+        "CONTENT_PROGRESS_RESTRICTION_INFO": "This setting overrides your system's base minimum time for content progression.",
+        "CONTENT_PROGRESS_RESTRICTION_LABEL": "Minimum time",
+        "CONTENT_PROGRESS_RESTRICTION_RESET": "Reset the value to the base minimum time of 10%",
+        "CONTRIBUTORS": "Contributors",
+        "CONTRIBUTORS_LABEL": "Add a contributor",
+        "CUSTOM_CERTIFICATE": "Custom certificate",
+        "CUSTOM_GOAL_DATE": "Custom goal date",
+        "CUSTOM_GOAL_DATE_INFO": "The custom goal date overrides the workspace's default goal date",
+        "CUSTOM_GOAL_DATE_LABEL": "Day(s)",
+        "GROUPS": "Groups",
+        "GROUPS_LABEL": "Add a group",
+        "INVALID_EXPIRATION_DATE": "Invalid expiration date",
+        "MIN_PERFORMANCE_LABEL": "Performance",
+        "MISSION_MIN_PERFORMANCE": "Minimum performance",
+        "MISSION_MIN_PERFORMANCE_INFO": "This setting overrides your workspaces baseline minimum performance.",
+        "NOTIFY_ENROLLED_USERS": "Notify enrollees via email",
+        "SURVEY": "Satisfaction survey",
+        "TEMPORARY": "Temporary course",
+        "TEMPORARY_INFO": "Your course will stay active until the specified date."
+      },
+      "SUCCESS": {
+        "ADD_GROUP": "Group added successfully!",
+        "ADD_INSTRUCTOR": "Instructor added successfully!",
+        "CONTENT_EDIT": "Content edited successfully!",
+        "CONTENT_REMOVED": "Content removed successfully!",
+        "CREATE_MISSION": "Course created successfully!",
+        "DELETE_GROUP": "Group removed successfully!",
+        "ORDER_CONTENT": "Content reordered successfully!",
+        "ORDER_STAGES": "Stages reordered successfully!",
+        "REGISTER_INSTRUCTOR": "Instructor registered successfully!",
+        "REMOVE_INSTRUCTOR": "Instructor removed successfully!",
+        "TOPIC_EDIT": "Topic edited successfully!",
+        "TOPIC_REMOVED": "Topic removed successfully!",
+        "UPDATE_MISSION": "Course updated successfully!"
+      },
+      "SUPPORT_MATERIAL": {
+        "ADD_FILES": "Drag and drop files here",
+        "OR": "or",
+        "SELECT_FILES": "Select files",
+        "DELETE_DIALOG": {
+          "CONFIRM_MESSAGE": "Are you sure you want to delete this supporting material? This action is permanent.",
+          "TITLE": "Exclude support material"
+        }
+      },
+      "WORKLOAD": "Workload",
+      "gdrive_document_not_shareable": "You need to make the file shareable.",
+      "gdrive_file_size_exceeded": "File size exceeded limit.",
+      "imanifest_file_not_found": "Scorm package should contain Imanifest.xml file.",
+      "private_video": "Video content should be public.",
+      "video_link_error": "Error to access link information.",
+      "video_unavailable": "Check if content is available."
+    },
+    "CREATE_ENROLLMENTS": {
+      "CLEAR_ERRORED_USERS": "Clear users with error",
+      "DOWNLOAD_IMPORT_SHEET_SAMPLE": "Download the template spreadsheet",
+      "ENROLL": "Enroll",
+      "ENROLL_SUCCESS_MESSAGE": "Enrollments completed successfully!",
+      "ERRORED_USERS": {
+        "PLURAL": "users with error",
+        "SINGULAR": "user with error"
+      },
+      "IMPORT_USERS": "Import users",
+      "NO_USERS_SELECTED": "No users selected.",
+      "SEARCH_PLACEHOLDER": "Search user by name or email",
+      "TITLE": "Enroll users",
+      "USERS_ENROLLED": {
+        "PLURAL": "enrolled",
+        "SINGULAR": "enrolled"
+      },
+      "USER_NOT_FOUND": "User not found in Konquest"
+    },
+    "DETAIL": {
+      "ATTENDANCE_LIST": "Attendance list",
+      "ATTENDED": "Attended",
+      "CERTIFICATE_FILE_TYPES": "(Accepted formats: .pdf, .png, .jpg)",
+      "CERTIFICATE_WARNING": "Please add the certificate so that we can validate the completion of this external course.",
+      "CLOSE_TO_END": {
+        "PLURAL": "{{value}} days left",
+        "SINGULAR": "{{value}} day left"
+      },
+      "CONFIRMED": {
+        "PLURAL": "confirmed enrollments",
+        "SINGULAR": "confirmed enrollment"
+      },
+      "CONFIRM_GIVE_UP": "Do you really want to abandon this course?",
+      "CONFIRM_RESUME": "Do you really want to resume this course?",
+      "CREATED_AT": "Created at",
+      "DID_NOT_ATTEND": "Didn't attend",
+      "ENROLLED": "Enrollment accepted",
+      "ENROLLMENT_LIST": "Enrollment list",
+      "ENROLLMENT_REFUSED": "Enrollment refused",
+      "ERROR_GIVE_UP": "To give up the course it is necessary to inform a reason.",
+      "ERROR_RESUME": "It was not possible to re-enroll on this course.",
+      "EVALUATIONS": {
+        "COLLECTION": {
+          "AVERAGE": "Average answer to questions",
+          "CHART": "NPS = % Promoters - % Detractors",
+          "DETRACTORS": "Detractors",
+          "NEUTRALS": "Neutrals",
+          "NUMBER_OF_EVALUATORS": "Number of evaluators",
+          "PERCENTAGE_OF_EVALUATORS": "Percentage of evaluators",
+          "POINTS": "Points",
+          "PROMOTERS": "Promoters",
+          "RATING": "Rating",
+          "SEARCH_FOR": "Search for...",
+          "TOTAL_OF": "Total of",
+          "negatives": "Negatives",
+          "neutrals": "Neutrals",
+          "positives": "Positives"
+        },
+        "COMMENT_DIALOG_TITLE": "Evaluation Comment",
+        "PDF_TABLE_NAME": "Users Evaluation",
+        "TABLE": {
+          "CREATED_DATE": "Date",
+          "EMPTY": "There are no evaluations for this course.",
+          "EVALUATION": "Evaluation",
+          "NPS": "NPS rate",
+          "QUESTIONS_AVERAGE": "Average",
+          "USER": "User"
+        }
+      },
+      "EVENT_FINISHED": "Event finished",
+      "EXTERNAL_MISSION_WARNING": "Konquest External Course: you will be redirected to the corresponding platform.",
+      "FINALIZE_MISSION": "Finalize the Course",
+      "INSTRUCTORS": {
+        "PLURAL": "Instructors",
+        "SINGULAR": "Instructor"
+      },
+      "IS_TODAY": "Today!",
+      "LINK_LIVE_DISABLED": "Link released on the day of the event",
+      "LOAD_CERTIFICATE": "Add certificate",
+      "MESSAGE_DELETE": "Do you really want to delete this course? All participant progress will be deleted.",
+      "MESSAGE_DELETE_ERROR": "This course could not be removed.",
+      "MESSAGE_DELETE_SUCCESS": "Course removed successfully.",
+      "MESSAGE_DELETE_TITLE": "Delete course",
+      "MESSAGE_DELETE_TRAIL_LINK": "By deleting this course, it will also be removed from the linked trail. Do you wish to confirm?",
+      "MISSION_RESUME_DEFINED": "This course does not yet have a defined summary.",
+      "NO_DATES_FOUND": "Dates have not been added",
+      "NO_LINK_FOUND": "The link has not been added",
+      "PLEASE_EVALUATE_EVENT": "Evaluate the event!",
+      "SAVE_ON_CALENDAR": "Add to calendar",
+      "SELECT_DATE_CONCLUSION": "Select end date",
+      "SPOTS": "spots",
+      "START_MISSION": "Start Course",
+      "STUDY_GOAL": "Study Goal",
+      "SUBMIT_CERTIFICATE": "Submit certificate",
+      "SUCCESS_GIVE_UP": "You have successfully given up on the course.",
+      "SUCCESS_RESUME": "Successful re-enrollment.",
+      "SUPPORT_MATERIAL": "Support material",
+      "TAGS": "Tags",
+      "TAGS_NEW": "Add tag",
+      "TAGS_NOT_REGISTERED": "There are no tags registered for this course.",
+      "TYPE": {
+        "LIVE": "Online",
+        "PRESENTIAL": "Presential"
+      },
+      "VIEW_ON_MAPS": "View on Google Maps"
+    },
+    "DETAILS": {
+      "ACTIONS": {
+        "BATCH_ENROLLMENTS": "Batch enroll",
+        "CERTIFICATE_HISTORY": "Certificate history",
+        "DELETE": "Delete",
+        "DUPLICATE": "Duplicate",
+        "EDIT": "Edit",
+        "EDIT_CONTRIBUTORS": "Contributors",
+        "ENROLL": "Enroll",
+        "ENTER_TO_LIVE_EVENT": "Enter",
+        "EVALUATE_MISSION": "Review",
+        "EVALUATIONS": "Reviews",
+        "FINISH": "Finish",
+        "GENERATE_CERTIFICATE": "Generate certificate",
+        "GIVE_UP": "Give up",
+        "OPEN_MISSION": "Open",
+        "PUBLISH": "Publish",
+        "RETAKE": "Retake",
+        "SHARE": "Share",
+        "STATISTICS": "Statistics",
+        "TRANSFER": "Transfer",
+        "UPLOAD_CERTIFICATE": "Upload certificate",
+        "VIEW_AS_USER": "View as user",
+        "VINCULATE_TO_GROUP": "Link group"
+      },
+      "ADD_TAG_FAILURE": "An error occurred while updating the tags.",
+      "ADD_TAG_SUCCESS": "Tags successfully updated!",
+      "EDIT_RESUME_TITLE": "Edit resume",
+      "LOAD_ERROR": "There was an error while loading the course",
+      "PUBLISHED_SUCCESSFULLY": "Course published successfully!",
+      "REMOVE_TAG_FAILURE": "There was an error removing the tag.",
+      "REMOVE_TAG_SUCCESS": "Tag removed successfully!"
+    },
+    "ENROLLMENTS": {
+      "ACTIONS": {
+        "APPROVE": "Approve",
+        "DELETE": "Delete",
+        "PRINT": "Print list",
+        "REFUSE": "Refuse",
+        "RESEND_EMAIL": "Resend email",
+        "SAVE": "Save",
+        "SELECT_ALL": "Select all"
+      },
+      "ENROLLED": {
+        "PLURAL": "enrolled",
+        "SINGULAR": "enrolled"
+      },
+      "FIELDS": {
+        "DATE": "Date",
+        "EMAIL": "Email",
+        "NAME": "Name",
+        "OF": "of",
+        "STATUS": "Status"
+      },
+      "FILTER": {
+        "SEARCH_PLACEHOLDER": "Search by name or email",
+        "TITLE": "Filter"
+      },
+      "MESSAGES": {
+        "APPROVED_EMAIL_SENT": "The enrollment approval email has been resent!",
+        "APPROVE_SUCCESS": "Approved enrollment successfully!",
+        "BATCH_APPROVED_EMAIL_SENT": "The enrollment approval emails have been resent!",
+        "BATCH_APPROVE_SUCCESS": "Enrollments successfully approved!",
+        "BATCH_DELETE_SUCCESS": "Enrollments successfully deleted!",
+        "BATCH_REFUSE_SUCCESS": "Enrollments successfully refused!",
+        "DELETE_SUCCESS": "Enrollment successfully deleted!",
+        "NO_ENROLLMENTS": "No enrollment found for the selected filters.",
+        "REFUSE_SUCCESS": "Enrollment successfully refused!"
+      },
+      "SEATS": {
+        "PLURAL": "seats",
+        "SINGULAR": "seat"
+      },
+      "STATUS": {
+        "CONFIRMED": "Confirmed",
+        "GIVE_UP": "Give Up",
+        "REFUSED": "Refused"
+      },
+      "TITLE": "Enrollments"
+    },
+    "ERROR": {
+      "ADD_TOPIC": "Sorry, an error occurred while trying to add a new topic.",
+      "CONTENT_EDIT": "Couldn't edit content",
+      "CONTENT_REMOVED": "Couldn't remove content",
+      "CREATE_MISSION": "Couldn't create course",
+      "EDIT_RESUME": "Couldn't edit summary",
+      "EDIT_STATUS_MISSION": "Couldn't change course status",
+      "ORDER_CONTENT": "It was not possible to change the order of this content.",
+      "ORDER_EDIT": "It was not possible to change the order of this lesson.",
+      "PUBLISH_MISSION": "Sorry, the course could not be published.",
+      "REGISTRATION_COMPLETED": "We were unable to complete your registration.",
+      "SEARCH_TOPIC": "There was an error fetching the topics for this course.",
+      "TOPIC_EDIT": "Sorry, an error occurred while trying to edit this topic.",
+      "TOPIC_REMOVED": "Sorry, an error occurred while trying to remove this topic.",
+      "UPLOAD": "An error occurred while trying to upload the image.",
+      "file_extension_not_allowed": "The extension of the uploaded file is not .png or .pdf.",
+      "file_not_found": "File was not sent.",
+      "mission_contributor_or_creator_cannot_be_enrolled": "Isn't possible to enroll a user that is contributor or creator of the course.",
+      "mission_enrollment_invalid_status": "",
+      "mission_enrollment_matching_query_does_not_exist": "",
+      "not_enough_seats_for_enrollments": "Not enough seats for the course's enrollments.",
+      "user_is_not_linked_to_any_mission_group": "The user isn't linked to any group.",
+      "user_mission_enrollment_in_progress_already_exists": "You already has an enrollment in progress from this course."
+    },
+    "EXPIRED": "Expired",
+    "GIVE_UP": {
+      "CONFIRM_PLACEHOLDER": "Write your justification",
+      "CONFIRM_TITLE": "Do you want to give up?"
+    },
+    "INACTIVATED": "Inactive",
+    "INFO": {
+      "MISSION_NOT_FOUND": "No quests found with the given id"
+    },
+    "IN_CREATION": "In Creation",
+    "LESSONS": "Lessons",
+    "LIVE": {
+      "TITLE": {
+        "EDIT_MISSION": "Edit online event",
+        "NEW_MISSION": "Create new online event"
+      }
+    },
+    "BOOKMARK_ADDED": "Checked as favorite",
+    "MISSION_MIN_PERFORMANCE": "Min perf.",
+    "MISSION_MODEL": {
+      "LIVE": "Online",
+      "PRESENTIAL": "Presential"
+    },
+    "NEW_INSTRUCTOR_DIALOG": {
+      "INSTRUCTOR_EMAIL": "Email",
+      "INSTRUCTOR_NAME": "Instructor name",
+      "TITLE": "Add external instructor to list"
+    },
+    "NOT": {
+      "FOUND": "Course not found"
+    },
+    "PRESENTIAL": {
+      "CONFIGURATION": {
+        "ADD_TO_LIST": "Add to list"
+      },
+      "NOT_ENOUGH_VACANCIES": {
+        "PLURAL": "Insufficient vacancies, the event has {{value}} enrollees.",
+        "SINGULAR": "Insufficient vacancies, the event has {{value}} enrollee."
+      },
+      "TITLE": {
+        "EDIT_MISSION": "Edit Presential Event",
+        "NEW_MISSION": "Create new Presential Event"
+      }
+    },
+    "PROCESSING": "Processing",
+    "PUBLISHED": "Published",
+    "QUIZ": {
+      "DELETE_QUESTION": "Do you really want to exclude this question?",
+      "NOTICE": "Notice"
+    },
+    "BOOKMARK_REMOVED": "Course removed from favorites!",
+    "BOOKMARK_REMOVED_ERROR": "This action could not be performed.",
+    "SCORM": {
+      "UPLOAD_DIALOG": {
+        "FILE_BUTTON": "Select a ZIP fil",
+        "NO_SELECTED_FILE_MESSAGE": "No files selected",
+        "TITLE": "Import a SCORM course"
+      }
+    },
+    "STEP": {
+      "ADD_NEW_CONTENT": "New content",
+      "ADD_NEW_CONTENT_INFORMATION": "You can add content in several formats. They will compose your course.",
+      "ATTACHMENTS": "Attachments",
+      "DELETE_CONTENT_MESSAGE": "Do you really want to delete this content?",
+      "DELETE_CONTENT_TITLE": "Delete Content",
+      "DELETE_TOPIC": "Delete topic",
+      "DELETE_TOPIC_MESSAGE": "Do you really want to delete this topic?",
+      "DELETE_TOPIC_TITLE": "Delete topic",
+      "EDIT_TOPIC": "Edit topic",
+      "INFORMATION_BASIC": "Start by filling in the basic course information",
+      "MISSION_TOPIC": "Course topic",
+      "NEW": "New",
+      "NEW_CONTENT": "New Content",
+      "NEW_MISSION": " New Course",
+      "WITHOUT_DESCRIPTION": "No description"
+    },
+    "SUCCESS": {
+      "CERTIFICATE_SUBMITTED": "Certificate sent successfully!",
+      "CONTENT_EDIT": "Content edited successfully!",
+      "CONTENT_REMOVED": "Content removed successfully!",
+      "MISSION_CREATED": "Course created successfully!",
+      "REGISTRATION_COMPLETED": "Registration completed.",
+      "TOPIC_EDIT": "Topic edited successfully!"
+    },
+    "SUCCESSFULLY_COMPLETED": "The course was successfully completed.",
+    "SUCCESS_TOPIC_REMOVED": "Topic removed!",
+    "THIS_ACTION_COULD_NOT_BE_PERFORMED": "This action could not be performed.",
+    "TOPIC": {
+      "ADD": {
+        "SUCCESS": "Topic added successfully."
+      }
+    },
+    "TRANSFER_DIALOG": {
+      "CONFIRMATION": {
+        "NEW_OWNER": "with the new owner",
+        "NEW_WORKSPACE": "to the workspace",
+        "TYPE": {
+          "DUPLICATE": "You confirm the duplication of:",
+          "SHARE": "You confirm the sharing of:",
+          "TRANSFER": "You confirm the transfer of:"
+        }
+      },
+      "DESTINATION_TYPE": {
+        "DUPLICATE": {
+          "OTHER_WORKSPACE": "Duplicate in another workspace",
+          "SAME_WORKSPACE": "Duplicate in same workspace"
+        },
+        "SHARE": {
+          "OTHER_WORKSPACE": "Select the workspace"
+        },
+        "TRANSFER": {
+          "OTHER_WORKSPACE": "Transfer to another workspace",
+          "SAME_WORKSPACE": "Transfer to another owner"
+        }
+      },
+      "INFO": {
+        "DUPLICATE": "<li>When duplicating this course, all contents will be duplicated to the new one (destination) and any new changes in the origin will not be reflected in the copy.</li><li>Enrollments will not be affected, the new course will be created without any enrollments.</li><li>You will be able to continue as the course owner or select a new owner, as long as this owner is a Super admin, Admin, Content creator.</li><li>Once duplicated, you will not be able to reverse that action.</li>",
+        "SHARE": "<li>When sharing this course with another workspace, the link with the origin will be maintained and all changes made will be reflected in the workspaces that were shared.</li><li>Enrollment data will not be shared.</li><li>You can unshare at any time.</li>",
+        "TRANSFER": "<li>When transferring, you will no longer have permission to edit the content if you do not have access to the new workspace as Super admin, Admin or Content creator.</li><li>If you transfer to another owner, you can only edit if you are Super Admin.</li><li>Once transferred, you will not be able to reverse this action.</li>"
+      },
+      "SUBTITLE": {
+        "DUPLICATE": "Do you want to duplicate this course for another workspace or the same one it belongs to?",
+        "SHARE": "Share this course with another workspace?",
+        "TRANSFER": "Transfer this course to another owner or workspace?"
+      },
+      "SUCCESS": {
+        "DUPLICATE": "Your course has been duplicated",
+        "SHARE": "Your course has been shared",
+        "TRANSFER": "Your course has been transferred"
+      },
+      "TITLE": {
+        "DUPLICATE": "Duplicate course",
+        "SHARE": "Share course",
+        "TRANSFER": "Transfer course"
+      },
+      "WORKSPACE_PLACEHOLDER": "Select a workspace"
+    }
+  },
+  "MISSIONS": {
+    "ALL_MISSION": "All Courses",
+    "CREATE_MISSION": "Create Course",
+    "ERROR_MESSAGE": "Sorry, there is a problem",
+    "MISSIONS_TITLE": "Courses",
+    "MY_LIST": "Favorites",
+    "MY_MISSIONS": "Created by me",
+    "NOT_EXIST_MISSIONS": "Sorry, course not exists",
+    "NOT_FIND_MISSIONS": "Sorry, course not found",
+    "TOTAL_IN_ORBIT": {
+      "PLURAL": "Total of {{value}} Courses in progress",
+      "SINGULAR": "Total of {{value}} Course in progress"
+    },
+    "WHAT_WE_GOING_TO_LEARN_TODAY": "What are we going to learn today?",
+    "YOU_DONT_STILL_CREATED": "You haven't created any courses yet."
+  },
+  "MISSIONS_ENROLLMENTS_DIALOG": {
+    "TITLE": "All Enrollments of this Course"
+  },
+  "USER_ONBOARDING_DIALOG": {
+    "TITLE": "How does it work?",
+    "DESCRIPTION": "The video below explains how this area of the platform works",
+    "SLIDE_TOGGLE": "I no longer want to watch videos about how to use the platform"
+  },
+  "NAVIGATION": {
+    "ACTIVITY_LOG": "Activity Log",
+    "AUDIT": "Audit",
+    "CATEGORIES": "Categories",
+    "CONFIGURATION": "Configuration",
+    "CONFIGURATIONS": "Configurations",
+    "CONTENT_MANAGEMENT": "Manage Content",
+    "CUSTOM_SECTIONS": "Custom Sections",
+    "DASHBOARD": "Dashboard",
+    "ECOSYSTEM": "Ecosystem",
+    "ENROLLMENTS": "Enrollments",
+    "EVENTS": "Events",
+    "GENERAL": "General",
+    "GROUPS": "Groups",
+    "INTEGRATIONS": "Integrations",
+    "LEADER_PANEL": "Leader Panel",
+    "MARKETPLACE": "Marketplace",
+    "MISSIONS": "Courses",
+    "NORMATIVES": "Normatives",
+    "OPERATION": "Operation",
+    "PERSONALIZATION": "Personalization",
+    "POINTS_STATEMENT": "Points Statement",
+    "PULSES": "Pulses",
+    "TRAILS": "Trails",
+    "TRANSFERS": "Transfers",
+    "CUSTOM_CERTIFICATES": "Custom Certificates"
+  },
+  "NOTIFICATION": {
+    "MESSAGES": "Posts",
+    "NOT_FOUND": "Non-existent route!"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Page not found",
+    "MESSAGE": "Oops! It looks like you’ve lost your way.<br>The page you’re looking for doesn’t exist or has been moved.",
+    "BACK_TO_START": "Back to home"
+  },
+  "PAGES": {
+    "EXAM": {
+      "FORM": {
+        "QUESTION": {
+          "ERROR-MESSAGE": "Required field",
+          "LABEL": "Please inform a question"
+        }
+      }
+    }
+  },
+  "PDF": {
+    "NEXT_CONTENTS": "Next Contents",
+    "VIEWER": {
+      "WAIT": "Wait"
+    }
+  },
+  "PULSE": {
+    "ACTIVATE": "Activate",
+    "DETAIL": {
+      "BACK_TO_LEARNING_TRAIL": "Back to the trail",
+      "COMMENT": "Comment",
+      "COMMENTS": "Comments",
+      "CREATED_AT": "Created at",
+      "DELETE_PULSE": "Do you really want to delete this pulse? All history will be deleted.",
+      "DELETE_PULSE_TITLE": "Delete pulse",
+      "PULSE_LINK_COPIED": "Link copied to clipboard!",
+      "RATE": "Rate",
+      "RECOMMENDED_PULSES": "Recommended Pulses",
+      "SHARE": "Share",
+      "TYPE": "Type",
+      "VIEWS": "Views",
+      "WRITE_COMMENT": "Write a comment"
+    },
+    "EDIT": "Edit Pulse",
+    "EDIT_CONTENT": "Edit content",
+    "EDIT_CONTENT_SUCCESS": "Content edited successfully!",
+    "EDIT_CONTENT_FAILURE": "An error occurred while editing the content.",
+    "EDIT_TITLE": "Title",
+    "EDIT_TITLE_ERROR": "Title is required",
+    "INACTIVATE": "Inactivate",
+    "LIST": {
+      "CHANNEL": "All Channels",
+      "MY_CHANNEL": "Channels created by me",
+      "PULSES": "All Pulses"
+    }
+  },
+  "PULSES": {
+    "ALL": {
+      "NOT_FOUND": "No pulse found."
+    },
+    "BOOKMARK": {
+      "SUCCESSFULLY_ADDED": "Pulse added to favorites",
+      "SUCCESSFULLY_REMOVED": "Pulse removed from favorites"
+    },
+    "LOAD_PULSE_LEARN_CONTENT_ERROR": "Sorry, there was an error loading the contents of this pulse",
+    "MESSAGES": {
+      "COMMENT": {
+        "CREATED": "Comment added successfully.",
+        "CREATE_ERROR": "An error has occurred in our system and your comment has unfortunately not been added.",
+        "DELETED": "Comment removed successfully.",
+        "DELETE_ERROR": "An error has occurred in our system and your comment unfortunately cannot be removed.",
+        "UPDATED": "Comment updated successfully.",
+        "UPDATE_ERROR": "An error has occurred in our system and your comment unfortunately cannot be edited."
+      }
+    },
+    "SUCCESSFULLY_ADDED": "Pulse created successfully",
+    "SUCCESSFULLY_EDITED": "Pulse edited successfully",
+    "SUCCESSFULLY_REMOVED": "Pulse removed successfully",
+    "WAITING_CREATION": "Wait, your pulse is being created"
+  },
+  "PULSES_FEED": {
+    "TABS": {
+      "FEED": "Feed",
+      "CHANNELS": "Channels"
+    },
+    "CHANNELS_FILTER": {
+      "CREATED_BY_ME": "Created by me",
+      "MAIN_FEED": "Main feed",
+      "NO_CREATED_CHANNELS": "You haven't created any channels yet.",
+      "NO_SUBSCRIBED_CHANNELS": "No subscribed channels at the moment.",
+      "SUBSCRIBED": "Subscribed",
+      "TITLE": "Channels"
+    },
+    "FAVORITE_PULSES": {
+      "NO_DATA_MESSAGE": "You don't have any favorite pulses yet.",
+      "TITLE": "Favorite Pulses"
+    },
+    "FEED_LIST": {
+      "EMPTY_FEED_TITLE": "No pulses available at the moment",
+      "EMPTY_FEED_DESCRIPTION": "There are no active pulses to display in the social feed yet.",
+      "EMPTY_CHANNELS_TITLE": "No channels available",
+      "EMPTY_CHANNELS_DESCRIPTION": "Adjust the filters or create a new channel to get started."
+    },
+    "SHOW_ALL": "View all ({{ count }})",
+    "SHOW_LESS": "View less",
+    "SIDE_FILTERS": {
+      "TITLE": "Filters",
+      "CLEAR_ALL": "Clear all",
+      "GENERAL": {
+        "TITLE": "General",
+        "FAVORITES": "Favorites",
+        "CREATED_BY_ME": "Created by me",
+        "SUBSCRIBED": "Subscribed"
+      },
+      "LANGUAGE": {
+        "TITLE": "Language",
+        "PT_BR": "Portuguese - Brazil",
+        "PT_PT": "Portuguese - Portugal",
+        "EN": "English",
+        "ES": "Spanish"
+      },
+      "TYPE": {
+        "TITLE": "Type"
+      },
+      "CATEGORY": {
+        "TITLE": "Category"
+      }
+    },
+    "PULSE_CARD": {
+      "SUBSCRIBE": "Subscribe",
+      "SUBSCRIBED": "Subscribed",
+      "SEE_MORE": "See more",
+      "SEE_LESS": "See less",
+      "COPY_LINK_SUCCESS": "Link copied to clipboard",
+      "COMMENTS_TITLE": "Comments",
+      "ADD_COMMENT_PLACEHOLDER": "Add a comment...",
+      "PUBLISH_BUTTON": "Publish",
+      "SEE_ALL_COMMENTS": {
+        "SINGULAR": "View 1 comment",
+        "PLURAL": "View all {{ value }} comments"
+      },
+      "COMMENT_MENU": {
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "DELETE_TITLE": "Delete comment",
+        "DELETE_MESSAGE": "Are you sure you want to delete this comment?",
+        "DELETE_CONFIRM": "Delete"
+      }
+    }
+  },
+  "QUESTION": {
+    "ADD": "Add Question",
+    "FIRST_ANSWER": "First answer",
+    "FOURTH_ANSWER": "Fourth answer",
+    "INFORM_ANSWER": "Response required",
+    "SECOND_ANSWER": "Second answer",
+    "THIRD_ANSWER": "Third answer"
+  },
+  "QUIZ": {
+    "ANSWER_ALREADY_EXIST": "Response already registered. Only one answer is allowed per registration.",
+    "CLEAR_USER_ERROR": "Unable to register your answer, please contact support.",
+    "CONTENT": {
+      "ADDED_FAVORIT_ERROR": "Sorry, there was a problem trying to remove the pulse from favorites",
+      "ADDED_FAVORIT_SUCCESS": "Pulse added to favorites",
+      "CONGRATULATIONS": "Congratulations",
+      "CONGRATULATIONS_DESCRIPTION": "You completed the quiz",
+      "CORRECT_ANSWER": "You answered correctly! :)",
+      "CORRECT_OPTIONS": "Number of correct answers.",
+      "CREATED": "Quiz created.",
+      "INCORRECT_ANSWER": "You answered incorrectly! :(",
+      "PULSE_REMOVED_ERROR": "Sorry, there was a problem trying to remove the pulse from favorites",
+      "PULSE_REMOVED_SUCCESS": "Pulse removed from favorites",
+      "PULSE_UPDATED": "Pulse updated.",
+      "QUESTION_OF": "Question {{index}} of {{count}}",
+      "REALLY_DELETE_QUIZ": "Do you really want to delete this quiz? This action cannot be undone.",
+      "REALLY_DELETE_QUIZ_TITLE": "Delete quiz",
+      "REMOVE_QUIZ_ERROR": "There was an error while trying to remove the Quiz.",
+      "REMOVE_QUIZ_SUCCESS": "Quiz removed",
+      "STATISTICS_RESULT": "For the total of {{count}} questions, your performance was:",
+      "STATISTICS_RESULT_CORRECT": "correct",
+      "STATISTICS_RESULT_INCORRECT": "incorrect",
+      "UPDATE_PULSE_ERROR": "Could not update the pulse."
+    },
+    "DIALOG": {
+      "QUIZ_HEADER": "Create questions for quizzes and add as many answers as necessary. Select the correct answer(s) for each question. Questions are presented randomly. The sequence below does not represent the order in which the user views the quiz.",
+      "QUIZ_TITLE": "Quiz name"
+    },
+    "MESSAGES": {
+      "ERROR_CREATE": "We were unable to create your quiz",
+      "WAITING_CREATION": "Wait, your quiz is being created"
+    },
+    "PULSE_QUESTION_UPDATED_SUCCESSFULLY": "Question {{question}} updated successfully!",
+    "QUESTIONS": "Questions",
+    "UPDATE_PULSE_QUESTION_ERROR": "There was an error while trying to update the question.",
+    "error_to_save_exam_answer": "Unable to register your answer, please contact support.",
+    "question_matching_query_does_not_exist": "Unable to register your answer, please contact support.",
+    "set_options_value": "Unable to register your answer, please contact support."
+  },
+  "REPORT": {
+    "REDEEM_CERTIFICATE": "Certificate could not be redeemed"
+  },
+  "RESUME": {
+    "COMPLETED": "Finished",
+    "COMPLETED_MISSION": "You have completed the course",
+    "CONGRATULATIONS": "Congratulations!",
+    "PERFORMANCE": "Performance",
+    "POINTS_EARNED": "Points earned",
+    "QUIZ_PERFORMANCE": "Quiz Performance",
+    "REPROVED_MISSION": "You completed the course, but did not reach the minimum performance and failed.",
+    "START_NEW_MISSION": "Start new course",
+    "WEATHER_ORBITA": "Weather in Órbita"
+  },
+  "SETTING": {
+    "TAB": {
+      "CATEGORIES": "Categories",
+      "CONFIGURATIONS": "Configurations",
+      "EVENT_ENROLLMENTS": "Event Enrollments",
+      "GROUPS": "Groups",
+      "LEARNING_TRAIL_ENROLLMENTS": "Trail Enrollments",
+      "MISSION_ENROLLMENTS": "Course Enrollments",
+      "TRANSFERS": "Transfers management"
+    }
+  },
+  "SUBJECT": {
+    "NEXT_CONTENT": "Next Contents"
+  },
+  "TRANSFER": {
+    "ACTION_BUTTON": "Cancel transfer",
+    "CANCEL": {
+      "ERROR": "Failed to cancel sharing.",
+      "MESSAGE": "Are you sure you want to cancel this transfer? This action cannot be undone.",
+      "NEGATIVE_BUTTON": "Keep",
+      "SUCCESS": "Sharing canceled successfully.",
+      "TITLE": "Cancel transfer"
+    },
+    "CANNOT_EDIT_COPY": "Duplicate courses cannot be reversed",
+    "CANNOT_EDIT_MOVED": "Transferred courses cannot be reversed",
+    "FILTER": {
+      "DESTINATION_WORKSPACE": "Destination Workspace",
+      "DIALOG_TITLE": "Filter search",
+      "ORIGIN_WORKSPACE": "Origin Workspace"
+    },
+    "TABLE": {
+      "ACTION": "Action",
+      "DATE": "Date",
+      "DESTINATION": "Dest.",
+      "EMPTY": "No transfers found.",
+      "ENROLLMENTS": "Enrollm.",
+      "NAME": "Name",
+      "ORIGIN": "Orig.",
+      "OWNER": "Sent by"
+    },
+    "TYPE": {
+      "COPY": "Duplicate",
+      "MOVED": "Transferred",
+      "SHARED": "Shared"
+    }
+  },
+  "TRANSFER_DIALOG": {
+    "CONFIRMATION": {
+      "CONFIRMATION": "You confirm the transfer of:",
+      "NEW_OWNER": "for the new owner"
+    },
+    "FILTER": {
+      "PLACEHOLDER": "Choose the new owner"
+    },
+    "SUBTITLE": {
+      "CHANNEL": "When transferring a channel, all linked Pulses will also be transferred to the new owner. It is possible to transfer a channel to: Super admins; Admins; Content writers.",
+      "LEARNING_TRAIL": "It is possible to transfer a channel to: Super admins; Admins; Content writers."
+    },
+    "SUCCESS": {
+      "CHANNEL": "Your channel has been transferred",
+      "LEARNING_TRAIL": "Your trail has been transferred"
+    },
+    "TITLE": {
+      "CHANNEL": "Transfer Channel",
+      "LEARNING_TRAIL": "Transfer Trail"
+    }
+  },
+  "VIDEO": {
+    "NEXT_CONTENT": "Next Contents"
+  },
+  "VINCULATE_GROUP_DIALOG": {
+    "EMPTY_MESSAGE": "No results.",
+    "TITLE": "Link group"
+  },
+  "WORKSPACE_CONFIGURATIONS": {
+    "BLOCK_RE_ENROLLMENT": {
+      "MESSAGE": "Enable this option to prevent users from enrolling more than once in the same track or course. This block prevents new re-enrollments but does not affect existing enrollments made before the activation of this function. Previous re-enrollments will remain valid and will not be automatically deleted.",
+      "TITLE": "Re-enrollment Block"
+    },
+    "CONFIGURABLE_MISSION_LISTING": {
+      "MESSAGE": "Customize the course page by configuring which types will be displayed to users:",
+      "TITLE": "Content Display"
+    },
+    "DISABLED_SERVICE_SUCCESS": "Menu {{serviceName}} successfully disabled",
+    "ENABLED_SERVICE_SUCCESS": "Menu {{serviceName}} successfully enabled",
+    "GOAL_DATE": {
+      "DESCRIPTION": "Set the base value for the goal date completion for courses in your workspace.",
+      "INPUT_SUFFIX": " day(s)",
+      "TITLE": "Goal for completing courses"
+    },
+    "GOAL_DATE_ERROR": "Invalid base value.",
+    "GOAL_DATE_SUCCESS": "Settings saved successfully!",
+    "MESSAGES": {
+      "DISABLE_CATEGORIES": "Are you sure you want to disable categories in this workspace? This action will affect content organization.",
+      "DISABLE_CATEGORIES_TITLE": "Disable categories"
+    },
+    "MODULES": {
+      "BETA_TEST": "Feature in beta testing, subject to bugs and inconsistencies.",
+      "Custom Sections": "Custom Sections",
+      "Dashboard": "Dashboard",
+      "Event": "Events",
+      "Gamification": "Gamification",
+      "Learning Trail": "Trails",
+      "Mission": "Courses",
+      "Pulse": "Pulses",
+      "Regulatory Compliance": "Regulatory Compliance",
+      "TITLE": "Enable/Disable Modules"
+    },
+    "OTHER_SETTINGS": "Other settings",
+    "PASS_MARK": {
+      "DESCRIPTION": "Configure the minimum performance for approval and generation of a course certificate. New values will only be reflected to new registrations completed.",
+      "HINT": "Enter a value between 0% and 100%",
+      "TITLE": "Minimum performance for approval"
+    },
+    "SAVE_PASS_MARK_SUCCESS": "Minimum performance for approval changed",
+    "SETTINGS_UPDATED_FAILURE": "Error updating the configuration.",
+    "SETTINGS_UPDATED_SUCCESS": "Setting updated successfully!",
+    "STANDARD_CATEGORIES": "Standard Categories",
+    "TITLE": "General Configurations"
+  },
+  "CHANNEL_PULSES_MANAGEMENT": {
+    "COLUMNS": {
+      "NAME": "Pulse",
+      "TYPE": "Format",
+      "AUTHOR": "Author",
+      "RATING": "Rating",
+      "COMMENTS": "Comments",
+      "PUBLISHED_DATE": "Published",
+      "ACTIONS": "Actions"
+    },
+    "EMPTY_STATE": {
+      "TITLE": "No pulses found in this channel."
+    },
+    "NEW_PULSE": "New Pulse"
+  }
+}

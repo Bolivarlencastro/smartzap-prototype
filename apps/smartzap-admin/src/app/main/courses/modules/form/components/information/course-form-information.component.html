@@ -1,0 +1,89 @@
+<form [formGroup]="form" class="flex flex-col gap-2" (ngSubmit)="onSubmit()">
+  <div class="flex items-start justify-between gap-4 w-full mb-4">
+    <div>
+      <h2 class="text-2xl font-black mb-2">{{ 'COURSE.FORM.TABS.INFORMATION' | transloco }}</h2>
+      <p>{{ 'COURSE.FORM.NAVIGATION.INFORMATION' | transloco }}</p>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      @if (course.id) {
+        <a mat-stroked-button [routerLink]="['/courses', course.id]">{{ 'GENERAL.PREVIOUS' | transloco }}</a>
+      } @else {
+        <a mat-stroked-button routerLink="/courses">{{ 'GENERAL.PREVIOUS' | transloco }}</a>
+      }
+      <button
+        data-test="save-course-info-button"
+        mat-flat-button
+        color="primary"
+        [disabled]="form.invalid || isLoadingCourse"
+        type="submit"
+      >
+        {{ 'GENERAL.SAVE_AND_ADVANCE' | transloco }}
+      </button>
+    </div>
+  </div>
+
+  <div class="flex gap-2 flex-wrap w-full">
+    <mat-form-field appearance="outline" class="flex-auto basis-2/3">
+      <mat-label>
+        <i matSuffix class="kp-icon kp-icon-mission s-3 mr-3"></i>
+        {{ 'COURSE.FORM.INPUT.NAME' | transloco }}
+      </mat-label>
+      <input matInput id="input-mission-step-info-name" formControlName="name" maxlength="100" />
+      <mat-error class="pb-8">{{ 'COURSE.FORM.ERROR.REQUIRED_NAME' | transloco }} </mat-error>
+      <mat-hint [align]="'end'"> {{ nameLength }}/100 </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex-auto">
+      <mat-label>{{ 'COURSE.FORM.INPUT.CATEGORY' | transloco }}</mat-label>
+      <mat-select data-test="button-open-category-dialog" formControlName="category_id">
+        @for (category of categories; track category) {
+          <mat-option [attr.data-test]="'course-category-' + category.name" [value]="category.id">
+            {{ 'GENERAL.CATEGORY.' + category.name | transloco | kpReplace: 'GENERAL.CATEGORY.' : '' }}
+          </mat-option>
+        }
+      </mat-select>
+      <mat-error class="pb-8">{{ 'COURSE.FORM.ERROR.REQUIRED_CATEGORY' | transloco }} </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="flex gap-2 flex-wrap w-full">
+    <mat-form-field appearance="outline" class="flex-auto">
+      <mat-label>{{ 'COURSE.FORM.INPUT.LANGUAGE' | transloco }}</mat-label>
+      <mat-select data-test="button-open-language-dialog" formControlName="lang">
+        @for (language of languages; track language) {
+          <mat-option [attr.data-test]="'course-language-' + language.value" [value]="language.value">
+            {{ 'GENERAL.LANGUAGES.' + language.value | transloco | kpReplace: 'GENERAL.LANGUAGES.' : '' }}
+          </mat-option>
+        }
+      </mat-select>
+      <mat-error class="pb-8">{{ 'COURSE.FORM.ERROR.REQUIRED_LANGUAGE' | transloco }} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex-auto">
+      <mat-label>{{ 'COURSE.FORM.INPUT.ASSESSMENT' | transloco }}</mat-label>
+      <mat-select formControlName="assessment_mode">
+        <mat-option value="CONTENT">{{ 'GENERAL.ASSESSMENT.CONTENT' | transloco }}</mat-option>
+        <mat-option value="FULL">{{ 'GENERAL.ASSESSMENT.FULL' | transloco }}</mat-option>
+        <mat-option value="QUIZ">{{ 'GENERAL.ASSESSMENT.QUIZ' | transloco }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>{{ 'COURSE.FORM.INPUT.DESCRIPTION' | transloco }}</mat-label>
+    <textarea data-test="course-description-field" maxlength="200" matInput formControlName="description"></textarea>
+    <mat-hint [align]="'end'"> {{ descriptionLength }}/200 </mat-hint>
+    @if (form.controls['description'].hasError('required')) {
+      <mat-error class="pb-8">{{ 'COURSE.FORM.ERROR.REQUIRED_DESCRIPTION' | transloco }} </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>
+      {{ 'COURSE.FORM.INPUT.MESSAGE_DESCRIPTION' | transloco }}
+    </mat-label>
+    <textarea style="resize: vertical" matInput formControlName="message_description"></textarea>
+  </mat-form-field>
+
+  <kp-whatsapp-markdown-helper class="mb-4" />
+</form>

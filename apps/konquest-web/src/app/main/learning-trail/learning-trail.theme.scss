@@ -1,0 +1,16 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin learning-trail-theme {
+  app-learning-trail-detail {
+    width: 100%;
+    max-width: 900px !important;
+
+    .learning-trail-step {
+      background-color: var(--mat-sys-surface-container-highest);
+      border-color: var(--mat-sys-on-surface);
+
+      @include mat.elevation(4);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<div class="helper-bar flex items-center gap-1">
+  <mat-icon class="helper-icon">info</mat-icon>
+  <span class="helper-label text-sm">
+    {{ 'UI.KP_WHATSAPP_MARKDOWN_HELPER.LABEL' | transloco }}
+  </span>
+  <button type="button" mat-button class="toggle-btn" (click)="toggle()">
+    {{
+      (isExpanded() ? 'UI.KP_WHATSAPP_MARKDOWN_HELPER.HIDE_GUIDE' : 'UI.KP_WHATSAPP_MARKDOWN_HELPER.SHOW_GUIDE')
+        | transloco
+    }}
+    <mat-icon>{{ isExpanded() ? 'expand_less' : 'expand_more' }}</mat-icon>
+  </button>
+</div>
+
+@if (isExpanded()) {
+  <div class="guide-grid">
+    @for (format of formats; track format.key) {
+      <div class="format-card">
+        <span class="format-title">{{ format.titleKey | transloco }}</span>
+        <p class="format-description">{{ format.descriptionKey | transloco }}</p>
+        <pre class="format-syntax">{{ format.syntax }}</pre>
+        @if (format.result) {
+          <div class="format-result" [innerHTML]="format.result"></div>
+        }
+      </div>
+    }
+  </div>
+}

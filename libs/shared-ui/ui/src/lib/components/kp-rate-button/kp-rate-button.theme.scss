@@ -1,0 +1,22 @@
+@use 'sass:map';
+
+@mixin kp-rate-button-theme {
+  kp-rate-button div {
+    &:hover:not(.disabled) {
+      background: var(--mat-sys-primary-fixed-dim);
+      color: var(--mat-sys-on-primary-fixed);
+    }
+
+    &.checked {
+      background: var(--mat-sys-primary);
+      color: var(--mat-sys-on-primary);
+    }
+
+    &.disabled {
+      @apply bg-zinc-200;
+      @apply border-zinc-300;
+
+      color: var(--mat-sys-on-primary);
+    }
+  }
+}

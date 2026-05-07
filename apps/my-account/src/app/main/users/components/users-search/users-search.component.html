@@ -1,0 +1,133 @@
+<div class="flex items-center gap-2">
+  <form [formGroup]="filterForm" class="flex items-center gap-2">
+    <!-- JOB POSITIONS -->
+    <kp-select-menu-trigger
+      [label]="'USERS.FILTER.JOB_POSITION' | transloco"
+      [disabled]="isJobPositionFilterDisabled()"
+    >
+      <mat-select kpSelectTriggerContent multiple formControlName="jobPositions">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="jobPositionSearchCtrl"
+            [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+            [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+            [alwaysRestoreSelectedOptionsMulti]="true"
+          ></ngx-mat-select-search>
+        </mat-option>
+        @for (job of filteredJobPositions(); track job.value) {
+          <mat-option [value]="job.value">
+            {{ job.label }}
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+
+    <!-- ACTIVITY AREAS -->
+    <kp-select-menu-trigger [label]="'USERS.FILTER.ACTIVITY_AREA' | transloco" [disabled]="isAreaFilterDisabled()">
+      <mat-select kpSelectTriggerContent formControlName="activityAreas">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="activityAreaSearchCtrl"
+            [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+            [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+          ></ngx-mat-select-search>
+        </mat-option>
+        @for (area of filteredActivityAreas(); track area) {
+          <mat-option [value]="area">
+            {{ area }}
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+
+    <!-- DIRECTORS -->
+    <kp-select-menu-trigger [label]="'USERS.FILTER.DIRECTOR' | transloco" [disabled]="isDirectorFilterDisabled()">
+      <mat-select kpSelectTriggerContent formControlName="directors">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="directorSearchCtrl"
+            [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+            [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+          ></ngx-mat-select-search>
+        </mat-option>
+        @for (director of filteredDirectors(); track director) {
+          <mat-option [value]="director">
+            {{ director }}
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+
+    <!-- MANAGERS -->
+    <kp-select-menu-trigger [label]="'USERS.FILTER.MANAGER' | transloco" [disabled]="isManagerFilterDisabled()">
+      <mat-select kpSelectTriggerContent formControlName="managers">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="managerSearchCtrl"
+            [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+            [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+          ></ngx-mat-select-search>
+        </mat-option>
+        @for (manager of filteredManagers(); track manager) {
+          <mat-option [value]="manager">
+            {{ manager }}
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+
+    <!--LEADERS-->
+    <kp-select-menu-trigger [label]="'USERS.FILTER.LEADER' | transloco">
+      <mat-select kpSelectTriggerContent multiple formControlName="leaders">
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="leaderSearchCtrl"
+            [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+            [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+            [alwaysRestoreSelectedOptionsMulti]="true"
+          ></ngx-mat-select-search>
+        </mat-option>
+        @for (leader of filteredLeaders(); track leader.value) {
+          <mat-option [value]="leader.value">
+            {{ leader.label }}
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+
+    <!-- PERMISSIONS -->
+    <kp-select-menu-trigger [label]="'USERS.FILTER.ROLE.TITLE' | transloco">
+      <mat-select kpSelectTriggerContent multiple formControlName="roleId">
+        @for (group of filterLists().roles; track group.app) {
+          <mat-optgroup [label]="group.app" class="text-lg">
+            @for (role of group.roles; track role.value) {
+              <mat-option [value]="role.value">{{ role.label | transloco }} </mat-option>
+            }
+          </mat-optgroup>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+
+    <!-- STATUS -->
+    <kp-select-menu-trigger [label]="'USERS.FILTER.STATUS.TITLE' | transloco">
+      <mat-select kpSelectTriggerContent formControlName="status">
+        @for (status of filterLists().statuses; track status.value) {
+          <mat-option [value]="status.value">
+            {{ status.label | transloco }}
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+  </form>
+
+  <form [formGroup]="columnForm">
+    <kp-table-columns>
+      @for (column of columnDefinitions; track column) {
+        <div class="flex items-center justify-between gap-2">
+          <span>{{ column.label | transloco }}</span>
+          <mat-slide-toggle color="accent" [formControlName]="column.def"></mat-slide-toggle>
+        </div>
+      }
+    </kp-table-columns>
+  </form>
+</div>

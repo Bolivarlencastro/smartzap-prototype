@@ -1,0 +1,10 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+@mixin kp-countdown-container-theme {
+  kp-countdown-container {
+    .kp-countdown-container {
+      background-color: var(--mat-sys-surface-bright);
+    }
+  }
+}

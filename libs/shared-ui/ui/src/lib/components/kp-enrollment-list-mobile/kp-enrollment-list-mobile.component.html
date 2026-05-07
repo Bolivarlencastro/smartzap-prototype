@@ -1,0 +1,106 @@
+<div class="flex flex-col">
+  <!-- SEARCH INPUT -->
+  <mat-divider></mat-divider>
+  <div class="h-20">
+    <kp-global-search-input
+      inputClass="text-sm"
+      iconClass="s-6 mr-2"
+      (filterEvent)="onSearchChange($event)"
+    ></kp-global-search-input>
+  </div>
+  <mat-divider></mat-divider>
+  <!-- / SEARCH INPUT -->
+
+  <!-- FILTER -->
+  <form [formGroup]="filterFormGroup" class="h-16 px-4 flex items-center">
+    <kp-select-menu-trigger [label]="'UI.GENERAL.STATUS' | transloco">
+      <mat-icon class="s-1 filled text-primary">circle</mat-icon>
+      <mat-select kpSelectTriggerContent multiple formControlName="status">
+        @for (option of statuses; track option.value) {
+          <mat-option [value]="option.value">
+            <span>{{ option.label | transloco }}</span>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+  </form>
+  <mat-divider></mat-divider>
+  <!-- / FILTER -->
+
+  <!-- LIST -->
+  @if (!loading && enrollments.length) {
+    <div
+      class="h-[calc(100vh-275px)] overflow-auto"
+      infiniteScroll
+      [infiniteScrollThrottle]="500"
+      [scrollWindow]="false"
+      (scrolled)="onScroll()"
+    >
+      @for (item of enrollments; track item) {
+        <div class="h-24 px-4 py-1 flex flex-col justify-center">
+          <span class="font-bold text-sm truncate">{{ item.mission?.name || item.learning_trail?.name }}</span>
+          <div class="flex flex-wrap">
+            <span class="text-[10px] mr-2"
+              ><strong>{{ 'UI.ENROLLMENT.START' | transloco }}:</strong>
+              {{ (item.startDate | date: 'shortDate') || '-' }}</span
+            >
+            <span class="text-[10px] mr-2"
+              ><strong>{{ 'UI.ENROLLMENT.GOAL' | transloco }}:</strong>
+              {{ (item.goal_date | date: 'shortDate') || '-' }}</span
+            >
+            <span class="text-[10px] mr-2">
+              <strong>{{ 'UI.ENROLLMENT.OVERDUE_LABEL' | transloco }}:</strong>
+              {{
+                item.overdueDays ? ('UI.ENROLLMENT.OVERDUE' | kpPluralizeTranslate: { value: item.overdueDays }) : '-'
+              }}
+            </span>
+            <span class="text-[10px] mr-2"
+              ><strong>{{ 'UI.ENROLLMENT.CONCLUSION' | transloco }}:</strong>
+              {{ (item.endDate | date: 'shortDate') || '-' }}</span
+            >
+            <span class="text-[10px]"
+              ><strong>{{ 'UI.ENROLLMENT.PERFORMANCE' | transloco }}:</strong>
+              {{ item.performance | kpPerformance: '%' }}</span
+            >
+          </div>
+          <div class="flex mt-2 gap-2.5 items-center">
+            <kp-status-chip [color]="item.status | kpEnrollmentStatusColor" class="text-[10px]">
+              {{ 'UI.ENROLLMENT.STATUS.' + item.status | transloco }}
+            </kp-status-chip>
+            @if (item.required) {
+              <div
+                class="h-3.5 w-16 rounded-l-lg rounded-r-[20px] border-1 border-[#F8C40B] bg-[#fafbc2] flex items-center justify-center"
+              >
+                <span class="uppercase text-xxs font-bold text-[#7e650b]">
+                  {{ 'UI.ENROLLMENT.REQUIRED' | transloco }}
+                </span>
+              </div>
+            }
+            @if (item.mission?.mission_model === 'EXTERNAL_PROVIDER') {
+              <button class="s-4" mat-icon-button (click)="onOpenExternalProvider(item)">
+                <mat-icon svgIcon="moving"></mat-icon>
+              </button>
+            }
+            @if (displayActionButton(item.status)) {
+              <button
+                mat-button
+                class="ml-auto max-h-5 px-3 text-primary"
+                (click)="onExecuteAction(item)"
+                [disabled]="disableActionButton(item.status)"
+              >
+                <span class="text-sm">{{ 'UI.ENROLLMENT.ACTIONS.' + getAction(item) | transloco }}</span>
+              </button>
+            }
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      }
+    </div>
+  }
+  @if (!loading && !enrollments.length) {
+    <div class="h-[calc(100vh-275px)] flex justify-center items-center">
+      <span class="text-xs">{{ 'UI.ENROLLMENT.NO_DATA' | transloco }}</span>
+    </div>
+  }
+  <!-- / LIST -->
+</div>

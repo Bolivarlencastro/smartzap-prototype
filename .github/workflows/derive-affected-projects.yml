@@ -1,0 +1,120 @@
+name: Affected Apps
+
+on:
+  workflow_call:
+    inputs:
+      base-branch-name:
+        default: "develop"
+        description: "The branch that should be used as BASE when looking for last successful workflow run, develop or main"
+        type: string
+      return-buildable-projects:
+        type: boolean
+        default: false
+        description: "Ignores the affected check and return all projects with target build"
+      ref:
+        default: ''
+        type: string
+        description: "The branch, tag or SHA to checkout. If not provided, uses the branch that triggered the workflow."
+    outputs:
+      test-matrix:
+        description: "An json array containing the list of affected projects with the test target"
+        value: ${{ jobs.check-affected.outputs.test-matrix }}
+      test-changes:
+        description: "A boolean of whether there are affected projects with the test target"
+        value: ${{ jobs.check-affected.outputs.test-changes }}
+      build-matrix:
+        description: "An json array containing the list of affected projects with the build target"
+        value: ${{ jobs.check-affected.outputs.build-matrix }}
+      build-changes:
+        description: "A boolean of whether there are affected projects with the build target"
+        value: ${{ jobs.check-affected.outputs.test-changes }}
+
+jobs:
+  check-affected:
+    runs-on: ubuntu-latest
+    permissions:
+      # We need to set the permissions for the GITHUB_TOKEN so that nx-set-shas can read the last successful workflow run
+      contents: "read"
+      actions: "read"
+    outputs:
+      test-matrix: ${{ steps.affected.outputs.test-matrix }}
+      test-changes: ${{ steps.affected.outputs.test-changes }}
+      build-matrix: ${{ steps.affected.outputs.build-matrix }}
+      build-changes: ${{ steps.affected.outputs.build-changes }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          ref: ${{ inputs.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.20.0
+          cache: "npm"
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        id: cache-primes
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-primes.outputs.cache-hit != 'true'
+        run: npm ci --legacy-peer-deps --ignore-scripts
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v4
+        with:
+          # Change the branch that should be used as BASE when looking for the last successful workflow run
+          main-branch-name: ${{ inputs.base-branch-name }}
+
+      # Checks all affected projects that have a test target
+      - name: Calculate affected projects
+        id: affected
+        env:
+          RETURN_BUILDABLE_PROJECTS: ${{ inputs.return-buildable-projects }}
+        run: |
+          if [ "${RETURN_BUILDABLE_PROJECTS}" = true ]; then
+            echo "Returning all projects with target build"
+
+            projectsWithBuildTarget=$(npx nx show projects --all --json --with-target build)
+            echo "Projects with target build: $projectsWithBuildTarget"
+
+            echo "build-matrix=$projectsWithBuildTarget" >> $GITHUB_OUTPUT
+            echo "test-matrix=$projectsWithBuildTarget" >> $GITHUB_OUTPUT
+
+            echo "build-changes=true" >> $GITHUB_OUTPUT
+            echo "test-changes=true" >> $GITHUB_OUTPUT
+
+            exit 0
+          fi
+
+          echo "Checking Affected projects"
+          affectedTestProjects=$(node tools/get-directly-affected.js $NX_BASE $NX_HEAD)
+          testMatrix=$(echo $affectedTestProjects | sed 's/ /","/g' | sed 's/^/["/' | sed 's/$/"]/')
+
+          echo "Affected projects to run sonar: $testMatrix"
+          echo "test-matrix=$testMatrix" >> $GITHUB_OUTPUT
+
+          if [ -n "$affectedTestProjects" ];
+          then
+            echo "test-changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "test-changes=false" >> $GITHUB_OUTPUT
+          fi
+
+          affectedBuildProjects=$(npx nx show projects --affected --base=$NX_BASE --head=$NX_HEAD --json --with-target build)
+          echo "Affected projects with target build: $affectedBuildProjects"
+
+          echo "build-matrix=$affectedBuildProjects" >> $GITHUB_OUTPUT
+
+          if [ "$affectedBuildProjects" != "[]" ];
+          then
+            echo "build-changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "build-changes=false" >> $GITHUB_OUTPUT
+          fi

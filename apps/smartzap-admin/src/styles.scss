@@ -1,0 +1,124 @@
+@use 'libs/shared-ui/ui/src/lib/styles/mixins' as ui-mixins;
+
+mat-list-item .mat-list-item-content {
+  width: 100%;
+}
+
+// TODO: Verificar se existe algum lugar melhor para isso
+.outline-input-no-floating-label.mat-form-field-appearance-outline {
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+
+    .mat-form-field-flex {
+      margin-top: 0;
+
+      .mat-form-field-infix {
+        padding: 0.8em 0;
+        border-top: 0;
+      }
+    }
+  }
+
+  .mat-form-field-outline {
+    top: 0;
+  }
+}
+
+.status {
+  display: inline-flex;
+  color: #fff;
+  letter-spacing: 0.015em;
+  padding: 2px 18px;
+  border-radius: 11px;
+
+  &-empty,
+  &-null {
+    background: #7a7a7a !important;
+  }
+
+  &-started {
+    background: #002daa !important;
+  }
+
+  &-waiting {
+    background: #f47c52 !important;
+  }
+
+  &-canceled {
+    background: #b5b5b5 !important;
+  }
+
+  &-refused,
+  &-rejected {
+    background: #f25a4d !important;
+  }
+
+  &-completed {
+    background: #4dc7ac !important;
+  }
+}
+
+.schedule-status {
+  &-empty,
+  &-null {
+    background: #7a7a7a;
+  }
+
+  &-delivered {
+    background: #5dc794;
+  }
+
+  &-error {
+    background: #ff5959;
+  }
+
+  &-failed {
+    background: #ce8d50;
+  }
+
+  &-pending {
+    background: #ffb100;
+  }
+
+  &-sent {
+    background: #5972ff;
+  }
+}
+
+.page-layout-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.route-dialog-container {
+  @include ui-mixins.dialog-container-styles(1080px);
+}
+
+.smartzap-course-detail-dialog-panel .mat-mdc-dialog-surface {
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.cdk-overlay-backdrop {
+  backdrop-filter: blur(4px) !important;
+  background-color: color-mix(in srgb, var(--mat-sys-scrim) 32%, transparent) !important;
+}
+
+.cdk-overlay-pane.dev-tools-overlay-pane {
+  z-index: 100000 !important;
+  pointer-events: none;
+  width: max-content !important;
+  height: max-content !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.cdk-overlay-pane.dev-tools-overlay-pane.dev-tools-overlay-root {
+  pointer-events: none;
+  width: max-content !important;
+  height: max-content !important;
+  overflow: visible !important;
+}

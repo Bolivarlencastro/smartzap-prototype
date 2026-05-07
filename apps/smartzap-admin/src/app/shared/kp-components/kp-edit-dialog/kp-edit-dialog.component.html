@@ -1,0 +1,23 @@
+<div class="edit-dialog">
+  <span class="text-lg" mat-dialog-title>{{ title | transloco }}</span>
+  <div mat-dialog-content>
+    <form #form="ngForm">
+      <mat-form-field class="w-full">
+        <mat-label>{{ 'GENERAL.NAME' | transloco }}</mat-label>
+        <input matInput type="text" id="name" name="name" required [(ngModel)]="model.name" />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>{{ 'GENERAL.DESCRIPTION' | transloco }}</mat-label>
+        <textarea matInput id="description" name="description" required [(ngModel)]="model.description"></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions class="pt-24 flex justify-end">
+    <button mat-stroked-button (click)="dialogRef.close(false)" id="button-edit-dialog-cancel">
+      {{ 'GENERAL.CANCEL' | transloco }}
+    </button>
+    <button mat-flat-button color="primary" class="mr-3" (click)="onSubmit()" id="button-edit-dialog-save">
+      {{ 'GENERAL.OK' | transloco }}
+    </button>
+  </div>
+</div>

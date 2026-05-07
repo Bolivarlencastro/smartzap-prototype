@@ -1,0 +1,22 @@
+.kp-numeric-range-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.kp-numeric-range-input-wrapper {
+  max-width: 50px !important;
+
+  input {
+    background: transparent;
+  }
+}
+
+.kp-numeric-range-input-separator {
+  margin-left: 4px;
+  margin-right: 16px;
+}
+
+.kp-numeric-range-input-part {
+  width: 100%;
+}

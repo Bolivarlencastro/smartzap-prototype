@@ -1,0 +1,13 @@
+@use 'sass:map';
+
+@mixin kp-color-palette-theme {
+  .pallet {
+    .pallet-content {
+      .pallet-click {
+        &.pallet-color-selected {
+          border: 5px solid var(--mat-sys-surface-container-highest);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="grid grid-cols-1 grid-rows-[1fr_2fr] md:grid-rows-1 md:grid-cols-2 grow">
+  @let data = sessionData();
+  <div class="grid place-content-center md:h-full w-full p-8 md:p-16 bg-default text-white relative">
+    <svg
+      class="absolute inset-0 pointer-events-none"
+      viewBox="0 0 960 540"
+      width="100%"
+      height="100%"
+      preserveAspectRatio="xMidYMax slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g class="background-rings opacity-25" fill="none" stroke="currentColor" stroke-width="100">
+        <circle r="234" cx="196" cy="23"></circle>
+        <circle r="234" cx="790" cy="491"></circle>
+      </g>
+    </svg>
+
+    @if (data?.eventId) {
+      <p class="text-4xl font-bold mb-8 z-10">{{ data?.eventName }}</p>
+      <div class="flex flex-col gap-2 mb-2 z-10">
+        <p>
+          <span class="font-bold">{{ 'general.date' | transloco }}:&nbsp;</span>
+          {{ data?.start | date: 'shortDate' }}
+        </p>
+        <p>
+          <span class="font-bold">{{ 'general.time' | transloco }}:&nbsp;</span>
+          {{ data?.start | date: 'shortTime' }}&nbsp;-&nbsp;{{ data?.end | date: 'shortTime' }}
+        </p>
+      </div>
+    }
+  </div>
+
+  <div class="flex items-center justify-center p-8 md:p-16">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<div class="grow flex h-full">
+  <mat-table [hidden]="hiddenTable()" [dataSource]="learnContents()" [trackBy]="trackByFn">
+    <ng-container matColumnDef="icon">
+      <mat-header-cell *matHeaderCellDef class="min-w-16 max-w-16"></mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-16 max-w-16">
+        <mat-icon class="text-base opacity-70 text-primary-400 dark:text-primary-300">{{ element.icon }}</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name" [sticky]="true">
+      <mat-header-cell *matHeaderCellDef class="min-w-52 fixed-column-right-border">
+        {{ 'CONTENT_MANAGEMENT.LIST.NAME' | transloco }}
+      </mat-header-cell>
+      <mat-cell
+        data-test="content-management-item-name-selector"
+        *matCellDef="let element"
+        class="min-w-52 fixed-column-right-border"
+      >
+        <span class="[word-break:break-word] line-clamp-2">{{ element.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="creator">
+      <mat-header-cell *matHeaderCellDef class="min-w-36">
+        {{ 'CONTENT_MANAGEMENT.LIST.CREATOR' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-36">
+        <span class="[word-break:break-word] line-clamp-2">{{ element.creatorName }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef class="min-w-24 max-w-24">
+        {{ 'CONTENT_MANAGEMENT.LIST.TYPE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-24 max-w-24">
+        {{ (element.meta.open ? 'CONTENT_MANAGEMENT.LIST.OPEN' : 'CONTENT_MANAGEMENT.LIST.CLOSED') | transloco }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef class="min-w-32 max-w-32">
+        {{ 'CONTENT_MANAGEMENT.LIST.DURATION' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-32 max-w-32">
+        {{ element.meta.duration | kpDuration }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="performance">
+      <mat-header-cell *matHeaderCellDef class="min-w-28 max-w-28 justify-end">
+        {{ 'CONTENT_MANAGEMENT.LIST.PERFORMANCE' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-28 max-w-28 justify-end">
+        {{ element.meta.minimumPerformance | percent }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="enrolled_count">
+      <mat-header-cell *matHeaderCellDef class="min-w-28 max-w-28 justify-end">
+        {{ 'CONTENT_MANAGEMENT.LIST.ENROLLED_COUNT' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-28 max-w-28 justify-end">
+        {{ element.meta.enrolledCount | number }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef class="min-w-40 max-w-40">
+        {{ 'CONTENT_MANAGEMENT.LIST.STATUS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-40 max-w-40">
+        <kp-card-tag [type]="element.meta.status | kpCourseDevelopmentStatusTagType" [keepOpen]="true"></kp-card-tag>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="menu">
+      <mat-header-cell *matHeaderCellDef class="min-w-20 max-w-20 justify-end">
+        {{ 'CONTENT_MANAGEMENT.LIST.ACTIONS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-20 max-w-20 justify-end">
+        <button
+          data-test="button-open-edit-course-menu"
+          mat-icon-button
+          id="edit"
+          [matMenuTriggerFor]="menu"
+          (click)="$event.stopPropagation()"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+          @for (action of element.actions; track action) {
+            <button
+              [attr.data-test]="'content-management-menu-option-' + action.toLowerCase().replaceAll('_', '-')"
+              mat-menu-item
+              (click)="onItemAction(action, element)"
+            >
+              {{ 'CONTENT_MANAGEMENT.ACTIONS.' + action | transloco }}
+            </button>
+          }
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      class="cursor-pointer"
+      (click)="onViewDetails(row)"
+    ></mat-row>
+  </mat-table>
+
+  @if (showSkeleton()) {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (emptyState()) {
+    <div class="h-full flex flex-col justify-center items-center text-sm grow">
+      <span class="font-bold">{{ 'CONTENT_MANAGEMENT.EMPTY_STATE.COURSE_TITLE' | transloco }}</span>
+      <span class="mb-1">{{ 'CONTENT_MANAGEMENT.EMPTY_STATE.COURSE_DESCRIPTION' | transloco }}</span>
+      <button mat-button [matMenuTriggerFor]="menuCourseTypes">
+        <mat-icon>add</mat-icon>
+        {{ 'CONTENT_MANAGEMENT.EMPTY_STATE.COURSE_BUTTON' | transloco }}
+      </button>
+      <mat-menu #menuCourseTypes="matMenu">
+        <div mat-menu-item [routerLink]="['/missions/create/internal']">
+          <mat-icon>rocket_launch</mat-icon>
+          {{ 'CREATE_BUTTON.INTERNAL_MISSION' | transloco }}
+        </div>
+
+        <div mat-menu-item [routerLink]="['/missions/create/external_provider']">
+          <mat-icon>rocket_launch</mat-icon>
+          {{ 'CREATE_BUTTON.EXTERNAL_MISSION' | transloco }}
+        </div>
+
+        <div mat-menu-item (click)="onCreateScormCourse()">
+          <mat-icon>rocket_launch</mat-icon>
+          {{ 'CREATE_BUTTON.SCORM_MISSION' | transloco }}
+        </div>
+      </mat-menu>
+    </div>
+  }
+</div>

@@ -1,0 +1,149 @@
+<div class="h-full flex flex-col">
+  <!-- HEADER -->
+  <div class="h-16 relative flex justify-center items-center">
+    <span>{{ 'UI.GENERAL.GLOBAL_SEARCH' | transloco }}</span>
+    <button mat-icon-button mat-dialog-close class="absolute left-2">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+  <!-- / HEADER -->
+
+  <mat-divider></mat-divider>
+
+  <!-- TABS -->
+  <div class="tab-container">
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" fitInkBarToContent class="custom-nav">
+      @for (tab of tabs; track trackByFn($index, tab)) {
+        <a
+          mat-tab-link
+          (click)="changeTab(tab.value)"
+          [active]="isActive(tab.value)"
+          [attr.data-test]="'tab-' + tab.value"
+          class="font-bold text-xs p-0"
+        >
+          {{ tab?.title | transloco }}
+        </a>
+      }
+    </nav>
+  </div>
+  <!-- / TABS -->
+
+  <mat-divider></mat-divider>
+
+  <!-- CONTENT TABS -->
+  <mat-tab-nav-panel class="h-[calc(100%-117px)] overflow-hidden" #tabPanel>
+    <div class="h-full">
+      <div class="h-12">
+        <kp-global-search-input
+          inputClass="text-xs"
+          iconClass="s-6 mr-2"
+          placeholder="UI.GLOBAL_SEARCH.SEARCH"
+          [searchTerm]="searchTerm"
+          (filterEvent)="filterByTerm($event)"
+        ></kp-global-search-input>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      @if (!loading) {
+        <kp-global-search-results-counter [counter]="count"></kp-global-search-results-counter>
+        <mat-divider></mat-divider>
+        @if (loadingMore) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        }
+        <!-- LIST -->
+        <div
+          class="h-[calc(100%-82px)] overflow-auto"
+          infiniteScroll
+          [infiniteScrollThrottle]="500"
+          [scrollWindow]="false"
+          (scrolled)="onScroll()"
+        >
+          @if (count > 0) {
+            @for (item of items; track item) {
+              <div class="h-24 flex relative" (click)="onOpenDetails(item)">
+                <!-- DESCRIPTION -->
+                <div class="flex flex-col justify-center px-5 overflow-hidden">
+                  <div class="break-words line-clamp-2">{{ item?.name }}</div>
+                  <div class="flex gap-2.5">
+                    @switch (item?.type) {
+                      @case (itemType.CHANNEL) {
+                        <div class="text-2xxs">Proprietário: {{ item.user_creator?.name }}</div>
+                        <div class="flex items-center gap-1 h-full">
+                          <mat-icon class="s-2">language</mat-icon>
+                          <span class="text-2xxs pt-px">{{ item.language | uppercase }}</span>
+                        </div>
+                      }
+                      @case (itemType.PULSE) {
+                        @if (item.channels?.length) {
+                          <div class="flex items-center gap-1 h-full">
+                            <mat-icon class="s-2" svgIcon="canal-pulse"></mat-icon>
+                            <span class="text-2xxs pt-px">{{ item.channels?.[0]?.name }}</span>
+                          </div>
+                        }
+                        <div class="flex items-center gap-1 h-full">
+                          <mat-icon class="s-2">language</mat-icon>
+                          <span class="text-2xxs pt-px">{{ item.language | uppercase }}</span>
+                        </div>
+                        <div class="flex items-center gap-1 h-full">
+                          <mat-icon class="s-2">schedule</mat-icon>
+                          <div class="text-2xxs pt-px">{{ item.duration_time | kpDuration }}</div>
+                        </div>
+                      }
+                      @default {
+                        @for (tag of item.tags; track tag; let last = $last) {
+                          <kp-card-tag [type]="tag" [keepOpen]="last"></kp-card-tag>
+                        }
+                        <div class="flex items-center gap-1 h-full">
+                          <mat-icon class="s-2">language</mat-icon>
+                          <span class="text-2xxs pt-px">{{ item.language | uppercase }}</span>
+                        </div>
+                        <div class="flex items-center gap-1 h-full">
+                          <mat-icon class="s-2">schedule</mat-icon>
+                          <div class="text-2xxs pt-px">{{ item.duration_time | kpDuration }}</div>
+                        </div>
+                        @if (item.external_course) {
+                          <mat-icon class="s-2 pt-1.5" svgIcon="moving"></mat-icon>
+                        }
+                      }
+                    }
+                  </div>
+                </div>
+                <!-- / DESCRIPTION -->
+                <button
+                  kpDisableContinueMission
+                  mat-icon-button
+                  class="absolute bottom-1 right-1"
+                  [element]="{
+                    mission_model: item.course_model,
+                    status: item.enrollment_status,
+                    hidden: item.type !== itemType.TRAIL && item.type !== itemType.COURSE,
+                    mission_status: item.development_status,
+                  }"
+                  (click)="onOpenContent(item, $event)"
+                >
+                  <mat-icon class="s-6">play_circle</mat-icon>
+                </button>
+              </div>
+              <mat-divider></mat-divider>
+            }
+          } @else {
+            <div class="h-full flex justify-center items-center">
+              <span class="text-xs font-bold">{{ 'UI.GLOBAL_SEARCH.NO_ITEMS' | transloco }}</span>
+            </div>
+          }
+        </div>
+        <!-- / LIST -->
+      } @else {
+        <div class="h-[calc(100%-49px)] flex justify-center items-center">
+          <mat-spinner class="my-8" color="accent" strokeWidth="4" diameter="40"></mat-spinner>
+        </div>
+      }
+
+      <!-- SPINNER -->
+      <!-- / SPINNER -->
+    </div>
+  </mat-tab-nav-panel>
+
+  <!-- / CONTENT TABS -->
+</div>

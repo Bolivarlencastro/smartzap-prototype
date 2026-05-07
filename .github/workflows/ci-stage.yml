@@ -1,0 +1,50 @@
+name: Continuous Deployment (CD) - stage
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+    inputs:
+      deploy-all:
+        type: boolean
+        description: Force deploy of all applications
+        default: false
+
+concurrency:
+  group: stage-deploy
+  cancel-in-progress: true
+
+jobs:
+  derive-affected:
+    uses: ./.github/workflows/derive-affected-projects.yml
+    with:
+      return-buildable-projects: ${{ inputs.deploy-all || false }}
+
+  build:
+    needs: [ derive-affected ]
+    if: needs.derive-affected.outputs.build-changes == 'true'
+    uses: ./.github/workflows/build-apps.yml
+    with:
+      matrix: ${{ needs.derive-affected.outputs.build-matrix }}
+
+  deploy:
+    needs: [ derive-affected, build ]
+    uses: ./.github/workflows/stage-deploy.yml
+    with:
+      release-name: ${{ needs.build.outputs.release-name }}
+    secrets: inherit
+
+  # This allows us to have a branch protection rule for tests with matrix
+  ci-result:
+    name: CI Result
+    runs-on: ubuntu-latest
+    needs: [ derive-affected, build, deploy ]
+    if: always()
+    steps:
+      - name: Run successful!
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Run failed!
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1

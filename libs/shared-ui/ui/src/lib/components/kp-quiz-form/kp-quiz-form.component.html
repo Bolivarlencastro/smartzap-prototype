@@ -1,0 +1,99 @@
+@if (form && !question) {
+  <div>
+    <kp-editor [value]="formValue" (valueChange)="onValueChanged($event)" class="mb-4"> </kp-editor>
+
+    <div class="options-container mt-1 flex flex-col">
+      <div [kpScrollToBottom]="form.get('options').value?.length" class="flex flex-col gap-y-3">
+        @for (option of form.get('options').value; track option; let index = $index) {
+          <div class="w-full flex items-center gap-y-3">
+            <mat-checkbox
+              [attr.data-test]="'select-option-' + index"
+              color="primary"
+              [name]="'checkbox-alphabet-' + index"
+              [(ngModel)]="option.correct"
+            ></mat-checkbox>
+            <mat-form-field appearance="outline" class="w-full mr-2" subscriptSizing="dynamic">
+              <input
+                matInput
+                [attr.data-test]="'input-option-' + index"
+                name="option"
+                [(ngModel)]="option.text"
+                [placeholder]="'UI.KP_QUIZ_FORM.WRITE_A_OPTION' | transloco"
+              />
+            </mat-form-field>
+            @if (!content) {
+              <button (click)="onDeleteOption(index)" matSuffix mat-icon-button aria-label="Delete option">
+                <mat-icon>delete</mat-icon>
+              </button>
+            }
+          </div>
+        }
+      </div>
+      @if (!content) {
+        <button
+          data-test="add-new-option"
+          (click)="onAddOption(form.get('options'))"
+          class="mt-4 mr-auto"
+          mat-button
+          color="primary"
+        >
+          <span class="text-primary dark:text-white flex items-center">
+            <mat-icon class="s-6 mr-2">add</mat-icon>
+            {{ 'UI.KP_QUIZ_FORM.ADD_OPTION' | transloco }}
+          </span>
+        </button>
+      }
+    </div>
+  </div>
+} @else {
+  @if (!isUserAnswering) {
+    <div data-test="kp-quiz-form.view_mode_template_container" class="flex flex-col w-full">
+      <div
+        data-test="kp-quiz-form.question_name"
+        [innerHTML]="question?.name"
+        class="text-sm mb-2.5 html-content-container"
+      ></div>
+      <p class="font-bold mb-6">{{ 'UI.KP_QUIZ_FORM.ANSWERS' | transloco }}</p>
+      @for (option of question?.options; track option; let index = $index) {
+        <div data-test="kp-quiz-form.question_option" class="w-full flex gap-4 items-start mb-6">
+          <mat-icon data-test="kp-quiz-form.correct_icon" [class.invisible]="!option.correct">check</mat-icon>
+          <p data-test="kp-quiz-form.option_text">{{ option.text }}</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="px-0">
+      <div
+        data-test="kp-quiz-form.question_name"
+        [innerHTML]="question?.name"
+        class="text-sm mb-2.5 html-content-container"
+      ></div>
+      @for (option of question?.options; track option; let index = $index) {
+        <div
+          data-test="kp-quiz-form.question_option"
+          class="w-full flex gap-4 items-center mb-6"
+          (click)="onSelectOption(option)"
+        >
+          <div
+            data-test="kp-quiz-form.option_text"
+            [ngClass]="{
+              'bg-red-500': answer && answer.options.indexOf(option.id) > -1,
+              'bg-teal-400': answer && answer.correct_options.indexOf(option.id) > -1,
+              'text-white':
+                answer && (answer.correct_options.indexOf(option.id) > -1 || answer.options.indexOf(option.id) > -1),
+              disabled: answer,
+              'cursor-pointer': !answer,
+              'bg-primary': !answer && option.selected,
+            }"
+            class="kp-card-container w-full shadow px-4 py-6 rounded-lg flex items-center justify-between"
+          >
+            <span>{{ option.text }}</span>
+            @if (answer && answer.options.indexOf(option.id) > -1) {
+              <div class="w-4 h-4 rounded-full bg-white"></div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+}

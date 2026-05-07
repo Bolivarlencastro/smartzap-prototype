@@ -1,0 +1,16 @@
+<div class="kp-quiz-summary mat-elevation-z8" [@state]="animationState" (@state.done)="onAnimationDone($event)">
+  @if (isSurveyQuiz) {
+    <img class="logo" [src]="workspaceIconUrl" alt="" />
+    <h1>Obrigado, sua opinião é muito importante para nós!</h1>
+  } @else {
+    <img class="logo" [src]="workspaceIconUrl" alt="" />
+    <h1>Parabéns, você finalizou o Quiz!</h1>
+    <img class="icon" src="assets/images/trophy.svg" alt="" />
+    @if (summary$ | async; as summary) {
+      <h3>
+        Você acertou <b>{{ summary.correctAnswers }}</b> {{ summary.correctAnswers > 1 ? 'perguntas' : 'pergunta' }} de
+        <b>{{ summary.total }}</b>
+      </h3>
+    }
+  }
+</div>

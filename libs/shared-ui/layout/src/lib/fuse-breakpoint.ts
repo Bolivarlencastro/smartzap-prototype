@@ -1,0 +1,15 @@
+export enum FuseBreakpoint {
+  XS = '(max-width: 599.98px)',
+  SM = '(min-width: 600px) and (max-width: 959.98px)',
+  LG = '(min-width: 1280px) and (max-width: 1919.98px)',
+  XL = '(min-width: 1920px)',
+  MD = '(min-width: 960px) and (max-width: 1279.98px)',
+  LT_SM = FuseBreakpoint.XS,
+  LT_MD = '(max-width: 959.98px)',
+  LT_LG = '(max-width: 1279.98px)',
+  LT_XL = '(max-width: 1919.98px)',
+  GT_XS = '(min-width: 600px)',
+  GT_SM = '(min-width: 960px)',
+  GT_MD = '(min-width: 1280px)',
+  GT_LG = FuseBreakpoint.XL,
+}

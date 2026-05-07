@@ -1,0 +1,38 @@
+<div class="flex items-center justify-between gap-2" mat-dialog-actions>
+  @if (showConfigForm && type !== 'event') {
+    <kp-enrollment-settings-form
+      [enrollmentConfig]="enrollmentConfig"
+      [cycles]="cycles"
+      [isNormativeActive]="isNormativeActive"
+      (formSubmit)="onSettingsSubmit($event)"
+      (filterCycle)="onFilterCycle($event)"
+    ></kp-enrollment-settings-form>
+  }
+
+  <div class="flex items-center ml-auto">
+    @if (reachedLimitSeats) {
+      <span class="text-xs mr-3">
+        {{ 'BATCH_ENROLLMENT.REACHED_LIMIT_SEATS_MESSAGE' | transloco: { value: remainingSeats } }}
+      </span>
+    }
+
+    <button
+      mat-stroked-button
+      id="mission-batch-enrollments-negative-action-button"
+      color="primary"
+      (click)="onNegativeClick()"
+    >
+      {{ negativeButtonLabel | transloco }}
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onPositiveClick()"
+      id="mission-batch-enrollments-positive-button"
+      [disabled]="submitDisabled"
+    >
+      {{ positiveButtonLabel | transloco }}
+    </button>
+  </div>
+</div>

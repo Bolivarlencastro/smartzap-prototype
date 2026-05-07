@@ -1,0 +1,50 @@
+audio {
+  width: 100%;
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+// Phone Input
+input.country-search {
+  width: 100% !important;
+  background: inherit;
+}
+
+.country-selector {
+  opacity: 1 !important;
+}
+
+// Message boxes
+.message-box {
+  padding: 16px;
+  background: #607d8b;
+  border-left: 6px solid #37474f;
+  color: rgb(255 255 255 / 100%);
+
+  &.error {
+    background: #ef5350;
+    border-left-color: #b71c1c;
+  }
+
+  &.warning {
+    background: #ffecb3;
+    border-left-color: #ffc107;
+    color: rgb(0 0 0 / 87%);
+  }
+
+  &.success {
+    background: #4caf50;
+    border-left-color: #2e7d32;
+  }
+
+  &.info {
+    background: #b3e5fc;
+    border-left-color: #03a9f4;
+    color: rgb(0 0 0 / 87%);
+  }
+}
+
+.fixed-column-right-border {
+  border-right: 1px solid var(--mat-sys-outline-variant);
+}

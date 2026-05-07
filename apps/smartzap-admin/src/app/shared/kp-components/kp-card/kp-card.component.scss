@@ -1,0 +1,118 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'libs/shared-ui/ui/src/lib/styles/mixins' as ui-mixins;
+
+$radius: 10px;
+
+@mixin kp-card-status-label {
+  padding: 5px 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85em;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.kp-card {
+  border: none;
+  border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &-language {
+    position: absolute;
+    height: 24px;
+    width: auto;
+    z-index: 999;
+    left: 0;
+    border-radius: 0 50% 50% 0;
+  }
+
+  &-status-label {
+    @include kp-card-status-label;
+  }
+
+  &-inactive-status-label {
+    @include kp-card-status-label;
+
+    background-color: #b5b5b5;
+  }
+
+  &-image-box {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &-overlay {
+      @include ui-mixins.frame(8);
+    }
+  }
+
+  &-progress-box {
+    position: relative;
+  }
+
+  &-progress-text {
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+  }
+
+  &-progress {
+    height: 15px;
+    border-radius: 10px;
+  }
+
+  &-bookmark-icon {
+    position: absolute;
+    right: 1rem;
+    z-index: 9;
+  }
+
+  &-bookmark-icon-top {
+    right: 10px;
+    top: -8px;
+  }
+
+  &-header {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      height: 24px;
+      width: 6px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+
+  &-tag {
+    border-radius: 3px;
+    min-height: 22px;
+    padding: 4px !important;
+  }
+
+  &-category {
+    border-radius: 3px;
+    min-height: 22px;
+    padding: 4px !important;
+    background-color: map.get(mat.$m2-red-palette, 400) !important;
+  }
+
+  .external-mission-progress {
+    height: 31px;
+  }
+
+  .avatar-name {
+    margin-left: 10px;
+  }
+}

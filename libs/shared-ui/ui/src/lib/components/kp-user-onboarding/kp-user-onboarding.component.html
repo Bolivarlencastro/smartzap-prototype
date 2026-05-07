@@ -1,0 +1,13 @@
+<span class="text-xl pb-0" mat-dialog-title>{{ 'USER_ONBOARDING_DIALOG.TITLE' | transloco }}</span>
+<span class="text-base pb-0" mat-dialog-content>{{ 'USER_ONBOARDING_DIALOG.DESCRIPTION' | transloco }}</span>
+
+<div mat-dialog-content>
+  <kp-media-player data-test="videoPlayer" [url]="url"></kp-media-player>
+</div>
+
+<div mat-dialog-actions class="flex justify-between pb-5 px-6 pt-0 flex-nowrap">
+  <mat-slide-toggle mat-slide-toggle (click)="onSlideToggleChange()">
+    {{ 'USER_ONBOARDING_DIALOG.SLIDE_TOGGLE' | transloco }}
+  </mat-slide-toggle>
+  <button color="primary" mat-flat-button (click)="close()">{{ 'GENERAL.CLOSE' | transloco }}</button>
+</div>

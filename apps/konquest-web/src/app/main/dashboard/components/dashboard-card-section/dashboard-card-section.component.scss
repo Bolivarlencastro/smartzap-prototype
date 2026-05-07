@@ -1,0 +1,15 @@
+.cards-container {
+  @apply grid gap-4 pb-4 auto-cols-[min-content] grid-flow-col overflow-x-auto;
+
+  @screen xxs {
+    @apply grid-cols-1 pb-0 justify-items-center auto-cols-auto grid-flow-row overflow-visible;
+  }
+}
+
+.container-portrait {
+  @apply min-[432px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+}
+
+.container-landscape {
+  @apply min-[870px]:grid-cols-2 min-[1390px]:grid-cols-3;
+}

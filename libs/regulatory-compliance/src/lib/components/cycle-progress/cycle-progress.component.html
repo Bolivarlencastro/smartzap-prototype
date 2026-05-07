@@ -1,0 +1,29 @@
+<div
+  class="grid grid-cols-1 grid-rows-1 place-items-center w-12"
+  [matTooltip]="
+    'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.DAYS_UNTIL_EXPIRATION'
+      | kpPluralizeTranslate: { value: deadline | kpDaysUntil }
+  "
+>
+  <mat-progress-spinner
+    diameter="48"
+    [value]="100"
+    color="primary"
+    class="row-start-1 row-end-2 col-start-1 col-end-2 opacity-30"
+  ></mat-progress-spinner>
+  <mat-progress-spinner
+    diameter="48"
+    [value]="cycle | cycleEnrollmentProgress"
+    color="primary"
+    class="row-start-1 row-end-2 col-start-1 col-end-2"
+  ></mat-progress-spinner>
+  <mat-icon class="s-4 row-start-1 row-end-2 col-start-1 col-end-2 opacity-80">{{
+    cycle?.enrollment?.learningObject?.learningObjectTypeId | cycleIcon
+  }}</mat-icon>
+  <div
+    class="justify-self-start ml-3.5 enrollment-badge"
+    [matBadge]="enrollmentsCount"
+    [matBadgeSize]="'medium'"
+    [matBadgeHidden]="enrollmentsCount < 2"
+  ></div>
+</div>

@@ -1,0 +1,46 @@
+<span class="text-2xl" mat-dialog-title>{{ (title$ | async) || '' | transloco }}</span>
+<mat-dialog-content>
+  <p class="leading-loose mb-6">{{ (subTitle$ | async) || '' | transloco }}</p>
+
+  @switch (currentStep$ | async) {
+    @case (TransferStep.SELECT_RECIPIENT) {
+      <div class="flex flex-col gap-6">
+        <div class="detail-container p-5 rounded-md font-bold">
+          <p>{{ (transferContent$ | async)?.name }}</p>
+        </div>
+        <app-transfer-dialog-filter
+          [recipients]="filteredRecipients$ | async"
+          [selectedRecipient]="selectedRecipient$ | async"
+          (filterChange)="filterChange($event)"
+          (recipientSelected)="autoCompleteOptionSelected($event)"
+          (clearRecipient)="clearRecipient()"
+        ></app-transfer-dialog-filter>
+      </div>
+    }
+    @case (TransferStep.CONFIRMATION) {
+      <div>
+        <div class="detail-container p-5 rounded-md flex flex-col items-center gap-2.5">
+          <small class="secondary-text">{{ 'TRANSFER_DIALOG.CONFIRMATION.CONFIRMATION' | transloco }}</small>
+          <p class="font-bold">{{ (transferContent$ | async)?.name }}</p>
+          <small class="secondary-text">{{ 'TRANSFER_DIALOG.CONFIRMATION.NEW_OWNER' | transloco }}</small>
+          <p class="font-bold">{{ (selectedRecipient$ | async)?.name }}</p>
+        </div>
+      </div>
+    }
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button [disabled]="isLoading$ | async" (click)="actionButtonClick(false)">
+    {{ (negativeButtonLabel$ | async) || '' | transloco }}
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="isLoading$ | async"
+    (click)="actionButtonClick(true)"
+    data-test="confirm-transfer-trail"
+  >
+    {{ (positiveButtonLabel$ | async) || '' | transloco }}
+  </button>
+</mat-dialog-actions>

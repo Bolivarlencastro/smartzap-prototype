@@ -1,0 +1,36 @@
+{
+  "AI_IMAGE_UPLOAD": {
+    "INITIAL_STATE": {
+      "DESCRIPTION": "Describe la imagen que quieres crear en el campo a continuación.",
+      "TITLE": "Generación de Imágenes con IA"
+    },
+    "LOADING_MESSAGE": "Generando imagen...",
+    "PLACEHOLDER_INPUT": "Describe la imagen que quieres crear...",
+    "REFERENCE_IMAGE_BUTTON": "Adjuntar imagen de referencia"
+  },
+  "IMAGE_UPLOAD": {
+    "BUTTON": "Seleccionar archivo",
+    "DROP_MESSAGE": "Arrastra y suelta el archivo aquí",
+    "OR": "o",
+    "RESOLUTION": "Resolución recomendada: {{value}}"
+  },
+  "IMAGE_SOURCE": "Fuente de la Imagen",
+  "SOURCES": {
+    "FILE_UPLOAD": "Mi Computador",
+    "FILE_UPLOAD_HEADER": "Subir desde el Computador",
+    "AI_IMAGE_GEN": "Generar con IA",
+    "AI_IMAGE_GEN_HEADER": "Generar Imagen con Inteligencia Artificial"
+  },
+  "IMAGE_CROPPER": {
+    "TITLE": "Ajustar Imagen",
+    "CROP_IMAGE": "Confirmar Recorte"
+  },
+  "FRAME_SELECTOR": {
+    "TITLE": "Aplicar Marco",
+    "APPLY": "Aplicar"
+  },
+  "FRAME_OPTIONS": {
+    "SELECT_FRAME": "Selecciona un marco",
+    "NO_FRAME": "Sin marco"
+  }
+}

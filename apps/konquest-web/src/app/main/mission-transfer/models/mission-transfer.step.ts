@@ -1,0 +1,4 @@
+export enum MissionTransferStep {
+  SELECT_RECIPIENT = 'SELECT_RECIPIENT',
+  CONFIRMATION = 'CONFIRMATION',
+}

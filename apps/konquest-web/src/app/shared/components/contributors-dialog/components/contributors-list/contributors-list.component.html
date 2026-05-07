@@ -1,0 +1,20 @@
+<p>{{ 'CONTRIBUTORS_DIALOG.INVITED' | kpPluralizeTranslate: { value: contributors?.length } }}</p>
+<mat-list>
+  @for (contributor of contributors; track contributor) {
+    <mat-list-item class="px-0">
+      <div class="flex gap-2 items-center">
+        <img
+          class="rounded-full bg-cover h-8 w-8"
+          [src]="contributor.user.avatar || defaultUserAvatar"
+          alt="User Avatar"
+        />
+        <p class="flex-grow">
+          {{ contributor.user.name }}
+        </p>
+        <button mat-icon-button (click)="onRemoveContributor(contributor)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  }
+</mat-list>

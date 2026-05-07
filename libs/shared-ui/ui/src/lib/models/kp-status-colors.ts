@@ -1,0 +1,7 @@
+export enum KP_STATUS_COLORS {
+  EXPIRED = '#F43036',
+  EXPIRING = '#FF7A00',
+  IN_PROGRESS = '#008FEC',
+  COMPLETED = '#00B400',
+  DISABLED = '#CCC',
+}

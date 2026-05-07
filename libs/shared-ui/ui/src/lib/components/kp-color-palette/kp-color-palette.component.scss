@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+.pallet {
+  .pallet-content {
+    .pallet-click {
+      &.pallet-color-selected {
+        opacity: 0.9;
+      }
+
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    }
+
+    .pallet-color {
+      height: 50px;
+      width: 25px;
+    }
+  }
+}

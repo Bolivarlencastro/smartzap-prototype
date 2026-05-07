@@ -1,0 +1,21 @@
+.block-screen {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 90%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  &--content {
+    width: 280px;
+    max-width: 280px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+  }
+}

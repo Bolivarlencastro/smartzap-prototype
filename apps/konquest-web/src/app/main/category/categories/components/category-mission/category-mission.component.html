@@ -1,0 +1,31 @@
+<div class="app-group-mission-create">
+  <div mat-dialog-title class="app-group-linked-dialog-header flex justify-between items-center">
+    <span class="text-lg">{{ dialogTitle | transloco }}</span>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      [matTooltip]="'GENERAL.CLOSE' | transloco"
+      class="close-button"
+      aria-label="Close"
+    >
+      <mat-icon class="s-4">close</mat-icon>
+    </button>
+  </div>
+  <mat-dialog-content class="mat-typography">
+    @if (!items?.length) {
+      <div>
+        {{ 'CATEGORY.NO.TIES' | transloco }}
+      </div>
+    }
+
+    <mat-table [dataSource]="items">
+      <ng-container matColumnDef="name">
+        <mat-cell *matCellDef="let row">
+          {{ row.name }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matRowDef="let row; columns: ['name']"></mat-header-row>
+    </mat-table>
+  </mat-dialog-content>
+</div>

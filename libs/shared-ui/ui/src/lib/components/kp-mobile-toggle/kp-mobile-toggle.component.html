@@ -1,0 +1,10 @@
+<button
+  [ngClass]="{ selected: selected }"
+  [disabled]="disabled"
+  class="h-9 pl-2 pr-3 text-sm flex items-center border rounded-lg item"
+  (click)="onToggle()"
+  mat-stroked-button
+>
+  <mat-icon [ngClass]="{ filled: selected }" class="s-6">{{ icon }}</mat-icon>
+  <span class="ml-2 font-normal">{{ label | transloco }}</span>
+</button>

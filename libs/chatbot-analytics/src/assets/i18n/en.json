@@ -1,0 +1,49 @@
+{
+  "HEADER": {
+    "TITLE": "Analytics AI"
+  },
+  "LOADING": {
+    "ANALYZING_REPORT": "Analyzing report",
+    "SEPARATING_DATA": "Separating data",
+    "CREATING_STRUCTURES": "Creating structures",
+    "INDEXING_DATA": "Indexing data",
+    "GENERATING_INSIGHTS": "Generating insights"
+  },
+  "MESSAGES": {
+    "DOWNLOAD_CSV": "Download CSV",
+    "ERROR": "I couldn't process your request. Could you try again?",
+    "GENERATE_PLOT": "Generate Plot",
+    "GENERATE_TABLE": "Generate Table"
+  },
+  "INPUT": {
+    "INITIAL_MESSAGE": "How can I help you with this report?",
+    "PLACEHOLDER": "Send a message to Analytics AI"
+  },
+  "REPORT_TYPE": {
+    "konquest-groups-channels-users-export": "Channels by Groups",
+    "konquest-groups-missions-users-export": "Courses by Groups",
+    "konquest-mission-enrollment-quizzes": "Quizzes by Courses Analysis",
+    "konquest-mission-evaluations-statistics-export": "Course Evaluation Analysis",
+    "konquest-mission-presentation": "Course View",
+    "konquest-missions-enrollments-export": "Course Enrollments list",
+    "konquest-missions-evaluations-export": "Course Evaluations",
+    "konquest-missions-export": "Course List",
+    "konquest-missions-quizzes-answers-export": "Quizzes by Courses",
+    "konquest-pulses-channels-export": "List of Pulses by Channel",
+    "konquest-pulses-quizzes-answers-export": "Quizzes by Channels",
+    "konquest-trails-enrollments-export": "Enrollment list by Trails",
+    "konquest-trails-export": "Trail list",
+    "konquest-user-consumptions-export": "Overall User Consumption",
+    "konquest-user-general-statistics-export": "General User Statistics",
+    "konquest-user-presentation": "User View",
+    "konquest-users-access-by-date-export": "Active Users per Day",
+    "konquest-users-export": "General User List",
+    "konquest-users-pulses-activities-export": "Channel and Pulse Consumption",
+    "konquest-workspace-presentation": "Konquest Overview",
+    "smartzap-course-presentation": "Smartzap Overview",
+    "konquest-trails-completion-rate-export": "Trail Completion Rate",
+    "smartzap-user-activities-export": "Users Activities",
+    "smartzap-enrollments-export": "Enrollments in progress",
+    "myaccount-user-permissions-export": "User permissions list"
+  }
+}

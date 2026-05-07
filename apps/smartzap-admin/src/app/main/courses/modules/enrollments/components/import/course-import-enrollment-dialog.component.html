@@ -1,0 +1,60 @@
+<div mat-dialog-title class="flex flex-col justify-start">
+  <span class="text-lg">
+    <span class="font-thin">{{ 'ENROLLMENTS.TITLE' | transloco }}</span>
+    | {{ 'ENROLLMENTS.DIALOG_UPLOAD_TITLE' | transloco }}
+  </span>
+  <small class="font-thin text-sm leading-none mt-4">{{ 'ENROLLMENTS.DIALOG_UPLOAD_SUBTITLE' | transloco }}</small>
+</div>
+
+<mat-dialog-content>
+  <div class="message-box warning mb-12">
+    {{ 'ENROLLMENTS.MESSAGE.IMPORT_WARN' | transloco }}
+  </div>
+
+  <app-enrollment-upload (upload)="onUploadEnrollments($event)" class="mb-12"></app-enrollment-upload>
+  @if (filename) {
+    <div class="mb-12 flex justify-center">
+      <small class="mx-0 text-boxed">{{ filename }}</small>
+    </div>
+  }
+
+  <form>
+    <mat-form-field class="w-full">
+      <mat-label>
+        {{ 'GENERAL.TIMEZONE' | transloco }}
+      </mat-label>
+      <input
+        matInput
+        [formControl]="timezone"
+        [matAutocomplete]="auto"
+        ngModel
+        matchTimezoneValidator
+        data-test="batch-enrollment-input-timezone"
+      />
+
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (zone of filteredOptions | async; track zone) {
+          <mat-option [value]="zone">
+            {{ zone }}
+          </mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="pt-24">
+  <button mat-stroked-button mat-dialog-close>
+    {{ 'GENERAL.CANCEL' | transloco }}
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="onSubmit()"
+    [disabled]="!filename || timezone.invalid"
+    class="mr-3"
+    data-test="button-confirm-batch-enrollment"
+  >
+    {{ 'GENERAL.OK' | transloco }}
+  </button>
+</mat-dialog-actions>

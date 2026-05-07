@@ -1,0 +1,23 @@
+{
+  "general": {
+    "date": "Date",
+    "time": "Time"
+  },
+  "attendance-confirmed": {
+    "title": "Presence</br><strong>Confirmed!</strong>",
+    "welcome": "Welcome! Your check-in was successful.</br>We wish you an excellent training."
+  },
+  "attendance-error": {
+    "title": "Error during check-in",
+    "event-not-found": "Event not found.<br>Please contact one of the organizers.",
+    "enrollment-not-found": "We could not find your registration for this event.<br>Please contact one of the organizers.",
+    "self-check-in-expired": "Time limit expired.<br>Check-in for this event is no longer possible."
+  },
+  "support-materials": {
+    "title": "Support materials"
+  },
+  "unauthorized": {
+    "title": "Error processing check-in",
+    "message": "We are unable to validate your access at this time. Please ensure you are authenticated and using a valid QR Code."
+  }
+}

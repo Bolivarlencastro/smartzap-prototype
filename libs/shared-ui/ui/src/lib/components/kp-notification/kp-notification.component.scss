@@ -1,0 +1,28 @@
+.kp-notifications {
+  $item-button-size: 1.5rem !important;
+
+  @mixin item-button-size {
+    height: $item-button-size;
+    width: $item-button-size;
+    min-height: $item-button-size;
+    max-height: $item-button-size;
+  }
+
+  &__title {
+    overflow: hidden;
+  }
+
+  &__content {
+    .mat-mdc-menu-content {
+      padding: 0 !important;
+    }
+  }
+
+  &__item_button {
+    @include item-button-size;
+
+    .mat-mdc-button-touch-target {
+      @include item-button-size;
+    }
+  }
+}

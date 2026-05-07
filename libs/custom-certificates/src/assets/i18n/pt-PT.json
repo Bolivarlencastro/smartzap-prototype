@@ -1,0 +1,93 @@
+{
+  "CREATE_NEW_CERTIFICATE": "Criar certificado",
+  "LIST": {
+    "CERTIFICATE": "Certificado",
+    "DEFAULT": "Padrão",
+    "ENABLED_FIELDS": "Campos Habilitados",
+    "MENU": "Menu",
+    "NAME": "Nome",
+    "NO_RESULTS": "Nenhum certificado encontrado",
+    "ORIENTATION": "Orientação",
+    "TYPE": "Tipo",
+    "LANDSCAPE": "Horizontal",
+    "PORTRAIT": "Vertical"
+  },
+  "TITLE": "Certificados Personalizados",
+  "SEARCH_FOR": "Pesquisar por",
+  "CERTIFICATE_PREVIEW": {
+    "CONCLUSION_DATE": "Data de conclusão",
+    "COURSE_NAME": "Nome do curso",
+    "COURSE_NAME_MESSAGE": "Completou com sucesso",
+    "FOOTER": "Certificado emitido e assinado por",
+    "PERFORMANCE": "Performance",
+    "TITLE": "Certificado de Conclusão",
+    "TOTAL_HOURS": "Total de horas",
+    "USERNAME": "Nome do usuário",
+    "USERNAME_MESSAGE": "Certificamos que"
+  },
+  "DELETE_CONFIRMATION": {
+    "TITLE": "Deletar certificado",
+    "MESSAGE": "Você realmente deseja deletar esse certificado? As cursos/trilhas, vinculadas a ele passam a utilizar o certificado padrão da workspace."
+  },
+  "CREATE_FORM": {
+    "BACKGROUND_COLOR": "Cor de Fundo",
+    "BACKGROUND_IMAGE": "Imagem de Fundo",
+    "CERTIFICATE_NAME": "Nome do Certificado",
+    "COLORS": "Cores",
+    "CONCLUSION_DATE": "Data de Conclusão",
+    "CONFIGURATION": "Configuração",
+    "DESIGN": "Design",
+    "DONT_SHOW": "Não Mostrar",
+    "ENABLED_FIELDS": "Campos Ativados",
+    "LANDSCAPE": "Horizontal",
+    "LINKED_COURSES": "Cursos Vinculados",
+    "LINK_COURSES": "Vincular Curso(s)",
+    "LOGO": "Logótipo",
+    "LOGO_IMAGE": "Imagem da marca",
+    "MAX_CHARACTERS": "Máximo 30 caracteres",
+    "MISSIONS": "Cursos",
+    "ORIENTATION": "Orientação",
+    "PERFORMANCE": "Desempenho",
+    "RECOMMENDED_DIMENSION": "Dimensão Recomendada: 1920x1022 | Formato: .jpg, .png",
+    "SELECT_IMAGE": "Selecionar imagem",
+    "REMOVE_IMAGE": "Remover imagem",
+    "SHOW": "Mostrar",
+    "SIGNED_BY": "Assinado Por",
+    "TEXT_COLOR": "Cor do texto",
+    "TOTAL_HOURS": "Total de Horas",
+    "TRAILS": "Trilhas",
+    "TYPE": "Tipo",
+    "PORTRAIT": "Vertical"
+  },
+  "CREATE_DIALOG": {
+    "ACTIONS": {
+      "CLOSE": "Fechar",
+      "CREATE": "Criar",
+      "SET_DEFAULT": "Definir como padrão",
+      "SAVE": "Salvar"
+    },
+    "DIALOG_SUBTITLE": "Crie um modelo de certificado personalizado utilizado em trilhas e cursos",
+    "DIALOG_TITLE": "Criar certificado"
+  },
+  "MESSAGES": {
+    "SAVE": {
+      "SUCCESS": "Certificado salvo com sucesso.",
+      "FAILURE": "Falha ao salvar o certificado."
+    },
+    "DELETE": {
+      "SUCCESS": "Certificado removido com sucesso.",
+      "FAILURE": "Falha ao remover o certificado."
+    },
+    "TOGGLE_DEFAULT": {
+      "COURSES": "Certificado definido como padrão de cursos.",
+      "TRAILS": "Certificado definido como o padrão de trilhas.",
+      "FAILURE": "Falha ao definir o certificado como padrão."
+    },
+    "LEARN_CONTENT": {
+      "VINCULATE_SUCCESS": "Certificado associado com sucesso.",
+      "VINCULATE_ERROR": "Falha ao associar o certificado.",
+      "DESVINCULATE_SUCCESS": "Certificado desassociado com sucesso.",
+      "DESVINCULATE_ERROR": "Falha ao desassociar o certificado."
+    }
+  }
+}

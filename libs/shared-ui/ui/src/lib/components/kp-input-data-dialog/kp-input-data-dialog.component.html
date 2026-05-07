@@ -1,0 +1,14 @@
+<span class="text-lg" mat-dialog-title>{{ confirmTitle || 'UI.GENERAL.CONFIRM' | transloco }}</span>
+<div mat-dialog-content>
+  <mat-form-field class="w-full">
+    <textarea matInput [placeholder]="placeholder | transloco" [(ngModel)]="inputData"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="pt-10 flex justify-end">
+  <button mat-stroked-button class="mr-4" id="button-confirm-cancel" [mat-dialog-close]="false">
+    {{ 'UI.GENERAL.CANCEL' | transloco }}
+  </button>
+  <button mat-flat-button color="primary" id="button-confirm-ok" [mat-dialog-close]="inputData || true">
+    {{ 'UI.GENERAL.SUBMIT' | transloco }}
+  </button>
+</div>

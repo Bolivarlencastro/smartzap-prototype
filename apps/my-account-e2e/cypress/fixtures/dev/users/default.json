@@ -1,0 +1,15 @@
+{
+  "name": "Usuario-temp-cy",
+  "email": "temp-user-cy@cypress.com.br",
+  "role": "user",
+  "roleName": "Usuário",
+  "successImportUser": "Usuário importado",
+  "language": "Português",
+  "optionMenu": "Workspaces e Permissões",
+  "workspace": "Cypress Teste",
+  "api": {
+    "workspaceID": "7b2c5110-14d8-4a55-b984-be4eb3b3fdbf",
+    "languageID": "ea636f50-fdc4-49b0-b2de-9e5905de456b",
+    "permissions": "3b16b975-0297-4edf-950b-e3700b0d0d01"
+  }
+}

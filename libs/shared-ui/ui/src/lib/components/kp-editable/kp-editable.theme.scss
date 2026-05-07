@@ -1,0 +1,7 @@
+@use 'sass:map';
+
+@mixin kp-editable-theme {
+  kp-editable:hover {
+    background-color: var(--mat-sys-surface);
+  }
+}

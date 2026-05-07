@@ -1,0 +1,120 @@
+<div class="divide-y">
+  @for (step of items; track step) {
+    <div class="learning-trail-step h-20 flex items-center py-3 pl-3 overflow-hidden" data-test="step-trail">
+      <!-- INDEX -->
+      <span class="text-lg mr-5 ml-3 hidden xxs:block">{{ step.listIndex }}</span>
+      <!-- / INDEX -->
+      <!-- STEP ICON -->
+      <div class="grid grid-cols-1 grid-rows-1 place-items-center w-14">
+        <mat-progress-spinner
+          diameter="48"
+          [value]="100"
+          color="primary"
+          class="row-start-1 row-end-2 col-start-1 col-end-2 opacity-30"
+        ></mat-progress-spinner>
+        @if (step?.progress > 0) {
+          <mat-progress-spinner
+            diameter="48"
+            [value]="step?.progress * 100"
+            color="primary"
+            class="row-start-1 row-end-2 col-start-1 col-end-2"
+          ></mat-progress-spinner>
+        }
+        <mat-icon class="s-4 row-start-1 row-end-2 col-start-1 col-end-2 opacity-80" [svgIcon]="step?.type"></mat-icon>
+      </div>
+      <!-- / STEP ICON -->
+      <div class="pl-3 flex flex-col flex-1 xxs:truncate">
+        <span class="hidden xxs:block font-bold text-base pointer-events-auto truncate" data-test="step-name">
+          <span
+            [kpTrailStepNameRoute]="{ step: step, isEnrolledInTrail }"
+            (missionDetailEvent)="openMissionDetail($event)"
+          >
+            {{ step?.name }}</span
+          >
+        </span>
+        <span
+          class="xxs:hidden font-bold text-xs pointer-events-auto break-words line-clamp-2 overflow-hidden text-ellipsis"
+          data-test="step-name"
+        >
+          <span
+            [kpTrailStepNameRoute]="{ step: step, isEnrolledInTrail }"
+            (missionDetailEvent)="openMissionDetail($event)"
+          >
+            {{ step?.name }}</span
+          >
+        </span>
+        <div class="flex gap-2 flex-wrap items-center">
+          <!-- MOBILE DETAILS -->
+          @if (step?.status) {
+            <kp-status-chip class="xxs:hidden text-[10px] mt-0.5" [color]="step?.status | kpEnrollmentStatusColor">
+              {{ 'UI.ENROLLMENT.STATUS.' + step?.status | transloco }}
+            </kp-status-chip>
+          }
+          @if (step?.externalCourse) {
+            <mat-icon class="xxs:hidden mt-0.5 s-2" svgIcon="moving"></mat-icon>
+          }
+          <!-- / MOBILE DETAILS -->
+          <!-- DETAILS -->
+          @for (tag of step.step?.tags; track tag; let last = $last) {
+            <kp-card-tag class="hidden xxs:flex" [type]="tag" [keepOpen]="last"></kp-card-tag>
+          }
+          @if (step?.externalCourse) {
+            <div class="hidden xxs:flex items-center gap-1 h-full">
+              <mat-icon class="s-2" svgIcon="moving"></mat-icon>
+              <span class="text-[10px] pt-px">{{ step.externalCourse | uppercase }}</span>
+            </div>
+          }
+          @if (step?.language) {
+            <div class="hidden xxs:flex items-center gap-1 h-full">
+              <mat-icon class="s-2">language</mat-icon>
+              <div class="text-[10px] pt-px">{{ step.language | uppercase }}</div>
+            </div>
+          }
+          @if (step?.duration) {
+            <div class="hidden xxs:flex items-center gap-1 h-full">
+              <mat-icon class="s-2">schedule</mat-icon>
+              <div class="text-[10px] pt-px">{{ step.duration | kpDuration }}</div>
+            </div>
+          }
+          <!-- / DETAILS -->
+        </div>
+      </div>
+      <!-- ACTION BUTTONS -->
+      <div class="pr-1 ml-auto flex items-center">
+        @if (step?.type === 'mission') {
+          <!-- STEP CERTIFICATE -->
+          @if (displayStepUploadIcon(step)) {
+            <button
+              mat-icon-button
+              (click)="stepCertificate('upload-certificate', step?.step?.mission?.enrollment?.id)"
+              [disabled]="disableStepUploadIcon(step)"
+              data-test="mission-certificate"
+            >
+              <mat-icon class="s-2" svgIcon="file_upload"></mat-icon>
+            </button>
+          }
+          @if (displayStepDownloadIcon(step)) {
+            <button
+              mat-icon-button
+              (click)="stepCertificate('generate-certificate', step?.step?.mission?.enrollment?.id)"
+              [disabled]="disableStepDownloadIcon(step)"
+              data-test="mission-certificate"
+            >
+              <mat-icon class="s-2" svgIcon="file_download"></mat-icon>
+            </button>
+          }
+        }
+        <!-- / STEP CERTIFICATE -->
+        <button
+          mat-icon-button
+          (click)="stepClick(step)"
+          [disabled]="shouldDisablePlayIcon(step)"
+          data-test="play-circle"
+        >
+          <mat-icon class="s-6">play_circle</mat-icon>
+        </button>
+      </div>
+      <!-- / ACTION BUTTONS -->
+    </div>
+  }
+</div>

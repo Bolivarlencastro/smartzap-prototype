@@ -1,0 +1,75 @@
+<div #carouselContainer class="carousel" tabindex="0" id="div-carousel-list" [style.max-width]="maxWidth">
+  <ul
+    #carouselList
+    class="carousel-list"
+    role="listbox"
+    [style.flex-direction]="orientation === 'rtl' ? 'row-reverse' : 'row'"
+  >
+    @for (slide of slidesList; track slide) {
+      <li
+        #carouselSlide
+        class="carousel-slide aspect-[3] h-auto"
+        role="option"
+        (panleft)="onPan($event, carouselSlide)"
+        (panright)="onPan($event, carouselSlide)"
+        (panend)="onPanEnd($event, carouselSlide)"
+        (pancancel)="onPanEnd($event, carouselSlide)"
+      >
+        <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container>
+      </li>
+    }
+  </ul>
+
+  @if (!hideArrows) {
+    <button
+      mat-icon-button
+      type="button"
+      tabindex="-1"
+      [color]="color"
+      [disabled]="!loop && currentIndex === 0"
+      (click)="previous()"
+    >
+      @if (svgIconOverrides?.arrowBack) {
+        <mat-icon [svgIcon]="svgIconOverrides.arrowBack"></mat-icon>
+      } @else {
+        <mat-icon>arrow_back</mat-icon>
+      }
+    </button>
+  }
+  @if (!hideArrows) {
+    <button
+      mat-icon-button
+      type="button"
+      tabindex="-1"
+      [color]="color"
+      [disabled]="!loop && currentIndex === slidesList.length - 1"
+      (click)="next()"
+    >
+      @if (svgIconOverrides?.arrowForward) {
+        <mat-icon [svgIcon]="svgIconOverrides.arrowForward"></mat-icon>
+      } @else {
+        <mat-icon>arrow_forward</mat-icon>
+      }
+    </button>
+  }
+
+  @if (!hideIndicators) {
+    <div
+      class="carousel-indicators"
+      tabindex="-1"
+      [style.flex-direction]="orientation === 'rtl' ? 'row-reverse' : 'row'"
+    >
+      @for (slide of slidesList; track slide; let i = $index) {
+        <button
+          type="button"
+          tabindex="-1"
+          mat-mini-fab
+          [color]="color"
+          [disabled]="i === currentIndex"
+          (click)="slideTo(i)"
+          (focus)="carouselContainer.focus()"
+        ></button>
+      }
+    </div>
+  }
+</div>

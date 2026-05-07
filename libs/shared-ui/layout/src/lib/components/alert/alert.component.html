@@ -1,0 +1,57 @@
+@if (!dismissible || (dismissible && !dismissed)) {
+  <div class="fuse-alert-container" [@fadeIn]="!dismissed" [@fadeOut]="!dismissed">
+    <!-- Border -->
+    @if (appearance === 'border') {
+      <div class="fuse-alert-border"></div>
+    }
+    <!-- Icon -->
+    @if (showIcon) {
+      <div class="fuse-alert-icon">
+        <!-- Custom icon -->
+        <div class="fuse-alert-custom-icon">
+          <ng-content select="[fuseAlertIcon]"></ng-content>
+        </div>
+        <!-- Default icons -->
+        <div class="fuse-alert-default-icon">
+          @if (type === 'primary') {
+            <mat-icon>check_circle</mat-icon>
+          }
+          @if (type === 'accent') {
+            <mat-icon>check_circle</mat-icon>
+          }
+          @if (type === 'warn') {
+            <mat-icon>cancel</mat-icon>
+          }
+          @if (type === 'basic') {
+            <mat-icon>check_circle</mat-icon>
+          }
+          @if (type === 'info') {
+            <mat-icon>info</mat-icon>
+          }
+          @if (type === 'success') {
+            <mat-icon>check_circle</mat-icon>
+          }
+          @if (type === 'warning') {
+            <mat-icon>exclamation</mat-icon>
+          }
+          @if (type === 'error') {
+            <mat-icon>cancel</mat-icon>
+          }
+        </div>
+      </div>
+    }
+    <!-- Content -->
+    <div class="fuse-alert-content">
+      <div class="fuse-alert-title">
+        <ng-content select="[fuseAlertTitle]"></ng-content>
+      </div>
+      <div class="fuse-alert-message">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <!-- Dismiss button -->
+    <button class="fuse-alert-dismiss-button" mat-icon-button (click)="dismiss()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+}

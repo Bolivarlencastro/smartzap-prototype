@@ -1,0 +1,220 @@
+@if (response.error) {
+  <div>
+    {{ response.error | transloco }}.
+    @if (showRouteButtons) {
+      <a routerLink="/course" class="text-primary">{{ 'UI.GENERAL.BACK' | transloco }}</a>
+    }
+  </div>
+}
+
+@if (!response.error) {
+  <div>
+    <section class="mb-5 flex flex-col md:flex-row gap-6 justify-between" *kpVar="courseData as data">
+      @if (response.isLoading) {
+        <kp-loading-progress-shade></kp-loading-progress-shade>
+      }
+      <mat-card class="h-20 w-full mb-2 flex-row items-center">
+        @if (showRouteButtons) {
+          <div>
+            <a mat-icon-button routerLink="/course" class="text-primary">
+              <mat-icon class="s-9">chevron_left</mat-icon>
+            </a>
+          </div>
+        }
+        <div class="mb-2 mt-3">
+          <h1 class="text-normal ml-8 text-left md:text-left">{{ 'UI.COURSE.DETAILS.TITLE' | transloco }}</h1>
+          <p class="text-2xl mb-2.5 ml-8 text-left md:text-left">{{ data?.name }}</p>
+        </div>
+      </mat-card>
+    </section>
+    <section class="mb-5 flex flex-col md:flex-row gap-6">
+      <!-- Total Users -->
+      <mat-card
+        appearance="outlined"
+        class="p-4 drop-shadow-md rounded-md bg-primary text-on-primary flex flex-col w-full md:w-1/5 justify-between items-center"
+        *kpVar="courseStats as stats"
+      >
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <span
+          class="text-3xl text-center"
+          [innerHTML]="'UI.COURSE.DETAILS.WIDGETS.TOTAL_USERS.TITLE' | transloco"
+        ></span>
+        <span class="text-[100px] font-bold">{{ stats?.enrollments.total }}</span>
+        <span class="text-2xl" [innerHTML]="'UI.COURSE.DETAILS.WIDGETS.TOTAL_USERS.TEXT' | transloco"></span>
+      </mat-card>
+      <!-- / Total Users -->
+      <!-- Funnel Chart -->
+      <mat-card
+        appearance="outlined"
+        class="p-4 drop-shadow-md rounded-md w-full md:w-4/5 flex flex-col items-center justify-center"
+        *kpVar="enrollmentDistribution as chartData"
+      >
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <kp-analytics-funnel-chart
+          [data]="chartData"
+          legendPosition="top"
+          [alignLabels]="true"
+        ></kp-analytics-funnel-chart>
+      </mat-card>
+      <!-- / Funnel Chart -->
+    </section>
+    <section class="mb-5 flex flex-col md:flex-row gap-6">
+      <!-- Completed Rate -->
+      <mat-card
+        appearance="outlined"
+        class="p-4 drop-shadow-md rounded-md w-full md:w-1/5 flex flex-col items-center justify-center"
+        *kpVar="courseStats as stats"
+      >
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <kp-progress-circle [value]="stats?.enrollments.completed_ratio * 100"></kp-progress-circle>
+        <span class="text-2xl" [innerHTML]="'UI.COURSE.DETAILS.WIDGETS.COMPLETED_RATE.TEXT' | transloco"></span>
+      </mat-card>
+      <!-- / Completed Rate -->
+      <!-- Content Available -->
+      <mat-card
+        appearance="outlined"
+        class="drop-shadow-md p-4 flex-1 flex flex-col justify-between"
+        *kpVar="courseData as data"
+      >
+        <h2 class="text-xl">{{ 'UI.COURSE.DETAILS.WIDGETS.CONTENT_AVAILABLE.TITLE' | transloco }}</h2>
+        <span class="text-6xl mb-2 font-bold">{{ data?.duration_time | kpNumberToTime: 's' }}</span>
+        <div>{{ 'UI.COURSE.DETAILS.WIDGETS.CONTENT_AVAILABLE.TEXT' | transloco }}</div>
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+      </mat-card>
+      <!-- / Content Available -->
+      <!-- Content Consumed -->
+      <mat-card
+        appearance="outlined"
+        class="drop-shadow-md p-4 flex-1 flex flex-col justify-between"
+        *kpVar="courseStats as stats"
+      >
+        <h2 class="text-xl">{{ 'UI.COURSE.DETAILS.WIDGETS.CONTENT_CONSUMED.TITLE' | transloco }}</h2>
+        <span class="text-6xl mb-2 font-bold">{{
+          stats?.activities.total_activity_seconds | kpNumberToTime: 's'
+        }}</span>
+        <div>{{ 'UI.COURSE.DETAILS.WIDGETS.CONTENT_CONSUMED.TEXT' | transloco }}</div>
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+      </mat-card>
+      <!-- / Content Consumed -->
+      <!-- Average Rating -->
+      <mat-card
+        appearance="outlined"
+        class="drop-shadow-md p-4 flex-1 flex flex-col justify-between"
+        *kpVar="courseStats as stats"
+      >
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <h2 class="text-xl">{{ 'UI.COURSE.DETAILS.WIDGETS.RATING.TITLE' | transloco }}</h2>
+        @if (stats?.ratings.average !== null) {
+          <span class="text-6xl mb-2 font-bold">{{ stats?.ratings.average | number: '1.1-1' }}</span>
+          <div>{{ 'UI.COURSE.DETAILS.WIDGETS.RATING.TEXT' | transloco }}</div>
+        }
+        @if (stats?.ratings.average === null) {
+          <span class="text-6xl mb-2 font-bold"> - </span>
+        }
+      </mat-card>
+      <!-- / Average Rating -->
+      <!-- Total Give Up -->
+      <mat-card
+        appearance="outlined"
+        class="drop-shadow-md p-4 flex-1 flex flex-col justify-between"
+        *kpVar="courseStats as stats"
+      >
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <h2 class="text-xl">{{ 'UI.COURSE.DETAILS.WIDGETS.GIVE_UP.TITLE' | transloco }}</h2>
+        <span class="text-6xl mb-2 font-bold">{{ stats?.enrollments.give_up | number: '1.0-0' }}</span>
+        <div>{{ 'UI.COURSE.DETAILS.WIDGETS.GIVE_UP.TEXT' | transloco }}</div>
+      </mat-card>
+      <!-- / Total Give Up -->
+    </section>
+    <section class="page-section flex flex-col md:flex-row gap-6 mb-5">
+      <!-- NPS -->
+      <mat-card
+        appearance="outlined"
+        class="drop-shadow-md p-4 flex-1 flex flex-col justify-between"
+        *kpVar="courseNps as nps"
+      >
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <h2 class="text-5xl">{{ 'UI.COURSE.DETAILS.WIDGETS.NPS.TITLE' | transloco }}</h2>
+        <kp-course-nps [data]="nps"></kp-course-nps>
+      </mat-card>
+      <!-- / NPS -->
+      <!-- middle column -->
+      <div class="md:w-1/5 flex flex-col gap-6">
+        <!-- Taxa de Acerto -->
+        @if (courseStats; as stats) {
+          <mat-card
+            appearance="outlined"
+            class="drop-shadow-md p-4 flex-1 md:h-1/2 flex flex-row md:flex-col xl:flex-row gap-2 justify-around items-center"
+          >
+            @if (response.isLoading) {
+              <kp-loading-progress-shade></kp-loading-progress-shade>
+            }
+            <div class="flex flex-col gap-2 text-center items-center">
+              <kp-progress-circle [value]="stats?.answers.correct_ratio * 100"></kp-progress-circle>
+              <div>{{ 'UI.COURSE.DETAILS.WIDGETS.CORRECT_ANSWER_RATE.TITLE' | transloco }}</div>
+            </div>
+            @if (showRouteButtons) {
+              <button
+                class="w-50"
+                mat-stroked-button
+                color="primary"
+                routerLink="/course/{{ courseId }}/answers"
+                disabled
+              >
+                {{ 'UI.COURSE.DETAILS.WIDGETS.CORRECT_ANSWER_RATE.BUTTON' | transloco }}
+              </button>
+            }
+          </mat-card>
+        }
+        <!-- / Taxa de Acerto -->
+        <!-- Most Engaged Content -->
+        @if (firstContentType; as label) {
+          <mat-card
+            appearance="outlined"
+            class="drop-shadow-md p-4 flex-1 md:h-1/2 flex flex-row md:flex-col xl:flex-row gap-5 justify-around items-center"
+          >
+            @if (response.isLoading) {
+              <kp-loading-progress-shade></kp-loading-progress-shade>
+            }
+            <div class="flex flex-col gap-2 text-center items-center">
+              <kp-text-circle [value]="label"></kp-text-circle>
+              <div>{{ 'UI.COURSE.DETAILS.WIDGETS.MOST_ENGAGED_CONTENT.TITLE' | transloco }}</div>
+            </div>
+            @if (showRouteButtons) {
+              <button class="w-50" mat-stroked-button color="primary" routerLink="/course/{{ courseId }}/contents">
+                {{ 'UI.COURSE.DETAILS.WIDGETS.MOST_ENGAGED_CONTENT.BUTTON' | transloco }}
+              </button>
+            }
+          </mat-card>
+        }
+        <!-- / Most Engaged Content -->
+      </div>
+      <!-- / middle column -->
+      <!-- Content Types -->
+      <mat-card appearance="outlined" class="drop-shadow-md p-4 flex-1" *kpVar="rankContentTypes as data">
+        @if (response.isLoading) {
+          <kp-loading-progress-shade></kp-loading-progress-shade>
+        }
+        <h2 class="text-3xl">{{ 'UI.COURSE.DETAILS.WIDGETS.CONTENT_TYPES.TITLE' | transloco }}</h2>
+        <kp-analytics-donut-chart [data]="data"></kp-analytics-donut-chart>
+      </mat-card>
+      <!-- / Content Types -->
+    </section>
+  </div>
+}

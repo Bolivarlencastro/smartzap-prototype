@@ -1,0 +1,55 @@
+@if (loading) {
+  <ngx-skeleton-loader [theme]="loaderTheme" [count]="5" class="flex gap-2"></ngx-skeleton-loader>
+} @else {
+  <h3 class="font-bold">{{ 'MISSION.DETAIL.TAGS' | transloco }}:</h3>
+  @if (isEnabled) {
+    <mat-form-field class="w-full">
+      <mat-chip-grid #chipGrid class="py-1" aria-label="Novas tags">
+        @for (tag of tags; track tag.id) {
+          <mat-chip-row
+            [selectable]="isEnabled"
+            [removable]="isEnabled"
+            (removed)="remove(tag)"
+            class="truncate text-sm rounded-lg bg-transparent border"
+            selected
+          >
+            {{ tag.name }}
+            @if (isEnabled) {
+              <mat-icon matChipRemove class="s-5 pr-1">close</mat-icon>
+            }
+          </mat-chip-row>
+        }
+        <input
+          [placeholder]="'+ ' + ('MISSION.DETAIL.TAGS_NEW' | transloco)"
+          id="input-mission-detail-add-tag"
+          class="py-1"
+          #chipInput
+          [matChipInputFor]="chipGrid"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+          (input)="bulkTagCreation()"
+          [disabled]="!isEnabled"
+          maxlength="20"
+          kpChipInputSeparator
+        />
+      </mat-chip-grid>
+    </mat-form-field>
+  }
+
+  @if (!isEnabled) {
+    <div>
+      <mat-chip-listbox>
+        @for (tag of tags; track tag) {
+          <mat-chip-option class="truncate text-sm rounded-lg bg-transparent border" [selectable]="false">
+            {{ tag.name }}
+          </mat-chip-option>
+        }
+      </mat-chip-listbox>
+      @if (!tags) {
+        <div>
+          {{ 'MISSION.DETAIL.TAGS_NOT_REGISTERED' | transloco }}
+        </div>
+      }
+    </div>
+  }
+}

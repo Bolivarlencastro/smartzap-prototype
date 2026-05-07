@@ -1,0 +1,11 @@
+<span [matTooltip]="tooltipMessage | transloco" [style.color]="deliverStatusColor">
+  @if (deliverStatus === 'DELIVERED') {
+    <mat-icon class="s-7">check_circle</mat-icon>
+  }
+  @if (deliverStatus === 'WAITING') {
+    <mat-icon class="s-7">more_horiz</mat-icon>
+  }
+  @if (deliverStatus === 'ERROR') {
+    <mat-icon class="s-7">error</mat-icon>
+  }
+</span>

@@ -1,0 +1,11 @@
+{
+  "CREATE": "Criar Workspace",
+  "LOGOUT": "Sair",
+  "WORKSPACE_NOT_FOUND": "Nenhum workspace encontrado",
+  "SWITCH_TO_LIST_VIEW": "Alternar para visualização em lista",
+  "SWITCH_TO_GRID_VIEW": "Alternar para visualização em grelha",
+  "TABLE_LOGO": "Logo",
+  "TABLE_NAME": "Nome",
+  "TABLE_REFERENCE": "ID/Ref",
+  "COPY_REFERENCE": "Copiar ID/Ref"
+}

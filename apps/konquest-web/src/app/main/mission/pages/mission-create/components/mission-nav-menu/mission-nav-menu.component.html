@@ -1,0 +1,13 @@
+<div class="w-96">
+  <nav>
+    @for (item of navItems$ | async; track item; let i = $index) {
+      <app-mission-nav-menu-item
+        [order]="i + 1"
+        [title]="item.title | transloco"
+        [label]="item.label | transloco"
+        [route]="item.route"
+        [disabled]="i > 0 && !missionDefined"
+      ></app-mission-nav-menu-item>
+    }
+  </nav>
+</div>

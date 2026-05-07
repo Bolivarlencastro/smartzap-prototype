@@ -1,0 +1,11 @@
+<div class="flex items-center">
+  <div
+    class="status-box w-2 h-2 rounded-full mr-2.5 whitespace-nowrap"
+    [ngStyle]="{
+      'background-color': color,
+    }"
+  ></div>
+  <div class="truncate flex items-center">
+    <ng-content></ng-content>
+  </div>
+</div>

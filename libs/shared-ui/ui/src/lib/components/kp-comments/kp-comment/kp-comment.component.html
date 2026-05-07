@@ -1,0 +1,39 @@
+<div class="flex flex-row justify-between items-center py-2">
+  <div class="w-full flex flex-row items-center">
+    <img
+      class="w-12 h-12 rounded-full self-start"
+      alt="Avatar"
+      [matTooltip]="comment?.user?.name"
+      [src]="comment?.user?.avatar || defaultUserAvatar"
+    />
+    <div class="ml-6 flex flex-col gap-1 xxs:gap-2">
+      <h1 class="m-0 font-bold xxs:text-lg">
+        {{ comment?.user?.name }}
+      </h1>
+      <div
+        class="kp-comment-container max-xxs:text-sm whitespace-pre-wrap"
+        [innerHtml]="comment?.comment | kpLinebreak"
+      ></div>
+      <span class="text-xs text-secondary">
+        {{ comment?.date }}
+      </span>
+    </div>
+  </div>
+  @if (isAuthor || canDelete) {
+    <div id="div-comment-show-options">
+      <mat-menu #commentMenu="matMenu" overlapTrigger="false">
+        @if (isAuthor) {
+          <button mat-menu-item (click)="onEdit()" id="button-comment-edit">
+            {{ 'UI.GENERAL.EDIT' | transloco }}
+          </button>
+        }
+        <button mat-menu-item (click)="onDelete()" id="button-comment-delete">
+          {{ 'UI.GENERAL.DELETE' | transloco }}
+        </button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="commentMenu" id="button-comment-menu">
+        <mat-icon class="s-6">more_vert</mat-icon>
+      </button>
+    </div>
+  }
+</div>

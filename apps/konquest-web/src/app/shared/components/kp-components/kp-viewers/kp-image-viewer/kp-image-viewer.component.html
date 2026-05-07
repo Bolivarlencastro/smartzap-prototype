@@ -1,0 +1,11 @@
+<div class="kp-image-viewer">
+  <img
+    [matTooltip]="enableFullscreen ? ('KP_IMAGE_VIEWER.TOOLTIP' | transloco) : ''"
+    matTooltipPosition="above"
+    matTooltipClass="tooltip-red"
+    [src]="url"
+    alt="Viewer"
+    (click)="onClick()"
+    data-test="imageViewer"
+  />
+</div>

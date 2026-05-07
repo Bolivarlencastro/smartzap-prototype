@@ -1,0 +1,56 @@
+<mat-form-field subscriptSizing="dynamic" appearance="outline" class="pt-6">
+  <mat-label>{{ autocompleteLabel }}</mat-label>
+  <input
+    data-test="input-live-presential-instructor"
+    matInput
+    [formControl]="autocompleteFormControl"
+    [matAutocomplete]="instructorsAc"
+  />
+
+  <mat-autocomplete
+    #instructorsAc="matAutocomplete"
+    (optionSelected)="autoCompleteOptionSelected($event.option.value)"
+    [displayWith]="emptyDisplayWith"
+    [hideSingleSelectionIndicator]="true"
+  >
+    @for (item of filteredItems; track item) {
+      <mat-option [value]="item">
+        <div class="flex flex-row gap-4 items-center">
+          @if (showAvatar) {
+            <img [src]="item.avatar || defaultAvatar" alt="Avatar" class="h-8 w-8 rounded-full" />
+          }
+          <span class="text-ellipsis overflow-hidden secondary-text">{{ item.name }}</span>
+        </div>
+      </mat-option>
+    }
+
+    @if (showCreateButton) {
+      <mat-option data-test="live-presential-add-external-instructor" [value]="-1">
+        <div class="flex flex-row items-center secondary-text">
+          <mat-icon>person_add</mat-icon>
+          <span>{{ 'MISSION.PRESENTIAL.CONFIGURATION.ADD_TO_LIST' | transloco }}</span>
+        </div>
+      </mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>
+
+<div class="flex flex-col">
+  @for (item of currentItems; track item) {
+    <div class="autocomplete-list-item flex gap-3 items-center py-3">
+      @if (showAvatar) {
+        <img [src]="item.avatar || defaultAvatar" [alt]="item.name" class="h-8 w-8 rounded-full object-cover" />
+      }
+      <p data-test="live-presential-instructors-name" class="flex-1">{{ item.name }}</p>
+      <button
+        data-test="live-presential-remove-instructor"
+        mat-icon-button
+        (click)="onRemoveItem(item)"
+        [disabled]="item.is_integration"
+        [matTooltip]="'GENERAL.REMOVE' | transloco"
+      >
+        <mat-icon class="s-6">delete</mat-icon>
+      </button>
+    </div>
+  }
+</div>

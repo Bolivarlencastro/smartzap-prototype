@@ -1,0 +1,72 @@
+<div class="h-full flex flex-col">
+  <!-- TABS -->
+  <mat-divider></mat-divider>
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" fitInkBarToContent>
+    @for (tab of tabs; track trackByFn($index, tab)) {
+      <a
+        mat-tab-link
+        (click)="changeTab(tab.value)"
+        [active]="isActive(tab.value)"
+        [attr.data-test]="'tab-' + tab.value"
+      >
+        {{ tab?.title | transloco }}
+      </a>
+    }
+  </nav>
+  <!-- / TABS -->
+
+  <!-- CONTENT TABS -->
+  <mat-tab-nav-panel class="h-[calc(100%-49px)]" #tabPanel>
+    <mat-drawer-container class="h-full overflow-hidden filter-bg">
+      <mat-drawer #drawer class="h-full filter-bg" mode="side" position="end" [opened]="false">
+        <ng-content></ng-content>
+      </mat-drawer>
+
+      <mat-drawer-content class="overflow-hidden">
+        @if (!loading) {
+          <div class="h-full">
+            <!-- RESULTS COUNTER -->
+            <kp-global-search-results-counter [counter]="count"></kp-global-search-results-counter>
+            <mat-divider></mat-divider>
+            @if (loadingMore) {
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            }
+            <!-- / RESULTS COUNTER -->
+            <!-- LIST -->
+            <div
+              class="h-[calc(100%-36px)] overflow-auto"
+              infiniteScroll
+              [infiniteScrollThrottle]="500"
+              [scrollWindow]="false"
+              (scrolled)="scrolled.emit()"
+            >
+              @if (count > 0) {
+                @for (item of items; track item) {
+                  <kp-global-search-item
+                    [item]="item"
+                    (openDetails)="onOpenDetails(item)"
+                    (openContent)="onOpenContent(item)"
+                  ></kp-global-search-item>
+                }
+              } @else {
+                <div class="h-full flex justify-center items-center">
+                  <span data-test="global-search-no-items-selector" class="text-xs font-bold">{{
+                    'UI.GLOBAL_SEARCH.NO_ITEMS' | transloco
+                  }}</span>
+                </div>
+              }
+            </div>
+            <!-- / LIST -->
+          </div>
+        } @else {
+          <div class="h-full flex justify-center items-center">
+            <mat-spinner class="my-8" color="accent" strokeWidth="4" diameter="40"></mat-spinner>
+          </div>
+        }
+        <!-- SPINNER -->
+        <!-- / SPINNER -->
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </mat-tab-nav-panel>
+  <!-- / CONTENT TABS -->
+</div>

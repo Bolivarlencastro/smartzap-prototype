@@ -1,0 +1,111 @@
+<!-- INPUT SEARCH -->
+<mat-divider></mat-divider>
+<div class="h-16">
+  <kp-global-search-input [iconClass]="'w-[32px] mr-[26px]'" (filterEvent)="onSearch($event)"></kp-global-search-input>
+</div>
+<mat-divider></mat-divider>
+<!-- / INPUT SEARCH -->
+
+<!-- LIST -->
+<div class="h-[300px]">
+  @if (items?.length) {
+    <div
+      class="overflow-y-scroll h-full"
+      infiniteScroll
+      [infiniteScrollThrottle]="500"
+      [scrollWindow]="false"
+      (scrolled)="loadMoreItems.emit()"
+    >
+      <mat-table [dataSource]="dataSource">
+        <!-- CHECKBOX -->
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef class="max-w-[60px] px-[13px]">
+            <mat-checkbox
+              id="selectAll"
+              (change)="$event ? toggleAllRows() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+            >
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="max-w-[60px] px-[13px]">
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+            >
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+        <!-- / CHECKBOX -->
+        <ng-container matColumnDef="label">
+          <mat-header-cell *matHeaderCellDef>
+            {{ columnTitle | transloco }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <span class="truncate">{{ row.label }}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="progress_bar">
+          <mat-header-cell *matHeaderCellDef class="p-0 h-auto min-h-0 border-0">
+            @if (isLoading && items?.length) {
+              <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
+            }
+          </mat-header-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-header-row
+          *matHeaderRowDef="['progress_bar']; sticky: true"
+          class="top-14 p-0 h-auto min-h-0"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          class="h-14"
+          (click)="$event.stopPropagation()"
+        ></mat-row>
+      </mat-table>
+    </div>
+  }
+
+  @if (isLoading && !items?.length) {
+    <div class="h-full flex items-center justify-center">
+      <mat-progress-spinner mode="indeterminate" diameter="36" color="primary"></mat-progress-spinner>
+    </div>
+  }
+
+  @if (!isLoading && !items?.length) {
+    <div class="h-full flex items-center justify-center text-sm">
+      {{ 'REPORT_MODAL.NO_ITEMS' | transloco }}
+    </div>
+  }
+</div>
+
+<mat-divider></mat-divider>
+<!-- / LIST -->
+
+<!-- FOOTER -->
+<div class="flex items-center h-20 px-6">
+  @if (selection?.selected?.length) {
+    <span class="text-xs">
+      {{ selectionLabel | kpPluralizeTranslate: { value: selection?.selected?.length } }}
+    </span>
+  }
+  <div class="ml-auto">
+    <button mat-button mat-dialog-close class="mr-2">
+      <span class="text-primary">
+        {{ 'GENERAL.CANCEL' | transloco }}
+      </span>
+    </button>
+
+    <button
+      [mat-dialog-close]="true"
+      mat-raised-button
+      color="primary"
+      [disabled]="!validFilter"
+      (click)="submitEvent.emit()"
+    >
+      {{ 'GENERAL.GENERATE_REPORT' | transloco }}
+    </button>
+  </div>
+</div>
+<!-- / FOOTER -->

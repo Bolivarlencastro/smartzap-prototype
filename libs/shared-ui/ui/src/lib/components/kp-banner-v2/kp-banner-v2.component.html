@@ -1,0 +1,63 @@
+<div class="kp-banner">
+  <mat-carousel
+    timings="250ms ease-in"
+    [autoplay]="true"
+    [interval]="5000"
+    color="accent"
+    maxWidth="auto"
+    [isMobile]="isMobile$ | async"
+    [slides]="1"
+    [loop]="true"
+    [hideIndicators]="(isMobile$ | async) || optionsAreOpen"
+    orientation="ltr"
+  >
+    @for (slide of items; track slide; let i = $index) {
+      <mat-carousel-slide overlayColor="#000000AA" [image]="slide.backgroundImage">
+        <div class="banner-content h-full gap-2" (click)="onBannerAction('details', slide)">
+          <div class="mt-auto">
+            <div class="hidden sm:flex gap-1 items-center mt-auto mb-3">
+              @for (tag of slide?.tags; track tag; let first = $first) {
+                <kp-card-tag [type]="tag?.type" [keepOpen]="first" [label]="tag?.label"></kp-card-tag>
+              }
+            </div>
+            <p class="text-sm sm:text-2xl font-bold sm:font-normal line-clamp-2">{{ slide.title }}</p>
+          </div>
+          <div class="flex gap-2 sm:hidden">
+            @if (slide?.externalProvider) {
+              <kp-info-tag [icon]="'trending_up'" [label]="slide?.externalProvider | uppercase"></kp-info-tag>
+            }
+            @if (slide?.language) {
+              <kp-info-tag [icon]="'language'" [label]="slide?.language | uppercase"></kp-info-tag>
+            }
+          </div>
+          <div class="banner-actions">
+            @if (getMainAction(slide.actions); as mainAction) {
+              <button
+                mat-flat-button
+                color="primary"
+                class="self-end h-10"
+                (click)="onBannerAction(mainAction, slide, $event)"
+              >
+                <div class="lc-card-main-action flex gap-1 items-center">
+                  <mat-icon class="s-5 filled">{{ mainAction | kpLearnContentActionIcon }} </mat-icon>
+                  {{ mainAction | kpLearnContentActionLabel | transloco }}
+                </div>
+              </button>
+            }
+            @if (getSecondaryActions(slide.actions); as secondaryActions) {
+              <kp-speed-dial>
+                @for (action of secondaryActions; track action) {
+                  <kp-speed-dial-option
+                    [icon]="action | kpLearnContentActionIcon"
+                    [tooltip]="action | kpLearnContentActionLabel | transloco"
+                    (click)="onBannerAction(action, slide, $event)"
+                  ></kp-speed-dial-option>
+                }
+              </kp-speed-dial>
+            }
+          </div>
+        </div>
+      </mat-carousel-slide>
+    }
+  </mat-carousel>
+</div>

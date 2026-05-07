@@ -1,0 +1,17 @@
+<div class="enrollment-upload flex flex-col">
+  <button mat-flat-button color="primary" (click)="fileInput.click()">
+    <mat-icon class="hidden md:block" class="s-3 mr-4" svgIcon="microsoftexcel"></mat-icon>
+    {{ 'ENROLLMENTS.BUTTON.DIALOG_UPLOAD' | transloco }}
+  </button>
+
+  <input hidden type="file" accept=".xlsx" #fileInput (change)="processFile(fileInput)" data-test="batch-enrollment" />
+
+  <div class="enrollment-upload--message">
+    @if (dislplayError) {
+      <small class="error warn-500-fg">{{ 'ENROLLMENTS.ERROR.INVALID_FILE' | transloco }}</small>
+    }
+    @if (processing) {
+      <small class="loading fuse-navy--fg">{{ 'GENERAL.LOADING' | transloco }}</small>
+    }
+  </div>
+</div>

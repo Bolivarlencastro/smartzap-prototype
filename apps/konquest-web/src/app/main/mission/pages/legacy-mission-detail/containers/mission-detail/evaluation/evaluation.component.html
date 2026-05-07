@@ -1,0 +1,311 @@
+<div class="mission-evaluation-content flex flex-col mt-5">
+  <div class="px-2">
+    <span class="font-semibold text-2xl flex items-center ml-3">
+      <button mat-icon-button (click)="navigateBack()" class="mr-4">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      {{ 'GENERAL.EVALUATIONS' | transloco }}
+    </span>
+    <div class="flex items-center my-6 mx-4 lg:mx-0">
+      <mat-icon class="mr-4 s-7">rocket_launch</mat-icon>
+      <h3>{{ (mission$ | async)?.name || '-' }}</h3>
+    </div>
+    @if (summary$ | async; as summary) {
+      <div class="w-auto lg:w-full flex flex-col mx-4 lg:mx-0 gap-10">
+        <div clasS="w-full flex flex-col md:flex-row gap-5">
+          <div class="w-full md:w-2/5 flex flex-col gap-5">
+            <div class="flex flex-row gap-5">
+              <div
+                id="dashboard-total-of-evaluations"
+                class="flex flex-col w-2/4 bg-primary card-container p-4 gap-2 text-on-primary"
+              >
+                <h3>
+                  {{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.TOTAL_OF' | transloco }}
+                  <br />
+                  <b>{{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.RATING' | transloco }}</b>
+                </h3>
+                <span class="text-7xl font-bold">{{ summary?.count_evaluation || '0' }}</span>
+              </div>
+              <div class="flex flex-col w-2/4 card-bg card-container p-4 gap-2">
+                <h4>
+                  {{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.AVERAGE' | transloco }}
+                </h4>
+                <b
+                  ><span class="text-4xl">{{ summary?.avg_questions_rating || '0' }}</span></b
+                >
+                <h4>
+                  {{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.POINTS' | transloco }}
+                </h4>
+              </div>
+            </div>
+            <div class="w-full text-sm flex flex-col card-bg card-container p-4 gap-5">
+              @for (question of questions$ | async; track question; let i = $index) {
+                <div class="flex w-full justify-between">
+                  <div class="flex max-w-full justify-start">
+                    {{ 'COURSE.EVALUATION.FIRST_STEP.' + question.i18n | transloco }}
+                  </div>
+                  @if (summary) {
+                    <div class="flex w-1/6 justify-end items-center">
+                      {{ summary['questions_' + question?.id + '_avg'] || '0' }}
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+          <div class="w-full md:w-3/5 card-bg card-container p-5 flex flex-col justify-between">
+            <div class="flex flex-col gap-4">
+              <h2><b>Net Promoter Score (NPS)</b></h2>
+              <span>{{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.CHART' | transloco }}</span>
+            </div>
+            <div class="w-full flex flex-col md:flex-row mt-4 faces-container justify-center items-center gap-4">
+              <div class="mb-4 md:mb-0 gap-4 flex flex-col w-full sm:w-3/5">
+                <div class="flex flex-row">
+                  <!-- Sad faces -->
+                  <div class="flex w-1/6 justify-center">
+                    <div class="face-red face">
+                      <div class="eye left-eye"></div>
+                      <div class="eye right-eye"></div>
+                      <div class="mouth-sad"></div>
+                    </div>
+                  </div>
+                  <div class="flex w-1/6 justify-center">
+                    <div class="face-red face">
+                      <div class="eye left-eye"></div>
+                      <div class="eye right-eye"></div>
+                      <div class="mouth-sad"></div>
+                    </div>
+                  </div>
+                  <div class="flex w-1/6 justify-center">
+                    <div class="face-red face">
+                      <div class="eye left-eye"></div>
+                      <div class="eye right-eye"></div>
+                      <div class="mouth-sad"></div>
+                    </div>
+                  </div>
+                  <div class="flex w-1/6 justify-center">
+                    <div class="face-red face">
+                      <div class="eye left-eye"></div>
+                      <div class="eye right-eye"></div>
+                      <div class="mouth-sad"></div>
+                    </div>
+                  </div>
+                  <div class="flex w-1/6 justify-center">
+                    <div class="face-red face">
+                      <div class="eye left-eye"></div>
+                      <div class="eye right-eye"></div>
+                      <div class="mouth-sad"></div>
+                    </div>
+                  </div>
+                  <div class="flex w-1/6 justify-center">
+                    <div class="face-red face">
+                      <div class="eye left-eye"></div>
+                      <div class="eye right-eye"></div>
+                      <div class="mouth-sad"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-row faces-values faces-values-red">
+                  <div class="flex w-1/6 justify-center">1</div>
+                  <div class="flex w-1/6 justify-center">2</div>
+                  <div class="flex w-1/6 justify-center">3</div>
+                  <div class="flex w-1/6 justify-center">4</div>
+                  <div class="flex w-1/6 justify-center">5</div>
+                  <div class="flex w-1/6 justify-center">6</div>
+                </div>
+                <div class="flex flex-row text-center">
+                  @if (summary?.nps) {
+                    @for (nps of summary?.nps?.count_by_point | keyvalue; track nps; let i = $index) {
+                      @if (i < 6) {
+                        <div class="flex w-1/6 justify-center">
+                          {{ getCountByPoint(summary?.nps, i + 1) }}
+                        </div>
+                      }
+                    }
+                  }
+                </div>
+              </div>
+              <div class="w-full sm:w-2/5 flex gap-4">
+                <div class="flex flex-col mb-4 sm:mb-0 w-2/4 gap-4">
+                  <div class="flex flex-row gap-4">
+                    <!-- Neutral faces -->
+                    <div class="flex w-2/4 justify-center">
+                      <div class="face-orange face">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                        <div class="mouth-neutral"></div>
+                      </div>
+                    </div>
+                    <div class="flex w-2/4 justify-center">
+                      <div class="face-orange face">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                        <div class="mouth-neutral"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-row faces-values faces-values-orange">
+                    <div class="flex w-2/4 justify-center">7</div>
+                    <div class="flex w-2/4 justify-center">8</div>
+                  </div>
+                  <div class="flex flex-row text-center">
+                    @if (summary?.nps) {
+                      @for (nps of summary?.nps?.count_by_point | keyvalue; track nps; let i = $index) {
+                        @if (i > 5 && i < 8) {
+                          <div class="flex w-2/4 justify-center">
+                            {{ getCountByPoint(summary?.nps, i + 1) }}
+                          </div>
+                        }
+                      }
+                    }
+                  </div>
+                </div>
+                <div class="flex flex-col mb-4 sm:mb-0 w-2/4 gap-4">
+                  <div class="flex flex-row gap-4">
+                    <!-- Happy faces -->
+                    <div class="flex w-2/4 justify-center">
+                      <div class="face-green face">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                        <div class="mouth-happy"></div>
+                      </div>
+                    </div>
+                    <div class="flex w-2/4 justify-center">
+                      <div class="face-green face">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                        <div class="mouth-happy"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-row faces-values faces-values-green">
+                    <div class="flex w-2/4 justify-center">9</div>
+                    <div class="flex w-2/4 justify-center">10</div>
+                  </div>
+                  <div class="flex flex-row text-center">
+                    @if (summary?.nps) {
+                      @for (nps of summary?.nps?.count_by_point | keyvalue; track nps; let i = $index) {
+                        @if (i > 7 && i < 10) {
+                          <div class="flex w-2/4 justify-center">
+                            {{ getCountByPoint(summary?.nps, i + 1) }}
+                          </div>
+                        }
+                      }
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full flex flex-col md:flex-row items-center">
+              <div class="flex flex-col w-full sm:w-3/5 justify-center items-center">
+                <div class="flex flex-row w-full justify-center items-center gap-4">
+                  <div class="flex w-5 status-red"></div>
+                  <div class="flex w-2/5">
+                    {{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.DETRACTORS' | transloco }}
+                  </div>
+                  <div
+                    class="flex w-1/5"
+                    [matTooltip]="'MISSION.DETAIL.EVALUATIONS.COLLECTION.NUMBER_OF_EVALUATORS' | transloco"
+                  >
+                    {{ summary?.nps?.detractors?.count || '0' }}
+                  </div>
+                  <div
+                    class="flex w-1/5"
+                    [matTooltip]="'MISSION.DETAIL.EVALUATIONS.COLLECTION.PERCENTAGE_OF_EVALUATORS' | transloco"
+                  >
+                    {{ summary?.nps?.detractors?.percentage | kpPerformance: '%' }}
+                  </div>
+                </div>
+                <div class="flex flex-row w-full justify-center items-center gap-4">
+                  <div class="flex w-5 status-orange"></div>
+                  <div class="flex w-2/5">
+                    {{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.NEUTRALS' | transloco }}
+                  </div>
+                  <div
+                    class="flex w-1/5"
+                    [matTooltip]="'MISSION.DETAIL.EVALUATIONS.COLLECTION.NUMBER_OF_EVALUATORS' | transloco"
+                  >
+                    {{ summary?.nps?.neutrals?.count || '0' }}
+                  </div>
+                  <div
+                    class="flex w-1/5"
+                    [matTooltip]="'MISSION.DETAIL.EVALUATIONS.COLLECTION.PERCENTAGE_OF_EVALUATORS' | transloco"
+                  >
+                    {{ summary?.nps?.neutrals?.percentage | kpPerformance: '%' }}
+                  </div>
+                </div>
+                <div class="flex flex-row w-full justify-center items-center gap-4">
+                  <div class="flex w-5 status-green"></div>
+                  <div class="flex w-2/5">
+                    {{ 'MISSION.DETAIL.EVALUATIONS.COLLECTION.PROMOTERS' | transloco }}
+                  </div>
+                  <div
+                    class="flex w-1/5"
+                    [matTooltip]="'MISSION.DETAIL.EVALUATIONS.COLLECTION.NUMBER_OF_EVALUATORS' | transloco"
+                  >
+                    {{ summary?.nps?.promoters?.count || '0' }}
+                  </div>
+                  <div
+                    class="flex w-1/5"
+                    [matTooltip]="'MISSION.DETAIL.EVALUATIONS.COLLECTION.PERCENTAGE_OF_EVALUATORS' | transloco"
+                  >
+                    {{ summary?.nps?.promoters?.percentage | kpPerformance: '%' }}
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col w-full sm:w-2/5 sm:mt-auto">
+                <app-evaluations-chart [summary]="summary"></app-evaluations-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  @if (evaluations$ | async; as evaluationsResponse) {
+    <kp-table-layout
+      class="mt-8"
+      [totalItems]="evaluationsResponse.count"
+      [pageIndex]="evaluationPage - 1"
+      [pageSize]="evaluationPerPage"
+      (pageChange)="onChangePage($event)"
+      (searchChange)="applyInputFilter($event)"
+    >
+      <div kpTableFilterAfter class="flex items-center gap-2">
+        <button mat-icon-button (click)="openFiltersModal()">
+          <mat-icon>filter_alt</mat-icon>
+        </button>
+        <button
+          mat-stroked-button
+          color="primary"
+          [matMenuTriggerFor]="exportMenu"
+          [title]="'GENERAL.EXPORT' | transloco"
+        >
+          <span class="flex gap-2 items-center">
+            <mat-icon class="s-5">save_alt</mat-icon>
+            <span>{{ 'GENERAL.EXPORT' | transloco }}</span>
+          </span>
+        </button>
+        <mat-menu #exportMenu>
+          <button mat-menu-item (click)="onDataTableExport('xls')">
+            <span>XLS</span>
+          </button>
+          <button mat-menu-item (click)="onDataTableExport('xlsx')">
+            <span>XLSX</span>
+          </button>
+          <button mat-menu-item (click)="onDataTableExport('csv')">
+            <span>CSV</span>
+          </button>
+          <button mat-menu-item (click)="onDataTableExport('pdf')">
+            <span>PDF</span>
+          </button>
+        </mat-menu>
+      </div>
+      <app-evaluations-collection
+        kpTable
+        [isLoading]="isLoading$ | async"
+        [evaluations]="evaluations"
+      ></app-evaluations-collection>
+    </kp-table-layout>
+  }
+</div>

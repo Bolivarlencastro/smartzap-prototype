@@ -1,0 +1,71 @@
+@if (notifications) {
+  <button
+    mat-icon-button
+    class="user-button"
+    [attr.aria-label]="'UI.NOTIFICATION.TITLE' | transloco"
+    id="button-notification-open"
+    [matMenuTriggerFor]="messageMenu"
+  >
+    <mat-icon
+      [matBadge]="count"
+      [matBadgeHidden]="!count"
+      matBadgePosition="before"
+      matBadgeColor="warn"
+      aria-hidden="false"
+      >notifications
+    </mat-icon>
+  </button>
+  <mat-menu
+    #messageMenu="matMenu"
+    [overlapTrigger]="false"
+    class="p-0 w-120 min-h-[80px] flex flex-col relative kp-notifications__content"
+  >
+    <div class="h-12 w-full kp-notifications__title flex items-center justify-between pl-3 absolute">
+      <p class="text-sm">{{ 'UI.NOTIFICATION.TITLE' | transloco }}</p>
+      <button
+        mat-icon-button
+        [disabled]="!notifications?.length"
+        [matTooltip]="'UI.NOTIFICATION.CLEAR_ALL' | transloco"
+        (click)="onReadAll()"
+        class="justify-end mr-2"
+      >
+        <mat-icon class="s-4 mr-3">delete</mat-icon>
+      </button>
+    </div>
+    <div class="mt-12 max-h-[300px] overflow-auto">
+      @if (!notifications?.length) {
+        <p class="text-sm font-bold p-3">
+          {{ 'UI.NOTIFICATION.NO_MESSAGES' | transloco }}
+        </p>
+      }
+      @for (notification of notifications; track notification.id; let i = $index) {
+        <div
+          mat-menu-item
+          (click)="onSelectNotification(notification, i)"
+          class="w-full pl-0 pr-0 min-h-[100px] flex leading-normal"
+        >
+          <div class="flex flex-col pl-3 w-60 py-0 px-3">
+            <div class="w-full h-full leading-normal">
+              <p class="text-sm font-bold uppercase break-normal whitespace-normal line-clamp-2 py-1">
+                {{ notification?.title }}
+              </p>
+              <p class="text-xs break-normal whitespace-normal pb-1">
+                {{ notification?.description }}
+              </p>
+            </div>
+            <small class="first-letter:uppercase">{{ notification?.created_at | kpFromNow: locale }}</small>
+          </div>
+          <button
+            class="kp-notifications__item_button self-start"
+            mat-icon-button
+            [disabled]="!notifications?.length"
+            [matTooltip]="'UI.NOTIFICATION.CLEAR' | transloco"
+            (click)="onDiscardNotification($event, notification)"
+          >
+            <mat-icon class="s-4 m-0">close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </mat-menu>
+}

@@ -1,0 +1,31 @@
+@use 'sass:map';
+
+@mixin mission-theme {
+  app-presential-live-information {
+    .mat-form-field-wrapper {
+      padding-bottom: 0 !important;
+    }
+  }
+
+  mission-detail-attachments {
+    .mat-badge-medium.mat-badge-after .mat-badge-content,
+    .mat-badge-medium.mat-badge-above .mat-badge-content {
+      right: 0 !important;
+      top: 0 !important;
+    }
+  }
+
+  .summary {
+    .summary-content {
+      background: var(--mat-sys-surface-bright);
+    }
+
+    .show-more {
+      background-image: linear-gradient(to bottom, rgb(255 255 255 / 0%) 10%, var(--mat-sys-surface-bright));
+    }
+  }
+
+  .mat-mdc-menu-panel {
+    min-height: auto;
+  }
+}

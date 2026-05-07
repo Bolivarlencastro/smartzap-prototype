@@ -1,0 +1,11 @@
+/* Perfect scrollbar */
+@use 'node_modules/perfect-scrollbar/css/perfect-scrollbar.css' as perfect-scrollbar-base;
+
+/* Fuse specific overrides */
+@use 'overrides/angular-material';
+@use 'overrides/highlightjs';
+@use 'overrides/perfect-scrollbar';
+@use 'overrides/quill';
+
+/* This injects Tailwind's utilities classes. */
+@tailwind utilities;

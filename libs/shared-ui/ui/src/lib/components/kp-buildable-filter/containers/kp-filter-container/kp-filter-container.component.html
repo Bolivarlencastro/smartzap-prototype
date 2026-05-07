@@ -1,0 +1,132 @@
+<div class="min-w-[820px] flex flex-col gap-4">
+  @if ({ availableOptions: availableOptions$ | async, selectedOptions: selectedOptions$ | async }; as vm) {
+    @for (option of vm.selectedOptions; track option; let first = $first) {
+      <kp-filter-option
+        [selectedOption]="option"
+        [availableOptions]="vm.availableOptions"
+        [first]="first"
+        (optionSelected)="swapOptions($event)"
+        (rangeChange)="rangeChange(option.filterKey, $event)"
+        (remove)="removeOption(option.filterKey)"
+      ></kp-filter-option>
+    }
+    @if (displayOptionSelect || (!vm.selectedOptions.length && vm.availableOptions.length)) {
+      <kp-filter-key-select
+        [options]="vm.availableOptions"
+        [first]="!vm.selectedOptions.length"
+        (optionChange)="onSelectionChange($event)"
+      ></kp-filter-key-select>
+    }
+    <button
+      class="self-start"
+      [disabled]="!vm.availableOptions.length"
+      mat-button
+      (click)="addNewOption()"
+      type="button"
+    >
+      <mat-icon>add</mat-icon>
+      <span class="text-sm ml-2">
+        {{ 'UI.KP_FILTER.PLACEHOLDERS.ADD_FILTER' | transloco }}
+      </span>
+    </button>
+  }
+</div>
+
+<!--Default search input template-->
+<ng-template [kpFilterDef]="'search'" let-filterOption>
+  <mat-form-field appearance="outline" class="flex-1" subscriptSizing="dynamic">
+    <input
+      matInput
+      [formControlName]="filterOption.filterKey"
+      [placeholder]="filterOption.placeholder || 'UI.KP_FILTER.PLACEHOLDERS.SEARCH' | transloco"
+    />
+  </mat-form-field>
+</ng-template>
+
+<!--Default select template-->
+<ng-container *kpFilterDef="'select'; let filterOption">
+  <mat-form-field class="flex-1" appearance="outline" subscriptSizing="dynamic">
+    <mat-select
+      [formControlName]="filterOption.filterKey"
+      [placeholder]="filterOption.placeholder || 'UI.KP_FILTER.PLACEHOLDERS.SELECT_VALUE' | transloco"
+    >
+      @for (option of filterOption.options; track option) {
+        <mat-option [value]="option.value">
+          {{ option.label | transloco }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</ng-container>
+
+<!--Default select multiple template-->
+<ng-container *kpFilterDef="'selectMultiple'; let filterOption">
+  <mat-form-field class="flex-1" appearance="outline" subscriptSizing="dynamic">
+    <mat-select
+      multiple
+      [formControlName]="filterOption.filterKey"
+      [placeholder]="filterOption.placeholder || 'UI.KP_FILTER.PLACEHOLDERS.SELECT_VALUE' | transloco"
+    >
+      @for (option of filterOption.options; track option) {
+        <mat-option [value]="option.value">
+          {{ option.label | transloco }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</ng-container>
+
+<!--Default numeric input template-->
+<ng-container *kpFilterDef="'numeric'; let filterOption">
+  <mat-form-field class="flex-1" appearance="outline" subscriptSizing="dynamic">
+    <input
+      matInput
+      [formControlName]="filterOption.filterKey"
+      type="number"
+      [placeholder]="filterOption.placeholder || '0' | transloco"
+    />
+  </mat-form-field>
+</ng-container>
+
+<!--Default datepicker template-->
+<ng-container *kpFilterDef="'date'; let filterOption">
+  <mat-form-field class="flex-1" appearance="outline" subscriptSizing="dynamic">
+    <input
+      matInput
+      [formControlName]="filterOption.filterKey"
+      [matDatepicker]="picker"
+      [placeholder]="filterOption.placeholder || 'UI.KP_FILTER.PLACEHOLDERS.DATE' | transloco"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</ng-container>
+
+<!--Default date range template-->
+<ng-container *kpFilterDef="'dateRange'; let filterOption">
+  <kp-filter-date-range-container [selectedOption]="filterOption"></kp-filter-date-range-container>
+</ng-container>
+
+<!--Default percent range template-->
+<ng-container *kpFilterDef="'percentRange'; let filterOption">
+  <kp-filter-default-numeric-range
+    [selectedOption]="filterOption"
+    [mask]="'percent'"
+    [maxLength]="4"
+    [startPlaceHolder]="'0%'"
+    [endPlaceHolder]="'100%'"
+    [suffix]="'%'"
+  ></kp-filter-default-numeric-range>
+</ng-container>
+
+<!--Default numeric range template-->
+<ng-container *kpFilterDef="'numericRange'; let filterOption">
+  <kp-filter-default-numeric-range
+    [selectedOption]="filterOption"
+    [mask]="filterOption.numericRangeConfig?.mask"
+    [startPlaceHolder]="filterOption.numericRangeConfig?.startPlaceHolder"
+    [endPlaceHolder]="filterOption.numericRangeConfig?.endPlaceHolder"
+    [suffix]="filterOption.numericRangeConfig?.suffix"
+    [dropSpecialCharacters]="!filterOption.numericRangeConfig?.keepSpecialCharacters"
+  ></kp-filter-default-numeric-range>
+</ng-container>

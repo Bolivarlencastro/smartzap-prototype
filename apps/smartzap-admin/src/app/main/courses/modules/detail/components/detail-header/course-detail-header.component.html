@@ -1,0 +1,29 @@
+<div
+  class="h-80 course-detail-header mat-elevation-z8"
+  [style.background-image]="
+    'url(' + (course.holder_image || 'https://assets.keepsdev.com/images/placeholders/default-card-bg.png') + ')'
+  "
+>
+  <div class="course-detail-header__topbar">
+    <kp-card-tag
+      [label]="course | statusLabel | transloco"
+      [dotColor]="course | statusColor"
+      [keepOpen]="true"
+      data-test="course-detail-header-status"
+    ></kp-card-tag>
+
+    @if (showCloseButton) {
+      <button
+        mat-icon-button
+        type="button"
+        class="course-detail-header__close-button"
+        (click)="handleClose()"
+        data-test="course-detail-close-button"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </div>
+
+  <div class="overlay p-6 flex flex-col justify-end"></div>
+</div>

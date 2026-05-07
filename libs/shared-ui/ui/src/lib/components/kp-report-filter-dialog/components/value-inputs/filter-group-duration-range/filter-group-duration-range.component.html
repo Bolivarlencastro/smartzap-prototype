@@ -1,0 +1,9 @@
+<mat-form-field class="w-full" subscriptSizing="dynamic">
+  <kp-percent-range-input
+    formControlName="value"
+    fromPlaceholder="HH:MM"
+    toPlaceholder="HH:MM"
+    mask="Hh:m0"
+    [normalizeFn]="convertToMinutes"
+  ></kp-percent-range-input>
+</mat-form-field>

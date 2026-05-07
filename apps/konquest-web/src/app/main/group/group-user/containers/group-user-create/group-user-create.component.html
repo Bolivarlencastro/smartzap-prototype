@@ -1,0 +1,27 @@
+<div class="app-group-mission-create">
+  <kp-group-linked-dialog-header [title]="'GROUP_USER.DIALOG.CREATE_TITLE' | transloco"></kp-group-linked-dialog-header>
+
+  <app-group-linked-dialog-content
+    [items]="items$ | async"
+    [columns]="columns"
+    [avatarKey]="'avatar'"
+    [selectedItems]="selection"
+    [isLoading]="isLoading$ | async"
+    [total]="total$ | async"
+    [page]="page$ | async"
+    (selectionEvent)="toggleSelection($event.id)"
+    (selectAllEvent)="selectAll($event)"
+    (filterEvent)="applyFilter($event)"
+    (scrollEvent)="onScroll($event)"
+    [selectionLabel]="'GROUP_USER.SELECTION_LABEL' | kpPluralizeTranslate: { value: selectionSize }"
+  >
+  </app-group-linked-dialog-content>
+
+  <app-group-linked-dialog-footer
+    [size]="selectionSize"
+    [cycles]="cycles$ | async"
+    [isNormativeActive]="isNormativeActive$ | async"
+    (submitEvent)="onSubmit($event)"
+    (filterCycle)="onFilterCycle($event)"
+  ></app-group-linked-dialog-footer>
+</div>

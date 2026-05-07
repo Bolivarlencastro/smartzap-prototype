@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'libs/shared-ui/ui/src/lib/styles/theme' as ui-theme;
+
+// Smartzap components themes
+@mixin components-theme {
+  // UI Library
+  @include ui-theme.ui-theme;
+}
+
+/* Angular Material theme */
+html {
+  color-scheme: light dark;
+  background: var(--mat-sys-surface);
+
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' var(--icon-fill, 0),
+      'wght' 400,
+      'GRAD' -25,
+      'opsz' var(--optical-sizing, 24);
+  }
+
+  @include components-theme;
+}

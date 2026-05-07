@@ -1,0 +1,29 @@
+@switch (contentType) {
+  @case (types.Video) {
+    <kp-player-tracker
+      [url]="url"
+      [contentId]="contentId"
+      [contentType]="contentType"
+      (activityTracker)="onActivityChange($event)"
+    >
+    </kp-player-tracker>
+  }
+  @case (types.Podcast) {
+    <kp-player-tracker
+      [url]="url"
+      [contentId]="contentId"
+      [contentType]="contentType"
+      (activityTracker)="onActivityChange($event)"
+    >
+    </kp-player-tracker>
+  }
+  @default {
+    <kp-viewer-tracker
+      [url]="url"
+      [contentId]="contentId"
+      [contentType]="contentType"
+      (activityTracker)="onActivityChange($event)"
+    >
+    </kp-viewer-tracker>
+  }
+}

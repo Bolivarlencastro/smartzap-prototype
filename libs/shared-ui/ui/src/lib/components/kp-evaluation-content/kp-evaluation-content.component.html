@@ -1,0 +1,79 @@
+<form [formGroup]="form" class="flex flex-col">
+  <div class="questions-container mt-6 flex flex-col">
+    @for (data of questions; track data; let questionIndex = $index) {
+      <div class="mb-8 flex flex-col md:flex-row">
+        <div
+          data-test="evaluation-content.first-step-questions"
+          class="question w-full sm:w-3/5 flex items-center mb-4 md:mb-0 text-sm"
+        >
+          {{ 'COURSE.EVALUATION.FIRST_STEP.' + data.i18n | transloco }}
+        </div>
+        <div
+          class="rate-buttons-container flex flex-row flex-wrap items-center content-center justify-between md:justify-end w-full gap-6 md:gap-2"
+        >
+          @for (rate of [].constructor(5); track rate; let index = $index) {
+            <kp-rate-button
+              [index]="index"
+              [disabled]="disabled"
+              [kpFormControlName]="'question_' + data.id + '_rating'"
+              data-test="evaluation-content.first-step-rate-buttons"
+              [attr.data-cy]="'evaluation-content.first-step-rate-buttons-' + index + '-question-' + questionIndex"
+            ></kp-rate-button>
+          }
+        </div>
+      </div>
+    }
+    <div class="mb-8 flex flex-col md:flex-row">
+      <div
+        data-test="evaluation-content.second-step-questions"
+        class="question w-full sm:w-3/5 flex items-center mb-4 md:mb-0 text-sm"
+      >
+        {{ 'COURSE.EVALUATION.SECOND_STEP.TITLE' | transloco }}
+      </div>
+      <div
+        class="rate-buttons-container flex flex-row flex-wrap items-center content-center justify-between md:justify-end w-full gap-6 md:gap-2"
+      >
+        @for (rate of [].constructor(5); track rate; let index = $index) {
+          <kp-rate-button
+            [index]="index"
+            [disabled]="disabled"
+            kpFormControlName="rating"
+            [attr.data-test]="'evaluation-content.second-step-rate-buttons-' + index"
+          ></kp-rate-button>
+        }
+      </div>
+    </div>
+    <div class="mb-8 flex flex-col md:flex-row">
+      <div
+        data-test="evaluation-content.second-step-questions"
+        class="question w-full sm:w-3/5 flex items-center mb-4 md:mb-0 text-sm"
+      >
+        {{ 'COURSE.EVALUATION.THIRD_STEP.TITLE' | transloco }}
+      </div>
+      <div
+        class="rate-buttons-container flex flex-row flex-wrap items-center content-center max-[599px]:justify-start justify-between md:justify-end w-full gap-6 md:gap-2"
+      >
+        @for (data of [].constructor(10); track data; let index = $index) {
+          <kp-rate-button
+            [index]="index"
+            [disabled]="disabled"
+            kpFormControlName="nps"
+            [attr.data-test]="'evaluation-content.third-step-nps-' + index"
+          ></kp-rate-button>
+        }
+      </div>
+    </div>
+    <div [ngClass]="{ 'evaluation-text-area-override': isOnCourse }">
+      <mat-form-field appearance="outline" class="w-full" subscriptSizing="dynamic">
+        <textarea
+          matInput
+          [placeholder]="'GENERAL.COMMENT' | transloco"
+          formControlName="comment"
+          name="comment"
+          #inputComment
+          data-test="comment quiz"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

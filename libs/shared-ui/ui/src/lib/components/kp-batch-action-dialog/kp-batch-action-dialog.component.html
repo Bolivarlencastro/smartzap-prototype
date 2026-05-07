@@ -1,0 +1,60 @@
+<div mat-dialog-title class="text-xl">{{ config.title | transloco }}</div>
+<div mat-dialog-content>
+  @if (step === 'initial') {
+    <div>{{ config.initialStep.subtitle | transloco }}</div>
+
+    <!-- PERCENTAGE -->
+    @if (config.id === 'APPROVE_ENROLLMENT') {
+      <mat-form-field class="mt-3 w-full" appearance="outline" subscriptSizing="dynamic">
+        <mat-label>{{ config.initialStep.inputLabel | transloco }}</mat-label>
+        <input matInput mask="percent" suffix="%" [formControl]="initialForm" />
+        <mat-icon matSuffix>{{ config.initialStep.inputIcon }} </mat-icon>
+      </mat-form-field>
+    }
+    <!-- / PERCENTAGE -->
+
+    <!-- DATEPICKER -->
+    @if (
+      config.id === 'RESTART_ENROLLMENT' || config.id === 'RE_ENROLL_ENROLLMENT' || config.id === 'GOAL_DATE_ENROLLMENT'
+    ) {
+      <mat-form-field class="mt-3 w-full" appearance="outline" subscriptSizing="dynamic">
+        <mat-label>{{ config.initialStep.inputLabel | transloco }}</mat-label>
+        <input matInput [matDatepicker]="picker" [min]="minDate" [formControl]="initialForm" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    }
+    <!-- / DATEPICKER -->
+
+    <!-- TEXT -->
+    @if (config.id === 'REJECT_CERTIFICATE') {
+      <mat-form-field class="mt-3 w-full" appearance="outline" subscriptSizing="dynamic">
+        <mat-label>{{ config.initialStep.inputLabel | transloco }}</mat-label>
+        <input matInput [formControl]="initialForm" />
+        <mat-icon matSuffix>{{ config.initialStep.inputIcon }} </mat-icon>
+      </mat-form-field>
+    }
+    <!-- / TEXT -->
+
+    <!-- SELECT -->
+  } @else {
+    <div>{{ config.submitStep.subtitle | kpPluralizeTranslate: { value: total } }}</div>
+    <mat-form-field class="mt-3 w-full" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>{{ config.submitStep.inputLabel | transloco }}</mat-label>
+      <input matInput [formControl]="submitForm" />
+    </mat-form-field>
+  }
+  <!-- / SUBMIT STEP -->
+</div>
+<div mat-dialog-actions class="p-6 pt-5 flex justify-end">
+  <button mat-button mat-dialog-close>{{ 'UI.GENERAL.CANCEL' | transloco }}</button>
+  @if (step === 'initial') {
+    <button mat-flat-button color="primary" (click)="nextStep()" [disabled]="initialForm.invalid">
+      {{ config.initialStep.positiveButtonLabel | transloco }}
+    </button>
+  } @else {
+    <button mat-flat-button color="primary" (click)="submit()" [disabled]="submitForm.invalid">
+      {{ 'UI.GENERAL.CONFIRM' | transloco }}
+    </button>
+  }
+</div>

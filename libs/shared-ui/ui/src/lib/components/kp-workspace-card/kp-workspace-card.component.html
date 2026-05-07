@@ -1,0 +1,17 @@
+<mat-card
+  appearance="raised"
+  (click)="cardClicked()"
+  class="drop-shadow-md hover:drop-shadow-xl hover:-translate-y-1 focus:drop-shadow-xl focus:-translate-y-1 px-0 w-48 cursor-pointer transition-all"
+  tabindex="0"
+>
+  <div
+    class="border-b-[1px] border-gray-200 h-48 w-full bg-no-repeat bg-cover bg-center"
+    mat-card-image
+    [style.background-image]="workspaceLogoUrl"
+  ></div>
+  <mat-card-content>
+    <div class="truncate pt-4 text-center will-change-transform" [matTooltip]="workspace?.name">
+      {{ workspace?.name }}
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,57 @@
+<span class="text-lg" mat-dialog-title>{{ 'GENERAL.WARN' | transloco }}</span>
+<mat-dialog-content class="mat-typography content">
+  <div class="message-box error mb-12">
+    {{ 'ENROLLMENTS.IMPORT_ERROR_DIALOG_MESSAGE' | transloco }}
+  </div>
+  <mat-tab-group>
+    <mat-tab [label]="'ENROLLMENTS.TABS.ENROLLMENTS_ERROS' | transloco">
+      <table aria-label="Enrollment Errors Table">
+        <tr>
+          <th>{{ 'GENERAL.NAME' | transloco }}</th>
+          <th>{{ 'GENERAL.PHONE' | transloco }}</th>
+          <th>{{ 'GENERAL.ERROR' | transloco }}</th>
+        </tr>
+        @for (enrollment of data.enrollment_errors; track enrollment) {
+          <tr>
+            <td>{{ enrollment.name }}</td>
+            <td>{{ enrollment.phone }}</td>
+            <td>{{ 'GENERAL.ERRORXLS' | transloco }}</td>
+          </tr>
+        }
+      </table>
+    </mat-tab>
+    <mat-tab [label]="'ENROLLMENTS.TABS.USERS_ERROS' | transloco">
+      <table aria-label="User Errors Table">
+        <tr>
+          <th>{{ 'GENERAL.NAME' | transloco }}</th>
+          <th>{{ 'GENERAL.PHONE' | transloco }}</th>
+          <th>{{ 'GENERAL.ERROR' | transloco }}</th>
+        </tr>
+        @for (enrollment of data.user_errors; track enrollment) {
+          <tr>
+            <td>{{ enrollment.name }}</td>
+            <td>{{ enrollment.phone }}</td>
+            @if (!enrollment.phone) {
+              <td>
+                {{ 'GENERAL.ERRORPHONE' | transloco }}
+              </td>
+            }
+            @if (!enrollment.name) {
+              <td>
+                {{ 'GENERAL.ERROR_NAME' | transloco }}
+              </td>
+            }
+          </tr>
+        }
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" (click)="exportToExcel()">
+    {{ 'GENERAL.EXPORT_REPORT' | transloco }}
+  </button>
+  <button mat-flat-button color="primary" mat-dialog-close>
+    {{ 'GENERAL.OK' | transloco }}
+  </button>
+</mat-dialog-actions>

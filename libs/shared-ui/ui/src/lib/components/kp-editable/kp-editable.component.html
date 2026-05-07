@@ -1,0 +1,34 @@
+<mat-checkbox [checked]="checked" (change)="onCheckChange($event)"></mat-checkbox>
+
+<div class="grow min-w-0 text-sm">
+  @if (isViewMode) {
+    <p class="overflow-ellipsis whitespace-nowrap overflow-hidden">{{ value }}</p>
+  } @else {
+    <input
+      class="w-full h-full bg-transparent primary-text"
+      #editInput
+      id="edit-input"
+      (keyup.enter)="saveChanges()"
+      (keyup.escape)="toggleEditMode()"
+      [formControl]="formControl"
+    />
+  }
+</div>
+
+<div class="actions">
+  @if (isViewMode) {
+    <button mat-icon-button (click)="toggleEditMode()">
+      <mat-icon class="s-6">edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onDelete()">
+      <mat-icon class="s-6">delete</mat-icon>
+    </button>
+  } @else {
+    <button mat-icon-button (click)="toggleEditMode()">
+      <mat-icon class="s-6">close</mat-icon>
+    </button>
+    <button mat-icon-button (click)="saveChanges()" [disabled]="formControl.invalid">
+      <mat-icon class="s-6">done</mat-icon>
+    </button>
+  }
+</div>

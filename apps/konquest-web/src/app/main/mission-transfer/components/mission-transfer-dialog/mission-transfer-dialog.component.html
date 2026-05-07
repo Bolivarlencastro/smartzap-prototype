@@ -1,0 +1,105 @@
+<span class="text-2xl" mat-dialog-title>{{ (title$ | async) || '' | transloco }}</span>
+<mat-dialog-content>
+  <p class="leading-loose">{{ (subTitle$ | async) || '' | transloco }}</p>
+  <ul class="ml-4 mb-2.5 leading-loose list-disc" [innerHTML]="(dialogInfo$ | async) || '' | transloco"></ul>
+
+  @switch (currentStep$ | async) {
+    @case (MissionTransferStep.SELECT_RECIPIENT) {
+      <div class="flex flex-col gap-4">
+        <div class="detail-container p-5 rounded-md font-bold">
+          <p>{{ (selectedMission$ | async)?.name }}</p>
+        </div>
+        @if (showTransferDestinationSelect$ | async) {
+          <mat-form-field size="large" appearance="outline" subscriptSizing="dynamic">
+            <mat-select
+              data-test="transfer-destination-type-select"
+              (selectionChange)="destinationTypeChange($event.value)"
+              [value]="selectedTransferDestinationType$ | async"
+              [placeholder]="'GENERAL.SELECT' | transloco"
+            >
+              <mat-option data-test="same-workspace-option" [value]="MissionTransferTargetType.SAME_WORKSPACE">
+                {{ (sameWorkspaceSelectLabel$ | async) || '' | transloco }}
+              </mat-option>
+              <mat-option data-test="other-workspace-option" [value]="MissionTransferTargetType.OTHER_WORKSPACE">
+                {{ (otherWorkspaceSelectLabel$ | async) || '' | transloco }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        }
+        @if (showDestinationWorkspaceSelect$ | async) {
+          <mat-form-field size="large" appearance="outline" subscriptSizing="dynamic">
+            <mat-select
+              data-test="destination-workspace-select"
+              (selectionChange)="selectedWorkspaceChange($event.value)"
+              [value]="selectedWorkspace$ | async"
+              [placeholder]="'MISSION.TRANSFER_DIALOG.WORKSPACE_PLACEHOLDER' | transloco"
+            >
+              @for (workspace of userWorkspaces$ | async; track workspace) {
+                <mat-option [value]="workspace">
+                  <div class="flex flex-row gap-2.5 items-center">
+                    <img
+                      [src]="workspace.icon_url || defaultCompanyLogo"
+                      alt="Workspace logo"
+                      class="h-8 w-8 rounded-full"
+                    />
+                    <span class="text-ellipsis overflow-hidden secondary-text">{{ workspace.name }}</span>
+                  </div>
+                </mat-option>
+              }
+            </mat-select>
+            @if (selectedWorkspace$ | async; as selectedWorkspace) {
+              <img
+                matPrefix
+                [src]="selectedWorkspace.icon_url || defaultCompanyLogo"
+                alt="Workspace logo"
+                class="h-8 w-8 rounded-full ml-4 mr-2"
+              />
+            }
+          </mat-form-field>
+        }
+        @if ({ recipient: recipient$ | async }) {
+          @if (showUserFilter$ | async) {
+            <app-transfer-dialog-filter
+              [searchFormControl]="recipientFormControl"
+              [recipients]="filteredRecipients$ | async"
+              [selectedRecipient]="selectedRecipient$ | async"
+              (filterChange)="filterChange($event)"
+              (recipientSelected)="autoCompleteOptionSelected($event)"
+              (clearRecipient)="clearRecipient()"
+            ></app-transfer-dialog-filter>
+          }
+        }
+      </div>
+    }
+    @case (MissionTransferStep.CONFIRMATION) {
+      <div>
+        <div class="detail-container p-5 rounded-md flex flex-col items-center gap-2.5">
+          <small class="secondary-text">{{ (confirmationLabel$ | async) || '' | transloco }}</small>
+          <p class="font-bold">{{ (selectedMission$ | async)?.name }}</p>
+          @if (showDestinationWorkspaceSelect$ | async) {
+            <small class="secondary-text">{{ 'MISSION.TRANSFER_DIALOG.CONFIRMATION.NEW_WORKSPACE' | transloco }}</small>
+            <p class="font-bold">{{ (selectedWorkspace$ | async)?.name }}</p>
+          }
+          <small class="secondary-text">{{ 'MISSION.TRANSFER_DIALOG.CONFIRMATION.NEW_OWNER' | transloco }}</small>
+          <p class="font-bold">{{ (selectedRecipient$ | async)?.name }}</p>
+        </div>
+      </div>
+    }
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button type="button" [disabled]="isLoading$ | async" (click)="actionButtonClick(false)">
+    {{ (negativeButtonLabel$ | async) || '' | transloco }}
+  </button>
+
+  <button
+    data-test="transfer-dialog-confirm-button"
+    mat-flat-button
+    type="button"
+    color="primary"
+    [disabled]="submitDisabled$ | async"
+    (click)="actionButtonClick(true)"
+  >
+    {{ (positiveButtonLabel$ | async) || '' | transloco }}
+  </button>
+</mat-dialog-actions>

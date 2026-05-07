@@ -1,0 +1,30 @@
+export interface FixtureEnrollment {
+  id?: string;
+  evaluated?: boolean;
+  goal_date?: string;
+  created_date?: string;
+  updated_date?: string;
+  deleted_date?: string;
+  deleted?: boolean;
+  points?: string;
+  performance?: string;
+  start_date?: string;
+  end_date?: string;
+  give_up?: boolean;
+  give_up_comment?: string;
+  status?: string;
+  required?: boolean;
+  normative?: boolean;
+  progress?: number;
+  certificate_url?: string;
+  assessment_type?: string;
+  required_mission?: boolean;
+  certificate_provider_url?: string;
+  approve_msg?: string;
+  total_mission_questions?: string;
+  total_correct_answers?: string;
+  user?: string;
+  workspace?: string;
+  mission?: string;
+  missionUUID?: string;
+}

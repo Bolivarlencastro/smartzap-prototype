@@ -1,0 +1,94 @@
+<div mat-dialog-title class="flex justify-between items-center mb-3">
+  <span class="text-2xl">{{ 'GENERAL.FILTER' | transloco }}</span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<form mat-dialog-content [formGroup]="form" class="flex flex-col gap-6">
+  <section class="flex flex-col gap-3">
+    <span class="text-lg font-bold">{{ 'SETTINGS.ENROLLMENTS.FILTER.STATUS' | transloco }}</span>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      @for (element of availableStatuses; track element.status) {
+        <kp-status-chip
+          class="cursor-pointer"
+          [matTooltip]="element.label | transloco"
+          [color]="element.status | kpEnrollmentStatusColor"
+          (click)="onSelectStatus(element)"
+        >
+          <span>{{ element.label | transloco }}</span>
+          @if (selectedStatuses.includes(element.status)) {
+            <mat-icon class="s-4 ml-2">check</mat-icon>
+          }
+        </kp-status-chip>
+      }
+    </div>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div class="flex flex-col gap-y-3">
+      <span class="label text-sm leading-none">{{ 'SETTINGS.ENROLLMENTS.FILTER.START_DATE' | transloco }}</span>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <input
+          matInput
+          [matDatepicker]="startDatePicker"
+          [max]="dateRange.end.value"
+          formControlName="start_date__gte"
+        />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col gap-y-3">
+      <span class="label text-sm leading-none">{{ 'SETTINGS.ENROLLMENTS.FILTER.END_DATE' | transloco }}</span>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <input matInput [matDatepicker]="endDatePicker" [min]="dateRange.start.value" formControlName="end_date__lte" />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="flex flex-col gap-y-3">
+    <span class="label text-sm leading-none">{{ 'GENERAL.PERFORMANCE' | transloco }}</span>
+    <div class="flex items-center gap-x-2">
+      <div class="flex gap-x-2 items-center">
+        <mat-form-field
+          appearance="outline"
+          subscriptSizing="dynamic"
+          class="w-24 outline-input-no-floating-label text-sm text-center"
+        >
+          <input matInput type="number" min="0" max="100" placeholder="0" formControlName="performance__gte" />
+        </mat-form-field>
+        <span class="opacity-50 text-sm">%</span>
+      </div>
+
+      <span class="opacity-50 text-2xl">-</span>
+
+      <div class="flex gap-x-2 items-center">
+        <mat-form-field
+          appearance="outline"
+          subscriptSizing="dynamic"
+          class="w-24 outline-input-no-floating-label text-sm text-center"
+        >
+          <input matInput type="number" min="0" max="100" placeholder="100" formControlName="performance__lte" />
+        </mat-form-field>
+        <span class="opacity-50 text-sm">%</span>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div mat-dialog-actions class="p-6 flex justify-end rounded-b-3xl">
+  <button mat-button type="button" (click)="onClear()">
+    {{ 'GENERAL.CLEAR' | transloco }}
+  </button>
+  <button mat-flat-button color="accent" type="button" (click)="onApply()" [disabled]="!form.valid">
+    {{ 'GENERAL.APPLY' | transloco }}
+  </button>
+</div>

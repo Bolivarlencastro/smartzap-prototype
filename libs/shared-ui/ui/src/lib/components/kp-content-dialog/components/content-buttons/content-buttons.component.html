@@ -1,0 +1,24 @@
+<div class="flex flex-row flex-wrap gap-4">
+  @for (button of buttons; track button) {
+    <button
+      mat-flat-button
+      type="button"
+      class="h-28 max-h-none rounded-md"
+      [ngClass]="{ 'hidden sm:flex': button.hiddenOnMobile }"
+      [class.bg-primary]="button.selected"
+      [matTooltip]="getTooltip(button) | transloco"
+      [attr.aria-label]="button.title | transloco"
+      (click)="contentSelected.emit(button)"
+    >
+      <div class="flex flex-col items-center">
+        @if (button.svgIcon) {
+          <mat-icon class="s-9 my-2.5 mx-4" [svgIcon]="button?.svgIcon"></mat-icon>
+        }
+        @if (!button.svgIcon) {
+          <mat-icon class="s-9 my-2.5 mx-4">{{ button.icon }}</mat-icon>
+        }
+        {{ button.title | transloco }}
+      </div>
+    </button>
+  }
+</div>

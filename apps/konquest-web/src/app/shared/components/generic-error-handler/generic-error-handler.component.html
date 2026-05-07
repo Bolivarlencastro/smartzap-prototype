@@ -1,0 +1,51 @@
+<span class="text-2xl font-bold" mat-dialog-title>{{ 'GENERAL.WARN' | transloco }}</span>
+
+<div class="overflow-hidden mt-3">
+  <div class="text-sm px-6">{{ 'GROUP.ERROR_DIALOG.MESSAGE' | transloco }}</div>
+  <div class="text-sm mb-5 px-6">
+    <span class="font-bold">{{ 'GROUP.ERROR_DIALOG.MESSAGE_COUNT_REGISTRATION' | transloco }}</span> {{ data.length }}
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-table [dataSource]="data" aria-label="Errors Table" class="overflow-y-auto h-[60vh] bg-inherit">
+    <ng-container matColumnDef="register">
+      <mat-header-cell *matHeaderCellDef>{{ 'GENERAL.REGISTER' | transloco }}</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let item">
+        <span class="line-clamp-3">{{ item | genericErrorHandlerLabelNormalize }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>{{ 'GENERAL.DESCRIPTION' | transloco }}</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let item" class="flex items-center">
+        <span class="line-clamp-3">
+          @if (item?.message) {
+            {{ 'GROUP.ERROR_DIALOG.' + item?.message | uppercase | transloco }}
+            @if (item.user && item?.mission?.name) {
+              - ({{ item?.mission?.name }})
+            }
+          }
+          @if (item?.error) {
+            @if (item.error.detail) {
+              {{ item.error.detail }}
+            } @else {
+              {{ 'GROUP.ERROR_DIALOG.' + item.error.i18n | uppercase | transloco }}
+            }
+          }
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" class="h-22"></mat-row>
+  </mat-table>
+</div>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-actions class="h-16 flex justify-end px-3">
+  <button mat-flat-button color="primary" mat-dialog-close>
+    {{ 'GENERAL.CLOSE' | transloco }}
+  </button>
+</div>

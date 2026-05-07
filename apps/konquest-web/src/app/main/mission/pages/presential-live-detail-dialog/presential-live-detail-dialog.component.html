@@ -1,0 +1,183 @@
+<div
+  mat-dialog-title
+  class="h-[200px] xxs:h-[300px] bg-cover bg-center flex flex-col justify-between p-5 rounded-t-2xl"
+  [style.background-image]="backgroundImage"
+>
+  <kp-card-tag [type]="missionModelTag" [keepOpen]="true" class="w-fit"></kp-card-tag>
+
+  <button
+    class="absolute right-1 xxs:right-4 top-1 xxs:top-4 text-white bg-black bg-opacity-25"
+    mat-icon-button
+    (click)="dialogRef.close()"
+    [attr.aria-label]="'GENERAL.CLOSE' | transloco"
+  >
+    <mat-icon class="xxs:s-6">close</mat-icon>
+  </button>
+</div>
+
+<!-- RESUME -->
+<div class="flex items-center justify-between flex-wrap p-2 xxs:py-4 px-7">
+  <div class="flex items-center justify-center">
+    <mat-icon class="s-4 xxs:s-7 mr-1.5 xxs:mr-4">calendar_month</mat-icon>
+    <div class="flex flex-col text-2xxs xxs:text-sm truncate">
+      <p class="font-bold">
+        {{ 'GENERAL.DATE' | transloco }}
+      </p>
+      <app-event-dates [eventDates]="eventDates()"></app-event-dates>
+    </div>
+  </div>
+
+  <mat-divider [vertical]="true" class="h-7 xxs:h-9"></mat-divider>
+
+  <div class="flex items-center justify-center">
+    <mat-icon class="s-4 xxs:s-7 mr-1.5 xxs:mr-4">alarm</mat-icon>
+    <div class="flex flex-col text-2xxs xxs:text-sm truncate">
+      <p class="font-bold">
+        {{ 'GENERAL.HOUR' | transloco }}
+      </p>
+      <p>{{ mission?.duration_time | kpDuration }}</p>
+    </div>
+  </div>
+
+  <mat-divider [vertical]="true" class="hidden sm:flex h-9"></mat-divider>
+
+  <div class="hidden sm:flex items-center justify-center">
+    <mat-icon class="s-4 xxs:s-7 mr-1.5 xxs:mr-4">person</mat-icon>
+    <div class="flex flex-col text-2xxs xxs:text-sm truncate">
+      <p class="font-bold">
+        {{ 'GENERAL.ENROLLMENTS' | transloco }}
+      </p>
+      <p>{{ usersEnrolled }}</p>
+    </div>
+  </div>
+
+  <mat-divider [vertical]="true" class="hidden xxs:flex h-9"></mat-divider>
+
+  @if (mission?.mission_model === 'PRESENTIAL') {
+    <div class="hidden xxs:flex items-center justify-center">
+      <mat-icon class="s-4 xxs:s-7 mr-1.5 xxs:mr-4">location_on</mat-icon>
+      <div class="flex flex-col text-2xxs xxs:text-sm truncate">
+        <p class="font-bold">
+          {{ 'GENERAL.ADDRESS' | transloco }}
+        </p>
+        <a class="underline" [href]="locationUrl" target="_blank">{{ 'MISSION.DETAIL.VIEW_ON_MAPS' | transloco }}</a>
+      </div>
+    </div>
+  } @else {
+    <div class="hidden xxs:flex items-center justify-center">
+      <mat-icon class="s-4 xxs:s-7 mr-1.5 xxs:mr-4">videocam</mat-icon>
+      <div class="flex flex-col text-2xxs xxs:text-sm truncate">
+        <p class="font-bold">Link</p>
+        @if (mission?.live?.url) {
+          <a class="underline max-w-64 truncate" [href]="mission?.live?.url" target="_blank">{{
+            mission?.live?.url
+          }}</a>
+        } @else {
+          <span>{{ 'MISSION.DETAIL.NO_LINK_FOUND' | transloco }}</span>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<mat-divider></mat-divider>
+
+<!-- TITLE -->
+<div class="flex items-center justify-between pt-4 px-6">
+  <div class="flex flex-col">
+    <p class="font-bold text-lg xxs:text-2xl pb-1 xxs:pb-0 xxs:leading-9 [word-break:break-word]">
+      {{ mission?.name }}
+    </p>
+    <p class="text-xs">{{ 'MISSION.DETAIL.CREATED_AT' | transloco }} {{ mission?.created_date | date: 'longDate' }}</p>
+  </div>
+  <div class="hidden xxs:flex">
+    <kp-action-menu
+      [actions]="missionActions$ | async"
+      [hasEnrollment]="!!enrollment"
+      (actionClick)="executeAction($event)"
+    ></kp-action-menu>
+  </div>
+</div>
+
+<div class="flex flex-col gap-3 px-6 pt-1 pb-4">
+  <!-- DESCRIPTION -->
+  <kp-description
+    class="text-sm"
+    [description]="mission.description"
+    [canEdit]="mission.is_owner || mission.is_contributor || isAdmin || isSuperAdmin"
+    (update)="updateDescription($event)"
+  ></kp-description>
+
+  <!-- MOBILE LINKS -->
+  <div class="flex xxs:hidden flex-col mb-3.5">
+    @if (mission?.mission_model === 'PRESENTIAL') {
+      <div class="text-sm mb-1">{{ 'GENERAL.ADDRESS' | transloco | uppercase }}</div>
+      <div class="flex items-center gap-1">
+        <mat-icon class="s-6">location_on</mat-icon>
+        <a class="underline text-sm" [href]="locationUrl" target="_blank">{{
+          'MISSION.DETAIL.VIEW_ON_MAPS' | transloco
+        }}</a>
+      </div>
+    } @else {
+      <div class="text-sm mb-1">LINK</div>
+      <div class="flex items-center gap-1">
+        <mat-icon class="s-6">videocam</mat-icon>
+        <a class="underline max-w-64 truncate text-sm" [href]="mission?.live?.url" target="_blank">{{
+          mission?.live?.url
+        }}</a>
+      </div>
+    }
+  </div>
+
+  <!-- INSTRUCTORS -->
+  @if (instructors?.length) {
+    <div class="text-sm">
+      {{ 'MISSION.DETAIL.INSTRUCTORS' | kpPluralizeTranslate: { value: instructors?.length } | uppercase }}
+    </div>
+    <div class="flex items-center gap-5">
+      @for (instructor of instructors; track instructor) {
+        <div class="flex items-center gap-1.5">
+          <img [src]="instructor.avatar || defaultAvatar" class="w-10 h-10 rounded-full" alt="instructorAvatar" />
+          <span class="font-bold first-letter:uppercase text-sm">{{ instructor.name }}</span>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- SUPPORT MATERIAL -->
+  @if (supportMaterials()?.length) {
+    <div class="text-sm mt-3">
+      {{ 'MISSION.DETAIL.SUPPORT_MATERIAL' | transloco | uppercase }}
+    </div>
+    <div class="flex items-center gap-5 flex-wrap">
+      @for (material of supportMaterials(); track material.id) {
+        <div
+          class="flex items-center gap-2 shrink-0 cursor-pointer"
+          (click)="onOpenSupportMaterial(material.content_url)"
+        >
+          <mat-icon class="s-6" [svgIcon]="material?.content_type_name | KpContentIconName"></mat-icon>
+          <span class="text-sm max-w-36 line-clamp-1" [matTooltip]="material?.title">{{ material?.title }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+@if (!disableActions) {
+  <div mat-dialog-footer class="xxs:hidden h-14 flex flex-col">
+    <mat-divider></mat-divider>
+    <div class="grow flex items-center px-2">
+      @if (mainAction) {
+        <button
+          mat-flat-button
+          color="primary"
+          class="grow text-xs"
+          [disabled]="mainAction?.disabled"
+          (click)="mainActionClick()"
+        >
+          {{ mainAction?.label | transloco }}
+        </button>
+      }
+    </div>
+  </div>
+}

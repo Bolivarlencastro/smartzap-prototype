@@ -1,0 +1,59 @@
+.course-detail-resume {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1.25rem 1.75rem;
+  background: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+  .mat-divider-vertical {
+    height: auto;
+    opacity: 0.35;
+  }
+}
+
+.course-detail-resume__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.course-detail-resume__icon {
+  flex-shrink: 0;
+}
+
+.course-detail-resume__text {
+  min-width: 0;
+}
+
+.course-detail-resume__label {
+  margin: 0 0 0.125rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(15 23 42 / 62%);
+}
+
+.course-detail-resume__value {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgb(15 23 42 / 92%);
+}
+
+@media (width <= 768px) {
+  .course-detail-resume {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+
+    .mat-divider-vertical {
+      display: none;
+    }
+  }
+}

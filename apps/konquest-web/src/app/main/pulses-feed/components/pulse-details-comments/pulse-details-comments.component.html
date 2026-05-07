@@ -1,0 +1,39 @@
+@if (commentsWithTime().length > 0) {
+  <div class="flex flex-col gap-3 p-4">
+    @for (comment of commentsWithTime(); track comment.id) {
+      <div class="comment-item">
+        <div class="flex flex-col w-full">
+          <div class="flex items-center">
+            <strong class="comment-name">{{ comment.user?.name }}</strong>
+            @if (hasCommentMenu(comment)) {
+              <mat-icon class="comment-menu-btn ml-auto" [matMenuTriggerFor]="commentMenu">more_horiz</mat-icon>
+              <mat-menu #commentMenu="matMenu">
+                @if (canEditComment(comment)) {
+                  <button mat-menu-item (click)="startEdit(comment)">
+                    {{ 'PULSES_FEED.PULSE_CARD.COMMENT_MENU.EDIT' | transloco }}
+                  </button>
+                }
+                @if (canDeleteComment(comment)) {
+                  <button mat-menu-item (click)="openDeleteDialog(comment)">
+                    {{ 'PULSES_FEED.PULSE_CARD.COMMENT_MENU.DELETE' | transloco }}
+                  </button>
+                }
+              </mat-menu>
+            }
+          </div>
+          @if (editingCommentId() === comment.id) {
+            <div class="bubble">
+              <app-comment-edit-inline
+                [(text)]="editingText"
+                (editCancel)="cancelEdit()"
+                (confirm)="confirmEdit(comment)"
+              />
+            </div>
+          } @else {
+            <span class="comment-text" [innerHTML]="comment.comment"></span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

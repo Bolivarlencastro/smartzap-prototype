@@ -1,0 +1,25 @@
+@if (currentSelector?.multiple) {
+  <mat-form-field slim class="w-full" subscriptSizing="dynamic">
+    <mat-select
+      formControlName="value"
+      [placeholder]="'UI.REPORT_FILTER_DIALOG.SELECT_OPTIONS' | transloco"
+      [multiple]="true"
+    >
+      @for (option of currentSelector?.options; track option) {
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+} @else {
+  <mat-form-field slim class="w-full" subscriptSizing="dynamic">
+    <mat-select
+      formControlName="value"
+      [placeholder]="'UI.REPORT_FILTER_DIALOG.SELECT_OPTIONS' | transloco"
+      [hideSingleSelectionIndicator]="true"
+    >
+      @for (option of currentSelector?.options; track option) {
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

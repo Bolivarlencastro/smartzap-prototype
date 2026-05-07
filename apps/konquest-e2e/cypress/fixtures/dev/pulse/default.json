@@ -1,0 +1,9 @@
+{
+  "name": "Math.random().toString(36).slice(2)",
+  "description": "Description of automation pulse",
+  "learn_content_uuid": "learn_content_uuid",
+  "user_creator": "3e405b8f-bb04-4585-b1aa-5082be93aa1e",
+  "pulse_type": "569cc389-ac1d-4fa0-9692-f715b475b59b",
+  "pulse_id": "pulse_id",
+  "channel_id": "channel_id"
+}

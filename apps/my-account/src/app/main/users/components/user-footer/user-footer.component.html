@@ -1,0 +1,21 @@
+@if (editing) {
+  <button mat-button (click)="onDeleteUser()" type="button">
+    <mat-icon class="text-primary dark:text-on-primary"> delete </mat-icon>
+    <span class="text-primary dark:text-on-primary ml-2">{{ 'GENERAL.DELETE' | transloco }}</span>
+  </button>
+}
+
+<button data-test="button-close-modal" mat-button color="primary" class="ml-auto" (click)="onClose()" type="button">
+  <span class="text-primary dark:text-on-primary">{{ cancelButtonLabel | transloco }}</span>
+</button>
+
+<button
+  data-test="button-save-changes"
+  mat-raised-button
+  color="primary"
+  type="submit"
+  [disabled]="submitDisabled"
+  (click)="onSave()"
+>
+  <span class="dark:text-on-primary">{{ 'GENERAL.SAVE' | transloco }}</span>
+</button>

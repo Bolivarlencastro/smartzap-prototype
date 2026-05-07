@@ -1,0 +1,78 @@
+<div (click)="onClick()" class="kp-channel-card shadow-lg rounded-xl cursor-pointer relative flex h-[172px] p-[10px]">
+  <div
+    class="kp-channel-card-cover aspect-[1/1] bg-cover bg-no-repeat bg-center flex items-center justify-center w-[152px] h-[152px] rounded-t-lg rounded-b-lg"
+    [class.inactive]="!channel?.is_active"
+    [ngStyle]="{
+      'background-image': 'url(' + (channel?.cover_image || defaultPlaceHolder) + ')',
+    }"
+  >
+    @if (!channel?.is_active) {
+      <span>{{ 'UI.GENERAL.INACTIVE' | transloco }}</span>
+    }
+  </div>
+
+  <div class="kp-channel-card-container flex flex-col px-3 col-span-2 w-full overflow-hidden">
+    <div class="kp-channel-card-header w-full flex justify-between">
+      <span
+        data-test="kp-channel-card.channel_name"
+        class="break-words line-clamp-1 self-start font-bold"
+        [matTooltip]="channel?.name"
+      >
+        {{ channel?.name }}
+      </span>
+    </div>
+
+    <div class="kp-channel-card-content flex items-end gap-x-8 h-full">
+      <div class="flex flex-col gap-x-6 w-full h-full justify-between">
+        <span data-test="kp-channel-card.category_name" class="text-sm break-words line-clamp-1">{{
+          channel?.category | kpCategoryLabel | transloco
+        }}</span>
+        <mat-divider class="mt-12"></mat-divider>
+        <div class="flex items-center justify-between flex-wrap">
+          <div class="flex gap-1.5">
+            <span class="text-sm flex items-center mr-1">
+              <kp-info-tag [icon]="'language'" [label]="channel?.language | uppercase"></kp-info-tag>
+            </span>
+            <span data-test="kp-channel-card.total_pulses" class="text-2xxs flex items-center">
+              <mat-icon class="s-0 mr-1" svgIcon="pulse"></mat-icon>
+              <span class="leading-none">{{ channel?.stats?.pulses_count || 0 }}</span>
+            </span>
+            <span data-test="kp-channel-card.subscribers" class="text-2xxs flex items-center">
+              <mat-icon class="s-2 mr-0.5">person</mat-icon>
+              {{ channel?.stats?.subscribers_count || 0 }}
+            </span>
+          </div>
+          @if (!isOwnerOrContributor) {
+            @if (!channel?.subscription_id) {
+              <button
+                data-test="kp-channel-card.enroll"
+                class="kp-channel-card-subscribe-icon h-6 leading-4 pb-1"
+                color="primary"
+                (click)="onSubscribe($event)"
+                aria-hidden="false"
+                aria-label="subscribe"
+                [matTooltip]="'UI.GENERAL.SUBSCRIBE' | transloco"
+                id="button-channel-card-subscribe"
+              >
+                <span class="text-xs">{{ 'UI.GENERAL.SUBSCRIBE' | transloco }}</span>
+              </button>
+            }
+            @if (channel?.subscription_id) {
+              <button
+                data-test="kp-channel-card.enrolled"
+                class="kp-channel-card-enrolled-icon h-6 leading-4 pb-1"
+                (click)="onSubscribe($event)"
+                aria-hidden="false"
+                aria-label="enrolled"
+                [matTooltip]="'UI.GENERAL.SUBSCRIBED' | transloco"
+                id="button-channel-card-enrolled"
+              >
+                <span class="text-xs">{{ 'UI.GENERAL.SUBSCRIBED' | transloco }}</span>
+              </button>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+.comment-input {
+  @apply w-full text-sm resize-none overflow-hidden py-2.5 leading-5;
+
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+
+  &::placeholder {
+    color: var(--mat-sys-on-surface-variant);
+    opacity: 0.7;
+  }
+}
+
+.comments-title {
+  @apply text-sm font-semibold m-0;
+}
+
+.comment-item {
+  @apply flex items-center;
+}
+
+.comment-avatar {
+  @apply rounded-full object-cover shrink-0 w-8 h-8;
+}
+
+.comment-name {
+  @apply text-sm font-semibold;
+}
+
+.comment-menu-btn {
+  @apply text-base cursor-pointer opacity-60 hover:opacity-100;
+
+  font-size: 1.125rem;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.comment-text {
+  @apply text-sm m-0 leading-snug [word-break:break-word];
+}
+
+.comment-time {
+  @apply text-xs opacity-50;
+}
+
+.bubble {
+  @apply flex flex-col gap-0.5 rounded-xl px-3 py-2 [word-break:break-word];
+
+  background-color: var(--mat-sys-surface-container);
+}

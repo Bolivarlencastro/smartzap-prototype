@@ -1,0 +1,151 @@
+<div class="px-6 pt-6" *kpVar="userResponse$ | async as userResponse">
+  <div>
+    <kp-user-details-charts
+      [userData]="userData$ | async"
+      [userResponse]="userResponse"
+      [userStats]="userStats$ | async"
+      [performanceRanges]="performanceRanges$ | async"
+      [activitiesData]="activitiesData$ | async"
+      [activitiesFilter]="activitiesFilter$ | async"
+      [topEnrollmentCategories]="topEnrollmentCategories$ | async"
+      [topContentConsumed]="topContentConsumed$ | async"
+      (activitiesFilterEvent)="onActivitiesFilterChanged($event)"
+      (filter)="onFilterChart($event)"
+    ></kp-user-details-charts>
+  </div>
+</div>
+
+<h2 class="text-2xl font-semibold text-center sm:text-left mx-6 mb-4 mt-6">
+  {{ 'USERS.DETAILS.DATATABLE.TITLE' | transloco }}
+</h2>
+
+<ng-container *kpVar="userEnrollmentList$ | async as enrollments">
+  <kp-table-layout
+    [totalItems]="enrollments?.response?.total || 0"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    (pageChange)="onPaging($event)"
+    (searchChange)="applyFilter($event)"
+  >
+    <div kpTableFilterAfter class="flex items-center gap-2">
+      <button mat-icon-button (click)="openFilters()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <kp-export-menu (export)="exportTable($event)"></kp-export-menu>
+    </div>
+
+    <div kpTable class="table-container">
+      @if (enrollments?.isLoading) {
+        <ngx-skeleton-loader count="10" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+      }
+
+      @if (enrollments?.isLoading) {
+        <div class="grow">
+          <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+        </div>
+      }
+
+      @if (!enrollments?.isLoading && !enrollments?.response?.total) {
+        <div class="grow flex items-center justify-center text-sm">
+          {{ 'GENERAL.EMPTY_LIST_MESSAGE' | transloco }}
+        </div>
+      }
+
+      <table
+        mat-table
+        class="kp-card-table w-full"
+        aria-label="User Details Table"
+        [hidden]="enrollments?.isLoading || !enrollments?.response?.total"
+        [dataSource]="enrollments?.response?.data"
+        matSort
+        matSortActive="start_date"
+        matSortDirection="desc"
+        id="userDetailsTable"
+        (matSortChange)="onDatatableSortChanged()"
+      >
+        <!-- Column Mission Name -->
+        <ng-container matColumnDef="course_name.sortable">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="pl-4">
+            {{ 'USERS.DETAILS.DATATABLE.COLUMN.NAME' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let row" class="pl-4">
+            <div class="break-words line-clamp-3" [matTooltip]="row._source.course_name">
+              {{ row._source.course_name }}
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Column Category Name -->
+        <ng-container matColumnDef="category_name.sortable">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ 'USERS.DETAILS.DATATABLE.COLUMN.CATEGORY' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let row" [attr.data-raw]="row._source.category_name">
+            <span class="break-words line-clamp-3">{{ row._source.category_name_translated }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Column Start Date -->
+        <ng-container matColumnDef="start_date">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            start="desc"
+            class="max-w-[110px] hidden sm:flex justify-end"
+          >
+            {{ 'USERS.DETAILS.DATATABLE.COLUMN.START_DATE' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let row" class="max-w-[110px] hidden sm:flex justify-end pr-8">
+            {{ (row._source.start_date | date: 'dd/MM/yyyy' : 'GMT') || '-' }}
+          </td>
+        </ng-container>
+
+        <!-- Column Completed Date -->
+        <ng-container matColumnDef="end_date">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            start="desc"
+            class="max-w-[110px] hidden md:flex justify-end"
+          >
+            {{ 'USERS.DETAILS.DATATABLE.COLUMN.COMPLETED_DATE' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let row" class="max-w-[110px] hidden md:flex justify-end pr-8">
+            {{ (row._source.end_date | date: 'dd/MM/yyyy' : 'GMT') || '-' }}
+          </td>
+        </ng-container>
+
+        <!-- Column Completed Rate -->
+        <ng-container matColumnDef="completed_rate">
+          <th *matHeaderCellDef mat-header-cell class="max-w-[110px] hidden sm:flex justify-end">
+            {{ 'USERS.DETAILS.DATATABLE.COLUMN.PERFORMANCE' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let row" class="max-w-[110px] hidden sm:flex justify-end">
+            {{ (row._source.performance | percent) || '-' }}
+          </td>
+        </ng-container>
+
+        <!-- Column Quizzes -->
+        <ng-container matColumnDef="quizzes">
+          <th *matHeaderCellDef mat-header-cell class="max-w-[160px] hidden sm:flex justify-end pr-4">
+            {{ 'USERS.DETAILS.DATATABLE.COLUMN.QUIZZES' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let row" class="max-w-[160px] hidden sm:flex justify-end pr-4">
+            @if (row._source.questions.questions_total) {
+              <span>
+                {{ row._source.questions.questions_answered_correctly }}/{{ row._source.questions.questions_total }}
+              </span>
+            } @else {
+              -
+            }
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="listDisplayedColumns" class="font-bold"></tr>
+        <tr mat-row *matRowDef="let row; columns: listDisplayedColumns"></tr>
+      </table>
+    </div>
+  </kp-table-layout>
+</ng-container>

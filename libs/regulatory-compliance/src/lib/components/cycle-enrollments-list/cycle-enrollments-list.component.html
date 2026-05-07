@@ -1,0 +1,119 @@
+<div class="grow flex flex-col">
+  @if (!isLoading) {
+    <mat-table
+      matSort
+      [dataSource]="enrollments"
+      (matSortChange)="onSortChange($event)"
+      matSortDirection="desc"
+      matSortStart="desc"
+      class="border-separate"
+      id="cycle-enrollments-table"
+      aria-label="Cycle enrollments list"
+    >
+      <ng-container matColumnDef="progress">
+        <mat-header-cell *matHeaderCellDef class="min-w-20 max-w-20"></mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-20 max-w-20">
+          <kp-cycle-progress [cycle]="item"></kp-cycle-progress>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userName" [sticky]="true">
+        <mat-header-cell *matHeaderCellDef class="min-w-52 fixed-column-right-border">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.USER_NAME' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-52 fixed-column-right-border">
+          {{ item?.enrollment?.user?.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="leaderName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="enrollment.user.relatedUserLeader" class="min-w-36">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.LEADER_NAME' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-36">
+          {{ item?.enrollment?.user?.relatedUserLeader?.name || '-' }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="normativeName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="cycle.compliance.name" class="min-w-36">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.NORMATIVE' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-36">{{ item?.cycle?.compliance?.name || '-' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="learningObjectName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="enrollment.learningObject.name" class="min-w-36">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.LEARNING_OBJECT' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-36">
+          <span class="break-words line-clamp-3">{{ item?.enrollment?.learningObject?.name }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="validity">
+        <mat-header-cell *matHeaderCellDef class="min-w-28 max-w-28">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.VALIDITY' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-28 max-w-28">
+          {{ item?.cycle?.duration }}
+          @if (item?.cycle?.periodType) {
+            {{ item?.cycle?.periodType | cycleDurationType | kpPluralizeTranslate: { value: item?.cycle?.duration } }}
+          } @else {
+            -
+          }
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="renewDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="createdDate" class="min-w-28 max-w-28">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.RENEW_DATE' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-28 max-w-28">{{
+          item?.createdDate | date: 'shortDate'
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expirationDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="deadline" class="min-w-28 max-w-28">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.EXPIRATION_DATE' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-28 max-w-28">{{ item?.deadline | date: 'shortDate' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="status" class="min-w-36">
+          {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.STATUS' | transloco }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item" class="min-w-36">
+          <div class="flex gap-2 items-center">
+            <div
+              class="h-2.5 w-2.5 rounded-full"
+              [style.background-color]="item?.status | cycleEnrollmentStatusColor"
+            ></div>
+            <p class="cycle-status">{{ item?.status | cycleEnrollmentStatus | transloco }}</p>
+            <kp-cycle-actions
+              class="cycle-actions hidden"
+              [enrollment]="item"
+              (renew)="onRenewCycle(item)"
+              (inactivate)="onInactivateCycle(item)"
+            ></kp-cycle-actions>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns" class="cycle-row"></mat-row>
+    </mat-table>
+  } @else {
+    <div class="w-full h-full grow">
+      <ngx-skeleton-loader count="3" animation="pulse" [theme]="itemsLoaderTheme"></ngx-skeleton-loader>
+    </div>
+  }
+
+  @if (!isLoading && !enrollments?.length) {
+    <div class="grow flex items-center justify-center w-full text-sm">
+      {{ 'REGULATORY_COMPLIANCE.CYCLE_MANAGEMENT.TABLE.NO_RESULTS' | transloco }}
+    </div>
+  }
+</div>

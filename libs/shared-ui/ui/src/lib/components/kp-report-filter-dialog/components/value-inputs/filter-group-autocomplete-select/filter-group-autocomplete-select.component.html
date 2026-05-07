@@ -1,0 +1,61 @@
+@if (currentSelector?.multiple) {
+  <mat-form-field class="w-full" subscriptSizing="dynamic">
+    <mat-select
+      [formControlName]="'value'"
+      [placeholder]="'UI.REPORT_FILTER_DIALOG.AUTOCOMPLETE_SELECT.PLACEHOLDER' | transloco"
+      [compareWith]="comparisionFn"
+      [multiple]="true"
+    >
+      <mat-select-trigger>
+        {{ triggerValue }}
+      </mat-select-trigger>
+      <mat-option>
+        <ngx-mat-select-search
+          [formControl]="inputFc"
+          [clearSearchInput]="false"
+          [alwaysRestoreSelectedOptionsMulti]="true"
+          [placeholderLabel]="'UI.GENERAL.SEARCH' | transloco"
+          [searching]="isLoading$ | async"
+          [noEntriesFoundLabel]="'UI.REPORT_FILTER_DIALOG.AUTOCOMPLETE_SELECT.NO_RESULTS' | transloco"
+        ></ngx-mat-select-search>
+      </mat-option>
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">
+          <span class="text-ellipsis line-clamp-2">
+            {{ option.label }}
+          </span>
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+} @else {
+  <mat-form-field class="w-full" subscriptSizing="dynamic">
+    <mat-select
+      [formControlName]="'value'"
+      [placeholder]="'UI.REPORT_FILTER_DIALOG.AUTOCOMPLETE_SELECT.PLACEHOLDER' | transloco"
+      [compareWith]="comparisionFn"
+      [hideSingleSelectionIndicator]="true"
+    >
+      <mat-select-trigger>
+        {{ triggerValue }}
+      </mat-select-trigger>
+      <mat-option>
+        <ngx-mat-select-search
+          [formControl]="inputFc"
+          [clearSearchInput]="false"
+          [alwaysRestoreSelectedOptionsMulti]="false"
+          [placeholderLabel]="'UI.GENERAL.SEARCH' | transloco"
+          [searching]="isLoading$ | async"
+          [noEntriesFoundLabel]="'UI.REPORT_FILTER_DIALOG.AUTOCOMPLETE_SELECT.NO_RESULTS' | transloco"
+        ></ngx-mat-select-search>
+      </mat-option>
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">
+          <span class="text-ellipsis line-clamp-2">
+            {{ option.label }}
+          </span>
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

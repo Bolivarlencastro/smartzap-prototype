@@ -1,0 +1,47 @@
+{
+  "name": "leader-panel",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/leader-panel/src",
+  "prefix": "lp",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/leader-panel/jest.config.ts",
+        "tsConfig": "libs/leader-panel/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/leader-panel/**/*.scss"]
+      }
+    },
+    "sonar": {
+      "executor": "@koliveira15/nx-sonarqube:scan",
+      "options": {
+        "name": "Leader Panel Web",
+        "hostUrl": "https://steve.keepsdev.com/sonar/",
+        "projectKey": "leader-panel-web",
+        "skipTargetDefaults": false,
+        "branches": false,
+        "qualityGate": true,
+        "qualityGateTimeout": "300",
+        "skipImplicitDeps": false,
+        "exclusions": "libs/core/**, libs/shared-ui/**",
+        "extra": {
+          "sonar.testExecutionReportPaths": "coverage/leader-panel/jest-sonar.xml",
+          "sonar.coverage.exclusions": "**/store/**, **/translate.ts, **/*.routes.ts, **/app.config.ts,, **/*.module.ts, **/test-setup.ts, **/*.providers.ts, **/*.routes.ts, src/main.ts",
+          "sonar.plugins.downloadOnlyRequired": "true"
+        }
+      }
+    }
+  }
+}

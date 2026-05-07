@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+@mixin kp-skeleton-theme {
+  kp-skeleton {
+    --skeleton-accent: var(--mat-sys-surface-container-high);
+  }
+}

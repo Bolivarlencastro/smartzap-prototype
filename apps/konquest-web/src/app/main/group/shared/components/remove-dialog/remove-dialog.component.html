@@ -1,0 +1,29 @@
+<span class="text-lg p-0" style="padding-top: 0 !important" mat-dialog-title>
+  {{ 'CONFIRM.DIALOG.TITLE' | transloco }}
+</span>
+<div mat-dialog-content class="p-0">
+  <p>{{ 'GROUP_USER.DIALOG.REMOVE_USER_MESSAGE' | transloco }}</p>
+</div>
+
+<div mat-dialog-actions class="flex justify-between items-center p-0 gap-4">
+  <div class="flex items-center w-full">
+    <span>
+      {{ 'GROUP_USER.DIALOG.REMOVE_ENROLLMENTS' | transloco }}
+    </span>
+    <mat-checkbox
+      id="input-remove-enrollments-as-well"
+      color="accent"
+      [checked]="removeEnrollments"
+      (change)="toggleRemoveEnrollment()"
+    >
+    </mat-checkbox>
+  </div>
+  <div class="flex w-full justify-end">
+    <button mat-stroked-button class="mr-1" id="button-confirm-cancel" (click)="onCancel()">
+      {{ 'GENERAL.CANCEL' | transloco }}
+    </button>
+    <button mat-flat-button color="primary" id="button-confirm-ok" (click)="onConfirm()">
+      {{ 'GENERAL.DELETE' | transloco }}
+    </button>
+  </div>
+</div>

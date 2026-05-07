@@ -1,0 +1,34 @@
+.question-list {
+  width: 100%;
+  padding: 1rem 0.5rem 1rem 1rem;
+  position: relative;
+  transition: 0.25s ease-in-out;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 4px 4px 8px;
+    border-radius: 4px;
+    width: 100%;
+    white-space: nowrap;
+    min-height: 48px;
+    transition: background-color 0.5s;
+
+    &__actions {
+      display: none;
+      transition: 1s ease-in;
+
+      .mat-mdc-icon-button {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+
+    &:hover &__actions {
+      display: block;
+    }
+  }
+}

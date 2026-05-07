@@ -1,0 +1,123 @@
+{
+  "addContentStage": {
+    "content_type": "CONTENT",
+    "content_type_id": "",
+    "created_date": "",
+    "description": "Math.random().toString(36).slice(2)",
+    "genially_content_type_id": "bda0cca5-ac84-4257-8b83-defac7f96738",
+    "id": "",
+    "learn_content_uuid": "",
+    "mission": "",
+    "name": "Math.random().toString(36).slice(2)",
+    "order": "",
+    "stage": "",
+    "updated_date": ""
+  },
+  "link": {
+    "youtube": {
+      "name": "Math.random().toString(36).slice(2)",
+      "link": "https://www.youtube.com/watch?v=4b0SiOtsA0c"
+    },
+    "vimeo": {
+      "name": "Math.random().toString(36).slice(2)",
+      "link": "https://vimeo.com/100716497"
+    },
+    "soundcloud": {
+      "name": "Math.random().toString(36).slice(2)",
+      "link": "https://soundcloud.com/lucas-jung-712964072/contagem-regressiva-10-segundos"
+    },
+    "googledrive": {
+      "doc": {
+        "name": "Math.random().toString(36).slice(2)",
+        "link": "https://docs.google.com/document/d/16dAvmGiRZf2_k8wBhhNS4A15uI2a-TzH/"
+      },
+      "sheet": {
+        "name": "Math.random().toString(36).slice(2)",
+        "link": "https://docs.google.com/spreadsheets/d/1SIKfwXLx-rZvcCUSRsD68FlkI6jBCjDb/"
+      },
+      "presentation": {
+        "name": "Math.random().toString(36).slice(2)",
+        "link": "https://docs.google.com/presentation/d/1dGHpe_mPCyIcIH2Hl9pba4Bh5GM8g410/"
+      }
+    }
+  },
+  "image": {
+    "path": "cypress/fixtures/dev/content/image/imageJPEG.jpeg",
+    "name": "My image Mock",
+    "fileName": "image-mock.jpeg"
+  },
+  "video": {
+    "path": "cypress/fixtures/dev/content/video/video10s.mp4",
+    "name": "video-10s",
+    "fileName": "video10s.mp4"
+  },
+  "audio": {
+    "path": "cypress/fixtures/dev/content/audio/audio1.mp3",
+    "name": "audio-1",
+    "fileName": "audio1.mp3"
+  },
+  "docx": {
+    "path": "cypress/fixtures/dev/content/document/documentDOCX.docx",
+    "name": "documentDOCX",
+    "fileName": "documentDOCX.docx"
+  },
+  "pdf": {
+    "path": "cypress/fixtures/dev/content/document/documentPDF.pdf",
+    "name": "documentPDF",
+    "fileName": "documentPDF.pdf"
+  },
+  "pptx": {
+    "path": "cypress/fixtures/dev/content/document/documentPPTX.pptx",
+    "name": "documentPPTX",
+    "fileName": "documentPPTX.pptx"
+  },
+  "xls": {
+    "path": "cypress/fixtures/dev/content/document/documentXLS.xls",
+    "name": "documentXLS",
+    "fileName": "documentXLS.xls"
+  },
+  "xlsx": {
+    "path": "cypress/fixtures/dev/content/document/documentXLSX.xlsx",
+    "name": "documentXLSX",
+    "fileName": "documentXLSX.xlsx"
+  },
+  "genially": {
+    "time": 1,
+    "link": "https://view.genially.com/65ae60f6bb0c620014fdfb24/guide-online-education-guide"
+  },
+  "exam": {
+    "stage": "UUIDStage",
+    "title": "RamdomTitle"
+  },
+  "exam_questions": {
+    "exam_question": "uma pergunta",
+    "id": "",
+    "options": [
+      {
+        "id": null,
+        "option": "resp 1",
+        "correct_answer": true
+      },
+      {
+        "id": null,
+        "option": "resp 2",
+        "correct_answer": false
+      },
+      {
+        "id": null,
+        "option": "resp 3",
+        "correct_answer": false
+      },
+      {
+        "id": null,
+        "option": "resp 4",
+        "correct_answer": false
+      }
+    ],
+    "points": "5",
+    "question_type": "correct_choices"
+  },
+  "statusEnrollment": {
+    "finish": "Finalizada"
+  }
+}

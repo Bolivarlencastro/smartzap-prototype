@@ -1,0 +1,19 @@
+<mat-form-field class="w-full mb-0" appearance="outline">
+  <mat-label>{{ filterLabel }}</mat-label>
+  <input matInput [placeholder]="filterPlaceholder" #input />
+
+  <div matSuffix class="flex items-center">
+    <mat-icon class="s-6">search</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="exportMenu" [matTooltip]="'UI.GENERAL.EXPORT' | transloco">
+      <mat-icon class="s-6" color="accent">save_alt</mat-icon>
+    </button>
+  </div>
+</mat-form-field>
+
+<mat-menu #exportMenu>
+  @for (format of formats; track format) {
+    <button mat-menu-item (click)="exportDataTable(format)">
+      <span>{{ format | uppercase }}</span>
+    </button>
+  }
+</mat-menu>

@@ -1,0 +1,525 @@
+{
+  "APP": {
+    "CHANGE_WORKSPACE": "Workspace",
+    "LOGOUT": "Sair",
+    "PROFILE": "Perfil"
+  },
+  "BATCH_ACTION": {
+    "MESSAGE": "Estamos processando a ação. Esse procedimento pode levar alguns minutos para ser refletido no sistema."
+  },
+  "CARD": {
+    "CHANGED_CONFIG": {
+      "ERROR": "Ops! Ocorreu algum problema ao editar a configuração!!",
+      "SUCCESS": "Você alterou a configuração com sucesso!!"
+    }
+  },
+  "COULD_NOT_LOAD_USERS": "Não foi possível carregar os usuários",
+  "ERROR": {
+    "NOT_PERMISSION_ACCESS_THIS_SERVICE": "Você não possui permissão para acessar o serviço =(",
+    "WORKSPACE_ASSOCIATE_THIS_WORKSPACE_OF_THE_USER": "Ocorreu um erro ao tentar associar a workspace ao usuário :(",
+    "WORKSPACE_REMOVE": "Ocorreu um erro ao remover a workspace :(",
+    "WORKSPACE_SAVE": "Ocorreu um erro ao tentar cadastrar a workspace :(",
+    "WORKSPACE_UPDATE": "Ocorreu um erro ao tentar atualizar a workspace :("
+  },
+  "GENERAL": {
+    "ACTIVE": "Ativo",
+    "ACTIVITY_AREA": "Área de Atividade",
+    "AREA": "Área",
+    "ADDRESS": "Endereço",
+    "ADD": "Adicionar",
+    "APPS_ROLES": {
+      "ACCOUNT_ADMIN": "Administrar a própria conta",
+      "ADMIN": "Admin",
+      "BASIC_ANALYTICS_ADMIN": "Acesso todos relatórios",
+      "BASIC_ANALYTICS_LEADER": "Acesso aos relatórios de líder",
+      "BASIC_ANALYTICS_USER": "Acesso apenas aos seus relatórios",
+      "COMPANY_ADMIN": "Administrador da Workspace",
+      "CONTENT": "Conteúdista",
+      "CURATOR": "Curador",
+      "INSTRUCTOR": "Instrutor",
+      "KEEPS_ADMIN": "Keeps Admin",
+      "NO_PERMISSIONS": "Sem permissões",
+      "NO_APPLICATIONS": "Sem aplicações nesta workspace",
+      "PLAYER": "Jogador",
+      "SUPER_ADMIN": "Super Admin",
+      "USER": "Usuário"
+    },
+    "APPS_SERVICES": {
+      "KONQUEST_LEARNING_TRAIL": "Konquest - Trilha de Aprendizagem",
+      "KONQUEST_MISSION": "Konquest - Cursos",
+      "KONQUEST_PULSE": "Konquest - Pulses",
+      "LEARN_ANALYTICS": "Analytics",
+      "SMARTZAP": "SmartZap"
+    },
+    "BACK": "Voltar",
+    "BIRTHDAY": "Nascimento",
+    "CANCEL": "Cancelar",
+    "CLOSE": "Fechar",
+    "CONFIGURATIONS_UPDATED": "Configurações atualizadas com sucesso!",
+    "CONFIGURATIONS_UPDATE_FAILED": "Erro ao atualizar configurações",
+    "CONFIRM_ACTION": "Confirmar ação",
+    "CONTENT": {
+      "BLOG": "Blog",
+      "IMAGE": "Imagem",
+      "OTHERS": "Outros",
+      "PDF": "PDF",
+      "PODCAST": "Podcast",
+      "SPREADSHEET": "Planilha",
+      "TEXT": "Texto",
+      "VIDEO": "Vídeo"
+    },
+    "DELETE": "Excluir",
+    "DIRECTORATE": "Diretoria",
+    "DURATION": "Duração",
+    "EDIT": "Editar",
+    "EMAIL": "Email",
+    "EN": "Inglês",
+    "ENROLL": "Inscrever",
+    "ENROLLMENTS": "Inscritos",
+    "ES": "Espanhol",
+    "FEMALE": "Feminino",
+    "FILTER": "Filtro",
+    "FINISHED": "Finalizaram",
+    "FROM": "De",
+    "GIVEUP": "Desistir",
+    "GOAL": "Meta",
+    "IMPORT": "Importar",
+    "IMPORT_DATA": "Importar dados",
+    "INACTIVE": "Inativo",
+    "JOB": "Cargo",
+    "KEEPS_APPS": {
+      "KONQUEST": "Konquest",
+      "LEARNING_ANALYTICS": "Analytics",
+      "LEARN_ANALYTICS": "Analytics",
+      "MY_ACCOUNT": "My Account",
+      "SMARTZAP": "SmartZap"
+    },
+    "LANGUAGE": "Idioma",
+    "LEADER": "Líder",
+    "LOADING": "Carregando...",
+    "MALE": "Masculino",
+    "MORE_INFO": "Mais Info",
+    "NAME": "Nome",
+    "NEXT": "Próximo",
+    "NICKNAME": "Apelido",
+    "NO_RESULTS_FOUND": "Nenhum resultado encontrado",
+    "OPEN": "Abrir",
+    "PASSWORD": "Gerar senha",
+    "PERMISSIONS": "Permissões",
+    "PHONE": "Telefone",
+    "PT-BR": "Português (Brasil)",
+    "PT-PT": "Português (Portugal)",
+    "PUBLISH": "Publicar",
+    "REMOVE": "Remover",
+    "RETAKE": "Retomar",
+    "SAVE": "Salvar",
+    "SCORE": "Pontuação",
+    "SEARCH": "Procurar...",
+    "SELECTION": "Seleção",
+    "SEND_INVITE": "Mandar convite",
+    "START": "Início",
+    "STATUS": "Status",
+    "SUBDIRECTORATE": "Subdiretoria",
+    "SUBSCRIPTION_REMOVED": "Inscrição removida com sucesso",
+    "SUCCESSFULLY_ADDED": "Adicionado com sucesso",
+    "SUCCESSFULLY_REMOVED": "Removido com sucesso",
+    "SUCCESSFULLY_SUBSCRIBED": "Inscrito com sucesso",
+    "SUMMARY": "Resumo",
+    "TIME": "Tempo",
+    "TO": "Para",
+    "US-EN": "Inglês",
+    "USER_IMPORTED": "Usuário importado",
+    "WORKSPACES": "Workspaces"
+  },
+  "IMAGE": {
+    "UPLOAD": {
+      "IMAGE_INVALID_LENGTH": "Arquivo inválido, tamanho deve ser menor que 10MB"
+    }
+  },
+  "JOB_MANAGEMENT": {
+    "ADD_BUTTON": "Adicionar",
+    "ADD_JOB_FUNCTION_BUTTON": "Adicionar função",
+    "ADD_JOB_POSITION_BUTTON": "Adicionar cargo",
+    "CANCEL_BUTTON": "Cancelar",
+    "CLOSE_BUTTON": "Fechar",
+    "DELETE_BUTTON": "Excluir",
+    "DELETE_SELECTION_DESCRIPTION": "Você tem certeza que deseja excluir estes itens? Essa exclusão pode afetar o funcionamento de sua workspace.",
+    "DELETE_SELECTION_SUCCESSFUL_MESSAGE": "Seleção excluída com sucesso.",
+    "DELETE_SELECTION_FAILURE_MESSAGE": "Ocorreu um erro ao excluir a seleção.",
+    "DELETE_SELECTION_TITLE": "Excluir seleção",
+    "EDIT_BUTTON": "Editar",
+    "EDIT_DIALOG_DESCRIPTION": "A edição deste item pode afetar algumas funções da workspace com as quais ele se relaciona. Faça essa edição com atenção.",
+    "HINT": "Max. 50 caracteres",
+    "JOB_FUNCTION": {
+      "ADD_DIALOG_DESCRIPTION": "Adicione uma função a sua workspace. Digite com atenção para evitar erros de consistencia em aplicações futuras onde essa informação será utilizada.",
+      "ADD_JOB_FUNCTION": "Adicionar função",
+      "CREATION_SUCCESSFUL_MESSAGE": "Função adicionada com sucesso.",
+      "CREATION_FAILURE_MESSAGE": "Ocorreu um erro ao adicionar a função.",
+      "DELETE_DIALOG_DESCRIPTION": "Você tem certeza que deseja excluir esta função? Essa exclusão pode afetar o funcionamento de sua workspace.",
+      "DELETE_DIALOG_TITLE": "Excluir função",
+      "DELETION_SUCCESSFUL_MESSAGE": "Função excluída com sucesso.",
+      "DELETION_FAILURE_MESSAGE": "Ocorreu um erro ao excluir a função.",
+      "EDITION_SUCCESSFUL_MESSAGE": "Função editada com sucesso.",
+      "EDITION_FAILURE_MESSAGE": "Ocorreu um erro ao editar a função.",
+      "EDIT_JOB_FUNCTION": "Editar função",
+      "EMPTY_LIST_MESSAGE": "Não existem funções cadastradas.",
+      "PLACEHOLDER": "Função"
+    },
+    "JOB_FUNCTIONS": "Funções",
+    "JOB_POSITION": {
+      "ADD_DIALOG_DESCRIPTION": "Adicione um cargo a sua workspace. Digite com atenção para evitar erros de consistencia em aplicações futuras onde essa informação será utilizada.",
+      "ADD_JOB_POSITION": "Adicionar cargo",
+      "CREATION_SUCCESSFUL_MESSAGE": "Cargo adicionado com sucesso.",
+      "CREATION_FAILURE_MESSAGE": "Ocorreu um erro ao adicionar o cargo.",
+      "DELETE_DIALOG_DESCRIPTION": "Você tem certeza que deseja excluir este cargo? Essa exclusão pode afetar o funcionamento de sua workspace.",
+      "DELETE_DIALOG_TITLE": "Excluir cargo",
+      "DELETION_SUCCESSFUL_MESSAGE": "Cargo excluído com sucesso.",
+      "DELETION_FAILURE_MESSAGE": "Ocorreu um erro ao excluir o cargo.",
+      "EDITION_SUCCESSFUL_MESSAGE": "Cargo editado com sucesso.",
+      "EDITION_FAILURE_MESSAGE": "Ocorreu um erro ao editar o cargo.",
+      "EDIT_JOB_POSITION": "Editar cargo",
+      "EMPTY_LIST_MESSAGE": "Não existem cargos cadastrados.",
+      "PLACEHOLDER": "Cargo"
+    },
+    "JOB_POSITIONS": "Cargos",
+    "MESSAGE_ALL_SELECTED": {
+      "PLURAL": "{{value}} itens selecionados",
+      "SINGULAR": "{{value}} item selecionado"
+    },
+    "NAME_TAB": "Nome",
+    "SUBTITLE": "Adicione de forma manual os cargos e funções para sua workspace.",
+    "TAB_TITLE": "Cargos e Funções",
+    "TITLE": "Adicionar cargos e funções a workspace"
+  },
+  "MAT-PAGINATOR": {
+    "FIRST_PAGE": "Primeira página",
+    "ITEMS_PER_PAGE": "Itens por página",
+    "LAST_PAGE": "Última página",
+    "NEXT_PAGE": "Próxima página",
+    "PAGE_OF": "de",
+    "PREV_PAGE": "Página Anterior"
+  },
+  "NAVIGATION": {
+    "ACTIVITY_LOG": "Log",
+    "BACK_OFFICE": "Backoffice",
+    "PROFILE": "Perfil",
+    "USERS": "Usuários",
+    "WORKSPACE": "Workspace"
+  },
+  "NOTIFICATION": {
+    "ERROR": {
+      "MARK_AS_READ": "Não foi possível marcar a notificação como lida."
+    }
+  },
+  "QUICK_PANEL": {
+    "CLOUD_SYNC": "Cloud Sync",
+    "EVENTS": "Eventos",
+    "NOTES": "Notas",
+    "NOTIFICATIONS": "Notificações",
+    "RETRO_THRUSTERS": "Propulsores Retro",
+    "SETTINGS": "Quick Definições",
+    "TH": "o",
+    "TODAY": "Hoje"
+  },
+  "SERVICES": {
+    "STATUS_UPDATE_ALTER": "Erro ao alterar status",
+    "STATUS_UPDATE_SUCCESS": "Status alterado com sucesso"
+  },
+  "THEME_OPTIONS": {
+    "COLOR_THEMES": "Cores",
+    "TITLE": "Configurações de tema"
+  },
+  "TOOLS_HUB": {
+    "CREATE_BUTTON": "Criar",
+    "CREATE_TOOL": "Criar ferramenta",
+    "EDIT_TOOL": "Editar ferramenta",
+    "EMPTY_LIST_MESSAGE": "Nenhuma ferramenta cadastrada",
+    "ICON": "Ícone",
+    "MENU": "Menu",
+    "MESSAGES": {
+      "CREATE_SUCCESS": "Ferramenta criada com sucesso!",
+      "CREATE_FAILURE": "Erro ao criar ferramenta",
+      "EDIT_SUCCESS": "Ferramenta editada com sucesso!",
+      "EDIT_FAILURE": "Erro ao editar ferramenta",
+      "REMOVE_SUCCESS": "Ferramenta removida com sucesso!",
+      "REMOVE_FAILURE": "Erro ao remover ferramenta"
+    },
+    "SELECT_ICON": "Selecione um ícone",
+    "TITLE": "Hub de ferramentas"
+  },
+  "USER": {
+    "CREATE_USER_ERROR": "Ocorreu um erro ao salvar o usuário.",
+    "DUPLICATE_CPF_ERROR": "Já existe um usuário cadastrado com este CPF.",
+    "CREATE_USER_SUCCESS": "Usuário salvo com sucesso.",
+    "DELETE_ROLE_USER": "Ocorreu um erro ao tentar excluir a role do usuário :(",
+    "DELETE_USER_ERROR": "Ocorreu um erro ao deletar o usuário :(",
+    "DELETE_USER_SUCCESS": "Usuário removido com sucesso!",
+    "INVALID_NAME_OR_EMAIL": "Email e / ou nome inválido.",
+    "ROLES_SAVED": "Permissões salvas com sucesso!",
+    "FAILED_TO_LOAD_ROLES": "Ocorreu um erro ao carregar permissões do usuário",
+    "LINKED_ROLE_USER_ERROR": "Ocorreu um erro ao tentar associar a role ao usuário :(",
+    "SAVE_USER_ERROR": "Ocorreu um erro ao tentar cadastrar o usuário :(",
+    "UPDATE_AVATAR_ERROR": "Ocorreu um erro ao tentar atualizar o avatar :(",
+    "UPDATE_USER_ERROR": "Ocorreu um erro ao tentar atualizar o usuário :(",
+    "UPDATE_USER_SUCCESS": "Usuário atualizado com sucesso!",
+    "UPLOAD_AVATAR_ERROR": "Ocorreu um erro ao tentar fazer o upload do avatar :(",
+    "UPLOAD_ERROR": "Não foi possível realizar o upload do arquivo",
+    "UPLOAD_ERROR_CHECK_FILE": "Não foi possível importar os usuários, verifique o conteúdo do arquivo",
+    "USER_NOT_FOUND_ERROR": "Erro ao executar essa ação. Esse usuário não tem acesso mais a aplicação de autenticação (KC). Consulte nosso suporte.",
+    "error_template_user_import": "O modelo de planilha não corresponde."
+  },
+  "USERS": {
+    "DETAIL": {
+      "TABS": {
+        "ACCESS": {
+          "LABEL": "Acesso"
+        },
+        "CONTACT": {
+          "COUNTRY": "País",
+          "INVALID_EMAIL": {
+            "TITLE": "Email inválido",
+            "DESCRIPTION": "Marque esta opção para indicar que o e-mail cadastrado é inválido e não deve receber comunicações do sistema."
+          },
+          "LABEL": "Contato",
+          "SECONDARY_EMAIL": "Email Secundário"
+        },
+        "PERSONAL": {
+          "ETHNICITY": {
+            "ASIAN": "Amarelo",
+            "BLACK": "Preto",
+            "BROWN": "Pardo",
+            "INDIGENOUS": "Indígena",
+            "LABEL": "Etnia",
+            "WHITE": "Branco"
+          },
+          "GENDER": {
+            "FEMALE": "Feminino",
+            "LABEL": "Gênero",
+            "MALE": "Masculino",
+            "OTHER": "Outro"
+          },
+          "LABEL": "Pessoal",
+          "MARITAL_STATUS": {
+            "DIVORCED": "Divorciado",
+            "LABEL": "Estado Civil",
+            "MARRIED": "Casado",
+            "SEPARATED": "Separado",
+            "SINGLE": "Solteiro",
+            "WIDOWED": "Viúvo"
+          }
+        },
+        "PROFESSIONAL": {
+          "ADMISSION_DATE": "Data de Admissão",
+          "CONTRACT_TYPE": "Tipo de Contratação",
+          "EDUCATION": "Escolaridade",
+          "HIERARCHICAL_LEVEL": "Nível Hierárquico",
+          "LABEL": "Profissional",
+          "REGISTRATION_NUMBER": "Número de Registro",
+          "LEADER": "Líder",
+          "INVALID_LEADER_SELECTED": "Selecione um usuário válido"
+        }
+      },
+      "WORKSPACES": {
+        "THIS_WORKSPACE_PERMISSIONS": "Permissões nesta workspace",
+        "OTHER_WORKSPACES_PERMISSIONS": "Outras workspaces",
+        "ADD_WORKSPACE": "Adicionar",
+        "EDIT_PERMISSIONS": "Editar permissões",
+        "REMOVE_FROM_WORKSPACE": "Remover da workspace",
+        "IDP_ACCESS": "Acesso via IdP",
+        "NO_IDP_CONFIG": "Essa Workspace não possui configuração de acesso via IdP",
+        "USE_TWO_FACTOR": "Autenticação de dois fatores",
+        "TWO_FACTOR_PENDING": "O usuário ainda não configurou a autenticação de dois fatores"
+      }
+    },
+    "EMAIL_SEND_SUCCESS": "Email enviado com sucesso",
+    "FILTER": {
+      "ACTIVITY_AREA": "Área",
+      "DIRECTOR": "Diretoria",
+      "JOB_POSITION": "Cargo",
+      "MANAGER": "Subdiretoria",
+      "LEADER": "Líder",
+      "ROLE": {
+        "KONQUEST": {
+          "CONTENT": "Conteudista",
+          "CURATOR": "Curador",
+          "INSTRUCTOR": "Instrutor",
+          "USER": "Usuário"
+        },
+        "LEARN_ANALYTICS": {
+          "BASIC_ANALYTICS_ADMIN": "Acesso a todos os relatórios",
+          "BASIC_ANALYTICS_LEADER": "Acesso aos relatórios de líder",
+          "BASIC_ANALYTICS_USER": "Acesso apenas aos seus relatórios"
+        },
+        "MY_ACCOUNT": {
+          "ACCOUNT_ADMIN": "Administrar a própria conta",
+          "COMPANY_ADMIN": "Administrador da Workspace"
+        },
+        "SMARTZAP": {
+          "USER": "Usuário"
+        },
+        "TITLE": "Permissão"
+      },
+      "STATUS": {
+        "DISABLED": "Desabilitado",
+        "ENABLED": "Habilitado",
+        "TITLE": "Status"
+      }
+    },
+    "IMPORT": {
+      "BUTTON-SELECT-FILE": "Selecione um Arquivo",
+      "BUTTON_DOWNLOAD_MODEL": "Baixar modelo de arquivo",
+      "ROLES_INSTRUCTIONS": "Defina as permissões de acesso dos usuários.",
+      "TEMPORARY_PASSWORD": "Senha temporária",
+      "TEMPORARY_PASSWORD_TOOLTIP": "Se ATIVO, o usuário deverá atualizar a senha no primeiro acesso à plataforma.",
+      "TITLE": "Importar Usuários",
+      "UPLOAD_INSTRUCTIONS": "Selecione um arquivo para importar os usuários em lote."
+    },
+    "LIST": {
+      "CREATE_NEW_USER": "Novo Usuário",
+      "IMPORT_USER": "Importar Usuários",
+      "TITLE": "Usuários",
+      "COUNTER": {
+        "ALL_SELECTED": {
+          "MESSAGE": "Todas os(as) {{ value }} usuários(as) desta workspace foram selecionados(as)."
+        },
+        "SIMPLE_SELECTION": {
+          "LINK": "Selecione todos(as) os(as) {{ value }} usuários(as) da workspace.",
+          "MESSAGE": {
+            "PLURAL": "{{ value }} usuários(as) nesta página estão selecionados(as).",
+            "SINGULAR": "{{ value }} usuário(a) nesta página está selecionado(a)."
+          }
+        }
+      }
+    },
+    "IMPORT_LIST": {
+      "TITLE": "Histórico de Importações",
+      "DATE": "Data",
+      "TIME": "Hora",
+      "STATUS": "Status",
+      "TOTAL_TO_IMPORT": "Itens",
+      "SUCCESS_COUNT": "Sucessos",
+      "ERROR_COUNT": "Erros",
+      "PROGRESS": "Progresso",
+      "DOWNLOAD_FILE": "Baixar arquivo",
+      "ERRORS": "Relatório de erros",
+      "MENU": "Menu",
+      "NO_RESULTS": "Nenhuma importação encontrada"
+    },
+    "IMPORT_STATUS": {
+      "COMPLETED": "Finalizado",
+      "COMPLETED_WITH_ERRORS": "Finalizado com erros",
+      "FAILED": "Falha",
+      "PENDING": "Pendente",
+      "PROCESSING": "Processando"
+    },
+    "IMPORT_ERRORS": {
+      "TITLE": "Relatório de erros",
+      "LINE_NUMBER": "Linha",
+      "ERROR_MESSAGE": "Mensagem de erro"
+    },
+    "IMPORT_USER_MESSAGES": {
+      "ANOTHER_IMPORT_IN_PROGRESS": "Outra importação já está em progresso. Por favor aguarde até que ela seja finalizada.",
+      "MISSING_MANDATORY_COLUMNS": "Uma ou mais colunas obrigatórias não estão presentes no arquivo CSV, verifique seu arquivo de importação.",
+      "INVALID_CSV_STRUCTURE": "A estrutura do arquivo CSV está inválida. Por favor certifique-se que o arquivo tem as colunas e linhas necessárias.",
+      "UNREADABLE_CSV": "Não é possível ler o arquivo CSV pois ele é inválido ou não está devidamente formatado.",
+      "FILE_SIZE_EXCEEDED": "O arquivo excede o limite de 50MB.",
+      "INVALID_FILE_TYPE": "Tipo de arquivo inválido. Apenas arquivos CSV são permitidos.",
+      "GENERIC_IMPORT_ERROR": "Ocorreu um erro ao carregar o arquivo. Por favor, tente novamente.",
+      "IMPORT_SUCCESS": "Importação iniciada com sucesso. Acompanhe o progresso no Histórico de Importações"
+    },
+    "ROLES_DIALOG": {
+      "SUBTITLE": {
+        "FILE": "Selecione um arquivo para importar os usuários em lote.",
+        "ROLES": "Defina as permissões de acesso do usuário."
+      },
+      "TITLE": {
+        "FILE": "Importar usuários",
+        "ROLES": "Permissões de acesso"
+      }
+    },
+    "UPDATED_SUCCESS": "Status alterado com sucesso!"
+  },
+  "USER_DATA_TRANSFER_DIALOG": {
+    "NOTICE_SUBTITLE": "Esta ação não pode ser desfeita. Confirme sua escolha com cuidado.",
+    "NOTICE_TITLE": "Após a confirmação, todos os dados selecionados serão permanentemente transferidos para o perfil de destino.",
+    "SUBTITLE": "Selecione o usuário cujos dados você deseja importar.",
+    "TRANSFER_FAILURE_MESSAGE": "Erro ao importar dados.",
+    "TRANSFER_SUCCESS_MESSAGE": "Dados importados com sucesso!"
+  },
+  "USER_DETAIL": {
+    "ADD_WORKSPACE": "Adicionar Workspace",
+    "ALL_PERMISSIONS_REMOVED_THIS_USER_SUCCESS": "Atenção, todas as permissões foram removidas desse usuário",
+    "AVATAR_UPDATED": "Avatar atualizado!",
+    "BTN_COPY_PASSWORD": "Copiar senha",
+    "MODAL_PASSWORD_TITLE": "Alteração de Senha",
+    "PASSWORD_SAVE_SUCCESS": "A senha do usuário selecionado foi alterada com sucesso. Clique no botão para copiar.",
+    "UPDATE_IMAGE_ERROR": "Não foi possivel atualizar a imagem!",
+    "USER_UPDATE_SUCCESS": "Usuário atualizado com sucesso!"
+  },
+  "USER_PROFILE": {
+    "ALL_PERMISSIONS_DELETED": "Atenção, todas as permissões foram removidas desse usuário",
+    "AVATAR_UPDATED": "Avatar atualizado!",
+    "AVATAR_UPDATED_ERROR": "Ocorreu um problema e não foi possível atualizar a sua imagem!"
+  },
+  "USER_SEND_INVITATION_ERROR": "Ocorreu um erro ao enviar o convite",
+  "WORKSPACES": {
+    "DETAIL": {
+      "ADDRESS": "Endereço",
+      "CITY": "Cidade",
+      "COLOR-PICKER": "ou selecione uma cor customizada",
+      "COUNTRY": "País",
+      "DARK-THEME": "Selecione o tema",
+      "DESCRIPTION": "Descrição e Informações Adicionais",
+      "DOC_NUMBER": "Número do Documento",
+      "DUNS_NUMBER": "DUNS",
+      "HASH_ID_TOOLTIP": "Ao alterar esse campo, os links enviados por e-mail com o valor antigo se tornarão inválidos.",
+      "NAME": "Nome da Workspace",
+      "POST_CODE": "CEP",
+      "STATE": "Estado",
+      "SUBTITLE": "Detalhes da Workspace",
+      "TABS": {
+        "GENERAL": "Dados Cadastrais",
+        "LAYOUT": "Layout",
+        "SETTING": "Configuração"
+      }
+    },
+    "DIALOG": {
+      "PLACEHOLDER": "Informe o nome da workspace",
+      "TITLE": "Criar uma workspace nova"
+    },
+    "ICON_LABEL": "Ícone da workspace",
+    "LOGO_LABEL": "Logo da workspace",
+    "REMOVE": {
+      "ERROR": "Ups! Ocorreu um problema ao tentar remover essa workspace.",
+      "SUCCESS": "Workspace removida com sucesso!"
+    }
+  },
+  "WORKSPACE_DIALOG": {
+    "CANCEL": "Não",
+    "CONFIRM_REMOVE_WORKSPACE": "Tem certeza de que deseja excluir este usuário do workspace? Essa ação é permanente.",
+    "CONFIRM_REMOVE_WORKSPACE_TITLE": "Excluir usuário do workspace",
+    "OK": "Sim",
+    "SELECT_WORKSPACE": "Selecione uma workspace",
+    "WORKSPACE": "Workspace",
+    "WORKSPACE_ASSOCIATED": {
+      "SUCCESS": "Workspace associada com sucesso!"
+    }
+  },
+  "WORKSPACE_ROLES_DIALOG": {
+    "ADD_WORKSPACE": "Adicionar Workspace",
+    "ADD_WORKSPACE_LABEL": "Selecione a workspace na qual você deseja adicionar este usuário.",
+    "CONFIGURE_ROLES": "Configurar Permissões",
+    "CONFIGURE_ROLES_LABEL": "Configure as permissões de uso do usuário na workspace selecionada.",
+    "WORKSPACE_SELECT_LABEL": "Workspace"
+  },
+  "WORKSPACE_PROFILE": {
+    "IMAGE_UPDATE": "Imagem atualizada!",
+    "IMAGE_UPDATE_ERROR": "Ocorreu um problema ao tentar atualizar o logo da workspace.",
+    "IMAGE_UPDATE_ERROR_ICONE": "Ocorreu um problema ao tentar atualizar ícone da workspace.",
+    "UPDATE": "Workspace atualizada com sucesso!",
+    "DELETE_DIALOG": {
+      "TITLE": "Excluir workspace",
+      "MESSAGE": "Esta ação é irreversível. Todo o conteúdo, usuários e histórico associados serão excluídos. Deseja confirmar a exclusão?"
+    }
+  }
+}

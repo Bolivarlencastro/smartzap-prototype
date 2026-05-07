@@ -1,0 +1,33 @@
+@switch (currentSelector?.type) {
+  <!--Select-->
+  @case (FilterGroupType.SELECT) {
+    <kp-filter-group-select [currentSelector]="currentSelector"></kp-filter-group-select>
+  }
+  <!--Date Range-->
+  @case (FilterGroupType.DATE_RANGE) {
+    <kp-filter-group-date-range></kp-filter-group-date-range>
+  }
+  <!--Date Picker-->
+  @case (FilterGroupType.DATE) {
+    <kp-filter-group-date-input></kp-filter-group-date-input>
+  }
+  <!--Autocomplete search-->
+  @case (FilterGroupType.AUTOCOMPLETE_SELECT) {
+    <kp-filter-group-autocomplete-select
+      [currentSelector]="currentSelector"
+      [currentValue]="filterFormGroup.controls.value.value"
+    ></kp-filter-group-autocomplete-select>
+  }
+  <!--Duration range-->
+  @case (FilterGroupType.DURATION_RANGE) {
+    <kp-filter-group-duration-range></kp-filter-group-duration-range>
+  }
+  <!--Percentage range-->
+  @case (FilterGroupType.PERCENT_RANGE) {
+    <kp-filter-group-percent-range></kp-filter-group-percent-range>
+  }
+  <!--Text field-->
+  @case (FilterGroupType.TEXT_FIELD) {
+    <kp-filter-group-text-field></kp-filter-group-text-field>
+  }
+}

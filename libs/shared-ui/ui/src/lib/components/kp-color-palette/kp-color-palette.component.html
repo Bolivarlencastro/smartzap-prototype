@@ -1,0 +1,20 @@
+<div class="flex flex-col pallet mb-6">
+  <div class="pallet-title">
+    <h3 class="font-weight-900 mt-6 mb-2">
+      {{ 'UI.WORKSPACES.DETAIL.TITLE-COLOR' | transloco }}
+    </h3>
+  </div>
+  <div class="flex flex-wrap items-center justify-start pallet-content">
+    @for (theme of themes; track theme) {
+      <div
+        class="flex pallet-click mb-2 mr-2 rounded-full"
+        (click)="onChangeTheme(theme)"
+        [ngClass]="{
+          'pallet-color-selected': theme === selectedTheme,
+        }"
+      >
+        <span class="w-10 h-10 rounded-full pallet-color" [style.background-color]="theme"></span>
+      </div>
+    }
+  </div>
+</div>

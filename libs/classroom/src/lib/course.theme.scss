@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin course-theme {
+  --kp-sidenav-content-bg: var(--mat-sys-surface-bright);
+  --course-header-bg: var(--mat-sys-surface-container);
+  --kp-bg-hover: color-mix(in srgb, var(--mat-sys-on-surface) 8%, transparent);
+
+  .classroom-content {
+    padding: 8px;
+  }
+
+  kp-accordion {
+    mat-accordion {
+      --mat-expansion-container-background-color: var(--kp-sidenav-content-bg);
+      --mat-expansion-container-shape: 8px;
+    }
+  }
+
+  kp-progress-panel {
+    .progress-panel-container {
+      background-color: var(--kp-sidenav-content-bg) !important;
+    }
+  }
+
+  .help-panel-section-label {
+    background-color: var(--mat-sys-surface-container);
+  }
+}

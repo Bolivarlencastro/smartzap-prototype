@@ -1,0 +1,88 @@
+<form [formGroup]="filterFormGroup" (ngSubmit)="onFilter()">
+  <p mat-dialog-title class="text-2xl">{{ 'GENERAL.FILTERS' | transloco }}</p>
+  <div mat-dialog-content class="py-2">
+    @if (viewModel$ | async; as vm) {
+      <kp-filter-container
+        [filterOptions]="filterOptions"
+        [initialControllerState]="vm.filterState?.controllerState"
+        [initialFilterValue]="vm.filterState?.filter"
+      >
+        <ng-template [kpFilterDef]="'categoriesAc'" let-filterOption let-control="control">
+          <mat-form-field subscriptSizing="dynamic" appearance="outline">
+            <mat-select
+              [formControlName]="filterOption.filterKey"
+              [multiple]="true"
+              [placeholder]="filterOption.placeholder || 'GENERAL.SEARCH' | transloco"
+              [compareWith]="optionsCompare"
+            >
+              <mat-select-trigger>
+                {{ getSelectTriggerLabel(control.value) }}
+              </mat-select-trigger>
+              <mat-option>
+                <ngx-mat-select-search
+                  [formControl]="categoriesAcFormControl"
+                  [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+                  [searching]="vm.isLoading"
+                  [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+                  [alwaysRestoreSelectedOptionsMulti]="true"
+                  [clearSearchInput]="false"
+                ></ngx-mat-select-search>
+              </mat-option>
+              @for (selectedOption of control.value; track optionsTrackBy($index, selectedOption)) {
+                @if (shouldDisplayOption(selectedOption.value, vm.categories)) {
+                  <mat-option [value]="selectedOption" class="hidden">{{ selectedOption.label }} </mat-option>
+                }
+              }
+              @for (option of vm.categories; track optionsTrackBy($index, option)) {
+                <mat-option [value]="option">
+                  {{ option.label }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </ng-template>
+
+        <ng-template [kpFilterDef]="'instructorsAc'" let-filterOption let-control="control">
+          <mat-form-field subscriptSizing="dynamic" appearance="outline">
+            <mat-select
+              [formControlName]="filterOption.filterKey"
+              [multiple]="true"
+              [placeholder]="filterOption.placeholder || 'GENERAL.SEARCH' | transloco"
+              [compareWith]="optionsCompare"
+            >
+              <mat-select-trigger>
+                {{ getSelectTriggerLabel(control.value) }}
+              </mat-select-trigger>
+              <mat-option>
+                <ngx-mat-select-search
+                  [formControl]="instructorsAcFormControl"
+                  [placeholderLabel]="'GENERAL.SEARCH' | transloco"
+                  [searching]="vm.isLoading"
+                  [noEntriesFoundLabel]="'GENERAL.NO_RESULTS_FOUND' | transloco"
+                  [alwaysRestoreSelectedOptionsMulti]="true"
+                  [clearSearchInput]="false"
+                ></ngx-mat-select-search>
+              </mat-option>
+              @for (selectedOption of control.value; track optionsTrackBy($index, selectedOption)) {
+                @if (shouldDisplayOption(selectedOption.value, vm.instructors)) {
+                  <mat-option [value]="selectedOption" class="hidden">{{ selectedOption.label }} </mat-option>
+                }
+              }
+              @for (option of vm.instructors; track optionsTrackBy($index, option)) {
+                <mat-option [value]="option">
+                  {{ option.label }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </ng-template>
+      </kp-filter-container>
+    }
+  </div>
+  <div mat-dialog-actions class="flex justify-end">
+    <button mat-button (click)="clearFilter()" type="button">{{ 'GENERAL.CLEAR_FILTER' | transloco }}</button>
+    <button mat-flat-button color="primary" [disabled]="filterFormGroup.invalid">
+      {{ 'GENERAL.FILTER' | transloco }}
+    </button>
+  </div>
+</form>

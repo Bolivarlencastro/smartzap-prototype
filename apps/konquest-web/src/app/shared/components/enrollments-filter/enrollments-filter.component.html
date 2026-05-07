@@ -1,0 +1,53 @@
+@if (filteringAllUsers) {
+  <button mat-icon-button (click)="openFiltersModal()" class="ml-5">
+    <mat-icon>filter_alt</mat-icon>
+  </button>
+} @else {
+  <form [formGroup]="filterForm" class="flex items-center gap-1 mr-5">
+    <!-- STATUS FILTER-->
+    <kp-select-menu-trigger [label]="'GENERAL.STATUS' | transloco">
+      <mat-icon class="s-1 filled text-primary">circle</mat-icon>
+      <mat-select kpSelectTriggerContent multiple formControlName="status">
+        @for (option of statusOptions; track option.value) {
+          <mat-option [value]="option.value">
+            <span>{{ option.label | transloco }}</span>
+          </mat-option>
+        }
+      </mat-select>
+    </kp-select-menu-trigger>
+    <!-- / STATUS FILTER-->
+
+    <!-- START DATE FILTER -->
+    <kp-date-range-filter-v2
+      [parentFormGroup]="filterForm"
+      gteFcName="start_date__gte"
+      lteFcName="start_date__lte"
+      icon="today"
+      [label]="'GENERAL.START' | transloco"
+      (setFilter)="onFilter()"
+    ></kp-date-range-filter-v2>
+    <!-- / START DATE FILTER -->
+
+    <!-- END DATE FILTER -->
+    <kp-date-range-filter-v2
+      [parentFormGroup]="filterForm"
+      gteFcName="end_date__gte"
+      lteFcName="end_date__lte"
+      icon="today"
+      [label]="'GENERAL.CONCLUSION' | transloco"
+      (setFilter)="onFilter()"
+    ></kp-date-range-filter-v2>
+    <!-- / END DATE FILTER -->
+
+    <!-- PERFORMANCE FILTER -->
+    <kp-percentage-range-filter
+      [parentFormGroup]="filterForm"
+      gteFcName="performance__gte"
+      lteFcName="performance__lte"
+      icon="bar_chart"
+      [label]="'GENERAL.PERFORMANCE' | transloco"
+      (setFilter)="onFilter()"
+    ></kp-percentage-range-filter>
+    <!-- / PERFORMANCE FILTER -->
+  </form>
+}

@@ -1,0 +1,166 @@
+@use 'src/lib/styles/mixins' as ui-mixins;
+
+.pulse-details-dialog .mat-mdc-dialog-surface {
+  overflow: visible;
+}
+
+// Content size of layout
+.content {
+  width: 100%;
+  max-width: 1036px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+audio {
+  width: 100%;
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+// Fix pdf-viewer dropdown
+/* stylelint-disable-next-line */
+ngx-extended-pdf-viewer .dropdownToolbarButton::after {
+  right: 1px;
+  margin-top: -24px;
+}
+
+/* stylelint-disable-next-line */
+#toolbarContainer #presentationMode {
+  display: block;
+}
+
+// CK Editor overrides
+.ck-editor,
+.html-content-container {
+  color: inherit;
+
+  a {
+    color: inherit !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+  }
+
+  ul,
+  ol {
+    padding-left: 1rem;
+    margin-left: 1rem;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  i {
+    font-style: italic;
+    font-family: inherit !important;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  p,
+  ul,
+  ol,
+  blockquote,
+  pre {
+    font-size: 1em;
+    line-height: 1.6em;
+    padding-top: 0.1em;
+    margin-bottom: 0.5em;
+  }
+
+  h2 {
+    font-size: 1.68em;
+    line-height: 1.68em;
+  }
+
+  h3 {
+    font-size: 1.38em;
+    line-height: 1.38em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+    line-height: 1.2em;
+  }
+
+  /* stylelint-disable-next-line */
+  .ck.ck-editor__main > .ck-editor__editable {
+    background: inherit !important;
+  }
+
+  /* stylelint-disable-next-line */
+  .ck-editor__editable_inline {
+    --ck-focus-ring: 2px solid var(--kp-border);
+
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    height: 236px;
+    max-height: 236px;
+  }
+
+  /* stylelint-disable */
+  --ck-spacing-small: 8px;
+  --ck-border-radius: 4px;
+  --ck-inner-shadow: none;
+  --ck-color-text: var(--text-primary);
+  --ck-color-base-border: var(--kp-input-border);
+  --ck-focus-ring: 1px solid var(--kp-border);
+  --ck-color-toolbar-background: transparent;
+  --ck-color-toolbar-border: var(--kp-input-border);
+  --ck-focus-outer-shadow: transparent;
+  --ck-color-list-button-on-background: var(--kp-primary);
+  --ck-color-button-default-active-background: rgba(var(--kp-primary-rgb), 60%);
+  --ck-color-list-button-on-background-focus: var(--kp-primary-700);
+  --ck-color-button-default-hover-background: rgba(var(--kp-primary-rgb), 10%);
+  --ck-color-button-on-background: rgba(var(--kp-primary-rgb), 30%);
+  --ck-color-button-on-color: var(--kp-primary);
+  --ck-color-button-on-hover-background: rgba(var(--kp-primary-rgb), 45%);
+  --ck-color-button-on-active-background: rgba(var(--kp-primary-rgb), 60%);
+  /* stylelint-enable */
+
+  .ck.ck-toolbar {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 4px;
+    border-bottom: none;
+  }
+}
+
+app-mission-detail-dialog-description {
+  /* stylelint-disable-next-line */
+  .ck-editor .ck-editor__editable_inline {
+    height: 236px;
+    max-height: 236px;
+  }
+}
+
+.pulse-dialog-container {
+  @include ui-mixins.pulse-dialog-container-styles;
+}
+
+.route-dialog-container {
+  @include ui-mixins.dialog-container-styles;
+}
+
+.analytics-dialog-container {
+  @include ui-mixins.dialog-container-styles(1300px);
+}
+
+.custom-banner-dialog-container {
+  @include ui-mixins.dialog-container-styles(600px);
+}
+
+.cdk-overlay-backdrop {
+  backdrop-filter: blur(4px) !important;
+  background-color: color-mix(in srgb, var(--mat-sys-scrim) 32%, transparent) !important;
+}
+
+.fixed-column-right-border {
+  border-right: 1px solid var(--mat-sys-outline-variant);
+}

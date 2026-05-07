@@ -1,0 +1,147 @@
+:host {
+  --title-font-size: 12px;
+  --main-action-font-size: 10px;
+  --actions-height: 46px;
+  --card-padding: 8px;
+  --card-radius: 8px;
+
+  cursor: pointer;
+  position: relative;
+  container: lc-card / inline-size;
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr min-content auto var(--actions-height);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow:
+    0 3px 6px rgb(0 0 0 / 16%),
+    0 3px 6px rgb(0 0 0 / 23%);
+
+  &.portrait {
+    aspect-ratio: 9 / 16;
+    width: 162px;
+  }
+
+  &.landscape {
+    aspect-ratio: 16 / 9;
+    height: 188px;
+  }
+}
+
+.lc-card-main-content {
+  grid-row: 3 / 4;
+  align-self: end;
+}
+
+.lc-card-title {
+  @apply text-white;
+
+  font-size: var(--title-font-size);
+}
+
+.lc-card-tags {
+  grid-row: 2 / 3;
+  align-self: stretch;
+
+  @apply text-white;
+}
+
+.lc-card-status-tags {
+  align-self: start;
+}
+
+.lc-card-main-action {
+  font-size: var(--main-action-font-size);
+}
+
+.lc-card-background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  overflow: hidden;
+  z-index: -1;
+
+  &::after {
+    content: '';
+    background: linear-gradient(6deg, rgb(0 0 0 / 100%) 7.58%, rgb(0 0 0 / 0%) 60%);
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.lc-card-actions {
+  display: grid;
+  align-self: center;
+  gap: 4px;
+  position: absolute;
+  bottom: var(--card-padding);
+  left: var(--card-padding);
+  right: var(--card-padding);
+}
+
+.content-card-progress-bar {
+  --mat-progress-bar-track-height: 2px;
+  --mat-progress-bar-active-indicator-height: 2px;
+
+  height: 2px;
+}
+
+@media (width >= 600px) {
+  :host {
+    --title-font-size: 16px;
+    --actions-height: 48px;
+    --card-padding: 12px;
+    --card-radius: 14px;
+    --main-action-font-size: 14px;
+
+    &.portrait {
+      width: 240px;
+    }
+
+    &.landscape {
+      height: 230px;
+    }
+  }
+}
+
+@media (hover: hover) {
+  :host {
+    --opacity-transition: opacity ease-in-out 150ms;
+
+    grid-template-rows: min-content min-content auto var(--actions-height);
+
+    .lc-card-tags {
+      transition: var(--opacity-transition);
+      opacity: 1;
+      padding-top: 4px;
+      grid-row: 4 / 5;
+      align-self: center;
+    }
+
+    .lc-card-actions {
+      opacity: 0;
+      transition: opacity ease-in-out 150ms;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      .lc-card-tags {
+        opacity: 0;
+      }
+
+      .lc-card-actions {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@container lc-card (width > 240px) {
+  .lc-card-background {
+    background-position: top;
+  }
+}

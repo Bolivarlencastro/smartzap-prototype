@@ -1,0 +1,11 @@
+:host {
+  height: var(--classroom-fixed-height);
+  display: block;
+  position: relative;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.scorm-iframe > iframe {
+  height: 100%;
+}

@@ -1,0 +1,365 @@
+@use '@angular/material' as mat;
+
+// ─── Quiz Card Container ──────────────────────────────────────────────────────
+
+.quiz-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  min-height: 100%;
+
+  // ── Content hidden during loading (keeps ng-template in DOM for ViewChild) ──
+
+  &__content--hidden {
+    display: none;
+  }
+
+  // ── Skeleton ───────────────────────────────────────────────────────────────
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+
+    ngx-skeleton-loader {
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  // ── Progress header ────────────────────────────────────────────────────────
+
+  &__progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 0.75rem;
+  }
+
+  &__counter {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    opacity: 0.45;
+    white-space: nowrap;
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  &__dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 9999px;
+    background: rgb(0 0 0 / 12%);
+    transition: all 0.25s ease;
+
+    &--done {
+      background: var(--mat-sys-primary);
+      opacity: 0.35;
+      width: 0.45rem;
+    }
+
+    &--active {
+      background: var(--mat-sys-primary);
+      width: 1.25rem;
+      opacity: 1;
+    }
+  }
+
+  // ── Linear progress track ──────────────────────────────────────────────────
+
+  &__progress-track {
+    width: 100%;
+    height: 3px;
+    background: rgb(0 0 0 / 6%);
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    background: var(--mat-sys-primary);
+    border-radius: 9999px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // ── Body ──────────────────────────────────────────────────────────────────
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  // ── Actions ───────────────────────────────────────────────────────────────
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 1.25rem 0 2.5rem;
+    position: sticky;
+    bottom: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2rem;
+      left: 0;
+      right: 0;
+      height: 2rem;
+      pointer-events: none;
+    }
+  }
+
+  &__order-hint {
+    font-size: 0.72rem;
+    opacity: 0.45;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  &__action-btn {
+    width: 100%;
+
+    &--prev {
+      opacity: 0.65;
+      font-size: 0.85rem;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// ─── Quiz Question ────────────────────────────────────────────────────────────
+
+.quiz-question {
+  &__text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+    white-space: pre-wrap;
+  }
+}
+
+// ─── Quiz Options ─────────────────────────────────────────────────────────────
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+// ── Option internals ───────────────────────────────────────────────────────────
+
+.quiz-option {
+  &-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    background: rgb(0 0 0 / 6%);
+    color: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition:
+      background 0.18s ease,
+      color 0.18s ease;
+  }
+
+  &-text {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  &-state-icon {
+    font-size: 1.2rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: color 0.18s ease;
+  }
+
+  &-checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 0.25rem;
+    border: 1.5px solid rgb(0 0 0 / 25%);
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: all 0.18s ease;
+    position: relative;
+
+    &--checked {
+      background: var(--mat-sys-primary);
+      border-color: var(--mat-sys-primary);
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E")
+          center/contain no-repeat;
+      }
+    }
+  }
+}
+
+.quiz-question-option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid rgb(0 0 0 / 10%);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.12s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    border-color: var(--mat-sys-primary);
+    background: color-mix(in srgb, var(--mat-sys-primary) 4%, transparent);
+    transform: translateY(-1px);
+  }
+
+  // ── Selected (before submit) ─────────────────────────────────────────────
+  &--checked {
+    border-color: var(--mat-sys-primary);
+    background: color-mix(in srgb, var(--mat-sys-primary) 8%, transparent);
+  }
+
+  // ── Correct + User selected ──────────────────────────────────────────────
+  &--success {
+    border-color: #0d9488;
+    background: #0d9488;
+    color: #fff;
+    transform: none;
+
+    .quiz-option-badge {
+      background: rgb(255 255 255 / 25%);
+      color: #fff;
+    }
+
+    .quiz-option-state-icon {
+      color: rgb(255 255 255 / 90%);
+    }
+
+    &:hover {
+      background: #0d9488;
+    }
+  }
+
+  // ── Correct + Not selected (user missed it) ──────────────────────────────
+  &--not-selected {
+    border-color: #0d9488;
+    color: #0d9488;
+
+    .quiz-option-badge {
+      background: rgb(13 148 136 / 12%);
+      color: #0d9488;
+    }
+
+    .quiz-option-state-icon {
+      color: #0d9488;
+    }
+  }
+
+  // ── Wrong answer selected ────────────────────────────────────────────────
+  &--error {
+    border-color: #dc2626;
+    background: #dc2626;
+    color: #fff;
+    transform: none;
+
+    .quiz-option-badge {
+      background: rgb(255 255 255 / 25%);
+      color: #fff;
+    }
+
+    .quiz-option-state-icon {
+      color: rgb(255 255 255 / 90%);
+    }
+
+    &:hover {
+      background: #dc2626;
+    }
+  }
+
+  // Priority: success overrides not-selected
+  @at-root .quiz-question-option-label--success.quiz-question-option-label--not-selected {
+    background: #0d9488;
+    color: #fff;
+    border-color: #0d9488;
+
+    .quiz-option-badge {
+      background: rgb(255 255 255 / 25%);
+      color: #fff;
+    }
+  }
+}
+
+.quiz-question-option {
+  position: relative;
+
+  // Hide native checkbox — keep it accessible
+  input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+}
+
+// ── Specificity override: answer states must beat theme's input:checked rule ──
+// The theme wraps rules in `html { ... }` (specificity 0,3,2).
+// Adding `html` here matches that specificity; component styles win via source order.
+html .quiz-question-option {
+  input:checked ~ .quiz-question-option-label {
+    &--success {
+      border-color: #0d9488;
+      background: #0d9488;
+
+      .quiz-option-badge {
+        background: rgb(255 255 255 / 25%);
+        color: #fff;
+      }
+    }
+
+    &--error {
+      border-color: #dc2626;
+      background: #dc2626;
+
+      .quiz-option-badge {
+        background: rgb(255 255 255 / 25%);
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div class="tracking-row px-6 pl-8 h-24 flex gap-2 items-center">
+  <div class="flex flex-1 items-center gap-4 truncate basis-4/12">
+    <mat-icon
+      [matTooltip]="'CONTENT.BUTTON.' + tracking?.content?.type?.name | uppercase | transloco"
+      [svgIcon]="tracking?.content?.type?.name | KpContentIconName"
+      class="s-6 mr-4 accent-color"
+    ></mat-icon>
+    <span class="font-bold text-base truncate" [matTooltip]="tracking?.content?.name || '-'">
+      {{ tracking?.content?.name || '-' }}
+    </span>
+  </div>
+  <div class="flex-1 text-center truncate hidden sm:block">
+    <span class="text-base font-semibold">
+      {{ tracking.first_access ? (tracking.first_access | date: 'shortDate') : '-' }}
+    </span>
+  </div>
+  <div class="flex-1 text-center truncate hidden sm:block">
+    <span class="text-base font-semibold">
+      {{ tracking.last_access ? (tracking.last_access | date: 'shortDate') : '-' }}
+    </span>
+  </div>
+  <div class="flex-1 text-center truncate hidden sm:block">
+    <span class="text-base font-semibold">
+      {{ (tracking | trackingPercentage) || 0 | kpNormalizePercent }}
+    </span>
+  </div>
+  <div class="flex-1 text-center">
+    <app-tracking-status-icon [status]="tracking.schedule_status"></app-tracking-status-icon>
+  </div>
+  @if (showResendLink) {
+    <div class="flex-1 text-center">
+      <button mat-icon-button (click)="handleResendLink()">
+        <mat-icon class="s-26" [matTooltip]="'TRACKING.RESEND' | transloco">link</mat-icon>
+      </button>
+    </div>
+  }
+</div>

@@ -1,0 +1,133 @@
+@if (
+  {
+    isMobile: isMobile$ | async,
+    learningTrail: learningTrail$ | async,
+    enrolled: enrolled$ | async,
+    canGenerateCertificate: canGenerateCertificate$ | async,
+    canGiveUp: canGiveUp$ | async,
+    learningTrailSteps: learningTrailSteps$ | async,
+  };
+  as data
+) {
+  @if (data.learningTrail) {
+    <div
+      mat-dialog-title
+      [ngStyle]="{
+        'background-image': 'url(' + (data.learningTrail?.holder_image || 'assets/images/trail-background.png') + ')',
+      }"
+      [ngClass]="{ 'h-[300px]': !data.isMobile, 'h-[200px]': data.isMobile }"
+      class="holder-image-container bg-cover bg-center flex gap-1 rounded-t-2xl"
+    >
+      @for (tag of learningTrailTags$ | async; track tag.type; let last = $last) {
+        <kp-card-tag [type]="tag?.type" [keepOpen]="last" [label]="tag?.label"></kp-card-tag>
+      }
+      <button mat-icon-button mat-dialog-close class="ml-auto text-white bg-black bg-opacity-25">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <kp-resume [items]="resumeItems$ | async" [progress]="(enroll$ | async)?.progress"></kp-resume>
+    <div mat-dialog-content class="text-default max-h-[calc(65vh_-_250px)]">
+      <div class="flex items-start justify-between gap-x-4">
+        <kp-title class="xxs:max-w-3/4" [title]="titleInfo$ | async"></kp-title>
+        @if (!data.isMobile && !data.learningTrail?.is_owner) {
+          <div class="flex gap-1 justify-self-end">
+            @let enrollment = data?.learningTrail?.enrollment;
+            @if (enrollment?.status === 'COMPLETED' && enrollment?.certificate_url) {
+              <a matButton="filled" [href]="enrollment?.certificate_url" target="_blank">{{
+                'LEARNING_TRAIL.DETAIL.CERTIFICATE' | transloco
+              }}</a>
+            } @else if (!data.enrolled) {
+              <input
+                matInput
+                [(ngModel)]="goalDate"
+                (ngModelChange)="onGoalChange()"
+                [matDatepicker]="picker"
+                [min]="minDate"
+                class="invisible w-0"
+              />
+              <button
+                (click)="picker.open()"
+                [disabled]="enrollButtonDisabled$ | async"
+                matButton="filled"
+                data-test="learning-trail-start-retake"
+                matTooltip="{{
+                  'LEARNING_TRAIL.DETAIL.TOOLTIP.' + ((canRetake$ | async) ? 'RETAKE' : 'START') | transloco
+                }}"
+              >
+                {{ 'LEARNING_TRAIL.DETAIL.' + ((canRetake$ | async) ? 'RETAKE' : 'START') | transloco }}
+              </button>
+              <mat-datepicker #picker></mat-datepicker>
+            } @else {
+              <button matButton="filled" [disabled]="!lastContentItem()" (click)="onSelectStep(lastContentItem())">
+                {{ 'LEARNING_TRAIL.DETAIL.CONTINUE' | transloco }}
+              </button>
+            }
+
+            @if (data.canGiveUp) {
+              <button matIconButton [matMenuTriggerFor]="userActionsMenu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #userActionsMenu="matMenu" xPosition="before">
+                <button
+                  mat-menu-item
+                  (click)="giveUp()"
+                  matTooltip="{{ 'LEARNING_TRAIL.DETAIL.TOOLTIP.GIVE_UP' | transloco }}"
+                >
+                  {{ 'LEARNING_TRAIL.DETAIL.GIVE_UP' | transloco }}
+                </button>
+              </mat-menu>
+            }
+          </div>
+        }
+      </div>
+      <div class="flex-1 text-base font-normal my-5">
+        <kp-description
+          [description]="data.learningTrail?.description"
+          [canEdit]="canEditDescription$ | async"
+          (update)="updateDescription($event)"
+        ></kp-description>
+      </div>
+      <kp-learning-trail-detail-steps
+        [stepItems]="data.learningTrailSteps"
+        [userId]="userId"
+        [isEnrolledInTrail]="data?.learningTrail?.enrolled"
+        (stepCertificateAction)="executeStepAction($event)"
+        (stepSelected)="onSelectStep($event)"
+        (missionDetailEvent)="openMissionDetail($event)"
+      ></kp-learning-trail-detail-steps>
+      @if (data.isMobile && !data.learningTrail?.is_owner) {
+        <div class="mt-5">
+          @if (data.enrolled) {
+            <button
+              mat-flat-button
+              matButton="filled"
+              class="w-full"
+              [disabled]="!lastContentItem()"
+              (click)="onSelectStep(lastContentItem())"
+            >
+              {{ 'LEARNING_TRAIL.DETAIL.CONTINUE' | transloco }}
+            </button>
+          } @else {
+            <input
+              matInput
+              [(ngModel)]="goalDate"
+              (ngModelChange)="onGoalChange()"
+              [matDatepicker]="picker"
+              [min]="minDate"
+              class="invisible w-0"
+            />
+            <button
+              (click)="picker.open()"
+              [disabled]="enrollButtonDisabled$ | async"
+              matButton="filled"
+              class="w-full"
+            >
+              {{ 'LEARNING_TRAIL.DETAIL.' + ((canRetake$ | async) ? 'RETAKE' : 'START') | transloco }}
+            </button>
+            <mat-datepicker #picker></mat-datepicker>
+          }
+        </div>
+      }
+    </div>
+  }
+}

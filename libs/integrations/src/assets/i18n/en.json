@@ -1,0 +1,159 @@
+{
+  "ALURA_COURSE_MIRROR_DIALOG": {
+    "BUTTON_TOOLTIP": {
+      "ALURA_LINK": "Alura Link"
+    },
+    "BUTTONS": {
+      "CANCEL": "Cancel",
+      "MIRROR": "Mirror"
+    },
+    "COLUMNS": {
+      "ALURA_STATUS": "Alura Status",
+      "CATEGORY": "Category",
+      "CREATION_DATE": "Creation Date",
+      "MENU": "Menu",
+      "NAME": "Name"
+    },
+    "TITLE": "Mirror Courses"
+  },
+  "ALURA_STATUS": {
+    "DISABLED": "Disabled",
+    "PUBLISHED": "Active"
+  },
+  "MIRROR_DIALOG": {
+    "MIRROR_COURSES_SUCCESS": "Courses mirrored successfully!",
+    "MIRROR_COURSES_FAILURE": "An error occurred while mirroring the courses."
+  },
+  "DIALOG": {
+    "ACTIVATE": "Activate",
+    "COURSE_CATALOGUE": "Course Catalogue",
+    "COURSE_CONCLUSION": "Course Conclusion",
+    "COURSE_DETAILS": "Course Details",
+    "SUBTITLE": "To integrate this service, you need to add your API keys. Simply copy and paste your Alura key into the fields below.",
+    "TITLE": "Configure tokens",
+    "TOKEN_ERROR": "Invalid token",
+    "PROGRESS": "Progress",
+    "SSO": "SSO"
+  },
+  "INTEGRATION_LIST": {
+    "DEACTIVATION_DIALOG": {
+      "MESSAGE": "You are about to deactivate an integration. If you proceed with this action, all mirrored courses and linked enrollments will be deactivated in your workspace. Do you want to continue?",
+      "NEGATIVE_BUTTON": "Cancel",
+      "POSITIVE_BUTTON": "Deactivate",
+      "TITLE": "Deactivate Integration"
+    },
+    "DESCRIPTIONS": {
+      "ADP": "With the ADP integration, you'll have access to a multi-platform cloud-based instant messaging service. Simplify personnel and human resources management.",
+      "ALURA": "With the Alura integration, gain access to programming, Front-end, Back-end, Data Science, UX, DevOps, Innovation, and Management courses from Brazil's largest technology platform.",
+      "AZURE": "The Azure/AdfS integration offers a multi-platform cloud-based instant messaging service. Reinforce single sign-on security and protect your data.",
+      "CONVENIA": "The Convenia integration offers a multi-platform cloud-based instant messaging service. Efficiently manage payroll and human resources.",
+      "DOMINIO": "With the Domínio integration, you'll have access to a multi-platform cloud-based instant messaging service. Simplify human resources management.",
+      "FEEDZ": "The Feedz integration offers a multi-platform cloud-based instant messaging service. Enhance team engagement and development.",
+      "GOOGLE": "With the Google integration, access a unified communication and collaboration platform. Facilitate single sign-on and simplify access to your account.",
+      "GUPY": "The Gupy integration offers a multi-platform cloud-based instant messaging service. Improve talent recruitment and selection processes.",
+      "SENIOR": "The Senior integration offers a unified platform for communication and collaboration, combining chat, video conferencing, file storage, and app integration. Manage your team effectively.",
+      "SLACK": "Slack is a multi-platform cloud-based instant messaging service. Simplify your team's communication and keep everyone on the same page.",
+      "SOLIDES": "The Solides integration simplifies people management with a multi-platform cloud-based instant messaging service. Empower your team's development.",
+      "TEAMS": "A unified communication and collaboration platform, keep your team connected to Konquest directly on Teams.",
+      "TOTVS": "The Totvs RM integration provides a multi-platform cloud-based instant messaging service. Manage human resources effectively and accurately."
+    },
+    "DELETE_COURSE_SUCCESS": "Deletion completed successfully!",
+    "DELETE_COURSE_FAILURE": "An error occurred while performing the deletion.",
+    "ERROR": {
+      "EXTERNAL": "Contact {{value}} support",
+      "INTERNAL": "Contact our support",
+      "TITLE": "Integration error.",
+      "BUTTON": "Configure tokens"
+    },
+    "GROUPS": {
+      "COMMUNICATION": "Communication",
+      "COURSES": "Courses",
+      "PEOPLE_MANAGEMENT": "People Management",
+      "SSO": "SSO (Login)"
+    },
+    "HIRE": "Hire {{value}}",
+    "MANAGEMENT": {
+      "CONFIGURATIONS_ROUTE": "Configurations"
+    },
+    "REQUEST_INTEGRATION": "Request integration",
+    "INSTALL_INSTRUCTIONS": "Installation instructions",
+    "SOON": "(Coming Soon)",
+    "TOGGLE": {
+      "DISABLE_FAILURE": "An error occurred while disabling the integration.",
+      "DISABLE_SUCCESS": "Integration successfully disabled!",
+      "ENABLE_FAILURE": "An error occurred while enabling the integration.",
+      "ENABLE_SUCCESS": "Integration successfully enabled!"
+    }
+  },
+  "MANAGEMENT_FILTER": {
+    "CATEGORY": "Category",
+    "MIRROR_DATE": "Mirror Date",
+    "STATUS": "Status"
+  },
+  "MANAGEMENT_HEADER": {
+    "MIRROR_COURSES": "Mirror courses"
+  },
+  "MANAGEMENT_LIST": {
+    "BUTTON_TOOLTIP": {
+      "ALURA_LINK": "Alura Link",
+      "DELETE": "Delete",
+      "EDIT": "Edit"
+    },
+    "COLUMNS": {
+      "ACTIVATION": "Activation",
+      "ALURA_STATUS": "Alura Status",
+      "CATEGORY": "Category",
+      "MENU": "Menu",
+      "MIRROR_DATE": "Mirror Date",
+      "NAME": "Name"
+    },
+    "DELETE_COURSE_DIALOG": {
+      "CONFIRM_BUTTON": "Delete",
+      "MESSAGE": "By confirming deletion, all contents and histories of the course(s) will be removed. Are you sure you want to confirm?",
+      "TITLE": "Delete course(s)"
+    },
+    "EMPTY_LIST": {
+      "LINK": "Mirror Alura courses",
+      "MESSAGE": "Integration active!",
+      "MESSAGE_WITH_FILTER": "No courses found."
+    },
+    "SELECTED_ITEM_MESSAGE": {
+      "PLURAL": "{{value}} courses selected",
+      "SINGULAR": "{{value}} course selected"
+    }
+  },
+  "TEAMS_INSTRUCTIONS": {
+    "TITLE": "Install bot on Microsoft Teams",
+    "SUB_TITLE": "Follow the steps below to add the bot to your workspace.",
+    "STEP_1": {
+      "TITLE": "Download the bot package",
+      "INFO": "Click the button below to download the bot .zip file to your computer."
+    },
+    "STEP_2": {
+      "TITLE": "Open Microsoft Teams",
+      "INFO": "Access Teams (desktop or web version)."
+    },
+    "STEP_3": {
+      "TITLE": "Go to Apps",
+      "INFO": "In the left sidebar menu, click Apps."
+    },
+    "STEP_4": {
+      "TITLE": "Upload a custom app",
+      "INFO_1": "In the lower left corner, click Manage your apps.",
+      "INFO_2": "Choose \"Upload an app\" at the top of the page."
+    },
+    "STEP_5": {
+      "TITLE": "Upload the bot .zip package",
+      "INFO": "Choose \"Upload a custom app\" and select the bot package you just downloaded."
+    },
+    "STEP_6": {
+      "TITLE": "Complete the installation",
+      "INFO": "After the upload, follow Teams instructions to finish installing the bot in your environment."
+    },
+    "STEP_7": {
+      "TITLE": "Activate the integration",
+      "INFO": "Activate the integration by toggling the switch in the integrations list."
+    },
+    "BUTTON_DOWNLOAD_ZIP": "Download .zip package"
+  }
+}

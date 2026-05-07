@@ -1,0 +1,29 @@
+.datatable-listing {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Column Widths */
+
+/* stylelint-disable-next-line */
+.mat-column-report_name {
+  max-width: 300px;
+}
+
+.mat-column-requester {
+  max-width: 220px;
+}
+
+.mat-column-created {
+  max-width: 140px;
+}
+
+.mat-column-status {
+  max-width: 120px;
+}
+
+.mat-column-id {
+  max-width: 116px;
+}

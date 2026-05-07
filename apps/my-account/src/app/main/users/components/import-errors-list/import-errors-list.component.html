@@ -1,0 +1,23 @@
+<!-- User imports errors List -->
+<mat-table [dataSource]="errors()" #table class="overflow-y-scroll grow">
+  <!-- Created date -->
+  <ng-container matColumnDef="line_number">
+    <mat-header-cell *matHeaderCellDef class="max-w-24 justify-center">{{
+      'USERS.IMPORT_ERRORS.LINE_NUMBER' | transloco
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let item" class="max-w-24 justify-center">
+      <p>{{ item.line_number }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Message -->
+  <ng-container matColumnDef="message">
+    <mat-header-cell *matHeaderCellDef>{{ 'USERS.IMPORT_ERRORS.ERROR_MESSAGE' | transloco }}</mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <p>{{ item.message }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" class="min-h-18"></mat-row>
+</mat-table>

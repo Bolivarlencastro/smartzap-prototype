@@ -1,0 +1,5 @@
+export enum SECTION_CONTENT_TYPE {
+  COURSES = 'COURSES',
+  EVENTS = 'EVENTS',
+  TRAILS = 'TRAILS',
+}
