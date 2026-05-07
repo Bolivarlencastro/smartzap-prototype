@@ -93,9 +93,7 @@ export class KpEditorComponent implements OnInit {
 
   private initialConfig() {
     effect(() => {
-      if (!this.value()) {
-        this.editorValue = '';
-      }
+      this.editorValue = this.value() || '';
     });
   }
 

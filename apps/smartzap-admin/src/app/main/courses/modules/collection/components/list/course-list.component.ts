@@ -17,6 +17,7 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatTooltip } from '@angular/material/tooltip';
 import { MatDivider } from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -72,6 +73,7 @@ export interface CourseListActionEvent {
     ImageUrlPipe,
     KpCardTagComponent,
     DatePipe,
+    MatTooltip,
   ],
 })
 export class CourseListComponent {

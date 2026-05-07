@@ -38,6 +38,10 @@ export abstract class AbstractAPI {
     return this.http.patch<T>(`${this.API_URL}${path}`, body, options);
   }
 
+  public patchFormData<T>(path: string, data: any): Observable<T> {
+    return this.http.patch<T>(`${this.API_URL}${path}`, data);
+  }
+
   public delete<T>(path: string, params?: any, body?: any): Observable<T> {
     const options = this.defineOptions(params);
     return this.http.request<T>('DELETE', `${this.API_URL}${path}`, {

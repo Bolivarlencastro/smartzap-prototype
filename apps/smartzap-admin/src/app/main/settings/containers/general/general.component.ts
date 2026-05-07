@@ -58,7 +58,7 @@ export class SettingsGeneralComponent {
 
   private buildForm() {
     return this.fb.group<SmartzapConfigurationForm>({
-      messagesContentEmbed: new FormControl<boolean>({ value: false, disabled: true }),
+      messagesContentEmbed: new FormControl<boolean>(false),
       sendCoursesRecommendationMessage: new FormControl<boolean>(false),
       sendCourseReminderMessage: new FormControl<boolean>(false),
       interactWithRandomMessages: new FormControl<boolean>(false),

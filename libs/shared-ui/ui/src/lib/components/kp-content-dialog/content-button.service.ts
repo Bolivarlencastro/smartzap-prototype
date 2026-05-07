@@ -9,6 +9,7 @@ marker('UI.KP_CONTENT_DIALOG.BUTTON.VIMEO');
 marker('UI.KP_CONTENT_DIALOG.BUTTON.SOUNDCLOUD');
 marker('UI.KP_CONTENT_DIALOG.BUTTON.GOOGLE_DRIVE');
 marker('UI.KP_CONTENT_DIALOG.BUTTON.GENIALLY');
+marker('UI.KP_CONTENT_DIALOG.BUTTON.TOOLTIP.LINK_DISABLED_BY_MESSAGES_CONTENT_EMBED');
 
 @Injectable()
 export class ContentButtonService {
@@ -66,7 +67,22 @@ export class ContentButtonService {
       ),
     ];
 
-    if (!messagesContentEmbed) {
+    if (app === CONTENT_DIALOG_APP.SMARTZAP) {
+      buttons.push(
+        new ContentButton(
+          marker('UI.KP_CONTENT_DIALOG.BUTTON.LINK'),
+          messagesContentEmbed
+            ? marker('UI.KP_CONTENT_DIALOG.BUTTON.TOOLTIP.LINK_DISABLED_BY_MESSAGES_CONTENT_EMBED')
+            : marker('UI.KP_CONTENT_DIALOG.BUTTON.TOOLTIP.LINK'),
+          null,
+          'LINK',
+          false,
+          'link',
+          false,
+          messagesContentEmbed,
+        ),
+      );
+    } else if (!messagesContentEmbed) {
       buttons.push(
         new ContentButton(
           marker('UI.KP_CONTENT_DIALOG.BUTTON.LINK'),

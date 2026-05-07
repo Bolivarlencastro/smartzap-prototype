@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 import { CourseSelectors } from '../store/selectors';
 import { UserProfileService } from '@keeps-platform-frontend-workspace/kp-keeps';
 
@@ -10,7 +10,6 @@ import { UserProfileService } from '@keeps-platform-frontend-workspace/kp-keeps'
 export class CourseEditGuard {
   constructor(
     private store: Store,
-    private _router: Router,
     private userProfileService: UserProfileService,
   ) {}
 
@@ -21,7 +20,12 @@ export class CourseEditGuard {
 
     return combineLatest([
       this.userProfileService.isAdmin$(),
-      this.store.select(CourseSelectors.selectIsOwner).pipe(take(1)),
-    ]).pipe(map(([isAdmin, isOwner]) => isAdmin || isOwner));
+      this.store.select(CourseSelectors.selectIsLoaded),
+      this.store.select(CourseSelectors.selectIsOwner),
+    ]).pipe(
+      filter(([isAdmin, isLoaded]) => isAdmin || isLoaded),
+      map(([isAdmin, , isOwner]) => isAdmin || isOwner),
+      take(1),
+    );
   }
 }

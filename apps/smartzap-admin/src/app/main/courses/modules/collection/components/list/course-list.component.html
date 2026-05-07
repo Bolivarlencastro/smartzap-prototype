@@ -127,12 +127,13 @@
     </ng-container>
 
     <ng-container matColumnDef="menu">
-      <mat-header-cell *matHeaderCellDef class="min-w-28 max-w-28 justify-end">
+      <mat-header-cell *matHeaderCellDef class="min-w-36 max-w-36 justify-end">
         {{ 'GENERAL.MENU' | transloco }}
       </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="min-w-28 max-w-28 justify-end gap-1">
+      <mat-cell *matCellDef="let element" class="min-w-36 max-w-36 justify-end gap-1">
         @if (isLoading) {
           <div class="flex gap-1">
+            <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
             <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
             <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
           </div>
@@ -145,6 +146,17 @@
             [attr.aria-label]="'Editar curso ' + element?.name"
           >
             <mat-icon class="s-5">edit</mat-icon>
+          </button>
+
+          <button
+            data-test="manage-enrollments-button"
+            mat-icon-button
+            (click)="emitAction('manage', element)"
+            [disabled]="!canManage(element)"
+            [matTooltip]="'COURSE.DETAIL.BUTTON.MANAGER' | transloco"
+            [attr.aria-label]="'Gerenciar matrículas do curso ' + element?.name"
+          >
+            <mat-icon class="s-5">group</mat-icon>
           </button>
 
           <button

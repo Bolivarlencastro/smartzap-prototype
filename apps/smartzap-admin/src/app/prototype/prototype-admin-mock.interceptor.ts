@@ -1,8 +1,8 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
+import { delay, mergeMap } from 'rxjs/operators';
 import { PrototypeAdminStateService } from './prototype-admin-state.service';
 
 @Injectable()
@@ -11,14 +11,16 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const mockedResponse = this.safeHandleRequest(request);
-    if (!mockedResponse) {
+    if (mockedResponse === undefined) {
       return next.handle(request);
     }
 
-    return of(new HttpResponse({ status: 200, body: mockedResponse })).pipe(delay(80));
+    return from(Promise.resolve(mockedResponse)).pipe(
+      mergeMap((body) => of(new HttpResponse({ status: 200, body })).pipe(delay(80))),
+    );
   }
 
-  private safeHandleRequest(request: HttpRequest<unknown>): unknown {
+  private safeHandleRequest(request: HttpRequest<unknown>): unknown | Promise<unknown> {
     try {
       return this.handleRequest(request);
     } catch (error) {
@@ -59,14 +61,16 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     method: string,
     pathname: string,
     params: Record<string, string>,
-    body: Record<string, any>,
+    body: Record<string, any> | FormData,
   ) {
+    const payload = body instanceof FormData ? {} : body;
+
     if (method === 'GET' && pathname === '/course') {
       return this.state.listCourses(params);
     }
 
     if (method === 'POST' && pathname === '/course') {
-      return this.state.saveCourse(body);
+      return this.state.saveCourse(payload);
     }
 
     if (
@@ -79,7 +83,7 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     }
 
     if (method === 'PATCH' && pathname.startsWith('/course/') && !pathname.endsWith('/publish')) {
-      return this.state.updateCourse(this.getId(pathname, '/course/'), body);
+      return this.state.updateCourse(this.getId(pathname, '/course/'), payload);
     }
 
     if (method === 'DELETE' && pathname.startsWith('/course/')) {
@@ -101,14 +105,14 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     }
 
     if (method === 'POST' && pathname === '/lesson') {
-      return this.state.createLesson(String(body['course_id'] || ''), {
-        name: String(body['name'] || 'Nova licao'),
-        order: Number(body['order'] || 1),
+      return this.state.createLesson(String(payload['course_id'] || ''), {
+        name: String(payload['name'] || 'Nova licao'),
+        order: Number(payload['order'] || 1),
       });
     }
 
     if (method === 'PATCH' && pathname.startsWith('/lesson/')) {
-      this.state.updateLesson(this.getId(pathname, '/lesson/'), body);
+      this.state.updateLesson(this.getId(pathname, '/lesson/'), payload);
       return null;
     }
 
@@ -122,19 +126,19 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     }
 
     if (method === 'POST' && pathname === '/content') {
-      return this.state.createLessonContent(String(body['lesson_id'] || ''), {
-        name: String(body['name'] || 'Novo conteudo'),
-        description: String(body['description'] || ''),
-        order: Number(body['order'] || 1),
-        dispatch_in: Number(body['dispatch_in'] || 1),
-        dispatch_period: String(body['dispatch_period'] || 'MORNING'),
-        learn_content: String(body['learn_content'] || ''),
-        type_id: String(body['type_id'] || ''),
+      return this.state.createLessonContent(String(payload['lesson_id'] || ''), {
+        name: String(payload['name'] || 'Novo conteudo'),
+        description: String(payload['description'] || ''),
+        order: Number(payload['order'] || 1),
+        dispatch_in: Number(payload['dispatch_in'] || 1),
+        dispatch_period: String(payload['dispatch_period'] || 'MORNING'),
+        learn_content: String(payload['learn_content'] || ''),
+        type_id: String(payload['type_id'] || ''),
       });
     }
 
     if (method === 'PATCH' && pathname.startsWith('/content/')) {
-      this.state.updateContent(this.getId(pathname, '/content/'), body);
+      this.state.updateContent(this.getId(pathname, '/content/'), payload);
       return null;
     }
 
@@ -156,7 +160,8 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     }
 
     if (method === 'POST' && pathname === '/upload/image') {
-      return this.state.uploadImage();
+      const file = body instanceof FormData ? body.get('file') : null;
+      return this.state.uploadImage(file instanceof File ? file : null);
     }
 
     if (method === 'GET' && pathname === '/user') {
@@ -164,7 +169,7 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     }
 
     if (method === 'PATCH' && pathname.startsWith('/user/')) {
-      return this.state.updateUser(this.getId(pathname, '/user/'), body);
+      return this.state.updateUser(this.getId(pathname, '/user/'), payload);
     }
 
     if (method === 'DELETE' && pathname.startsWith('/user/')) {
@@ -198,18 +203,18 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
 
     if (method === 'POST' && pathname === '/enrollment') {
       return this.state.createEnrollment({
-        user_id: String(body['user_id'] || ''),
-        course_id: String(body['course_id'] || ''),
+        user_id: String(payload['user_id'] || ''),
+        course_id: String(payload['course_id'] || ''),
       });
     }
 
     if (method === 'POST' && pathname === '/enrollment/user') {
       return this.state.createEnrollmentUser({
-        name: String(body['name'] || ''),
-        phone: String(body['phone'] || ''),
-        email: String(body['email'] || ''),
-        tags: String(body['tags'] || ''),
-        course_id: String(body['course_id'] || ''),
+        name: String(payload['name'] || ''),
+        phone: String(payload['phone'] || ''),
+        email: String(payload['email'] || ''),
+        tags: String(payload['tags'] || ''),
+        course_id: String(payload['course_id'] || ''),
       });
     }
 
@@ -218,11 +223,11 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     }
 
     if (method === 'PATCH' && pathname.startsWith('/enrollment/')) {
-      return this.state.updateEnrollment(this.getId(pathname, '/enrollment/'), body);
+      return this.state.updateEnrollment(this.getId(pathname, '/enrollment/'), payload);
     }
 
     if (method === 'DELETE' && pathname === '/enrollment/batch') {
-      this.state.deleteBatchEnrollments((body['ids'] || []) as string[]);
+      this.state.deleteBatchEnrollments((payload['ids'] || []) as string[]);
       return null;
     }
 
@@ -317,16 +322,23 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
   private handleKontentRequest(
     method: string,
     pathname: string,
-    body: Record<string, any>,
+    body: Record<string, any> | FormData,
     params: Record<string, string>,
   ) {
     if (method === 'POST' && pathname === '/learn-content') {
+      const name =
+        body instanceof FormData ? String(body.get('name') || 'Novo learn content') : String(body['name'] || '');
+      const description =
+        body instanceof FormData ? String(body.get('description') || '') : String(body['description'] || '');
+      const link = body instanceof FormData ? String(body.get('link') || '') : String(body['link'] || '');
+      const blog = body instanceof FormData ? String(body.get('blog') || '') : String(body['blog'] || '');
+
       return this.state.createLearnContent({
-        name: String(body['name'] || 'Novo learn content'),
-        description: String(body['description'] || ''),
+        name,
+        description,
         type: this.guessContentType(body),
-        link: String(body['link'] || ''),
-        blog: String(body['blog'] || ''),
+        link,
+        blog,
       });
     }
 
@@ -340,6 +352,28 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
 
     if (method === 'GET' && pathname.startsWith('/learn-content/')) {
       return this.state.getLearnContent(this.getId(pathname, '/learn-content/'));
+    }
+
+    if (method === 'PATCH' && pathname.startsWith('/learn-content/')) {
+      const name = body instanceof FormData ? String(body.get('name') || '') : String(body['name'] || '');
+      const description =
+        body instanceof FormData ? String(body.get('description') || '') : String(body['description'] || '');
+      const link = body instanceof FormData ? String(body.get('link') || '') : String(body['link'] || '');
+      const blog = body instanceof FormData ? String(body.get('blog') || '') : String(body['blog'] || '');
+      const file = body instanceof FormData ? body.get('file') : null;
+
+      return this.state.updateLearnContent(this.getId(pathname, '/learn-content/'), {
+        name,
+        description,
+        type: file
+          ? this.guessContentType(body)
+          : String(body instanceof FormData ? body.get('type') || '' : body['type'] || ''),
+        link,
+        blog,
+        url: file
+          ? `https://prototype.local/uploads/${encodeURIComponent(String((file as File)?.name || 'arquivo'))}`
+          : undefined,
+      });
     }
 
     if (method === 'DELETE' && pathname.startsWith('/learn-content/')) {
@@ -409,15 +443,25 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     return undefined;
   }
 
-  private guessContentType(body: Record<string, any>): string {
-    if (body['blog']) {
+  private guessContentType(body: Record<string, any> | FormData): string {
+    const blog = body instanceof FormData ? String(body.get('blog') || '') : String(body['blog'] || '');
+    const link = body instanceof FormData ? String(body.get('link') || '') : String(body['link'] || '');
+    const file = body instanceof FormData ? body.get('file') : null;
+
+    if (blog) {
       return 'BLOG';
     }
-    if (String(body['link'] || '').includes('soundcloud')) {
+    if (link.includes('soundcloud')) {
       return 'SOUNDCLOUD';
     }
-    if (String(body['link'] || '').includes('youtube') || String(body['link'] || '').includes('youtu.be')) {
+    if (link.includes('youtube') || link.includes('youtu.be')) {
       return 'YOUTUBE';
+    }
+    if (file instanceof File) {
+      if (file.type.startsWith('video/')) return 'YOUTUBE';
+      if (file.type.startsWith('audio/')) return 'SOUNDCLOUD';
+      if (file.type.startsWith('image/')) return 'IMAGE';
+      if (file.type === 'application/pdf') return 'GOOGLE_DRIVE';
     }
     return 'FILE';
   }
@@ -454,9 +498,12 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
     return params;
   }
 
-  private parseBody(body: unknown): Record<string, any> {
+  private parseBody(body: unknown): Record<string, any> | FormData {
     if (!body) {
       return {};
+    }
+    if (body instanceof FormData) {
+      return body;
     }
     if (typeof body === 'string') {
       try {

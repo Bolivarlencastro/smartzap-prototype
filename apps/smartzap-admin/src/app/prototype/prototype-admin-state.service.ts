@@ -67,8 +67,16 @@ type CourseCollectionResponse = {
   result: Course[];
 };
 
+type PrototypePersistedState = {
+  courses: Course[];
+  lessonsByCourse: Record<string, Lesson[]>;
+  learnContents: Record<string, LearnContentRecord>;
+  examQuestions: Record<string, Question[]>;
+};
+
 @Injectable({ providedIn: 'root' })
 export class PrototypeAdminStateService {
+  private readonly storageKey = 'smartzap-prototype-state-v1';
   readonly workspace: WorkspaceBasicDto = {
     id: 'ws-prototype',
     name: 'Workspace Prototype Smartzap',
@@ -358,7 +366,10 @@ export class PrototypeAdminStateService {
   private readonly trackingByEnrollment = new Map<string, Tracking[]>();
 
   constructor() {
-    this.seedCourseContent();
+    if (!this.hydratePersistedState()) {
+      this.seedCourseContent();
+      this.persistState();
+    }
   }
 
   getWorkspaceBasicList(): WorkspaceBasicDto[] {
@@ -489,6 +500,7 @@ export class PrototypeAdminStateService {
 
     this.courses.unshift(newCourse);
     this.lessonsByCourse.set(newCourse.id, []);
+    this.persistState();
     return this.clone(newCourse);
   }
 
@@ -499,6 +511,7 @@ export class PrototypeAdminStateService {
     }
 
     Object.assign(course, body, { updated: new Date().toISOString() });
+    this.persistState();
     return this.clone(course);
   }
 
@@ -507,6 +520,8 @@ export class PrototypeAdminStateService {
     if (index >= 0) {
       this.courses.splice(index, 1);
       this.lessonsByCourse.delete(courseId);
+      this.persistRelatedCourseArtifacts(courseId);
+      this.persistState();
     }
   }
 
@@ -530,6 +545,7 @@ export class PrototypeAdminStateService {
     lessons.push(lesson);
     this.lessonsByCourse.set(courseId, lessons);
     this.syncCourseCounters(courseId);
+    this.persistState();
     return this.clone(lesson);
   }
 
@@ -539,6 +555,7 @@ export class PrototypeAdminStateService {
       return;
     }
     Object.assign(lesson, body, { updated: new Date().toISOString() });
+    this.persistState();
   }
 
   deleteLesson(lessonId: string): void {
@@ -548,6 +565,7 @@ export class PrototypeAdminStateService {
         lessons.splice(lessonIndex, 1);
         this.lessonsByCourse.set(courseId, lessons);
         this.syncCourseCounters(courseId);
+        this.persistState();
         return;
       }
     }
@@ -563,13 +581,15 @@ export class PrototypeAdminStateService {
     const contentType =
       inferredType === 'BLOG'
         ? 'BLOG'
-        : inferredType === 'YOUTUBE' || inferredType === 'VIMEO'
-          ? 'VIDEO'
-          : inferredType === 'SOUNDCLOUD'
-            ? 'PODCAST'
-            : inferredType === 'GOOGLE_DRIVE'
-              ? 'PDF'
-              : 'PDF';
+        : inferredType === 'IMAGE'
+          ? 'IMAGE'
+          : inferredType === 'YOUTUBE' || inferredType === 'VIMEO'
+            ? 'VIDEO'
+            : inferredType === 'SOUNDCLOUD'
+              ? 'PODCAST'
+              : inferredType === 'GOOGLE_DRIVE'
+                ? 'PDF'
+                : 'PDF';
 
     const learnContent: LearnContentRecord = {
       id: this.uid('learn-content'),
@@ -582,11 +602,45 @@ export class PrototypeAdminStateService {
     };
 
     this.learnContents.set(learnContent.id, learnContent);
+    this.persistState();
     return this.clone(learnContent);
   }
 
   getLearnContent(contentId: string) {
     return this.clone(this.learnContents.get(contentId));
+  }
+
+  updateLearnContent(
+    contentId: string,
+    body: { name?: string; description?: string; type?: string; link?: string; blog?: string; url?: string },
+  ) {
+    const learnContent = this.learnContents.get(contentId);
+    if (!learnContent) return null;
+
+    const inferredType = (body.type || '').toUpperCase();
+    const contentType =
+      inferredType === 'BLOG'
+        ? 'BLOG'
+        : inferredType === 'IMAGE'
+          ? 'IMAGE'
+          : inferredType === 'VIDEO' || inferredType === 'YOUTUBE' || inferredType === 'VIMEO'
+            ? 'VIDEO'
+            : inferredType === 'PODCAST' || inferredType === 'SOUNDCLOUD'
+              ? 'PODCAST'
+              : 'PDF';
+
+    Object.assign(learnContent, {
+      name: body.name ?? learnContent.name,
+      description: body.description ?? learnContent.description,
+      content_type: body.type ? contentType : learnContent.content_type,
+      url: body.url ?? body.link ?? body.blog ?? learnContent.url,
+      link: body.link ?? learnContent.link,
+      blog: body.blog ?? learnContent.blog,
+    });
+
+    this.learnContents.set(contentId, learnContent);
+    this.persistState();
+    return this.clone(learnContent);
   }
 
   getLearnContentTypes() {
@@ -614,6 +668,7 @@ export class PrototypeAdminStateService {
 
   deleteLearnContent(contentId: string) {
     this.learnContents.delete(contentId);
+    this.persistState();
   }
 
   createLessonContent(
@@ -649,6 +704,7 @@ export class PrototypeAdminStateService {
       lesson.contents.push(content);
       lesson.contents.sort((a, b) => a.order - b.order);
       this.syncCourseCounters(lesson.course_id);
+      this.persistState();
     }
 
     return this.clone(content);
@@ -663,6 +719,7 @@ export class PrototypeAdminStateService {
     if (body.type_id) {
       content.type = this.contentTypes.find((item) => item.id === body.type_id) || content.type;
     }
+    this.persistState();
   }
 
   deleteContent(contentId: string): void {
@@ -675,6 +732,7 @@ export class PrototypeAdminStateService {
             this.learnContents.delete(removed.learn_content);
           }
           this.syncCourseCounters(courseId);
+          this.persistState();
           return;
         }
       }
@@ -712,6 +770,7 @@ export class PrototypeAdminStateService {
     };
 
     this.learnContents.set(examId, learnContent);
+    this.persistState();
     return { id: examId, title: body.title, exam_type: body.exam_type };
   }
 
@@ -740,6 +799,7 @@ export class PrototypeAdminStateService {
 
     questions.push(newQuestion);
     this.examQuestions.set(examId, questions);
+    this.persistState();
     return this.clone(newQuestion);
   }
 
@@ -748,6 +808,7 @@ export class PrototypeAdminStateService {
       const question = questions.find((item) => item.id === questionId);
       if (question) {
         Object.assign(question, body, { updated_date: new Date().toISOString() });
+        this.persistState();
         return this.clone(question);
       }
     }
@@ -760,6 +821,7 @@ export class PrototypeAdminStateService {
       if (index >= 0) {
         questions.splice(index, 1);
         this.examQuestions.set(examId, questions);
+        this.persistState();
         return;
       }
     }
@@ -938,8 +1000,13 @@ export class PrototypeAdminStateService {
     return null;
   }
 
-  uploadImage() {
-    return { url: `https://picsum.photos/seed/${this.uid('image')}/800/450` };
+  async uploadImage(file: File | null): Promise<{ url: string }> {
+    if (!file) {
+      return { url: `https://picsum.photos/seed/${this.uid('image')}/800/450` };
+    }
+
+    const url = await this.fileToDataUrl(file);
+    return { url };
   }
 
   uploadCoverImages() {
@@ -955,6 +1022,7 @@ export class PrototypeAdminStateService {
     const course = this.courses.find((item) => item.id === courseId);
     if (course) {
       course.user_creator = { id: userId };
+      this.persistState();
     }
     return { success: true };
   }
@@ -1184,6 +1252,106 @@ export class PrototypeAdminStateService {
       course.total_contents = lessons.reduce((total, lesson) => total + lesson.contents.length, 0);
       course.updated = new Date().toISOString();
     }
+  }
+
+  private hydratePersistedState(): boolean {
+    const storage = this.getStorage();
+    const persistedState = storage?.getItem(this.storageKey);
+
+    if (!persistedState) {
+      return false;
+    }
+
+    try {
+      const state = JSON.parse(persistedState) as PrototypePersistedState;
+
+      this.courses.splice(0, this.courses.length, ...(state.courses || []).map((course) => this.hydrateCourse(course)));
+      this.lessonsByCourse.clear();
+      Object.entries(state.lessonsByCourse || {}).forEach(([courseId, lessons]) => {
+        this.lessonsByCourse.set(courseId, lessons || []);
+      });
+
+      this.learnContents.clear();
+      Object.entries(state.learnContents || {}).forEach(([id, content]) => {
+        this.learnContents.set(id, content);
+      });
+
+      this.examQuestions.clear();
+      Object.entries(state.examQuestions || {}).forEach(([id, questions]) => {
+        this.examQuestions.set(id, questions || []);
+      });
+
+      for (const enrollment of this.enrollments) {
+        this.trackingByEnrollment.set(enrollment.id, this.buildTracking(enrollment));
+      }
+
+      return true;
+    } catch (error) {
+      console.error('[Smartzap prototype] failed to hydrate persisted state', error);
+      storage?.removeItem(this.storageKey);
+      return false;
+    }
+  }
+
+  private persistState(): void {
+    const storage = this.getStorage();
+    if (!storage) {
+      return;
+    }
+
+    try {
+      const snapshot: PrototypePersistedState = {
+        courses: this.courses.map((course) => this.stripDataUrls(this.hydrateCourse(course))),
+        lessonsByCourse: Object.fromEntries(this.lessonsByCourse.entries()),
+        learnContents: Object.fromEntries(this.learnContents.entries()),
+        examQuestions: Object.fromEntries(this.examQuestions.entries()),
+      };
+
+      storage.setItem(this.storageKey, JSON.stringify(snapshot));
+    } catch (error) {
+      console.warn('[Smartzap prototype] failed to persist state to localStorage', error);
+    }
+  }
+
+  private stripDataUrls(course: Course): Course {
+    return {
+      ...course,
+      holder_image: course.holder_image?.startsWith('data:') ? undefined : course.holder_image,
+      thumb_image: course.thumb_image?.startsWith('data:') ? undefined : course.thumb_image,
+    };
+  }
+
+  private persistRelatedCourseArtifacts(courseId: string): void {
+    const lessons = this.lessonsByCourse.get(courseId) || [];
+    const learnContentIds = lessons
+      .flatMap((lesson) => lesson.contents.map((content) => content.learn_content))
+      .filter(Boolean);
+
+    learnContentIds.forEach((learnContentId) => {
+      this.learnContents.delete(learnContentId);
+      this.examQuestions.delete(learnContentId);
+    });
+  }
+
+  private hydrateCourse(course: Course): Course {
+    return {
+      ...course,
+      category: this.categories.find((category) => category.id === course.category_id),
+    };
+  }
+
+  private getStorage(): Storage | null {
+    return typeof globalThis !== 'undefined' && 'localStorage' in globalThis ? globalThis.localStorage : null;
+  }
+
+  private fileToDataUrl(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => resolve(String(reader.result || '')));
+      reader.addEventListener('error', () => reject(reader.error));
+      reader.readAsDataURL(file);
+    });
   }
 
   private paginate<T extends { id?: string }>(collection: T[], page: number, perPage: number) {

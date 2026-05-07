@@ -1,6 +1,43 @@
 :host {
+  --course-form-column-header-height: 160px;
+  --course-form-surface: #f7f1f8;
+  --course-form-divider: var(--mat-sys-outline-variant);
+
   position: relative;
   display: block;
   flex: 1 1 auto;
   width: 100%;
+}
+
+.course-form__sidebar-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: var(--course-form-column-header-height);
+  background: var(--course-form-surface);
+  box-sizing: border-box;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+:host ::ng-deep .mat-drawer-inner-container {
+  overflow-x: hidden;
+  background: var(--course-form-surface);
+}
+
+:host ::ng-deep .mat-drawer {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: var(--course-form-surface);
+}
+
+:host ::ng-deep .mat-drawer-content {
+  background: var(--course-form-surface);
+}
+
+@media (width <= 768px) {
+  .course-form__sidebar-header {
+    height: auto;
+  }
 }

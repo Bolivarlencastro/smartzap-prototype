@@ -6,24 +6,29 @@ export const featureKey = 'upload';
 export interface State {
   selectedImage: string;
   isLoading: boolean;
+  pendingUploads: number;
 }
 
 const initialState = {
   selectedImage: '',
   isLoading: false,
+  pendingUploads: 0,
 };
 
 export const reducer = createReducer(
   initialState,
   on(UploadActions.uploadImage, (state): State => {
-    return { ...state, isLoading: true };
+    const pendingUploads = state.pendingUploads + 1;
+    return { ...state, pendingUploads, isLoading: pendingUploads > 0 };
   }),
 
   on(UploadActions.uploadImageSuccess, (state, { image: selectedImage }): State => {
-    return { selectedImage, isLoading: false };
+    const pendingUploads = Math.max(0, state.pendingUploads - 1);
+    return { ...state, selectedImage, pendingUploads, isLoading: pendingUploads > 0 };
   }),
 
   on(UploadActions.uploadImageFailure, (state): State => {
-    return { ...state, isLoading: false };
+    const pendingUploads = Math.max(0, state.pendingUploads - 1);
+    return { ...state, pendingUploads, isLoading: pendingUploads > 0 };
   }),
 );

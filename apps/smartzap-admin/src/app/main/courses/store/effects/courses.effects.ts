@@ -15,7 +15,9 @@ export class CoursesEffects {
   init$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CoursesActions.initializeCourses),
-      map(() => CoursesActions.setFilter({ filters: { categories: [], languages: [], statuses: [], createdByMe: false } })),
+      map(() =>
+        CoursesActions.setFilter({ filters: { categories: [], languages: [], statuses: [], createdByMe: false } }),
+      ),
     );
   });
 

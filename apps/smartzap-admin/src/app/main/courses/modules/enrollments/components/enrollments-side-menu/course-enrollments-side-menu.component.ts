@@ -44,29 +44,62 @@ export function buildCourseEnrollmentStats(enrollments: Enrollment[], totalCount
       <mat-divider></mat-divider>
 
       <div class="flex-1 pt-6 px-6 flex flex-col gap-3 overflow-y-auto">
-        <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-          <span class="text-sm">{{ 'ENROLLMENTS.STATISTICS.TOTAL' | transloco }}</span>
-          <span class="text-sm font-medium">{{ stats()?.total || 0 }}</span>
+        <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+          <mat-icon class="s-6 text-primary shrink-0">school</mat-icon>
+          <div class="flex flex-col leading-tight">
+            <span class="font-medium">{{ stats()?.total || 0 }}</span>
+            <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.TOTAL' | transloco }}</span>
+          </div>
         </div>
-        <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-          <span class="text-sm">{{ 'ENROLLMENTS.STATISTICS.COMPLETED' | transloco }}</span>
-          <span class="text-sm font-medium">{{ stats()?.completed || 0 }}</span>
+        @if (stats()?.completed) {
+          <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#01d89b'"></span>
+            <div class="flex flex-col leading-tight">
+              <span class="font-medium">{{ stats()?.completed }}</span>
+              <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.COMPLETED' | transloco }}</span>
+            </div>
+          </div>
+        }
+        @if (stats()?.started) {
+          <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#293D98'"></span>
+            <div class="flex flex-col leading-tight">
+              <span class="font-medium">{{ stats()?.started }}</span>
+              <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.STARTED' | transloco }}</span>
+            </div>
+          </div>
+        }
+        @if (stats()?.waiting) {
+          <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#FFB100'"></span>
+            <div class="flex flex-col leading-tight">
+              <span class="font-medium">{{ stats()?.waiting }}</span>
+              <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.WAITING' | transloco }}</span>
+            </div>
+          </div>
+        }
+        @if (stats()?.cancelled) {
+          <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#b5b5b5'"></span>
+            <div class="flex flex-col leading-tight">
+              <span class="font-medium">{{ stats()?.cancelled }}</span>
+              <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.CANCELLED' | transloco }}</span>
+            </div>
+          </div>
+        }
+        <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+          <mat-icon class="s-6 text-primary shrink-0">send</mat-icon>
+          <div class="flex flex-col leading-tight">
+            <span class="font-medium">{{ stats()?.totalSentMessages || 0 }}</span>
+            <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES' | transloco }}</span>
+          </div>
         </div>
-        <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-          <span class="text-sm">{{ 'ENROLLMENTS.STATISTICS.STARTED' | transloco }}</span>
-          <span class="text-sm font-medium">{{ stats()?.started || 0 }}</span>
-        </div>
-        <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-          <span class="text-sm">{{ 'ENROLLMENTS.STATISTICS.WAITING' | transloco }}</span>
-          <span class="text-sm font-medium">{{ stats()?.waiting || 0 }}</span>
-        </div>
-        <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-          <span class="text-sm">{{ 'ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES' | transloco }}</span>
-          <span class="text-sm font-medium">{{ stats()?.totalSentMessages || 0 }}</span>
-        </div>
-        <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-          <span class="text-sm">{{ 'ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco }}</span>
-          <span class="text-sm font-medium">{{ stats()?.totalPendingMessages || 0 }}</span>
+        <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+          <mat-icon class="s-6 shrink-0">schedule</mat-icon>
+          <div class="flex flex-col leading-tight">
+            <span class="font-medium">{{ stats()?.totalPendingMessages || 0 }}</span>
+            <span class="text-xs opacity-60">{{ 'ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco }}</span>
+          </div>
         </div>
       </div>
     </div>

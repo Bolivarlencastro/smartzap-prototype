@@ -9,5 +9,6 @@ export class ContentButton {
     public selected: boolean,
     public svgIcon?: string,
     public hiddenOnMobile?: boolean,
+    public disabled?: boolean,
   ) {}
 }

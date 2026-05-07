@@ -37,10 +37,11 @@ export class LessonsService {
     const order = 1;
     const dispatch_in = 1;
     const dispatch_period = 'MORNING';
+    const fileType = (contentFormData as ContentFormData & { learnContentType?: string }).learnContentType;
 
     return this._learnContentService.createLearnContent(contentFormData, messagesContentEmbed).pipe(
       map((learnContent) => {
-        const { id: learn_content, content_type: type_id } = learnContent;
+        const { id: learn_content, content_type } = learnContent;
         return {
           name,
           description: description || undefined,
@@ -48,7 +49,7 @@ export class LessonsService {
           dispatch_in,
           lesson_id,
           learn_content,
-          type_id,
+          type_id: this.resolveContentTypeId(content_type, fileType),
           dispatch_period,
         };
       }),
@@ -70,8 +71,26 @@ export class LessonsService {
   }
 
   editContent(id: string, data: any): Observable<void> {
-    const { name, description } = data;
-    return this._http.patch<void>(`/content/${id}`, { name, description });
+    const { name, description, learn_content, value, messagesContentEmbed = false, learnContentType } = data;
+    const patchContent$ = this._http.patch<void>(`/content/${id}`, { name, description });
+
+    if (learn_content && value) {
+      return this._learnContentService
+        .updateLearnContent(
+          learn_content,
+          {
+            type: 'FILE',
+            name,
+            description,
+            value,
+            learnContentType,
+          },
+          messagesContentEmbed,
+        )
+        .pipe(switchMap(() => patchContent$));
+    }
+
+    return patchContent$;
   }
 
   updateContentDispatchIn(data: any): Observable<void> {
@@ -116,5 +135,16 @@ export class LessonsService {
       }),
       switchMap((body) => this._http.post<Content>('/content', body)),
     );
+  }
+
+  private resolveContentTypeId(contentType: string | undefined, fallbackType?: string): string {
+    const resolvedType = (contentType || fallbackType || '').toUpperCase();
+
+    if (resolvedType === 'VIDEO') return 'ct-video';
+    if (resolvedType === 'IMAGE') return 'ct-image';
+    if (resolvedType === 'PODCAST') return 'ct-podcast';
+    if (resolvedType === 'PDF') return 'ct-pdf';
+
+    return contentType || 'ct-pdf';
   }
 }

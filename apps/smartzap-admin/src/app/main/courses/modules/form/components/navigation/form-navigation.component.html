@@ -5,7 +5,7 @@
         [routerLink]="item.disabled ? null : item.route"
         routerLinkActive="active-item"
         [routerLinkActiveOptions]="{ exact: i === 0 }"
-        class="flex w-full py-6 px-9 gap-4 item-container"
+        class="flex items-center w-full py-6 px-9 gap-4 item-container"
         [ngClass]="{
           'text-disabled cursor-default': item.disabled,
           'cursor-pointer': !item.disabled,
@@ -14,11 +14,11 @@
         matRipple
       >
         <div
-          class="w-7 h-7 self-start rounded-full border-2 text-sm flex justify-center items-center font-bold shrink-0 order-counter"
+          class="w-7 h-7 rounded-full border-2 text-sm flex justify-center items-center font-bold shrink-0 order-counter"
         >
           {{ item.order }}
         </div>
-        <div>
+        <div class="flex flex-col justify-center min-w-0">
           <h3 data-test="step-title" class="font-bold title">{{ item.title | transloco }}</h3>
           <p>{{ item.label | transloco }}</p>
         </div>
@@ -28,13 +28,13 @@
 
   <a
     routerLink="/courses"
-    class="flex w-full py-6 px-9 gap-4 item-container cursor-pointer border-t border-default"
+    class="flex items-center w-full py-6 px-9 gap-4 item-container cursor-pointer border-t border-default"
     matRipple
   >
-    <div class="w-7 h-7 self-start rounded-full border-2 flex justify-center items-center shrink-0 order-counter">
+    <div class="w-7 h-7 rounded-full border-2 flex justify-center items-center shrink-0 order-counter">
       <mat-icon class="s-4">logout</mat-icon>
     </div>
-    <div>
+    <div class="flex flex-col justify-center min-w-0">
       <h3 class="font-bold title">Sair da criação</h3>
     </div>
   </a>

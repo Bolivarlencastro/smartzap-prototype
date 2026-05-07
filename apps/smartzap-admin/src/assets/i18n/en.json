@@ -100,6 +100,7 @@
           }
         },
         "MAX_DESCRIPTION": "You must enter a description of less than 200 characters",
+        "MAX_SHORT_DESCRIPTION": "You must enter a short description of less than 120 characters",
         "REQUIRED_CATEGORY": "Please enter a category for the course.",
         "REQUIRED_DESCRIPTION": "Required to provide a description for the course.",
         "REQUIRED_LANGUAGE": "Please enter the language of the course.",
@@ -117,6 +118,7 @@
         "CATEGORY": "Category",
         "CONTENT_ANTECIPATION": "Allow advancing content?",
         "DESCRIPTION": "Description",
+        "LONG_DESCRIPTION": "Long description",
         "DISABLE_SENDING_CERTIFICATE": "Disable sending of certificate?",
         "DISPATCH_IN": "Send to",
         "DISPATCH_IN_OPTION": "{{value}} day after enrollment",
@@ -128,6 +130,7 @@
         "BANNER_IMAGE": "Banner Image",
         "CARD_IMAGE": "Card Image",
         "MESSAGE_DESCRIPTION": "Introductory Message",
+        "SHORT_DESCRIPTION": "Short description",
         "NAME": "Course Name"
       },
       "QUIZ": {
@@ -154,7 +157,7 @@
         "SUBTITLE": "Structure the course in clear steps and only move forward when each block is ready.",
         "INFORMATION": "Configure your course data.",
         "IMAGES": "Define your course images.",
-        "CONFIGURATIONS": "Adjust the settings for course display and use.",
+        "CONFIGURATIONS": "Adjust course display and usage.",
         "CONTENTS": "Add content to your course.",
         "FINISH": "Publish your course."
       },

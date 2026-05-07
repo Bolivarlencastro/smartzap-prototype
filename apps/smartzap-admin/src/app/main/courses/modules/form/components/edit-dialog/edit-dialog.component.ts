@@ -22,6 +22,10 @@ export interface EditDialogData {
 export interface EditDialogFormData {
   name: string;
   description: string;
+  value?: File | string;
+  learn_content?: string;
+  messagesContentEmbed?: boolean;
+  learnContentType?: string;
 }
 
 @Component({

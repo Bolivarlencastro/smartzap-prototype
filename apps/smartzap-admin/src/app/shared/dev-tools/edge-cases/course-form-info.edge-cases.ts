@@ -133,7 +133,7 @@ export function getCourseFormInfoEdgeCases(store: Store): EdgeCaseGroup[] {
     },
     {
       label: 'Todos os campos no máximo',
-      description: 'Nome 100 chars + Descrição 200 chars + mensagem WhatsApp longa',
+      description: 'Nome 100 chars + Descrição 200 chars + descrição curta 120 chars',
       icon: 'data_usage',
       apply: () =>
         dispatchCourse(
@@ -143,7 +143,7 @@ export function getCourseFormInfoEdgeCases(store: Store): EdgeCaseGroup[] {
             description:
               'Este curso abrange todos os aspectos fundamentais do onboarding corporativo, incluindo cultura organizacional, políticas internas, ferramentas utilizadas e expectativas de performance para novos integrantes.',
             message_description:
-              'Você foi matriculado no curso *Programa Completo de Desenvolvimento de Liderança Estratégica*. Acesse agora pelo link abaixo e inicie sua trilha de aprendizado. Qualquer dúvida, entre em contato com o RH.',
+              'Você foi matriculado no curso *Programa Completo de Desenvolvimento*. Acesse e inicie sua trilha agora.',
             disable_send_certificate: true,
             content_performance_weight: 10,
             quiz_performance_weight: 0,

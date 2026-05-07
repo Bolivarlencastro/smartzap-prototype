@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { CourseFormContentComponent } from './course-form-content.component';
 import { courseMock } from 'app/shared/test/courses';
 import { ExamStateService } from '../../services';
-import { Content, Course, EVALUATIVE_TYPE_ID, Lesson, SURVEY_TYPE_ID } from 'app/main/courses/model';
+import { Content, Course, EVALUATIVE_TYPE_ID, SURVEY_TYPE_ID } from 'app/main/courses/model';
 import {
   EvaluateQuizQuestionDialogComponent,
   SurveyQuizQuestionDialogComponent,
 } from 'app/main/courses/modules/form/components';
 import { getTranslocoTestingModule } from 'app/shared/test/transloco-testing.module';
-import { provideRouter } from '@angular/router';
-import { KpContentFormDialogComponent } from '@keeps-platform-frontend-workspace/ui/kp-content-dialog';
 
 describe('CourseFormContentComponent', () => {
   let component: CourseFormContentComponent;
@@ -34,84 +33,111 @@ describe('CourseFormContentComponent', () => {
             open: jest.fn().mockReturnValue({
               beforeClosed: jest.fn().mockReturnValue(of({})),
               afterClosed: jest.fn().mockReturnValue(of(null)),
+              componentInstance: {},
             }),
           },
         },
         { provide: ExamStateService, useValue: { createQuestion: jest.fn().mockReturnValue(of({})) } },
       ],
     }).compileComponents();
+
     matDialog = TestBed.inject(MatDialog);
     examStateService = TestBed.inject(ExamStateService);
 
     fixture = TestBed.createComponent(CourseFormContentComponent);
     component = fixture.componentInstance;
     component.course = courseMock as Course;
-    component.lessons = [];
+    component.contents = [];
     fixture.detectChanges();
   });
 
-  describe('onCreateContent', () => {
-    const lesson: Lesson = {
-      id: 'lesson-1',
-      name: 'Lesson 1',
-      description: '',
-      order: 1,
-      course_id: 'course-1',
-      contents: [],
-    };
+  describe('onAddBlock', () => {
+    it('should open file picker for file blocks', () => {
+      const fileInput = { click: jest.fn(), accept: '' } as unknown as HTMLInputElement;
+      const block = component.contentBlocks.find((item) => item.id === 'video')!;
 
-    it('should open KpContentFormDialogComponent with correct data', () => {
-      component.messagesContentEmbed = true;
-      component.onCreateContent(lesson);
-      expect(matDialog.open).toHaveBeenCalledWith(KpContentFormDialogComponent, {
-        data: { app: 'smartzap', messagesContentEmbed: true },
-        autoFocus: 'dialog',
+      component.onAddBlock(block, fileInput);
+
+      expect(component.pendingFileBlock).toEqual(block);
+      expect(fileInput.click).toHaveBeenCalled();
+    });
+
+    it('should emit createContent for interaction blocks', () => {
+      const block = component.contentBlocks.find((item) => item.id === 'evaluative-quiz')!;
+      const emitSpy = jest.spyOn(component.createContent, 'emit');
+
+      component.onAddBlock(block);
+
+      expect(emitSpy).toHaveBeenCalledWith({
+        contentFormData: {
+          type: 'EVALUATIVE_QUIZ',
+          name: 'Novo quiz avaliativo',
+          value: '',
+          description: block.emptyDescription,
+        },
+        messagesContentEmbed: false,
       });
     });
+  });
 
-    it('should emit createContent with lesson_id, contentFormData and messagesContentEmbed when dialog closes with a value', (done) => {
-      const contentFormData = { type: 'LINK', name: 'test', value: 'url' };
-      component.messagesContentEmbed = true;
-      jest.spyOn(matDialog, 'open').mockReturnValue({
-        afterClosed: jest.fn().mockReturnValue(of(contentFormData)),
-      } as any);
+  describe('onFileSelected', () => {
+    it('should emit createContent with selected file', () => {
+      const file = new File(['video'], 'aula.mp4', { type: 'video/mp4' });
+      const emitSpy = jest.spyOn(component.createContent, 'emit');
+      const block = component.contentBlocks.find((item) => item.id === 'video')!;
+      component.pendingFileBlock = block;
 
-      component.createContent.subscribe((event) => {
-        expect(event).toEqual({ lesson_id: lesson.id, contentFormData, messagesContentEmbed: true });
-        done();
+      component.onFileSelected({
+        target: {
+          files: [file],
+          value: 'aula.mp4',
+        },
+      } as unknown as Event);
+
+      expect(emitSpy).toHaveBeenCalledWith({
+        contentFormData: {
+          type: 'FILE',
+          name: 'aula',
+          value: file,
+          description: block.emptyDescription,
+        },
+        messagesContentEmbed: false,
       });
-
-      component.onCreateContent(lesson);
     });
+  });
 
-    it('should not emit createContent when dialog is dismissed', () => {
-      const emitSpy = jest.spyOn(component.createContent, 'emit');
-      component.messagesContentEmbed = false;
-      jest.spyOn(matDialog, 'open').mockReturnValue({
-        afterClosed: jest.fn().mockReturnValue(of(null)),
-      } as any);
+  describe('inline editing', () => {
+    it('should emit editContent when saving a selected block', () => {
+      const content: Content = {
+        id: 'content-1',
+        description: 'Descricao antiga',
+        dispatch_in: 1,
+        dispatch_period: 'MORNING',
+        learn_content: 'learn-1',
+        lesson_id: 'lesson-1',
+        name: 'Titulo antigo',
+        order: 1,
+        type_id: 'ct-video',
+        type: { id: 'ct-video', name: 'video', description: 'Video', image_url: '' },
+      };
 
-      component.onCreateContent(lesson);
+      component.contents = [content];
+      component.onSelectContent(content);
+      component.draftName = 'Titulo novo';
+      component.draftDescription = 'Descricao nova';
 
-      expect(emitSpy).not.toHaveBeenCalled();
-    });
+      const emitSpy = jest.spyOn(component.editContent, 'emit');
+      component.onSaveSelectedContent();
 
-    it('should not emit createContent when lesson has no id', () => {
-      const lessonWithoutId: Lesson = { ...lesson, id: undefined };
-      const emitSpy = jest.spyOn(component.createContent, 'emit');
-      component.messagesContentEmbed = false;
-      jest.spyOn(matDialog, 'open').mockReturnValue({
-        afterClosed: jest.fn().mockReturnValue(of({ type: 'LINK', name: 'test' })),
-      } as any);
-
-      component.onCreateContent(lessonWithoutId);
-
-      expect(emitSpy).not.toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledWith({
+        id: 'content-1',
+        data: { name: 'Titulo novo', description: 'Descricao nova' },
+      });
     });
   });
 
   describe('onCreateQuestion', () => {
-    it('should open EvaluateQuizQuestionDialogComponent when type_id is EVALUATIVE_TYPE_ID', (done) => {
+    it('should open EvaluateQuizQuestionDialogComponent when type_id is EVALUATIVE_TYPE_ID', () => {
       const content: Content = {
         description: '',
         dispatch_in: 1,
@@ -123,21 +149,18 @@ describe('CourseFormContentComponent', () => {
         type_id: EVALUATIVE_TYPE_ID,
       };
 
-      const expectedOptions = {
+      component.onCreateQuestion(content);
+
+      expect(matDialog.open).toHaveBeenCalledWith(EvaluateQuizQuestionDialogComponent, {
         panelClass: 'question-form-dialog',
         data: { action: 'new' },
         width: '60vw',
         autoFocus: 'dialog',
-      };
-
-      component.onCreateQuestion(content);
-
-      expect(matDialog.open).toHaveBeenCalledWith(EvaluateQuizQuestionDialogComponent, expectedOptions);
+      });
       expect(examStateService.createQuestion).toHaveBeenCalled();
-      done();
     });
 
-    it('should open SurveyQuizQuestionDialogComponent when type_id is not EVALUATIVE_TYPE_ID', (done) => {
+    it('should open SurveyQuizQuestionDialogComponent when type_id is SURVEY_TYPE_ID', () => {
       const content: Content = {
         description: '',
         dispatch_in: 1,
@@ -149,18 +172,15 @@ describe('CourseFormContentComponent', () => {
         type_id: SURVEY_TYPE_ID,
       };
 
-      const expectedOptions = {
+      component.onCreateQuestion(content);
+
+      expect(matDialog.open).toHaveBeenCalledWith(SurveyQuizQuestionDialogComponent, {
         panelClass: 'question-form-dialog',
         data: { action: 'new' },
         width: '60vw',
         autoFocus: 'dialog',
-      };
-
-      component.onCreateQuestion(content);
-
-      expect(matDialog.open).toHaveBeenCalledWith(SurveyQuizQuestionDialogComponent, expectedOptions);
+      });
       expect(examStateService.createQuestion).toHaveBeenCalled();
-      done();
     });
   });
 });

@@ -48,7 +48,7 @@ function slideTo(direction: string): any[] {
       <mat-drawer-container class="flex-auto sm:h-full">
         <mat-drawer mode="side" opened>
           <div class="flex flex-col h-full">
-            <div class="py-6 px-9">
+            <div class="course-form__sidebar-header py-6 px-9">
               <h2 class="text-2xl font-black mb-2">
                 {{ 'COURSE.FORM.TITLE.' + (!!course.id ? 'EDIT' : 'NEW') | transloco }}
               </h2>

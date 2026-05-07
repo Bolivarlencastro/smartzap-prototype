@@ -100,6 +100,7 @@
           }
         },
         "MAX_DESCRIPTION": "Se requiere una descripción de menos de 200 caracteres",
+        "MAX_SHORT_DESCRIPTION": "Se requiere una descripción corta de menos de 120 caracteres",
         "REQUIRED_CATEGORY": "Ingrese una categoría para el curso.",
         "REQUIRED_DESCRIPTION": "Es necesario proporcionar una descripción del curso.",
         "REQUIRED_LANGUAGE": "Ingrese el idioma del curso.",
@@ -117,6 +118,7 @@
         "CATEGORY": "Categoría",
         "CONTENT_ANTECIPATION": "¿Permitir avanzar contenido?",
         "DESCRIPTION": "Descripción",
+        "LONG_DESCRIPTION": "Descripción larga",
         "DISABLE_SENDING_CERTIFICATE": "¿Deshabilitar el envío de certificado?",
         "DISPATCH_IN": "Mandar",
         "DISPATCH_IN_OPTION": "{{value}} día después de la inscripción",
@@ -128,6 +130,7 @@
         "BANNER_IMAGE": "Imagen de Banner",
         "CARD_IMAGE": "Imagen de Tarjeta",
         "MESSAGE_DESCRIPTION": "Mensaje introductorio",
+        "SHORT_DESCRIPTION": "Descripción corta",
         "NAME": "Nombre del curso"
       },
       "QUIZ": {
@@ -154,7 +157,7 @@
         "SUBTITLE": "Estructure el curso en pasos claros y avance solo cuando cada bloque esté listo.",
         "INFORMATION": "Configura los datos de tu curso.",
         "IMAGES": "Define las imágenes de tu curso.",
-        "CONFIGURATIONS": "Ajusta la configuración para la visualización y el uso del curso.",
+        "CONFIGURATIONS": "Ajusta la visualización y el uso del curso.",
         "CONTENTS": "Agrega los contenidos a tu curso.",
         "FINISH": "Publica tu curso."
       },

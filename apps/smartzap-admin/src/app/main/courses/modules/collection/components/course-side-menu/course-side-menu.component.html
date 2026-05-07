@@ -15,36 +15,51 @@
 
   <!-- CARDS -->
   <div class="flex-1 pt-6 px-6 flex flex-col gap-3 overflow-y-auto">
-    <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
-      <mat-icon svgIcon="learning-trail" class="s-6 text-primary"></mat-icon>
-      <span>{{ summary()?.total || 0 }} {{ 'COURSE_SIDE_MENU.TOTAL' | transloco }}</span>
+    <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon svgIcon="learning-trail" class="s-6 text-primary shrink-0"></mat-icon>
+      <div class="flex flex-col leading-tight">
+        <span class="font-medium">{{ summary()?.total || 0 }}</span>
+        <span class="text-xs opacity-60">{{ 'COURSE_SIDE_MENU.TOTAL' | transloco }}</span>
+      </div>
     </div>
 
     @if (summary()?.finished) {
-      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
         <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#01d89b'"></span>
-        <span>{{ summary()?.finished }} {{ 'COURSE_SIDE_MENU.FINISHED' | transloco }}</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ summary()?.finished }}</span>
+          <span class="text-xs opacity-60">{{ 'COURSE_SIDE_MENU.FINISHED' | transloco }}</span>
+        </div>
       </div>
     }
 
     @if (summary()?.creating) {
-      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
         <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#ff7152'"></span>
-        <span>{{ summary()?.creating }} {{ 'COURSE_SIDE_MENU.CREATING' | transloco }}</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ summary()?.creating }}</span>
+          <span class="text-xs opacity-60">{{ 'COURSE_SIDE_MENU.CREATING' | transloco }}</span>
+        </div>
       </div>
     }
 
     @if (summary()?.reviewing) {
-      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
         <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#ff9706'"></span>
-        <span>{{ summary()?.reviewing }} {{ 'COURSE_SIDE_MENU.REVIEWING' | transloco }}</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ summary()?.reviewing }}</span>
+          <span class="text-xs opacity-60">{{ 'COURSE_SIDE_MENU.REVIEWING' | transloco }}</span>
+        </div>
       </div>
     }
 
     @if (summary()?.inactive) {
-      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
         <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#b5b5b5'"></span>
-        <span>{{ summary()?.inactive }} {{ 'COURSE_SIDE_MENU.INACTIVE' | transloco }}</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ summary()?.inactive }}</span>
+          <span class="text-xs opacity-60">{{ 'COURSE_SIDE_MENU.INACTIVE' | transloco }}</span>
+        </div>
       </div>
     }
   </div>

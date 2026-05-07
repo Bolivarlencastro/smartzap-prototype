@@ -12,29 +12,59 @@
   <mat-divider></mat-divider>
 
   <div class="flex-1 pt-6 px-6 flex flex-col gap-3 overflow-y-auto">
-    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_USERS' | transloco }}</span>
-      <span class="text-sm font-medium">{{ statistics?.totalUsers || 0 }}</span>
+    <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon svgIcon="group" class="s-6 text-primary shrink-0"></mat-icon>
+      <div class="flex flex-col leading-tight">
+        <span class="font-medium">{{ statistics?.totalUsers || 0 }}</span>
+        <span class="text-xs opacity-60">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_USERS' | transloco }}</span>
+      </div>
     </div>
-    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES' | transloco }}</span>
-      <span class="text-sm font-medium">{{ statistics?.totalSentMessages || 0 }}</span>
+    <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon class="s-6 text-primary shrink-0">send</mat-icon>
+      <div class="flex flex-col leading-tight">
+        <span class="font-medium">{{ statistics?.totalSentMessages || 0 }}</span>
+        <span class="text-xs opacity-60">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES' | transloco }}</span>
+      </div>
     </div>
-    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.STARTED_ENROLLMENTS' | transloco }}</span>
-      <span class="text-sm font-medium">{{ statistics?.startedEnrollments || 0 }}</span>
+    @if (statistics?.startedEnrollments) {
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#293D98'"></span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ statistics?.startedEnrollments }}</span>
+          <span class="text-xs opacity-60">{{
+            'SETTINGS.ENROLLMENTS.STATISTICS.STARTED_ENROLLMENTS' | transloco
+          }}</span>
+        </div>
+      </div>
+    }
+    @if (statistics?.waitingEnrollments) {
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#FFB100'"></span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ statistics?.waitingEnrollments }}</span>
+          <span class="text-xs opacity-60">{{
+            'SETTINGS.ENROLLMENTS.STATISTICS.WAITING_ENROLLMENTS' | transloco
+          }}</span>
+        </div>
+      </div>
+    }
+    <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon class="s-6 shrink-0">schedule</mat-icon>
+      <div class="flex flex-col leading-tight">
+        <span class="font-medium">{{ statistics?.totalPendingMessages || 0 }}</span>
+        <span class="text-xs opacity-60">{{
+          'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco
+        }}</span>
+      </div>
     </div>
-    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.WAITING_ENROLLMENTS' | transloco }}</span>
-      <span class="text-sm font-medium">{{ statistics?.waitingEnrollments || 0 }}</span>
-    </div>
-    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco }}</span>
-      <span class="text-sm font-medium">{{ statistics?.totalPendingMessages || 0 }}</span>
-    </div>
-    <div class="h-14 pl-6 pr-4 w-full rounded-md border border-default flex items-center justify-between gap-3">
-      <span class="text-sm">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES_PERIOD' | transloco }}</span>
-      <span class="text-sm font-medium">{{ statistics?.totalSentMessagesPeriod || 0 }}</span>
+    <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon class="s-6 text-primary shrink-0">bar_chart</mat-icon>
+      <div class="flex flex-col leading-tight">
+        <span class="font-medium">{{ statistics?.totalSentMessagesPeriod || 0 }}</span>
+        <span class="text-xs opacity-60">{{
+          'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES_PERIOD' | transloco
+        }}</span>
+      </div>
     </div>
   </div>
 </div>

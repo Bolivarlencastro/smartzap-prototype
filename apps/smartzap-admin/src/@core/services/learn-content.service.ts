@@ -11,13 +11,27 @@ export class LearnContentService {
   constructor(private _http: KontentAPI) {}
 
   createLearnContent(learnContentFormData: ContentFormData, messagesContentEmbed: boolean): Observable<LearnContent> {
-    const data = this.buildContent(learnContentFormData);
+    const data = this.buildContent(learnContentFormData as ContentFormData & { learnContentType?: string });
 
-    if (learnContentFormData.type === 'FILE') {
+    if (learnContentFormData.type === 'FILE' && data.file) {
       return this.uploadFile(data, messagesContentEmbed);
     }
 
     return this._http.post<LearnContent>(this._url, data);
+  }
+
+  updateLearnContent(
+    learnContentId: string,
+    learnContentFormData: any,
+    messagesContentEmbed: boolean,
+  ): Observable<LearnContent> {
+    const data = this.buildContent(learnContentFormData);
+
+    if (learnContentFormData.type === 'FILE' && data.file) {
+      return this.uploadFile(data, messagesContentEmbed, learnContentId);
+    }
+
+    return this._http.patch<LearnContent>(`${this._url}/${learnContentId}`, data);
   }
 
   linkSanitizer(link: string): string {
@@ -44,12 +58,14 @@ export class LearnContentService {
   }
 
   // Private methods
-  private buildContent(learnContentFormData: ContentFormData): any {
+  private buildContent(learnContentFormData: ContentFormData & { learnContentType?: string }): any {
     const { type, name, description, value } = learnContentFormData;
 
     switch (type) {
       case 'FILE':
-        return { name, description, file: value };
+        return value
+          ? { name, description, file: value }
+          : { name, description, type: learnContentFormData.learnContentType || 'PDF' };
       case 'YOUTUBE':
       case 'VIMEO':
       case 'SOUNDCLOUD':
@@ -65,6 +81,7 @@ export class LearnContentService {
   private uploadFile(
     data: { name: string; description: string; file: any },
     messagesContentEmbed: boolean,
+    learnContentId?: string,
   ): Observable<LearnContent> {
     const { file, name, description } = data;
     const formData = new FormData();
@@ -72,6 +89,9 @@ export class LearnContentService {
     formData.append('name', name);
     formData.append('description', description);
     formData.append('is_whatsapp_content', messagesContentEmbed ? 'True' : 'False');
+    if (learnContentId) {
+      return this._http.patchFormData<LearnContent>(`${this._url}/${learnContentId}`, formData);
+    }
     return this._http.postFormData<LearnContent>(this._url, formData);
   }
 }

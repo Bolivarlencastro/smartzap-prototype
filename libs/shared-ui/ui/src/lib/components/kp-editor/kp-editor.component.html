@@ -2,6 +2,7 @@
   class="w-full"
   #quillEditor
   [(ngModel)]="editorValue"
+  [ngModelOptions]="{ standalone: true }"
   [ngClass]="languageClass"
   [placeholder]="placeholder()"
   [modules]="quillModules"

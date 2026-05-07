@@ -15,22 +15,31 @@
 
   <!-- CARDS -->
   <div class="flex-1 pt-6 px-6 flex flex-col gap-3 overflow-y-auto">
-    <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
-      <mat-icon svgIcon="group" class="s-6 text-primary"></mat-icon>
-      <span>{{ summary()?.total || 0 }} {{ 'USERS.SUMMARY.TOTAL' | transloco }}</span>
+    <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
+      <mat-icon svgIcon="group" class="s-6 text-primary shrink-0"></mat-icon>
+      <div class="flex flex-col leading-tight">
+        <span class="font-medium">{{ summary()?.total || 0 }}</span>
+        <span class="text-xs opacity-60">{{ 'USERS.SUMMARY.TOTAL' | transloco }}</span>
+      </div>
     </div>
 
     @if (summary()?.synced) {
-      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
         <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#01d89b'"></span>
-        <span>{{ summary()?.synced }} {{ 'USERS.SUMMARY.SYNCED' | transloco }}</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ summary()?.synced }}</span>
+          <span class="text-xs opacity-60">{{ 'USERS.SUMMARY.SYNCED' | transloco }}</span>
+        </div>
       </div>
     }
 
     @if (summary()?.notSynced) {
-      <div class="h-14 pl-6 w-full rounded-md border border-default flex items-center gap-3">
+      <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
         <span class="w-3 h-3 rounded-full shrink-0" [style.background-color]="'#ff4444'"></span>
-        <span>{{ summary()?.notSynced }} {{ 'USERS.SUMMARY.NOT_SYNCED' | transloco }}</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-medium">{{ summary()?.notSynced }}</span>
+          <span class="text-xs opacity-60">{{ 'USERS.SUMMARY.NOT_SYNCED' | transloco }}</span>
+        </div>
       </div>
     }
   </div>

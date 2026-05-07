@@ -9,13 +9,13 @@ import { Course } from 'app/main/courses/model';
 @Component({
   selector: 'app-course-form-settings',
   template: `
-    <form [formGroup]="form" class="flex flex-col gap-2" (ngSubmit)="onSubmit()">
-      <div class="flex items-start justify-between gap-4 w-full mb-4">
+    <form [formGroup]="form" class="course-form-step" (ngSubmit)="onSubmit()">
+      <div class="course-form-step__header">
         <div>
-          <h2 class="text-2xl font-black mb-2">{{ 'COURSE.FORM.TABS.CONFIGURATIONS' | transloco }}</h2>
+          <h2>{{ 'COURSE.FORM.TABS.CONFIGURATIONS' | transloco }}</h2>
           <p>{{ 'COURSE.FORM.NAVIGATION.CONFIGURATIONS' | transloco }}</p>
         </div>
-        <div class="flex items-center gap-3 shrink-0">
+        <div class="course-form-step__actions">
           <a mat-stroked-button [routerLink]="['/courses', course.id, 'form', 'images']">{{
             'GENERAL.PREVIOUS' | transloco
           }}</a>
@@ -25,30 +25,108 @@ import { Course } from 'app/main/courses/model';
         </div>
       </div>
 
-      <div class="settings-container w-full">
-        <div class="flex w-full justify-between items-center">
-          <span>{{ 'COURSE.FORM.INPUT.IS_ACTIVE' | transloco }}</span>
-          <mat-slide-toggle color="accent" formControlName="is_active" aria-label="Ativo" id="toggle-form-active">
-          </mat-slide-toggle>
-        </div>
+      <div class="course-form-step__content">
+        <div class="course-form-step__body">
+          <div class="settings-container w-full">
+            <div class="flex w-full justify-between items-center">
+              <span>{{ 'COURSE.FORM.INPUT.IS_ACTIVE' | transloco }}</span>
+              <mat-slide-toggle color="accent" formControlName="is_active" aria-label="Ativo" id="toggle-form-active">
+              </mat-slide-toggle>
+            </div>
 
-        <div class="flex w-full justify-between items-center">
-          <span>{{ 'COURSE.FORM.INPUT.DISABLE_SENDING_CERTIFICATE' | transloco }}</span>
-          <mat-slide-toggle
-            color="accent"
-            formControlName="disable_send_certificate"
-            aria-label="disable sending certificate"
-            id="toggle-disable-sending-certificate"
-          >
-          </mat-slide-toggle>
+            <div class="flex w-full justify-between items-center">
+              <span>{{ 'COURSE.FORM.INPUT.DISABLE_SENDING_CERTIFICATE' | transloco }}</span>
+              <mat-slide-toggle
+                color="accent"
+                formControlName="disable_send_certificate"
+                aria-label="disable sending certificate"
+                id="toggle-disable-sending-certificate"
+              >
+              </mat-slide-toggle>
+            </div>
+          </div>
         </div>
       </div>
     </form>
   `,
   styles: [
     `
+      .course-form-step {
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100% + 6rem);
+        margin: -3rem;
+        background: var(--course-form-surface, #f7f1f8);
+      }
+
+      .course-form-step__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        height: var(--course-form-column-header-height, 160px);
+        padding: 24px 48px;
+        background: var(--course-form-surface, #f7f1f8);
+        box-sizing: border-box;
+      }
+
+      .course-form-step__header > :first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .course-form-step__header h2 {
+        margin: 0 0 8px;
+        font-size: 1.5rem;
+        font-weight: 900;
+      }
+
+      .course-form-step__header p {
+        margin: 0;
+        color: rgb(32 25 40 / 68%);
+      }
+
+      .course-form-step__actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        align-self: center;
+      }
+
+      .course-form-step__body {
+        padding: 48px;
+      }
+
+      .course-form-step__content {
+        flex: 1;
+        border-top: 1px solid var(--course-form-divider, var(--mat-sys-outline-variant));
+      }
+
       .settings-container > * {
         @apply border-b last:border-b-0 border-default min-h-20 pr-4;
+      }
+
+      @media (width <= 768px) {
+        .course-form-step {
+          min-height: auto;
+        }
+
+        .course-form-step__header,
+        .course-form-step__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .course-form-step__header {
+          height: auto;
+          padding: 24px 16px;
+        }
+
+        .course-form-step__body {
+          padding: 16px;
+        }
       }
     `,
   ],

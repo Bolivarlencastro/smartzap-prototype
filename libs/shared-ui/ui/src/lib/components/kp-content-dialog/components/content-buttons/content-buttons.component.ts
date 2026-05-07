@@ -26,4 +26,12 @@ export class KpContentDialogButtonsComponent {
   getTooltip(button: ContentButton): string | null {
     return button.tooltip ? button.tooltip : null;
   }
+
+  onSelect(button: ContentButton): void {
+    if (button.disabled) {
+      return;
+    }
+
+    this.contentSelected.emit(button);
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, concatMap, map, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { CoursesService } from '../../services';
 import { CourseActions, UploadActions } from '../actions';
 import { KpMessageService } from '@keeps-platform-frontend-workspace/ui/kp-message-service';
@@ -11,7 +11,7 @@ export class UploadEffects {
   uploadImage$ = createEffect(() => {
     return this._actions$.pipe(
       ofType(UploadActions.uploadImage),
-      concatMap(({ file, imageType }) => {
+      mergeMap(({ file, imageType }) => {
         return this._coursesService.uploadImage(file, imageType).pipe(
           map((image) => UploadActions.uploadImageSuccess({ image, imageType })),
           catchError((error) => of(UploadActions.uploadImageFailure({ error }))),

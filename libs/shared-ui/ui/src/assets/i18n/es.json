@@ -558,6 +558,7 @@
         "HTML": "Agregar contenido como HSP y Genially",
         "IMAGE": "JPGE, JPG, PNG, WEBP",
         "LINK": "Copiar y pegar enlaces de otras plataformas",
+        "LINK_DISABLED_BY_MESSAGES_CONTENT_EMBED": "Desactive el contenido embebido en /settings/configurations para habilitar enlaces de YouTube y Vimeo",
         "PDF": "PDF",
         "PODCAST": "MP3",
         "POWERPOINT": "PPTX",

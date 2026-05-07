@@ -6,9 +6,12 @@
       class="h-28 max-h-none rounded-md"
       [ngClass]="{ 'hidden sm:flex': button.hiddenOnMobile }"
       [class.bg-primary]="button.selected"
+      [class.opacity-50]="button.disabled"
+      [class.cursor-not-allowed]="button.disabled"
       [matTooltip]="getTooltip(button) | transloco"
       [attr.aria-label]="button.title | transloco"
-      (click)="contentSelected.emit(button)"
+      [attr.aria-disabled]="button.disabled"
+      (click)="onSelect(button)"
     >
       <div class="flex flex-col items-center">
         @if (button.svgIcon) {

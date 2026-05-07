@@ -11,11 +11,27 @@ import { marker } from '@jsverse/transloco-keys-manager/marker';
   imports: [MatIcon, MatButton, TranslocoPipe],
   styles: [
     `
+      :host {
+        display: flex;
+        min-height: calc(100% + 6rem);
+        margin: -3rem;
+        padding: 48px;
+        background: var(--course-form-surface, #f7f1f8);
+        box-sizing: border-box;
+      }
+
       .status-tag {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+      }
+
+      @media (width <= 768px) {
+        :host {
+          min-height: auto;
+          padding: 16px;
+        }
       }
     `,
   ],
