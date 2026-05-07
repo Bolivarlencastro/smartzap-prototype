@@ -39,6 +39,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Claude Code agent configs (internal)
+.claude/
+
 .angular
 .nx
 
