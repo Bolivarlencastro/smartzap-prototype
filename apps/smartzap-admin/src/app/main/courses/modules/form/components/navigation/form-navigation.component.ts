@@ -3,6 +3,7 @@ import { Course } from 'app/main/courses/model';
 
 import { NgClass } from '@angular/common';
 import { MatRipple } from '@angular/material/core';
+import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -20,7 +21,7 @@ type CourseFormNavItem = {
   styleUrls: ['./form-navigation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false,
-  imports: [NgClass, MatRipple, RouterLinkActive, RouterLink, TranslocoPipe],
+  imports: [NgClass, MatRipple, MatIcon, RouterLinkActive, RouterLink, TranslocoPipe],
 })
 export class FormNavigationComponent {
   @Input() course!: Course;

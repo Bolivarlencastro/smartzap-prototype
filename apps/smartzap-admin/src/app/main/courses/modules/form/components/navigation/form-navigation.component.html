@@ -1,5 +1,5 @@
-<div class="w-96">
-  <nav>
+<div class="w-96 flex flex-col flex-1 min-h-0">
+  <nav class="flex-1">
     @for (item of navItems; track item.order; let i = $index) {
       <a
         [routerLink]="item.disabled ? null : item.route"
@@ -25,4 +25,17 @@
       </a>
     }
   </nav>
+
+  <a
+    routerLink="/courses"
+    class="flex w-96 py-6 px-9 gap-4 item-container cursor-pointer mt-auto"
+    matRipple
+  >
+    <div class="w-7 h-7 self-start rounded-full border-2 flex justify-center items-center shrink-0 order-counter">
+      <mat-icon class="s-4">logout</mat-icon>
+    </div>
+    <div>
+      <h3 class="font-bold title">Sair da criação</h3>
+    </div>
+  </a>
 </div>

@@ -47,17 +47,20 @@ function slideTo(direction: string): any[] {
     <div class="flex flex-col w-full min-w-0 sm:absolute sm:inset-0 sm:overflow-hidden">
       <mat-drawer-container class="flex-auto sm:h-full">
         <mat-drawer mode="side" opened>
-          <div class="py-6 px-9">
-            <h2 class="text-2xl font-black mb-2">
-              {{ 'COURSE.FORM.TITLE.' + (!!course.id ? 'EDIT' : 'NEW') | transloco }}
-            </h2>
-            <p>{{ 'COURSE.FORM.NAVIGATION.SUBTITLE' | transloco }}</p>
+          <div class="flex flex-col h-full">
+            <div class="py-6 px-9">
+              <h2 class="text-2xl font-black mb-2">
+                {{ 'COURSE.FORM.TITLE.' + (!!course.id ? 'EDIT' : 'NEW') | transloco }}
+              </h2>
+              <p>{{ 'COURSE.FORM.NAVIGATION.SUBTITLE' | transloco }}</p>
+            </div>
+            <app-form-navigation
+              class="flex-1 min-h-0"
+              [course]="course"
+              [isInformationCompleted]="isInformationCompleted$ | async"
+              [isContentsCompleted]="isContentsCompleted$ | async"
+            ></app-form-navigation>
           </div>
-          <app-form-navigation
-            [course]="course"
-            [isInformationCompleted]="isInformationCompleted$ | async"
-            [isContentsCompleted]="isContentsCompleted$ | async"
-          ></app-form-navigation>
         </mat-drawer>
         <mat-drawer-content class="p-12">
           <router-outlet #outlet="outlet"></router-outlet>
