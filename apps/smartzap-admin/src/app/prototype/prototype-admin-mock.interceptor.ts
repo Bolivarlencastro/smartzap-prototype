@@ -444,10 +444,14 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
   }
 
   private guessContentType(body: Record<string, any> | FormData): string {
+    const explicitType = body instanceof FormData ? String(body.get('type') || '') : String(body['type'] || '');
     const blog = body instanceof FormData ? String(body.get('blog') || '') : String(body['blog'] || '');
     const link = body instanceof FormData ? String(body.get('link') || '') : String(body['link'] || '');
     const file = body instanceof FormData ? body.get('file') : null;
 
+    if (explicitType) {
+      return explicitType;
+    }
     if (blog) {
       return 'BLOG';
     }

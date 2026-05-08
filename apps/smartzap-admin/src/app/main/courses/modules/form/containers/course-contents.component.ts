@@ -37,19 +37,19 @@ export class CourseContentsComponent implements OnInit {
   course$ = this.store.select(CourseSelectors.selectCourse);
   contents$ = this.store.select(LessonsSelectors.selectDefaultLessonContents);
   messagesContentEmbed$ = this.store.select(globalSettingsFeature.selectMessagesContentEmbed);
+  lessonsLoaded$ = this.store.select(LessonsSelectors.selectLessonsLoaded);
 
   private readonly defaultLessonId = toSignal(this.store.select(LessonsSelectors.selectDefaultLessonId));
 
   ngOnInit(): void {
-    this.store
-      .select(LessonsSelectors.selectAllLessons)
+    this.lessonsLoaded$
       .pipe(
-        filter((lessons) => lessons !== null),
+        filter(Boolean),
         take(1),
-        withLatestFrom(this.course$),
-        filter(([lessons]) => lessons.length === 0),
+        withLatestFrom(this.store.select(LessonsSelectors.selectAllLessons), this.course$),
+        filter(([_, lessons]) => lessons.length === 0),
       )
-      .subscribe(([_, course]: [any, Course]) => {
+      .subscribe(([_, __, course]: [boolean, any, Course]) => {
         this.store.dispatch(LessonsActions.createLesson({ course: course.id, name: course.name, order: 1 }));
       });
   }

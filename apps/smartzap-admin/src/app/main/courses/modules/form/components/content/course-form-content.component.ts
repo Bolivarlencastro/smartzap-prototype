@@ -11,7 +11,7 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Content, Course, EVALUATIVE_TYPE_ID, Question } from 'app/main/courses/model';
 import {
@@ -23,17 +23,16 @@ import { ExamStateService } from '../../services';
 import { EditDialogFormData } from '../edit-dialog/edit-dialog.component';
 import { ContentFormData } from '@keeps-platform-frontend-workspace/ui/kp-content-dialog';
 import { KpConfirmDialogComponent } from '@keeps-platform-frontend-workspace/ui/kp-confirm-dialog';
+import { KpSafeUrlPipe } from '@keeps-platform-frontend-workspace/ui/kp-safe-url';
 import { LearnContent } from '@core/model';
 import { LearnContentService } from '@core/services';
 import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
-import { MatError, MatFormField, MatHint, MatLabel, MatSuffix } from '@angular/material/form-field';
-import { MatTooltip } from '@angular/material/tooltip';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { QuizQuestionsListComponent } from '../quiz/quiz-questions-list/quiz-questions-list.component';
 import { RouterLink } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -69,9 +68,6 @@ type ContentBlock = {
     MatMenuItem,
     MatMenuTrigger,
     QuizQuestionsListComponent,
-    MatError,
-    MatHint,
-    MatTooltip,
     MatIcon,
     MatIconButton,
     MatAnchor,
@@ -79,8 +75,7 @@ type ContentBlock = {
     TranslocoPipe,
     CdkDropList,
     CdkDrag,
-    CdkDragHandle,
-    AsyncPipe,
+    KpSafeUrlPipe,
   ],
 })
 export class CourseFormContentComponent implements OnDestroy {
@@ -562,8 +557,9 @@ export class CourseFormContentComponent implements OnDestroy {
     const currentIndex = this.localContents.findIndex((content) => content.id === insertedContent.id);
     const targetIndex = Math.min(this.pendingInsertIndex, this.localContents.length - 1);
 
-    this.selectedContentId = insertedContent.id;
-    this.resetDraft(insertedContent);
+    this.selectedContentId = null;
+    this.draftName = '';
+    this.draftDescription = '';
     this.pendingInsertIndex = null;
 
     if (currentIndex === -1 || currentIndex === targetIndex) {

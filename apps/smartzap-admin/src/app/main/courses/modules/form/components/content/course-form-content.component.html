@@ -92,7 +92,7 @@
                       } @else if (isPdf(content)) {
                         <div class="wa-file">
                           @if (getContentSource(content); as source) {
-                            <object class="wa-pdf__frame" [data]="source" type="application/pdf">
+                            <object class="wa-pdf__frame" [data]="source | kpSafeUrl" type="application/pdf">
                               <div class="wa-file__fallback">
                                 <div class="wa-file__icon">
                                   <mat-icon>picture_as_pdf</mat-icon>
@@ -130,10 +130,14 @@
                                 preload="metadata"
                               ></video>
                             } @else {
-                              <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
+                              <div class="wa-media__placeholder">
+                                <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
+                              </div>
                             }
                           } @else {
-                            <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
+                            <div class="wa-media__placeholder">
+                              <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
+                            </div>
                           }
                         </div>
                       }
@@ -263,14 +267,17 @@
                     }}
                   </span>
                 </div>
-                <button mat-stroked-button type="button" (click)="onCreateQuestion(content)" [disabled]="isDisabled">
-                  <mat-icon>add</mat-icon>
-                  Adicionar pergunta
-                </button>
               </div>
 
               <div class="content-builder__quiz-editor-list">
                 <app-quiz-questions-list [content]="content"></app-quiz-questions-list>
+              </div>
+
+              <div class="content-builder__quiz-editor-actions">
+                <button mat-stroked-button type="button" (click)="onCreateQuestion(content)" [disabled]="isDisabled">
+                  <mat-icon>add</mat-icon>
+                  Adicionar pergunta
+                </button>
               </div>
             </div>
           }

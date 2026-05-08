@@ -6,6 +6,7 @@ import { Content } from '../../model';
 export const selectLessonsState = createSelector(selectCoursesFeatureState, (state: CoursesState) => state.lessons);
 
 export const selectAllLessons = createSelector(selectLessonsState, fromLessons.selectAll);
+export const selectLessonsLoaded = createSelector(selectLessonsState, (state) => state.isLoaded);
 
 export const selectLessonsEntity = createSelector(selectLessonsState, fromLessons.selectEntities);
 

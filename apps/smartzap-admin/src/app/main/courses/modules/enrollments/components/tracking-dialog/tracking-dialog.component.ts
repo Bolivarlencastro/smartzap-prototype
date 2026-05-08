@@ -3,8 +3,8 @@ import { Enrollment } from 'app/main/courses/model';
 import { RenewAccess } from 'app/main/courses/model/tracking';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { AsyncPipe, DatePipe, DecimalPipe, UpperCasePipe } from '@angular/common';
 import { KpStatusChipComponent } from '@keeps-platform-frontend-workspace/ui/kp-status-chip';
@@ -13,7 +13,6 @@ import { TrackingListComponent } from '../tracking-list/tracking-list.component'
 import { TranslocoPipe } from '@jsverse/transloco';
 import { KpEnrollmentStatusColorPipe } from '@keeps-platform-frontend-workspace/ui/kp-enrollment-status-color';
 import { KpNormalizePercentPipe } from '@keeps-platform-frontend-workspace/ui/kp-normalize-percent';
-import { KpPhonePipe } from '@keeps-platform-frontend-workspace/ui/kp-phone';
 
 @Component({
   selector: 'app-tracking-dialog',
@@ -28,8 +27,6 @@ import { KpPhonePipe } from '@keeps-platform-frontend-workspace/ui/kp-phone';
     KpStatusChipComponent,
     MatTooltip,
     TrackingListComponent,
-    MatDialogActions,
-    MatButton,
     AsyncPipe,
     UpperCasePipe,
     DecimalPipe,
@@ -37,7 +34,6 @@ import { KpPhonePipe } from '@keeps-platform-frontend-workspace/ui/kp-phone';
     TranslocoPipe,
     KpEnrollmentStatusColorPipe,
     KpNormalizePercentPipe,
-    KpPhonePipe,
   ],
 })
 export class TrackingDialogComponent implements OnInit, OnDestroy {

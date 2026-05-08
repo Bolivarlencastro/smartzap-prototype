@@ -583,9 +583,9 @@ export class PrototypeAdminStateService {
         ? 'BLOG'
         : inferredType === 'IMAGE'
           ? 'IMAGE'
-          : inferredType === 'YOUTUBE' || inferredType === 'VIMEO'
+          : inferredType === 'VIDEO' || inferredType === 'YOUTUBE' || inferredType === 'VIMEO'
             ? 'VIDEO'
-            : inferredType === 'SOUNDCLOUD'
+            : inferredType === 'PODCAST' || inferredType === 'SOUNDCLOUD'
               ? 'PODCAST'
               : inferredType === 'GOOGLE_DRIVE'
                 ? 'PDF'
@@ -596,7 +596,7 @@ export class PrototypeAdminStateService {
       name: body.name,
       description: body.description,
       content_type: contentType,
-      url: body.link || body.blog || 'https://prototype.local/content',
+      url: body.link || body.blog || '',
       link: body.link,
       blog: body.blog,
     };

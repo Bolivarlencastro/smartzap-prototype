@@ -7,12 +7,16 @@ export const featureKey = 'lessons';
 
 export interface State extends EntityState<Lesson> {
   selectedLesson: number;
+  isLoaded: boolean;
+  isLoading: boolean;
 }
 
 export const adapter: EntityAdapter<Lesson> = createEntityAdapter<Lesson>();
 
 export const initialState: State = adapter.getInitialState({
   selectedLesson: 0,
+  isLoaded: false,
+  isLoading: false,
 });
 
 export const reducer = createReducer(
@@ -22,12 +26,18 @@ export const reducer = createReducer(
     return { ...initialState };
   }),
 
+  on(LessonsActions.loadLessons, (state): State => ({ ...state, isLoading: true, isLoaded: false })),
   on(LessonsActions.setLessons, (state, { payload }): State => adapter.setAll(payload, state)),
-  on(LessonsActions.loadLessonsSuccess, (state, { lessons }): State => adapter.setAll(lessons, state)),
+  on(
+    LessonsActions.loadLessonsSuccess,
+    (state, { lessons }): State => adapter.setAll(lessons, { ...state, isLoading: false, isLoaded: true }),
+  ),
+  on(LessonsActions.loadLessonsFailure, (state): State => ({ ...state, isLoading: false, isLoaded: true })),
 
   on(
     LessonsActions.createLessonSuccess,
-    (state, { payload }): State => adapter.addOne(payload, { ...state, selectedLesson: state.ids.length }),
+    (state, { payload }): State =>
+      adapter.addOne(payload, { ...state, selectedLesson: state.ids.length, isLoaded: true }),
   ),
 
   on(LessonsActions.deteleLessonSuccess, (state, { id }): State => adapter.removeOne(id, state)),
