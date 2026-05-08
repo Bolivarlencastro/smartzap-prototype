@@ -92,6 +92,25 @@ type CourseAssessmentMode = 'CONTENT' | 'FULL' | 'QUIZ';
         border-top: 1px solid var(--course-form-divider, var(--mat-sys-outline-variant));
       }
 
+      .course-form-step__editor-note {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .course-form-step__editor-note strong {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #241f2a;
+      }
+
+      .course-form-step__editor-note p {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: rgb(32 25 40 / 72%);
+      }
+
       @media (width <= 768px) {
         .course-form-step {
           min-height: auto;
