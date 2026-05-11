@@ -80,6 +80,8 @@ type ContentBlock = {
 })
 export class CourseFormContentComponent implements OnDestroy {
   @Input() course!: Course;
+  @Input() previewUserFirstName = '';
+  @Input() previewWorkspaceName = '';
   @Input() set contents(value: Content[]) {
     const previousContents = this.localContents;
     this.localContents = [...value];

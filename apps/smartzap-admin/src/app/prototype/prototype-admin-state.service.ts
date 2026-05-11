@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   ApplicationService,
+  CustomCertificateDto,
   SmartzapConfiguration,
   UserProfile,
   UserRoleV2,
@@ -37,7 +38,7 @@ type EnrollmentRecord = {
   id: string;
   workspace_id: string;
   course_id: string;
-  course: { id: string; name: string };
+  course: { id: string; name: string; version?: string };
   user_id: string;
   user: Pick<User, 'email' | 'name' | 'phone' | 'tags'>;
   status: string;
@@ -76,7 +77,7 @@ type PrototypePersistedState = {
 
 @Injectable({ providedIn: 'root' })
 export class PrototypeAdminStateService {
-  private readonly storageKey = 'smartzap-prototype-state-v1';
+  private readonly storageKey = 'smartzap-prototype-state-v4';
   readonly workspace: WorkspaceBasicDto = {
     id: 'ws-prototype',
     name: 'Workspace Prototype Smartzap',
@@ -232,6 +233,10 @@ export class PrototypeAdminStateService {
       tags: 'lideranca',
       selected: false,
       sync_check: null,
+      department: 'Comercial',
+      sub_department: 'Inside Sales',
+      area: 'Pré-venda',
+      leader: 'Roberto Ferreira',
     },
     {
       id: 'user-2',
@@ -241,6 +246,10 @@ export class PrototypeAdminStateService {
       tags: 'vendas',
       selected: false,
       sync_check: null,
+      department: 'Comercial',
+      sub_department: 'Inside Sales',
+      area: 'Venda Ativa',
+      leader: 'Roberto Ferreira',
     },
     {
       id: 'user-3',
@@ -250,6 +259,10 @@ export class PrototypeAdminStateService {
       tags: 'operacoes',
       selected: false,
       sync_check: 'Telefone sem DDI',
+      department: 'Operações',
+      sub_department: 'Operações Digitais',
+      area: 'TI',
+      leader: 'Marcelo Santos',
     },
     {
       id: 'user-4',
@@ -259,6 +272,10 @@ export class PrototypeAdminStateService {
       tags: 'compliance',
       selected: false,
       sync_check: null,
+      department: 'Compliance',
+      sub_department: 'Jurídico',
+      area: 'Regulatório',
+      leader: 'Sandra Luz',
     },
     {
       id: 'user-5',
@@ -268,6 +285,10 @@ export class PrototypeAdminStateService {
       tags: 'rh',
       selected: false,
       sync_check: null,
+      department: 'RH',
+      sub_department: 'Talent Acquisition',
+      area: 'Recrutamento',
+      leader: 'Paulo Gomes',
     },
     {
       id: 'user-6',
@@ -277,6 +298,10 @@ export class PrototypeAdminStateService {
       tags: 'gestores',
       selected: false,
       sync_check: null,
+      department: 'Comercial',
+      sub_department: 'Customer Success',
+      area: 'CS Estratégico',
+      leader: 'Roberto Ferreira',
     },
   ];
 
@@ -289,9 +314,11 @@ export class PrototypeAdminStateService {
       lang: 'pt-BR',
       status: 'FINISHED',
       is_active: true,
+      version: '2.1.3',
       total_contents: 4,
       total_lessons: 2,
       total_users_enrolled: 124,
+      total_users_in_progress: 33,
       total_users_completed: 91,
       user_creator: { id: this.userProfile.id, name: this.userProfile.name },
     }),
@@ -303,10 +330,12 @@ export class PrototypeAdminStateService {
       lang: 'pt-BR',
       status: 'REVIEWING',
       is_active: true,
+      version: '0.3.0',
       total_contents: 3,
       total_lessons: 1,
-      total_users_enrolled: 86,
-      total_users_completed: 30,
+      total_users_enrolled: 0,
+      total_users_in_progress: 0,
+      total_users_completed: 0,
       user_creator: { id: this.userProfile.id, name: this.userProfile.name },
     }),
     this.createCourse({
@@ -317,9 +346,11 @@ export class PrototypeAdminStateService {
       lang: 'pt-BR',
       status: 'FINISHED',
       is_active: false,
+      version: '3.0.0',
       total_contents: 5,
       total_lessons: 2,
       total_users_enrolled: 210,
+      total_users_in_progress: 33,
       total_users_completed: 177,
       user_creator: { id: 'user-marcos', name: 'Marcos Ribeiro' },
     }),
@@ -331,9 +362,11 @@ export class PrototypeAdminStateService {
       lang: 'en',
       status: 'CREATING',
       is_active: true,
+      version: '0.1.0',
       total_contents: 2,
       total_lessons: 1,
-      total_users_enrolled: 42,
+      total_users_enrolled: 0,
+      total_users_in_progress: 0,
       total_users_completed: 0,
       user_creator: { id: this.userProfile.id, name: this.userProfile.name },
     }),
@@ -345,9 +378,11 @@ export class PrototypeAdminStateService {
       lang: 'pt-BR',
       status: 'FINISHED',
       is_active: true,
+      version: '1.5.2',
       total_contents: 3,
       total_lessons: 1,
       total_users_enrolled: 312,
+      total_users_in_progress: 23,
       total_users_completed: 289,
       user_creator: { id: 'user-ana', name: 'Ana Lima' },
     }),
@@ -356,6 +391,37 @@ export class PrototypeAdminStateService {
   private readonly lessonsByCourse = new Map<string, Lesson[]>();
   private readonly learnContents = new Map<string, LearnContentRecord>();
   private readonly examQuestions = new Map<string, Question[]>();
+
+  private readonly certificates: CustomCertificateDto[] = [
+    {
+      id: 'cert-1',
+      name: 'Certificado Padrão Cursos',
+      template: 'mission',
+      orientation: 'landscape',
+      displayPerformance: true,
+      displayTotalTime: true,
+      displayConclusionDate: true,
+      displayBrand: true,
+      textColor: '#1a1a1a',
+      signedBy: 'Helena Prototype',
+      backgroundImage: 'https://media.keepsdev.com/certificate-manager/default-images/landscape.png',
+      default: true,
+    },
+    {
+      id: 'cert-3',
+      name: 'Certificado Vertical Compliance',
+      template: 'mission',
+      orientation: 'portrait',
+      displayPerformance: true,
+      displayTotalTime: false,
+      displayConclusionDate: true,
+      displayBrand: false,
+      textColor: '#333333',
+      signedBy: '',
+      backgroundImage: 'https://media.keepsdev.com/certificate-manager/default-images/portrait.png',
+      default: false,
+    },
+  ];
   private readonly enrollments: EnrollmentRecord[] = [
     this.seedEnrollment('enrollment-1', 'course-onboarding', 'user-1', 'STARTED', 56, 0.82),
     this.seedEnrollment('enrollment-2', 'course-onboarding', 'user-2', 'WAITING', 0, 0),
@@ -1146,7 +1212,7 @@ export class PrototypeAdminStateService {
       id: forcedId || this.uid('enrollment'),
       workspace_id: this.workspace.id,
       course_id: course.id,
-      course: { id: course.id, name: course.name },
+      course: { id: course.id, name: course.name, version: course.version },
       user_id: user.id,
       user: { email: user.email, name: user.name, phone: user.phone, tags: user.tags },
       status,
@@ -1184,6 +1250,7 @@ export class PrototypeAdminStateService {
       total_contents: overrides.total_contents ?? 0,
       total_lessons: overrides.total_lessons ?? 0,
       total_users_enrolled: overrides.total_users_enrolled ?? 0,
+      total_users_in_progress: overrides.total_users_in_progress ?? 0,
       total_users_completed: overrides.total_users_completed ?? 0,
       content_performance_weight: overrides.content_performance_weight ?? 0.7,
       quiz_performance_weight: overrides.quiz_performance_weight ?? 0.3,
@@ -1197,7 +1264,125 @@ export class PrototypeAdminStateService {
       category: this.categories.find((category) => category.id === overrides.category_id),
       points: overrides.points,
       duration: overrides.duration,
+      version: overrides.version ?? '1.0.0',
     };
+  }
+
+  listCertificates(params: Record<string, string>) {
+    const search = (params['search'] || '').toLowerCase();
+    const page = Math.max(1, Number(params['page'] || 1));
+    const limit = Math.max(1, Number(params['limit'] || 10));
+    const templateFilter = params['filter.template']?.replace('$eq:', '');
+
+    const filtered = this.certificates
+      .filter((c) => !templateFilter || c.template === templateFilter)
+      .filter((c) => !search || c.name.toLowerCase().includes(search));
+
+    const start = (page - 1) * limit;
+    const data = this.clone(filtered.slice(start, start + limit));
+    const totalItems = filtered.length;
+    const totalPages = Math.max(1, Math.ceil(totalItems / limit));
+
+    return {
+      data,
+      links: { current: '', last: '', next: '', previous: '', first: '' },
+      meta: { current_page: page, itemsPerPage: limit, sortBy: [], totalItems, totalPages },
+    };
+  }
+
+  createCertificate(payload: Record<string, unknown>): CustomCertificateDto {
+    const cert: CustomCertificateDto = {
+      id: this.uid('cert'),
+      name: String(payload['name'] || 'Novo Certificado'),
+      template: String(payload['template'] || 'mission') as CustomCertificateDto['template'],
+      orientation: String(payload['orientation'] || 'landscape') as CustomCertificateDto['orientation'],
+      displayPerformance: payload['displayPerformance'] === 'true' || payload['displayPerformance'] === true,
+      displayTotalTime: payload['displayTotalTime'] === 'true' || payload['displayTotalTime'] === true,
+      displayConclusionDate: payload['displayConclusionDate'] === 'true' || payload['displayConclusionDate'] === true,
+      displayBrand: payload['displayBrand'] === 'true' || payload['displayBrand'] === true,
+      textColor: String(payload['textColor'] || '#000000'),
+      backgroundColor: String(payload['backgroundColor'] || ''),
+      backgroundImage: String(payload['backgroundImage'] || ''),
+      brandImage: String(payload['brandImage'] || ''),
+      signedBy: String(payload['signedBy'] || ''),
+      default: payload['default'] === 'true' || payload['default'] === true,
+    };
+    this.certificates.push(cert);
+    return this.clone(cert);
+  }
+
+  updateCertificate(id: string, payload: Record<string, unknown>): CustomCertificateDto {
+    const index = this.certificates.findIndex((c) => c.id === id);
+    if (index === -1) {
+      return null;
+    }
+    const existing = this.certificates[index];
+    const updated: CustomCertificateDto = {
+      ...existing,
+      name: payload['name'] !== undefined ? String(payload['name']) : existing.name,
+      template:
+        payload['template'] !== undefined
+          ? (String(payload['template']) as CustomCertificateDto['template'])
+          : existing.template,
+      orientation:
+        payload['orientation'] !== undefined
+          ? (String(payload['orientation']) as CustomCertificateDto['orientation'])
+          : existing.orientation,
+      displayPerformance:
+        payload['displayPerformance'] !== undefined
+          ? payload['displayPerformance'] === 'true' || payload['displayPerformance'] === true
+          : existing.displayPerformance,
+      displayTotalTime:
+        payload['displayTotalTime'] !== undefined
+          ? payload['displayTotalTime'] === 'true' || payload['displayTotalTime'] === true
+          : existing.displayTotalTime,
+      displayConclusionDate:
+        payload['displayConclusionDate'] !== undefined
+          ? payload['displayConclusionDate'] === 'true' || payload['displayConclusionDate'] === true
+          : existing.displayConclusionDate,
+      displayBrand:
+        payload['displayBrand'] !== undefined
+          ? payload['displayBrand'] === 'true' || payload['displayBrand'] === true
+          : existing.displayBrand,
+      textColor: payload['textColor'] !== undefined ? String(payload['textColor']) : existing.textColor,
+      backgroundColor:
+        payload['backgroundColor'] !== undefined ? String(payload['backgroundColor']) : existing.backgroundColor,
+      backgroundImage:
+        payload['backgroundImage'] !== undefined ? String(payload['backgroundImage']) : existing.backgroundImage,
+      brandImage: payload['brandImage'] !== undefined ? String(payload['brandImage']) : existing.brandImage,
+      signedBy: payload['signedBy'] !== undefined ? String(payload['signedBy']) : existing.signedBy,
+      default:
+        payload['default'] !== undefined
+          ? payload['default'] === 'true' || payload['default'] === true
+          : existing.default,
+    };
+    this.certificates[index] = updated;
+    return this.clone(updated);
+  }
+
+  deleteCertificate(id: string): void {
+    const index = this.certificates.findIndex((c) => c.id === id);
+    if (index !== -1) {
+      this.certificates.splice(index, 1);
+    }
+  }
+
+  toggleDefaultCertificate(id: string): CustomCertificateDto {
+    const target = this.certificates.find((c) => c.id === id);
+    if (!target) {
+      return null;
+    }
+
+    const isSettingDefault = !target.default;
+    if (isSettingDefault) {
+      this.certificates
+        .filter((c) => c.template === target.template && c.id !== id)
+        .forEach((c) => {
+          c.default = false;
+        });
+    }
+    target.default = isSettingDefault;
+    return this.clone(target);
   }
 
   private createNotification(
@@ -1334,8 +1519,15 @@ export class PrototypeAdminStateService {
   }
 
   private hydrateCourse(course: Course): Course {
+    const isPublished = course.status === 'FINISHED';
     return {
       ...course,
+      total_users_in_progress: isPublished
+        ? (course.total_users_in_progress ??
+          Math.max(0, (course.total_users_enrolled ?? 0) - (course.total_users_completed ?? 0)))
+        : 0,
+      total_users_enrolled: isPublished ? (course.total_users_enrolled ?? 0) : 0,
+      total_users_completed: isPublished ? (course.total_users_completed ?? 0) : 0,
       category: this.categories.find((category) => category.id === course.category_id),
     };
   }

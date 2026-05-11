@@ -69,6 +69,37 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="version">
+      <mat-header-cell
+        *matHeaderCellDef
+        class="min-w-24 max-w-24"
+        [matTooltip]="'COURSE_LIST.VERSION_TOOLTIP' | transloco"
+        matTooltipPosition="above"
+      >
+        {{ 'COURSE_LIST.VERSION' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-24 max-w-24">
+        @if (isLoading) {
+          <div class="h-4 w-14 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="font-mono text-sm">{{ element?.version || '-' }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="updated">
+      <mat-header-cell *matHeaderCellDef class="min-w-28 max-w-28" mat-sort-header>
+        {{ 'COURSE_LIST.MODIFIED' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-28 max-w-28">
+        @if (isLoading) {
+          <div class="h-4 w-16 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          {{ (element?.updated | date: 'shortDate') || '-' }}
+        }
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="duration">
       <mat-header-cell *matHeaderCellDef class="min-w-32 max-w-32" mat-sort-header>
         {{ 'GENERAL.DURATION' | transloco }}
@@ -91,6 +122,19 @@
           <div class="h-4 w-8 rounded bg-gray-200 animate-pulse"></div>
         } @else {
           {{ element?.total_users_enrolled }}
+        }
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="in_progress">
+      <mat-header-cell *matHeaderCellDef class="min-w-28 max-w-28 justify-end">
+        {{ 'COURSE_LIST.IN_PROGRESS' | transloco }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="min-w-28 max-w-28 justify-end" data-test="users-in-progress">
+        @if (isLoading) {
+          <div class="h-4 w-8 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          {{ element?.total_users_in_progress ?? 0 }}
         }
       </mat-cell>
     </ng-container>
@@ -138,15 +182,21 @@
             <div class="h-8 w-8 rounded-full bg-gray-200 animate-pulse"></div>
           </div>
         } @else {
-          <button
-            data-test="edit-course-button"
-            mat-icon-button
-            (click)="emitAction('edit', element)"
-            [disabled]="!canUseEdit(element)"
-            [attr.aria-label]="'Editar curso ' + element?.name"
+          <span
+            [matTooltip]="editBlockedTooltip(element) | transloco"
+            [matTooltipDisabled]="!hasActiveEnrollments(element)"
+            matTooltipPosition="above"
           >
-            <mat-icon class="s-5">edit</mat-icon>
-          </button>
+            <button
+              data-test="edit-course-button"
+              mat-icon-button
+              (click)="emitAction('edit', element)"
+              [disabled]="!canUseEdit(element)"
+              [attr.aria-label]="'Editar curso ' + element?.name"
+            >
+              <mat-icon class="s-5">edit</mat-icon>
+            </button>
+          </span>
 
           <button
             data-test="manage-enrollments-button"
@@ -218,6 +268,11 @@
             @if (canTransfer(element)) {
               <button mat-menu-item (click)="emitAction('transfer', element)">
                 {{ 'COURSE.DETAIL.BUTTON.TRANSFER' | transloco }}
+              </button>
+            }
+            @if (canEdit(element)) {
+              <button mat-menu-item (click)="emitAction('duplicate', element)">
+                {{ 'COURSE.DETAIL.BUTTON.DUPLICATE' | transloco }}
               </button>
             }
             @if (canEdit(element)) {

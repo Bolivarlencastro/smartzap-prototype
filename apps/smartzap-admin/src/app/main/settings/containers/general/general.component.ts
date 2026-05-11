@@ -58,7 +58,7 @@ export class SettingsGeneralComponent {
 
   private buildForm() {
     return this.fb.group<SmartzapConfigurationForm>({
-      messagesContentEmbed: new FormControl<boolean>(false),
+      messagesContentEmbed: new FormControl<boolean>({ value: false, disabled: true }),
       sendCoursesRecommendationMessage: new FormControl<boolean>(false),
       sendCourseReminderMessage: new FormControl<boolean>(false),
       interactWithRandomMessages: new FormControl<boolean>(false),
@@ -113,9 +113,11 @@ export class SettingsGeneralComponent {
         filter(() => this.smartzapConfigForm.valid && this.smartzapConfigForm.dirty),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((value) =>
+      .subscribe(() =>
         this.store.dispatch(
-          GlobalSettingsActions.updateSmartzapConfiguration({ smartzapConfiguration: value as SmartzapConfiguration }),
+          GlobalSettingsActions.updateSmartzapConfiguration({
+            smartzapConfiguration: this.smartzapConfigForm.getRawValue() as SmartzapConfiguration,
+          }),
         ),
       );
   }

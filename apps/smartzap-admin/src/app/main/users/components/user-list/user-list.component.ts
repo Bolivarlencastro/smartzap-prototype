@@ -73,7 +73,19 @@ export class UserListComponent {
   @Output() deleteSelected = new EventEmitter<string[]>();
   @Output() selectAll = new EventEmitter<void>();
 
-  displayedColumns = ['select', 'avatar', 'name', 'email', 'phone', 'tags', 'sync_check', 'actions'];
+  displayedColumns = [
+    'select',
+    'avatar',
+    'name',
+    'email',
+    'phone',
+    'tags',
+    'department',
+    'sub_department',
+    'area',
+    'sync_check',
+    'actions',
+  ];
 
   protected readonly skeletonRows = new Array(8);
   protected readonly displayedData = () => (this.isLoading ? this.skeletonRows : (this.datasource ?? []));

@@ -817,6 +817,102 @@
   border-top: 0;
 }
 
+/* ─── System flow cards ──────────────────────────────────────── */
+
+.system-flow-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--content-preview-width);
+  max-width: 100%;
+}
+
+.system-flow-group__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 0 10px;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  &--foot {
+    padding: 10px 0 0;
+  }
+
+  .mat-icon {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+.system-flow-card {
+  width: 100%;
+}
+
+.system-flow-card__inner {
+  border: 1px dashed rgb(135 93 171 / 30%);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 72%);
+  overflow: hidden;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.system-flow-connector {
+  width: 2px;
+  height: 14px;
+  background: rgb(135 93 171 / 22%);
+  border-radius: 2px;
+}
+
+.system-flow-zone-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  width: var(--content-preview-width);
+  max-width: 100%;
+
+  &--end {
+    padding: 8px 0 0;
+    gap: 0;
+  }
+}
+
+.system-flow-zone-connector__line {
+  width: 2px;
+  height: 20px;
+  background: rgb(135 93 171 / 22%);
+  border-radius: 2px;
+}
+
+.system-flow-zone-connector__label {
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px dashed rgb(135 93 171 / 28%);
+  background: rgb(255 255 255 / 80%);
+  color: rgb(135 93 171 / 60%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.course-content-shell__empty--compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+  width: var(--content-preview-width);
+  max-width: 100%;
+}
+
 @media (width <= 1180px) {
   .content-builder,
   .content-builder--with-drawer {

@@ -19,7 +19,7 @@ export interface Enrollment extends BaseEntity {
   user: EnrollmentUser;
   user_id: string;
   selected: boolean;
-  course: Pick<Course, 'id' | 'name'>;
+  course: Pick<Course, 'id' | 'name' | 'version'>;
   messages_pending_count: number;
   messages_sent_count: number;
   certificate_url?: string;

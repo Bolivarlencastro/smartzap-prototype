@@ -54,6 +54,11 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
       return this.handleKonquestRequest(request.method, pathname);
     }
 
+    if (request.url.startsWith(environment.apps.certificateManager.api)) {
+      const pathname = this.getRelativePath(request.url, environment.apps.certificateManager.api);
+      return this.handleCertificateManagerRequest(request.method, pathname, body);
+    }
+
     return undefined;
   }
 
@@ -408,6 +413,44 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
   private handleKonquestRequest(method: string, pathname: string) {
     if (method === 'POST' && pathname === '/learn-contents/cover-images') {
       return this.state.uploadCoverImages();
+    }
+
+    return undefined;
+  }
+
+  private handleCertificateManagerRequest(method: string, pathname: string, body: Record<string, any> | FormData) {
+    const payload: Record<string, unknown> = {};
+    if (body instanceof FormData) {
+      body.forEach((value, key) => {
+        payload[key] = value;
+      });
+    } else {
+      Object.assign(payload, body);
+    }
+
+    if (method === 'GET' && pathname === '/certificates') {
+      return this.state.listCertificates(payload as Record<string, string>);
+    }
+
+    if (method === 'POST' && pathname === '/certificates') {
+      return this.state.createCertificate(payload);
+    }
+
+    if (method === 'PATCH' && pathname.startsWith('/certificates/') && !pathname.endsWith('/toggle-default')) {
+      return this.state.updateCertificate(this.getId(pathname, '/certificates/'), payload);
+    }
+
+    if (method === 'DELETE' && pathname.startsWith('/certificates/')) {
+      this.state.deleteCertificate(this.getId(pathname, '/certificates/'));
+      return null;
+    }
+
+    if (method === 'POST' && pathname === '/certificates/toggle-default') {
+      return this.state.toggleDefaultCertificate(String(payload['certificateId'] || ''));
+    }
+
+    if (method === 'POST' && pathname === '/certificates/images') {
+      return { url: 'https://media.keepsdev.com/certificate-manager/default-images/landscape.png' };
     }
 
     return undefined;

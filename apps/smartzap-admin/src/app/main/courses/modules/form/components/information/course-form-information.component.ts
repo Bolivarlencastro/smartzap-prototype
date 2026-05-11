@@ -29,7 +29,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { KpEditorComponent } from '@keeps-platform-frontend-workspace/ui/kp-editor';
 import { KpReplacePipe } from '@keeps-platform-frontend-workspace/ui/kp-replace';
 
-type CourseAssessmentMode = 'CONTENT' | 'FULL' | 'QUIZ';
+type CourseAssessmentMode = 'FULL' | 'QUIZ';
 
 @Component({
   selector: 'app-course-form-information',
@@ -257,10 +257,6 @@ export class CourseFormInformationComponent implements OnInit, OnChanges {
     const contentWeight = this.course.content_performance_weight ?? 5;
     const quizWeight = this.course.quiz_performance_weight ?? 5;
 
-    if (contentWeight === 10 && quizWeight === 0) {
-      return 'CONTENT';
-    }
-
     if (contentWeight === 0 && quizWeight === 10) {
       return 'QUIZ';
     }
@@ -272,10 +268,6 @@ export class CourseFormInformationComponent implements OnInit, OnChanges {
     content_performance_weight: number;
     quiz_performance_weight: number;
   } {
-    if (mode === 'CONTENT') {
-      return { content_performance_weight: 10, quiz_performance_weight: 0 };
-    }
-
     if (mode === 'QUIZ') {
       return { content_performance_weight: 0, quiz_performance_weight: 10 };
     }

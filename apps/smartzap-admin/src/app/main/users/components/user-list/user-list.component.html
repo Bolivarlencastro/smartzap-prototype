@@ -96,6 +96,54 @@
       </mat-cell>
     </ng-container>
 
+    <!-- Department Definition -->
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef class="hidden md:flex min-w-40 max-w-44">
+        @if (!hasUserSelected) {
+          <span>{{ 'USERS.TABLE.DEPARTMENT' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-40 max-w-44">
+        @if (isLoading) {
+          <div class="h-4 w-28 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="line-clamp-1">{{ element.department || '—' }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Sub-Department Definition -->
+    <ng-container matColumnDef="sub_department">
+      <mat-header-cell *matHeaderCellDef class="hidden md:flex min-w-40 max-w-44">
+        @if (!hasUserSelected) {
+          <span>{{ 'USERS.TABLE.SUB_DEPARTMENT' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-40 max-w-44">
+        @if (isLoading) {
+          <div class="h-4 w-28 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="line-clamp-1">{{ element.sub_department || '—' }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
+    <!-- Area Definition -->
+    <ng-container matColumnDef="area">
+      <mat-header-cell *matHeaderCellDef class="hidden md:flex min-w-36 max-w-40">
+        @if (!hasUserSelected) {
+          <span>{{ 'USERS.TABLE.AREA' | transloco }}</span>
+        }
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="hidden md:flex min-w-36 max-w-40">
+        @if (isLoading) {
+          <div class="h-4 w-24 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="line-clamp-1">{{ element.area || '—' }}</span>
+        }
+      </mat-cell>
+    </ng-container>
+
     <!-- Status Definition -->
     <ng-container matColumnDef="sync_check">
       <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden md:flex min-w-32 max-w-32">

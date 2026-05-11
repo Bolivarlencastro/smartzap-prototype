@@ -104,6 +104,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
       case 'transfer':
         this.onTransfer(course.id);
         break;
+      case 'duplicate':
+        this.onDuplicate(course.id);
+        break;
       case 'delete':
         this.onRemove(course.id);
         break;
@@ -160,6 +163,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
         }),
       )
       .subscribe();
+  }
+
+  private onDuplicate(id: string | undefined): void {
+    if (id) {
+      this.store.dispatch(CourseActions.duplicateCourse({ id }));
+    }
   }
 
   private onTransfer(courseId: string | undefined): void {

@@ -16,6 +16,20 @@
       </cdk-cell>
     </ng-container>
 
+    <!-- Course Version Definition -->
+    <ng-container cdkColumnDef="course_version">
+      <cdk-header-cell *matHeaderCellDef class="hidden sm:flex">
+        {{ 'ENROLLMENTS.TABLE.COURSE_VERSION' | transloco }}
+      </cdk-header-cell>
+      <cdk-cell *cdkCellDef="let element" class="hidden sm:flex">
+        @if (isLoading) {
+          <div class="h-4 w-14 rounded bg-gray-200 animate-pulse"></div>
+        } @else {
+          <span class="font-mono text-sm">{{ element.course?.version || '-' }}</span>
+        }
+      </cdk-cell>
+    </ng-container>
+
     <!-- Phone Definition -->
     <ng-container matColumnDef="user__phone">
       <cdk-header-cell *matHeaderCellDef class="hidden sm:flex text-center">

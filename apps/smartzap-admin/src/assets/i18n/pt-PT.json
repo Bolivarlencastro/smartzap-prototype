@@ -55,6 +55,7 @@
     "DETAIL": {
       "AVATAR": "Curso criado por",
       "BUTTON": {
+        "DUPLICATE": "Duplicar",
         "EDIT": "Editar",
         "MANAGER": "Gerir matrículas",
         "PUBLISH": "Publicar curso",
@@ -131,7 +132,9 @@
         "CARD_IMAGE": "Imagem de Cartão",
         "MESSAGE_DESCRIPTION": "Mensagem introdutória",
         "SHORT_DESCRIPTION": "Descrição curta",
-        "NAME": "Nome do Curso"
+        "NAME": "Nome do Curso",
+        "CERTIFICATE": "Certificado personalizado",
+        "CERTIFICATE_PLACEHOLDER": "Usar certificado padrão da workspace"
       },
       "QUIZ": {
         "QUESTION": {
@@ -153,6 +156,7 @@
         }
       },
       "SUBTITLE": "Comece por preencher as informações básicas do curso.",
+      "VERSION": "Versão atual",
       "NAVIGATION": {
         "SUBTITLE": "Organize o curso em etapas claras.",
         "INFORMATION": "Configure os dados do seu curso.",
@@ -189,6 +193,8 @@
       "ACTION_FALILURE": "Não foi possível executar a ação.",
       "CREATED": "Curso criado.",
       "DELETED": "Curso removido.",
+      "DUPLICATED": "Curso duplicado com sucesso.",
+      "DUPLICATE_ERROR": "Não foi possível duplicar este curso.",
       "EXAM_CREATE_ERROR": "Não foi possível criar o Quiz",
       "LESSON_CONTENT_CREATE_ERROR": "Não foi possível guardar este conteúdo",
       "LESSON_CONTENT_DELETE_ERROR": "Não foi possível apagar este conteúdo",
@@ -215,8 +221,13 @@
     "CATEGORY": "Categoria",
     "COMPLETED": "Final.",
     "CREATION": "Criação",
+    "EDIT_BLOCKED_TOOLTIP": "Existem matrículas em curso. Duplique o curso para criar uma versão editável.",
+    "IN_PROGRESS": "Em Curso",
+    "MODIFIED": "Modificado",
     "SUBSCRIBERS": "Inscritos",
-    "OWNER": "Proprietário"
+    "OWNER": "Proprietário",
+    "VERSION": "Versão",
+    "VERSION_TOOLTIP": "A versão é incrementada automaticamente sempre que o conteúdo do curso é modificado."
   },
   "COURSE_SIDE_MENU": {
     "COURSE_TOTAL": "total cursos",
@@ -252,6 +263,7 @@
       "REMOVE_ERROR": "Não foi possível eliminar esta matrícula"
     },
     "TABLE": {
+      "COURSE_VERSION": "Versão do Curso",
       "END_DATE": "Fim",
       "START_DATE": "Início"
     },
@@ -281,7 +293,6 @@
   "GENERAL": {
     "APPLY": "Aplicar",
     "ASSESSMENT": {
-      "CONTENT": "Avaliação pelo consumo do conteúdo",
       "FULL": "Conteúdo mais Quiz",
       "QUIZ": "Avaliação apenas pelos Quizzes"
     },
@@ -301,7 +312,7 @@
         },
         "MESSAGES_CONTENT_EMBED": {
           "INPUT_LABEL": "Envio de conteúdo no WhatsApp",
-          "TOOLTIP": "Define se o conteúdo é enviado embedado no WhatsApp ou via link. Configuração da workspace (apenas leitura neste ecrã)."
+          "TOOLTIP": "Define se o conteúdo é enviado diretamente no WhatsApp ou via link. Esta configuração é gerida pela Keeps e não pode ser alterada pelo administrador."
         },
         "SEND_COURSE_REMINDER_MESSAGE": {
           "INPUT_LABEL": "Reengajamento",
@@ -444,7 +455,8 @@
     "HELP": "Ajuda",
     "PUSH_MANAGER": "Push",
     "SETTINGS": "Painel de Gestão",
-    "USERS": "Utilizadores"
+    "USERS": "Utilizadores",
+    "CERTIFICATES": "Certificados"
   },
   "PERIOD": {
     "AFTERNOON": "Tarde",
@@ -535,6 +547,7 @@
       },
       "TABLE": {
         "COURSE": "Curso",
+        "COURSE_VERSION": "Versão",
         "END_DATE": "Fim",
         "MESSAGES": "Msg.",
         "NAME": "Usuário",
@@ -617,7 +630,14 @@
     },
     "TABLE": {
       "NAME": "Utilizador",
-      "PHONE": "Celular"
+      "PHONE": "Celular",
+      "DEPARTMENT": "Diretoria",
+      "SUB_DEPARTMENT": "Subdiretoria",
+      "AREA": "Área",
+      "LEADER": "Líder"
+    },
+    "DIALOG": {
+      "HIERARCHY_SECTION": "Hierarquia organizacional"
     },
     "SYNC_ERRORS": {
       "phone_conflict": "Conflito de telefone",
@@ -625,5 +645,90 @@
       "phone_ok": "Conta com número de telefone não sincronizado. Verifique os dados na Minha Conta!"
     },
     "TITLE": "Lista de utilizadores"
+  },
+  "CUSTOM_CERTIFICATES": {
+    "CREATE_NEW_CERTIFICATE": "Criar certificado",
+    "LIST": {
+      "CERTIFICATE": "Certificado",
+      "DEFAULT": "Padrão",
+      "ENABLED_FIELDS": "Campos Habilitados",
+      "MENU": "Menu",
+      "NAME": "Nome",
+      "NO_RESULTS": "Nenhum certificado encontrado",
+      "ORIENTATION": "Orientação",
+      "TYPE": "Tipo",
+      "LANDSCAPE": "Horizontal",
+      "PORTRAIT": "Vertical"
+    },
+    "TITLE": "Certificados Personalizados",
+    "SEARCH_FOR": "Pesquisar por",
+    "CERTIFICATE_PREVIEW": {
+      "CONCLUSION_DATE": "Data de conclusão",
+      "COURSE_NAME": "Nome do curso",
+      "COURSE_NAME_MESSAGE": "Completou com sucesso",
+      "FOOTER": "Certificado emitido e assinado por",
+      "PERFORMANCE": "Desempenho",
+      "TITLE": "Certificado de Conclusão",
+      "TOTAL_HOURS": "Total de horas",
+      "USERNAME": "Nome do utilizador",
+      "USERNAME_MESSAGE": "Certificamos que"
+    },
+    "DELETE_CONFIRMATION": {
+      "TITLE": "Eliminar certificado",
+      "MESSAGE": "Deseja realmente eliminar este certificado? Os cursos/trilhas vinculados passarão a utilizar o certificado padrão da workspace."
+    },
+    "CREATE_FORM": {
+      "BACKGROUND_COLOR": "Cor de Fundo",
+      "BACKGROUND_IMAGE": "Imagem de Fundo",
+      "CERTIFICATE_NAME": "Nome do Certificado",
+      "COLORS": "Cores",
+      "CONCLUSION_DATE": "Data de Conclusão",
+      "CONFIGURATION": "Configuração",
+      "DESIGN": "Design",
+      "DONT_SHOW": "Não Mostrar",
+      "ENABLED_FIELDS": "Campos Ativados",
+      "LANDSCAPE": "Horizontal",
+      "LOGO": "Logótipo",
+      "LOGO_IMAGE": "Imagem da marca",
+      "MAX_CHARACTERS": "Máximo 30 caracteres",
+      "MISSIONS": "Cursos",
+      "ORIENTATION": "Orientação",
+      "PERFORMANCE": "Desempenho",
+      "RECOMMENDED_DIMENSION": "Dimensão Recomendada: 1920x1022 | Formato: .jpg, .png",
+      "SELECT_IMAGE": "Selecionar imagem",
+      "REMOVE_IMAGE": "Remover imagem",
+      "SHOW": "Mostrar",
+      "SIGNED_BY": "Assinado Por",
+      "TEXT_COLOR": "Cor do texto",
+      "TOTAL_HOURS": "Total de Horas",
+      "TRAILS": "Trilhas",
+      "TYPE": "Tipo",
+      "PORTRAIT": "Vertical"
+    },
+    "CREATE_DIALOG": {
+      "ACTIONS": {
+        "CLOSE": "Fechar",
+        "CREATE": "Criar",
+        "SET_DEFAULT": "Definir como padrão",
+        "SAVE": "Guardar"
+      },
+      "DIALOG_SUBTITLE": "Crie um modelo de certificado personalizado utilizado em trilhas e cursos",
+      "DIALOG_TITLE": "Criar certificado"
+    },
+    "MESSAGES": {
+      "SAVE": {
+        "SUCCESS": "Certificado guardado com sucesso.",
+        "FAILURE": "Falha ao guardar o certificado."
+      },
+      "DELETE": {
+        "SUCCESS": "Certificado removido com sucesso.",
+        "FAILURE": "Falha ao remover o certificado."
+      },
+      "TOGGLE_DEFAULT": {
+        "COURSES": "Certificado definido como padrão de cursos.",
+        "TRAILS": "Certificado definido como o padrão de trilhas.",
+        "FAILURE": "Falha ao definir o certificado como padrão."
+      }
+    }
   }
 }

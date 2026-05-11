@@ -7,6 +7,8 @@ export const selectLanguages = createSelector(selectUIState, (state) => state.la
 
 export const selectWorkspace = createSelector(selectUIState, (state) => state.selectedWorkspace);
 
+export const selectWorkspaceName = createSelector(selectWorkspace, (workspace) => workspace?.name ?? '');
+
 export const selectApplicationRoles = createSelector(selectUIState, (state) => state.apps);
 
 export const selectNotifications = createSelector(selectUIState, (state) => state.notifications);

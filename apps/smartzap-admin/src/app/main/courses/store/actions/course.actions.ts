@@ -42,6 +42,11 @@ export const deleteCourse = createAction('[Course] Delete Course', props<{ id: s
 export const deleteCourseSuccess = createAction('[Course] Delete Course Success', props<{ course_id: string }>());
 export const deleteCourseFailure = createAction('[Course] Delete Course Failure', props<{ error: any }>());
 
+// Duplicate
+export const duplicateCourse = createAction('[Course] Duplicate Course', props<{ id: string }>());
+export const duplicateCourseSuccess = createAction('[Course] Duplicate Course Success', props<{ course: Course }>());
+export const duplicateCourseFailure = createAction('[Course] Duplicate Course Failure', props<{ error: any }>());
+
 export const changeCourseImage = createAction(
   '[Course] Change course image',
   props<{ image: string; imageType: 'holder_image' | 'thumb_image' }>(),

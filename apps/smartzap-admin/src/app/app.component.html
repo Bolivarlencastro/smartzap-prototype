@@ -1,13 +1,7 @@
 @let currentWorkspace = currentWorkspace$ | async;
 
-<fuse-layout
-  [enableGlobalSearch]="true"
-  [fullscreenTooltip]="'GENERAL.FULLSCREEN' | transloco"
-  (logoClick)="focusTopbarSearch()"
->
+<fuse-layout [enableGlobalSearch]="false" [fullscreenTooltip]="'GENERAL.FULLSCREEN' | transloco">
   <div primaryMenu class="smartzap-topbar-primary-menu">
-    <kp-global-search-trigger (open)="focusTopbarSearch()"></kp-global-search-trigger>
-
     <kp-toolbar-balance
       [balance]="availableBalance$ | async"
       [compact]="true"

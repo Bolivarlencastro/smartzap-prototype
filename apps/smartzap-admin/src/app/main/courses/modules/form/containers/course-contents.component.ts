@@ -1,9 +1,11 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { UserProfileService } from '@keeps-platform-frontend-workspace/kp-keeps';
 import { ContentFormData } from '@keeps-platform-frontend-workspace/ui/kp-content-dialog';
 import { Store } from '@ngrx/store';
-import { filter, take, withLatestFrom } from 'rxjs/operators';
+import { filter, map, take, withLatestFrom } from 'rxjs/operators';
+import { selectWorkspaceName } from '../../../../../shared/store/selectors/ui.selectors';
 import { globalSettingsFeature } from '../../../../../shared/store/features';
 import { Content, Course } from '../../../model';
 import { LessonsActions } from '../../../store/actions';
@@ -20,6 +22,8 @@ import { EditDialogFormData } from '../components/edit-dialog/edit-dialog.compon
         [isDisabled]="false"
         [contents]="(contents$ | async) ?? []"
         [messagesContentEmbed]="(messagesContentEmbed$ | async) ?? false"
+        [previewUserFirstName]="(previewUserFirstName$ | async) ?? ''"
+        [previewWorkspaceName]="(previewWorkspaceName$ | async) ?? ''"
         (createContent)="onCreateContent($event)"
         (removeContent)="onRemoveContent($event)"
         (editContent)="onEditContent($event)"
@@ -34,10 +38,16 @@ import { EditDialogFormData } from '../components/edit-dialog/edit-dialog.compon
 export class CourseContentsComponent implements OnInit {
   private readonly store = inject(Store);
 
+  private readonly _userProfileService = inject(UserProfileService);
+
   course$ = this.store.select(CourseSelectors.selectCourse);
   contents$ = this.store.select(LessonsSelectors.selectDefaultLessonContents);
   messagesContentEmbed$ = this.store.select(globalSettingsFeature.selectMessagesContentEmbed);
   lessonsLoaded$ = this.store.select(LessonsSelectors.selectLessonsLoaded);
+  previewUserFirstName$ = this._userProfileService.profile$.pipe(
+    map((profile) => profile?.name?.split(' ')?.[0] ?? ''),
+  );
+  previewWorkspaceName$ = this.store.select(selectWorkspaceName);
 
   private readonly defaultLessonId = toSignal(this.store.select(LessonsSelectors.selectDefaultLessonId));
 

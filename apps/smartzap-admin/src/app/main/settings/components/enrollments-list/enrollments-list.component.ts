@@ -89,6 +89,7 @@ export class EnrollmentsListComponent {
     this.displayedColumns = [
       'user__name',
       'course__name',
+      'course_version',
       'user__phone',
       'start_date',
       'end_date',

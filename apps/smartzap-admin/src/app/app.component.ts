@@ -1,4 +1,4 @@
-import { Component, inject, Inject, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Signal } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,11 +26,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { globalSettingsFeature } from './shared/store/features';
 import { FuseLayoutModule } from '@keeps-platform-frontend-workspace/layout';
 import { KpToolbarBalanceComponent } from '@keeps-platform-frontend-workspace/ui/kp-toolbar-balance';
-import { AsyncPipe, DOCUMENT } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { UserMenuComponent } from '@keeps-platform-frontend-workspace/ui/kp-user-menu';
 import { KpChatbotComponent } from '@keeps-platform-frontend-workspace/ui/kp-chatbot';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { KpGlobalSearchTriggerComponent } from 'libs/shared-ui/ui/src/lib/components/kp-global-search-trigger';
 import { DevToolsOverlayComponent } from './shared/dev-tools/dev-tools-overlay.component';
 
 @Component({
@@ -41,7 +40,6 @@ import { DevToolsOverlayComponent } from './shared/dev-tools/dev-tools-overlay.c
   imports: [
     FuseLayoutModule,
     KpToolbarBalanceComponent,
-    KpGlobalSearchTriggerComponent,
     KpNotificationComponent,
     KpMenuComponent,
     UserMenuComponent,
@@ -80,7 +78,6 @@ export class AppComponent implements OnInit, OnDestroy {
    * @param _workspaceService
    */
   constructor(
-    @Inject(DOCUMENT) private _document: Document,
     private _userProfileService: UserProfileService,
     private _dialog: MatDialog,
     private _authService: AuthService,
@@ -185,14 +182,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   clearAllNotifications() {
     this.store.dispatch(UIActions.clearAllNotifications());
-  }
-
-  focusTopbarSearch(): void {
-    const pageSearchInput = this._document.querySelector<HTMLInputElement>('kp-table-layout input');
-
-    if (pageSearchInput) {
-      pageSearchInput.focus();
-      pageSearchInput.select();
-    }
   }
 }

@@ -166,6 +166,31 @@ export class CourseEffects {
     );
   });
 
+  duplicateCourse$ = createEffect(() => {
+    return this._actions$.pipe(
+      ofType(CourseActions.duplicateCourse),
+      concatMap(({ id }) =>
+        this._coursesService.duplicateCourse(id).pipe(
+          map((course) => CourseActions.duplicateCourseSuccess({ course })),
+          catchError(() => of(CourseActions.duplicateCourseFailure({ error: 'COURSE.MESSAGE.DUPLICATE_ERROR' }))),
+        ),
+      ),
+    );
+  });
+
+  duplicateCourseSuccess$ = createEffect(
+    () => {
+      return this._actions$.pipe(
+        ofType(CourseActions.duplicateCourseSuccess),
+        tap(({ course }) => {
+          this._messageService.success('COURSE.MESSAGE.DUPLICATED');
+          this._router.navigate(['/courses', course.id, 'form']);
+        }),
+      );
+    },
+    { dispatch: false },
+  );
+
   loadCourseFailure$ = createEffect(
     () => {
       return this._actions$.pipe(

@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatAnchor, MatButton } from '@angular/material/button';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { CustomCertificateDto, CustomCertificatesApi } from '@keeps-platform-frontend-workspace/kp-keeps';
 import { Course } from 'app/main/courses/model';
 
 @Component({
@@ -43,6 +46,25 @@ import { Course } from 'app/main/courses/model';
                 id="toggle-disable-sending-certificate"
               >
               </mat-slide-toggle>
+            </div>
+
+            <div class="flex w-full justify-between items-center py-4">
+              <div class="flex flex-col gap-1">
+                <span>{{ 'COURSE.FORM.INPUT.CERTIFICATE' | transloco }}</span>
+              </div>
+              <mat-form-field appearance="outline" class="w-72">
+                <mat-select
+                  formControlName="certificate_id"
+                  [placeholder]="'COURSE.FORM.INPUT.CERTIFICATE_PLACEHOLDER' | transloco"
+                >
+                  <mat-option [value]="null">
+                    {{ 'COURSE.FORM.INPUT.CERTIFICATE_PLACEHOLDER' | transloco }}
+                  </mat-option>
+                  @for (cert of certificates; track cert.id) {
+                    <mat-option [value]="cert.id">{{ cert.name }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
         </div>
@@ -131,7 +153,17 @@ import { Course } from 'app/main/courses/model';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, ReactiveFormsModule, MatAnchor, MatButton, MatSlideToggle, RouterLink, TranslocoPipe],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatAnchor,
+    MatButton,
+    MatSlideToggle,
+    MatFormFieldModule,
+    MatSelectModule,
+    RouterLink,
+    TranslocoPipe,
+  ],
 })
 export class CourseFormSettingsComponent implements OnInit {
   @Input() course!: Course;
@@ -139,13 +171,24 @@ export class CourseFormSettingsComponent implements OnInit {
   @Output() save = new EventEmitter<Partial<Course>>();
 
   form!: UntypedFormGroup;
+  certificates: CustomCertificateDto[] = [];
 
-  constructor(private readonly formBuilder: UntypedFormBuilder) {}
+  constructor(
+    private readonly formBuilder: UntypedFormBuilder,
+    private readonly certificatesApi: CustomCertificatesApi,
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       is_active: [this.course.is_active],
       disable_send_certificate: [this.course.disable_send_certificate],
+      certificate_id: [this.course.certificate_id ?? null],
+    });
+
+    this.certificatesApi.list({ template: 'mission', per_page: 100 }).subscribe({
+      next: (response) => {
+        this.certificates = response.data;
+      },
     });
   }
 

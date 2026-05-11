@@ -122,6 +122,10 @@ export class CoursesService {
     return this._http.delete<void>(`/course/${id}`);
   }
 
+  duplicateCourse(id: string): Observable<Course> {
+    return this._http.post<Course>(`/course/${id}/duplicate`, {});
+  }
+
   // Upload
   uploadImage(file: File, imageType: 'holder_image' | 'thumb_image'): Observable<string> {
     const image_type = imageType === 'thumb_image' ? 'thumb' : 'holder';

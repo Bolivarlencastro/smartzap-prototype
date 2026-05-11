@@ -24,6 +24,10 @@ export const routes: Routes = [
     loadChildren: () => import('./main/settings/settings.routes'),
   },
   {
+    path: 'certificates',
+    loadChildren: () => import('./main/certificates/certificates.routes'),
+  },
+  {
     path: 'unauthorized-access',
     loadComponent: () =>
       import('./main/unauthorized-access/unauthorized-access.component').then((m) => m.UnauthorizedAccessComponent),

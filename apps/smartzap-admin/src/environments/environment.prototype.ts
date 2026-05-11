@@ -15,6 +15,7 @@ const coreModuleConfig: CoreConfig = {
     apiKonquestUrl: apps.konquest.api,
     apiSmartzapAdminUrl: apps.smartzap.api,
     apiPushManagerUrl: apps.pushManager.api,
+    certificateManager: apps.certificateManager.api,
   },
   appId: apps.smartzap.id,
   production,

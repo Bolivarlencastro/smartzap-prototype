@@ -23,4 +23,8 @@ export interface User {
   tags: string;
   selected?: boolean;
   sync_check?: string | null;
+  department?: string;
+  sub_department?: string;
+  area?: string;
+  leader?: string;
 }

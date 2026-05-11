@@ -31,13 +31,15 @@ export interface Course extends BaseEntity {
   total_contents?: number;
   total_lessons?: number;
   total_users_enrolled?: number;
-
+  total_users_in_progress?: number;
   total_users_completed?: number;
   user_creator?: any;
+  version?: string;
 
   content_performance_weight: number;
   quiz_performance_weight: number;
   disable_send_certificate: boolean;
+  certificate_id?: string;
 }
 
 export interface Category extends BaseEntity {

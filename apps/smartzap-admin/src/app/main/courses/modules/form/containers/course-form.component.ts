@@ -53,6 +53,11 @@ function slideTo(direction: string): any[] {
                 {{ 'COURSE.FORM.TITLE.' + (!!course.id ? 'EDIT' : 'NEW') | transloco }}
               </h2>
               <p>{{ 'COURSE.FORM.NAVIGATION.SUBTITLE' | transloco }}</p>
+              @if (course.version) {
+                <p class="text-xs text-gray-400 mt-2">
+                  {{ 'COURSE.FORM.VERSION' | transloco }}: <span class="font-mono">{{ course.version }}</span>
+                </p>
+              }
             </div>
             <app-form-navigation
               class="flex-1 min-h-0"

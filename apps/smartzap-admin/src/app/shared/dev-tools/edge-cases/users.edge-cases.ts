@@ -8,7 +8,12 @@ function uid(): string {
   return `mock-user-${++_idCounter}-${Date.now()}`;
 }
 
-function fakeUser(overrides: Partial<User>): User {
+const DEPARTMENTS = ['Comercial', 'Operações', 'Compliance', 'RH', 'Tecnologia'];
+const SUB_DEPARTMENTS = ['Inside Sales', 'Operações Digitais', 'Jurídico', 'Talent Acquisition', 'Engenharia'];
+const AREAS = ['Pré-venda', 'TI', 'Regulatório', 'Recrutamento', 'Desenvolvimento'];
+const LEADERS = ['Roberto Ferreira', 'Marcelo Santos', 'Sandra Luz', 'Paulo Gomes', 'Ana Oliveira'];
+
+function fakeUser(overrides: Partial<User>, index = 0): User {
   const id = uid();
   return {
     id,
@@ -18,6 +23,10 @@ function fakeUser(overrides: Partial<User>): User {
     tags: '',
     selected: false,
     sync_check: null,
+    department: DEPARTMENTS[index % DEPARTMENTS.length],
+    sub_department: SUB_DEPARTMENTS[index % SUB_DEPARTMENTS.length],
+    area: AREAS[index % AREAS.length],
+    leader: LEADERS[index % LEADERS.length],
     ...overrides,
   };
 }
@@ -124,11 +133,14 @@ export function getUsersEdgeCases(store: Store): EdgeCaseGroup[] {
         ];
         const lastNames = ['Silva', 'Souza', 'Lima', 'Pereira', 'Costa'];
         const result = firstNames.map((name, i) =>
-          fakeUser({
-            name: `${name} ${lastNames[i % 5]}`,
-            email: `${name.toLowerCase()}.${lastNames[i % 5].toLowerCase()}@empresa.com`,
-            sync_check: i % 4 === 0 ? 'Telefone inválido' : null,
-          }),
+          fakeUser(
+            {
+              name: `${name} ${lastNames[i % 5]}`,
+              email: `${name.toLowerCase()}.${lastNames[i % 5].toLowerCase()}@empresa.com`,
+              sync_check: i % 4 === 0 ? 'Telefone inválido' : null,
+            },
+            i,
+          ),
         );
         store.dispatch(UsersActions.loadUsersSuccess({ data: { result, page: 1, total_pages: 3, count: 28 } }));
       },

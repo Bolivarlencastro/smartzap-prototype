@@ -51,6 +51,13 @@ export const NAVIGATION_ITEMS: KeepsNavigationItem[] = [
             link: '/settings/configurations',
             exactMatch: true,
           },
+          {
+            id: 'custom-certificates',
+            title: 'NAVIGATION.CERTIFICATES',
+            type: 'basic',
+            link: '/certificates',
+            exactMatch: true,
+          },
         ],
       },
     ],

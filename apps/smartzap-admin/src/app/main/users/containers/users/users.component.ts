@@ -12,6 +12,7 @@ import { UsersActions } from '../../store/actions';
 import { UsersSelector } from '../../store/selectors';
 import { UserSummary } from '../../store/selectors/users.selectors';
 import { CourseCreateEnrollmentDialogComponent } from 'app/main/courses/modules/enrollments/components';
+import { EditUserDialogComponent } from '../../components/edit-user-dialog/edit-user-dialog.component';
 import { KpConfirmDialogComponent } from '@keeps-platform-frontend-workspace/ui/kp-confirm-dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { FuseScrollbarModule } from '@keeps-platform-frontend-workspace/layout';
@@ -92,13 +93,11 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onEdit(user: any): void {
-    const userObject = { ...user, type: 'edit' };
-    const dialogRef = this._dialog.open(CourseCreateEnrollmentDialogComponent, {
-      data: userObject,
+    const dialogRef = this._dialog.open(EditUserDialogComponent, {
+      data: user,
       width: '100%',
       maxWidth: '550px',
     });
-    dialogRef.componentInstance.title = 'USERS.TABLE.NAME';
 
     this.subscriptions$.add(
       dialogRef
@@ -112,6 +111,10 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
               name: data.name,
               email: data.email,
               tags: data.tags,
+              leader: data.leader,
+              department: data.department,
+              sub_department: data.sub_department,
+              area: data.area,
             };
             this.store.dispatch(UsersActions.updateUser({ id: user.id, user: payload }));
           }),

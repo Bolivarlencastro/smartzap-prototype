@@ -32,6 +32,7 @@ export type CourseListAction =
   | 'publish'
   | 'transfer'
   | 'delete'
+  | 'duplicate'
   | 'report'
   | 'enroll'
   | 'enrollBatch';
@@ -93,8 +94,11 @@ export class CourseListComponent {
     'user_creator__name',
     'category__name',
     'created',
+    'version',
+    'updated',
     'duration',
     'subscribers',
+    'in_progress',
     'completed',
     'status',
     'menu',
@@ -113,7 +117,18 @@ export class CourseListComponent {
   }
 
   canUseEdit(course: Course): boolean {
-    return this.canEdit(course) && !this.isProcessing(course);
+    return this.canEdit(course) && !this.isProcessing(course) && !this.hasActiveEnrollments(course);
+  }
+
+  hasActiveEnrollments(course: Course): boolean {
+    return (course.total_users_in_progress ?? 0) > 0;
+  }
+
+  editBlockedTooltip(course: Course): string {
+    if (this.hasActiveEnrollments(course)) {
+      return 'COURSE_LIST.EDIT_BLOCKED_TOOLTIP';
+    }
+    return '';
   }
 
   canTransfer(course: Course): boolean {
