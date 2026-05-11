@@ -30,3 +30,6 @@ apps/learning-analytics-web/amchart-test-dependency
 /.nx/cache
 
 /.nx/workspace-data
+
+# Angular templates with nested Tailwind bracket syntax that Prettier cannot parse
+apps/smartzap-admin/src/app/main/certificates/components/certificate-create-preview/certificate-create-preview.component.html

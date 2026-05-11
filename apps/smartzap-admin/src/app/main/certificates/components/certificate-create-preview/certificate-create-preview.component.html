@@ -1,0 +1,63 @@
+<div class="aspect-[960/511] rounded-lg border flex justify-center bg-[#F5F5F5] dark:bg-[#424242] overflow-hidden">
+  <div
+    class="flex flex-col justify-between items-center p-2 overflow-hidden bg-white background-image-container"
+    [class.aspect-[511/960]]="certificate()?.orientation === 'portrait'"
+    [class.rounded-none]="certificate()?.orientation === 'portrait'"
+    [class.aspect-[960/511]]="certificate()?.orientation !== 'portrait'"
+    [class.rounded-lg]="certificate()?.orientation !== 'portrait'"
+    [class.w-full]="certificate()?.orientation !== 'portrait'"
+    [class.h-\[504px\]]="certificate()?.orientation === 'portrait' && creationScreen()"
+    [class.scale-\[0\.56\]]="certificate()?.orientation === 'portrait' && creationScreen()"
+    [class.origin-top]="certificate()?.orientation === 'portrait' && creationScreen()"
+    [style.color]="certificate()?.textColor"
+    [style.background-image]="'url(' + getBackgroundImageSrc() + ')'"
+  >
+    <div class="flex flex-col items-center gap-1">
+      @if (certificate()?.displayBrand && !!logoImageSrc()) {
+        <img alt="certificate brand" class="w-10" [src]="logoImageSrc()" />
+      }
+      <span class="text-sm font-bold">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.TITLE' | transloco }}</span>
+    </div>
+
+    <div class="flex flex-col items-center gap-px">
+      <span class="text-2xxs">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.USERNAME_MESSAGE' | transloco }}</span>
+      <span class="text-xl font-bold">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.USERNAME' | transloco }}</span>
+    </div>
+
+    <div class="flex flex-col items-center gap-px">
+      <span class="text-2xxs">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.COURSE_NAME_MESSAGE' | transloco }}</span>
+      <span class="text-xs font-bold">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.COURSE_NAME' | transloco }}</span>
+    </div>
+
+    @if (displayVisibleData) {
+      <div class="flex justify-center gap-5">
+        @if (certificate()?.displayPerformance) {
+          <div class="flex flex-col items-center gap-px">
+            <span class="text-2xxs">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.PERFORMANCE' | transloco }}</span>
+            <span class="text-xs">00</span>
+          </div>
+        }
+        @if (certificate()?.displayTotalTime) {
+          <div class="flex flex-col items-center gap-px">
+            <span class="text-2xxs">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.TOTAL_HOURS' | transloco }}</span>
+            <span class="text-xs">00</span>
+          </div>
+        }
+        @if (certificate()?.displayConclusionDate) {
+          <div class="flex flex-col items-center gap-px">
+            <span class="text-2xxs">{{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.CONCLUSION_DATE' | transloco }}</span>
+            <span class="text-xs">00/00/0000</span>
+          </div>
+        }
+      </div>
+    }
+
+    <span class="text-xxs">
+      @if (certificate()?.signedBy) {
+        {{ 'CUSTOM_CERTIFICATES.CERTIFICATE_PREVIEW.FOOTER' | transloco }} {{ certificate()?.signedBy }}
+      } @else {
+        &nbsp;
+      }
+    </span>
+  </div>
+</div>
