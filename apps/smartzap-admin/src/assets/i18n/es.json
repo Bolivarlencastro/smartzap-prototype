@@ -126,6 +126,7 @@
         "DISPATCH_IN_OPTION_PLURAL": "{{value}} días después de la inscripción",
         "DROP_OUT": "¿Permitir abandono?",
         "IS_ACTIVE": "¿Curso activo?",
+        "ENABLE_NATIVE_NPS": "¿Activar NPS nativo?",
         "LANGUAGE": "Idioma",
         "LESSON": "Nombre de la lección",
         "BANNER_IMAGE": "Imagen de Banner",

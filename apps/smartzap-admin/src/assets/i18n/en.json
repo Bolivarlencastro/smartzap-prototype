@@ -125,6 +125,7 @@
         "DISPATCH_IN_OPTION_PLURAL": "{{value}} days after enrollment",
         "DROP_OUT": "Allow dropout?",
         "IS_ACTIVE": "Active course?",
+        "ENABLE_NATIVE_NPS": "Enable native NPS?",
         "LANGUAGE": "Language",
         "LESSON": "Lesson Name",
         "BANNER_IMAGE": "Banner Image",

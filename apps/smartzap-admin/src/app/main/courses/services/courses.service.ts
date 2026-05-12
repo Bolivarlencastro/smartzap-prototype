@@ -68,6 +68,7 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      enable_native_nps,
     } = course;
     return this._http.post<Course>('/course', {
       name,
@@ -82,6 +83,7 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      enable_native_nps,
     });
   }
 
@@ -98,6 +100,7 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      enable_native_nps,
     } = course;
     return this._http.patch<Course>(`/course/${id}`, {
       name,
@@ -111,6 +114,7 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      enable_native_nps,
     });
   }
 

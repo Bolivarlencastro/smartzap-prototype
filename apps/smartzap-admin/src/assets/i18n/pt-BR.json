@@ -126,6 +126,7 @@
         "DISPATCH_IN_OPTION_PLURAL": "{{value}} dias após a matricula",
         "DROP_OUT": "Permitir desistência?",
         "IS_ACTIVE": "Curso ativo?",
+        "ENABLE_NATIVE_NPS": "Ativar NPS nativo?",
         "LANGUAGE": "Linguagem",
         "LESSON": "Nome da Lição",
         "BANNER_IMAGE": "Imagem de Banner",

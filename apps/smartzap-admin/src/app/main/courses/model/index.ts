@@ -40,6 +40,7 @@ export interface Course extends BaseEntity {
   quiz_performance_weight: number;
   disable_send_certificate: boolean;
   certificate_id?: string;
+  enable_native_nps?: boolean;
 }
 
 export interface Category extends BaseEntity {

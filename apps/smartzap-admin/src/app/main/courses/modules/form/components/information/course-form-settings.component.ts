@@ -48,6 +48,17 @@ import { Course } from 'app/main/courses/model';
               </mat-slide-toggle>
             </div>
 
+            <div class="flex w-full justify-between items-center">
+              <span>{{ 'COURSE.FORM.INPUT.ENABLE_NATIVE_NPS' | transloco }}</span>
+              <mat-slide-toggle
+                color="accent"
+                formControlName="enable_native_nps"
+                aria-label="Ativar NPS nativo"
+                id="toggle-enable-native-nps"
+              >
+              </mat-slide-toggle>
+            </div>
+
             <div class="flex w-full justify-between items-center py-4">
               <div class="flex flex-col gap-1">
                 <span>{{ 'COURSE.FORM.INPUT.CERTIFICATE' | transloco }}</span>
@@ -182,6 +193,7 @@ export class CourseFormSettingsComponent implements OnInit {
     this.form = this.formBuilder.group({
       is_active: [this.course.is_active],
       disable_send_certificate: [this.course.disable_send_certificate],
+      enable_native_nps: [this.course.enable_native_nps ?? false],
       certificate_id: [this.course.certificate_id ?? null],
     });
 
