@@ -7,15 +7,25 @@
   },
   "BILLING": {
     "ACCUMULATED_BALANCE": "Saldo acumulado",
+    "CONSUMPTION": "Consumo",
     "CURRENT_CYCLE": "Ciclo atual",
     "HISTORY": "Histórico",
     "HISTORY_BALANCE": "Saldo",
     "HISTORY_CREDIT": "Crédito",
     "HISTORY_CYCLE": "Ciclo",
+    "HISTORY_OVERAGE": "Excedente",
     "HISTORY_USED": "Utilizado",
+    "MARKETING_TITLE": "Mensagens de marketing",
     "MESSAGE": "mensagem",
     "MESSAGES": "mensagens",
-    "MONTHLY_PLAN": "Plano mensal"
+    "MODEL_DESCRIPTION": "Franquias e consumo do ciclo atual",
+    "MONTHLY_ALLOWANCE": "Franquia mensal",
+    "MONTHLY_PLAN": "Plano mensal",
+    "NOT_DEFINED": "Não definido",
+    "OVERAGE_AMOUNT": "Valor excedente",
+    "OVERAGE_MESSAGES": "Consumo excedente",
+    "SELECTED_TIER": "Tier contratado",
+    "UTILITY_TITLE": "Mensagens de utilidade"
   },
   "CONTENT": {
     "ADD": "Adicionar Conteúdo",
@@ -101,10 +111,11 @@
           }
         },
         "MAX_DESCRIPTION": "Descrição deve ser menor que 200 caracteres",
-        "MAX_SHORT_DESCRIPTION": "Descrição curta deve ser menor que 120 caracteres",
+        "MAX_SHORT_DESCRIPTION": "A Descrição WhatsApp deve ter menos de 120 caracteres",
         "REQUIRED_CATEGORY": "Indique uma categoria para o curso.",
-        "REQUIRED_DESCRIPTION": "Obrigatório inserir uma descrição para o curso.",
+        "REQUIRED_DESCRIPTION": "A Descrição Portal deve ter menos de 200 caracteres.",
         "REQUIRED_LANGUAGE": "Indique o idioma do curso.",
+        "REQUIRED_MESSAGE_DESCRIPTION": "Obrigatório inserir uma Descrição WhatsApp para o curso.",
         "REQUIRED_NAME": "Insira o nome do curso."
       },
       "FIELD_DESCRIPTION": {
@@ -119,7 +130,7 @@
         "CATEGORY": "Categoria",
         "CONTENT_ANTECIPATION": "Permitir avançar conteúdo?",
         "DESCRIPTION": "Descrição",
-        "LONG_DESCRIPTION": "Descrição longa",
+        "LONG_DESCRIPTION": "Descrição Portal",
         "DISABLE_SENDING_CERTIFICATE": "Desativar envio do certificado?",
         "DISPATCH_IN": "Enviar em",
         "DISPATCH_IN_OPTION": "{{value}} dia após a matricula",
@@ -131,8 +142,8 @@
         "LESSON": "Nome da Lição",
         "BANNER_IMAGE": "Imagem de Banner",
         "CARD_IMAGE": "Imagem de Cartão",
-        "MESSAGE_DESCRIPTION": "Mensagem introdutória",
-        "SHORT_DESCRIPTION": "Descrição curta",
+        "MESSAGE_DESCRIPTION": "Descrição WhatsApp",
+        "SHORT_DESCRIPTION": "Descrição WhatsApp",
         "NAME": "Nome do Curso",
         "CERTIFICATE": "Certificado personalizado",
         "CERTIFICATE_PLACEHOLDER": "Usar certificado padrão da workspace"
@@ -161,7 +172,7 @@
       "NAVIGATION": {
         "SUBTITLE": "Organize o curso em etapas claras.",
         "INFORMATION": "Configure os dados do seu curso.",
-        "IMAGES": "Defina as imagens do seu curso.",
+        "IMAGES": "Defina as imagens do seu curso. Elas são exibidas na landing page, na listagem de cursos e na dialog de detalhes do curso.",
         "CONFIGURATIONS": "Ajuste a exibição e o uso do curso.",
         "CONTENTS": "Adicione os conteúdos no seu curso.",
         "FINISH": "Publique o seu curso."
@@ -325,7 +336,8 @@
         },
         "USER_TOKEN_EXPIRATION": {
           "INPUT_LABEL": "Expiração de links (dias)",
-          "TOOLTIP": "Define em quantos dias os links enviados (como links de quiz) expiram."
+          "TOOLTIP": "Define em quantos dias os links enviados (como links de quiz) expiram.",
+          "DISABLED_TOOLTIP": "A expiração de links fica desativada quando o envio de conteúdo no WhatsApp está ativo, porque nesse modo o conteúdo é entregue diretamente na conversa."
         }
       }
     },
@@ -537,6 +549,10 @@
       "REENROLL_ERROR_MESSAGE": "O utilizador possui uma matrícula em andamento em outro curso que deve ser finalizada para que o utilizador possa ser matriculado novamente em outro curso.",
       "REENROLL_ERROR_TITLE": "Esta ação não pode ser executada",
       "STATISTICS": {
+        "ALLOWANCE_CONSUMED": "da franquia consumida",
+        "CURRENT_TIER": "Tier atual",
+        "MARKETING_SENT_MESSAGES": "Mensagens de marketing enviadas",
+        "PROJECTED_OVERAGE_AMOUNT": "Previsão de gasto excedente",
         "SUBTITLE": "Acompanhe os principais indicadores das matrículas",
         "TITLE": "Resumo",
         "STARTED_ENROLLMENTS": "Matrículas em aberto",
@@ -544,6 +560,7 @@
         "TOTAL_SENT_MESSAGES": "Total de mensagens enviadas",
         "TOTAL_SENT_MESSAGES_PERIOD": "Mensagens enviadas no mês",
         "TOTAL_USERS": "Total de utilizadores",
+        "UTILITY_SENT_MESSAGES": "Mensagens de utilidade enviadas",
         "WAITING_ENROLLMENTS": "Aguardando confirmação"
       },
       "TABLE": {

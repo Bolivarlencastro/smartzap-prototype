@@ -166,6 +166,19 @@ export class PrototypeAdminStateService {
     available_zaps: 18240,
     monthly_plan: 25000,
     zaps_sent: 6760,
+    tier_name: 'Growth',
+    utility: {
+      included: 12000,
+      consumed: 6760,
+      exceeded: 0,
+      exceeded_amount: 0,
+    },
+    marketing: {
+      included: 1300,
+      consumed: 1540,
+      exceeded: 240,
+      exceeded_amount: 252,
+    },
     current_billing: {
       start_at: '2026-05-01T00:00:00.000Z',
       end_at: '2026-05-31T23:59:59.000Z',
@@ -562,6 +575,12 @@ export class PrototypeAdminStateService {
       content_performance_weight: body.content_performance_weight ?? 0.7,
       disable_send_certificate: body.disable_send_certificate ?? false,
       message_description: body.message_description,
+      pre_enrollment_message: body.pre_enrollment_message,
+      pre_enrollment_prompt: body.pre_enrollment_prompt,
+      enrollment_confirmed_message: body.enrollment_confirmed_message,
+      enrollment_confirmed_prompt: body.enrollment_confirmed_prompt,
+      certificate_ready_message: body.certificate_ready_message,
+      course_completed_message: body.course_completed_message,
     });
 
     this.courses.unshift(newCourse);
@@ -1261,6 +1280,12 @@ export class PrototypeAdminStateService {
       thumb_image: overrides.thumb_image || `https://picsum.photos/seed/${overrides.id}-thumb/600/338`,
       user_creator: overrides.user_creator || { id: this.userProfile.id, name: this.userProfile.name },
       message_description: overrides.message_description,
+      pre_enrollment_message: overrides.pre_enrollment_message,
+      pre_enrollment_prompt: overrides.pre_enrollment_prompt,
+      enrollment_confirmed_message: overrides.enrollment_confirmed_message,
+      enrollment_confirmed_prompt: overrides.enrollment_confirmed_prompt,
+      certificate_ready_message: overrides.certificate_ready_message,
+      course_completed_message: overrides.course_completed_message,
       category: this.categories.find((category) => category.id === overrides.category_id),
       points: overrides.points,
       duration: overrides.duration,

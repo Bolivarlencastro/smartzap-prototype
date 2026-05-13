@@ -7,15 +7,25 @@
   },
   "BILLING": {
     "ACCUMULATED_BALANCE": "Accumulated balance",
+    "CONSUMPTION": "Consumption",
     "CURRENT_CYCLE": "Current cycle",
     "HISTORY": "History",
     "HISTORY_BALANCE": "Balance",
     "HISTORY_CREDIT": "Credit",
     "HISTORY_CYCLE": "Cycle",
+    "HISTORY_OVERAGE": "Overage",
     "HISTORY_USED": "Used",
+    "MARKETING_TITLE": "Marketing messages",
     "MESSAGE": "message",
     "MESSAGES": "messages",
-    "MONTHLY_PLAN": "Monthly plan"
+    "MODEL_DESCRIPTION": "Current cycle allowance and consumption",
+    "MONTHLY_ALLOWANCE": "Monthly allowance",
+    "MONTHLY_PLAN": "Monthly plan",
+    "NOT_DEFINED": "Not defined",
+    "OVERAGE_AMOUNT": "Overage amount",
+    "OVERAGE_MESSAGES": "Overage consumption",
+    "SELECTED_TIER": "Selected tier",
+    "UTILITY_TITLE": "Utility messages"
   },
   "CONTENT": {
     "ADD": "Add Content",
@@ -100,10 +110,11 @@
           }
         },
         "MAX_DESCRIPTION": "You must enter a description of less than 200 characters",
-        "MAX_SHORT_DESCRIPTION": "You must enter a short description of less than 120 characters",
+        "MAX_SHORT_DESCRIPTION": "You must enter a WhatsApp description shorter than 120 characters",
         "REQUIRED_CATEGORY": "Please enter a category for the course.",
-        "REQUIRED_DESCRIPTION": "Required to provide a description for the course.",
+        "REQUIRED_DESCRIPTION": "The Portal description must be shorter than 200 characters.",
         "REQUIRED_LANGUAGE": "Please enter the language of the course.",
+        "REQUIRED_MESSAGE_DESCRIPTION": "A WhatsApp description is required for the course.",
         "REQUIRED_NAME": "Please provide the name of the course."
       },
       "FIELD_DESCRIPTION": {
@@ -118,7 +129,7 @@
         "CATEGORY": "Category",
         "CONTENT_ANTECIPATION": "Allow advancing content?",
         "DESCRIPTION": "Description",
-        "LONG_DESCRIPTION": "Long description",
+        "LONG_DESCRIPTION": "Portal description",
         "DISABLE_SENDING_CERTIFICATE": "Disable sending of certificate?",
         "DISPATCH_IN": "Send to",
         "DISPATCH_IN_OPTION": "{{value}} day after enrollment",
@@ -130,8 +141,8 @@
         "LESSON": "Lesson Name",
         "BANNER_IMAGE": "Banner Image",
         "CARD_IMAGE": "Card Image",
-        "MESSAGE_DESCRIPTION": "Introductory Message",
-        "SHORT_DESCRIPTION": "Short description",
+        "MESSAGE_DESCRIPTION": "WhatsApp description",
+        "SHORT_DESCRIPTION": "WhatsApp description",
         "NAME": "Course Name",
         "CERTIFICATE": "Custom certificate",
         "CERTIFICATE_PLACEHOLDER": "Use workspace default certificate"
@@ -159,7 +170,7 @@
       "NAVIGATION": {
         "SUBTITLE": "Structure the course in clear steps and only move forward when each block is ready.",
         "INFORMATION": "Configure your course data.",
-        "IMAGES": "Define your course images.",
+        "IMAGES": "Define your course images. They are displayed on the landing page, the course listing, and the course details dialog.",
         "CONFIGURATIONS": "Adjust course display and usage.",
         "CONTENTS": "Add content to your course.",
         "FINISH": "Publish your course."
@@ -316,7 +327,8 @@
         },
         "USER_TOKEN_EXPIRATION": {
           "INPUT_LABEL": "Link expiration (days)",
-          "TOOLTIP": "Defines in how many days sent links (such as quiz links) expire."
+          "TOOLTIP": "Defines in how many days sent links (such as quiz links) expire.",
+          "DISABLED_TOOLTIP": "Link expiration is disabled when WhatsApp content delivery is enabled, because in that mode the content is delivered directly in the conversation."
         }
       }
     },
@@ -528,6 +540,10 @@
       "REENROLL_ERROR_MESSAGE": "The user has an enrollment in progress in another course, it must be completed so that the user can be re-enrolled in another course.",
       "REENROLL_ERROR_TITLE": "This action cannot be performed",
       "STATISTICS": {
+        "ALLOWANCE_CONSUMED": "of the allowance consumed",
+        "CURRENT_TIER": "Current tier",
+        "MARKETING_SENT_MESSAGES": "Marketing messages sent",
+        "PROJECTED_OVERAGE_AMOUNT": "Projected overage amount",
         "SUBTITLE": "Track the main enrollment indicators",
         "TITLE": "Summary",
         "STARTED_ENROLLMENTS": "Open enrollments",
@@ -535,6 +551,7 @@
         "TOTAL_SENT_MESSAGES": "Total messages sent",
         "TOTAL_SENT_MESSAGES_PERIOD": "Messages sent in the month",
         "TOTAL_USERS": "Total users",
+        "UTILITY_SENT_MESSAGES": "Utility messages sent",
         "WAITING_ENROLLMENTS": "Waiting confirmation"
       },
       "TABLE": {

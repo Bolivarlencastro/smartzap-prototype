@@ -7,20 +7,11 @@
 
 <mat-dialog-content class="px-0 pb-0">
   @if (billing$ | async; as billing) {
-    <div class="stats-grid mx-6 my-4">
+    <div class="summary-grid mx-6 my-4">
       <div class="stat-card">
-        <span class="stat-card-label">{{ 'BILLING.ACCUMULATED_BALANCE' | transloco }}</span>
-        <span class="stat-card-value">{{ billing.availableZaps }}</span>
-        <span class="stat-card-sub">{{
-          (billing.availableZaps === 1 ? 'BILLING.MESSAGE' : 'BILLING.MESSAGES') | transloco
-        }}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-card-label">{{ 'BILLING.MONTHLY_PLAN' | transloco }}</span>
-        <span class="stat-card-value">{{ billing.monthlyPlan }}</span>
-        <span class="stat-card-sub">{{
-          (billing.monthlyPlan === 1 ? 'BILLING.MESSAGE' : 'BILLING.MESSAGES') | transloco
-        }}</span>
+        <span class="stat-card-label">{{ 'BILLING.SELECTED_TIER' | transloco }}</span>
+        <span class="stat-card-value">{{ billing.tierName || ('BILLING.NOT_DEFINED' | transloco) }}</span>
+        <span class="stat-card-sub">{{ 'BILLING.MODEL_DESCRIPTION' | transloco }}</span>
       </div>
       <div class="stat-card">
         <span class="stat-card-label">{{ 'BILLING.CURRENT_CYCLE' | transloco }}</span>
@@ -29,24 +20,74 @@
       </div>
     </div>
 
+    <div class="stats-grid mx-6 mb-6">
+      <div class="stat-card">
+        <span class="stat-card-label">{{ 'BILLING.UTILITY_TITLE' | transloco }}</span>
+        <span class="stat-card-value">{{ billing.utility?.included ?? billing.monthlyPlan }}</span>
+        <span class="stat-card-sub">{{ 'BILLING.MONTHLY_ALLOWANCE' | transloco }}</span>
+        <div class="stat-card-meta">
+          <div class="stat-card-meta-row">
+            <span class="stat-card-meta-label">{{ 'BILLING.CONSUMPTION' | transloco }}</span>
+            <span class="stat-card-meta-value">{{ billing.utility?.consumed ?? billing.zapsSent }}</span>
+          </div>
+          <div class="stat-card-meta-row">
+            <span class="stat-card-meta-label">{{ 'BILLING.OVERAGE_MESSAGES' | transloco }}</span>
+            <span class="stat-card-meta-value" [class.is-alert]="(billing.utility?.exceeded ?? 0) > 0">
+              {{ billing.utility?.exceeded ?? 0 }}
+            </span>
+          </div>
+          <div class="stat-card-meta-row">
+            <span class="stat-card-meta-label">{{ 'BILLING.OVERAGE_AMOUNT' | transloco }}</span>
+            <span class="stat-card-meta-value" [class.is-alert]="(billing.utility?.exceededAmount ?? 0) > 0">
+              {{ billing.utility?.exceededAmount ?? 0 | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-card-label">{{ 'BILLING.MARKETING_TITLE' | transloco }}</span>
+        <span class="stat-card-value">{{ billing.marketing?.included ?? 0 }}</span>
+        <span class="stat-card-sub">{{ 'BILLING.MONTHLY_ALLOWANCE' | transloco }}</span>
+        <div class="stat-card-meta">
+          <div class="stat-card-meta-row">
+            <span class="stat-card-meta-label">{{ 'BILLING.CONSUMPTION' | transloco }}</span>
+            <span class="stat-card-meta-value">{{ billing.marketing?.consumed ?? 0 }}</span>
+          </div>
+          <div class="stat-card-meta-row">
+            <span class="stat-card-meta-label">{{ 'BILLING.OVERAGE_MESSAGES' | transloco }}</span>
+            <span class="stat-card-meta-value" [class.is-alert]="(billing.marketing?.exceeded ?? 0) > 0">
+              {{ billing.marketing?.exceeded ?? 0 }}
+            </span>
+          </div>
+          <div class="stat-card-meta-row">
+            <span class="stat-card-meta-label">{{ 'BILLING.OVERAGE_AMOUNT' | transloco }}</span>
+            <span class="stat-card-meta-value" [class.is-alert]="(billing.marketing?.exceededAmount ?? 0) > 0">
+              {{ billing.marketing?.exceededAmount ?? 0 | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="tracking-table-shell mx-6 mb-6">
-      <div class="billing-table-header grid grid-cols-[2fr,1fr,1fr] sm:grid-cols-[2fr,1fr,1fr,1fr] gap-4 px-4 py-3">
+      <div class="billing-table-header grid grid-cols-[1.4fr,1fr,1fr,1fr] gap-4 px-4 py-3">
         <div class="text-sm font-bold">
           <span>{{ 'BILLING.HISTORY_CYCLE' | transloco }}</span>
+        </div>
+        <div class="text-sm font-bold text-center">
+          <span>{{ 'BILLING.MONTHLY_PLAN' | transloco }}</span>
         </div>
         <div class="text-sm font-bold text-center">
           <span>{{ 'BILLING.HISTORY_USED' | transloco }}</span>
         </div>
         <div class="text-sm font-bold text-center">
-          <span>{{ 'BILLING.HISTORY_BALANCE' | transloco }}</span>
-        </div>
-        <div class="text-sm font-bold text-center sm:block hidden">
-          <span>{{ 'BILLING.HISTORY_CREDIT' | transloco }}</span>
+          <span>{{ 'BILLING.HISTORY_OVERAGE' | transloco }}</span>
         </div>
       </div>
       <div class="max-h-52 overflow-y-auto">
         @for (charge of billing.charges; track charge) {
-          <div class="grid grid-cols-[2fr,1fr,1fr] sm:grid-cols-[2fr,1fr,1fr,1fr] gap-4 px-4 py-2">
+          <div class="grid grid-cols-[1.4fr,1fr,1fr,1fr] gap-4 px-4 py-2">
             <div class="text-sm">
               <span class="line-clamp-2">
                 {{ charge.start_at | date: 'shortDate' }}
@@ -55,13 +96,13 @@
               </span>
             </div>
             <div class="text-center text-sm">
+              <span>{{ charge.monthly_plan }}</span>
+            </div>
+            <div class="text-center text-sm">
               <span>{{ charge.used }}</span>
             </div>
             <div class="text-center text-sm">
-              <span>{{ charge.balance }}</span>
-            </div>
-            <div class="text-center text-sm sm:block hidden">
-              <span>{{ charge.monthly_plan }}</span>
+              <span>{{ charge.used > charge.monthly_plan ? charge.used - charge.monthly_plan : 0 }}</span>
             </div>
           </div>
         }

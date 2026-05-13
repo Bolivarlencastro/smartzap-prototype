@@ -73,8 +73,8 @@
       <div class="course-form-step__editor-note">
         <strong>Orientação para as descrições</strong>
         <p>
-          A descrição longa aparece no portal do curso e pode trazer mais contexto e detalhes. Já a descrição curta é
-          apresentada no WhatsApp durante o consumo do conteúdo, então deve ser mais direta e sucinta.
+          A Descrição Portal é opcional e aparece no portal/listagem do curso quando houver landing page. Já a Descrição
+          WhatsApp é obrigatória e deve ser curta, direta e pensada para as mensagens automáticas do fluxo.
         </p>
       </div>
 
@@ -92,9 +92,6 @@
             />
             <div class="flex min-h-6 items-start justify-between gap-3">
               <div class="text-sm leading-5 text-error">
-                @if (form.controls['description'].hasError('required')) {
-                  <span>{{ 'COURSE.FORM.ERROR.REQUIRED_DESCRIPTION' | transloco }}</span>
-                }
                 @if (form.controls['description'].hasError('maxlength')) {
                   <span>{{ 'COURSE.FORM.ERROR.MAX_DESCRIPTION' | transloco }}</span>
                 }
@@ -117,6 +114,9 @@
             />
             <div class="flex min-h-6 items-start justify-between gap-3">
               <div class="text-sm leading-5 text-error">
+                @if (form.controls['message_description'].hasError('required')) {
+                  <span>{{ 'COURSE.FORM.ERROR.REQUIRED_MESSAGE_DESCRIPTION' | transloco }}</span>
+                }
                 @if (form.controls['message_description'].hasError('maxlength')) {
                   <span>{{ 'COURSE.FORM.ERROR.MAX_SHORT_DESCRIPTION' | transloco }}</span>
                 }

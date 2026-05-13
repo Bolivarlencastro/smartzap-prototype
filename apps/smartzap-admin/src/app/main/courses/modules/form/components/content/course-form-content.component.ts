@@ -52,6 +52,30 @@ type ContentBlock = {
   emptyDescription: string;
 };
 
+type SystemMessageCardId = 'pre-enrollment' | 'enrollment-confirmed' | 'certificate-ready' | 'course-completed';
+
+type SystemMessageFieldKey =
+  | 'pre_enrollment_message'
+  | 'pre_enrollment_prompt'
+  | 'enrollment_confirmed_message'
+  | 'enrollment_confirmed_prompt'
+  | 'certificate_ready_message'
+  | 'course_completed_message';
+
+type SystemMessageFieldConfig = {
+  key: SystemMessageFieldKey;
+  label: string;
+  hint?: string;
+  rows?: number;
+};
+
+type SystemMessageCardConfig = {
+  id: SystemMessageCardId;
+  title: string;
+  description: string;
+  fields: SystemMessageFieldConfig[];
+};
+
 @Component({
   selector: 'app-course-form-content',
   templateUrl: './course-form-content.component.html',
@@ -94,8 +118,10 @@ export class CourseFormContentComponent implements OnDestroy {
 
   localContents: Content[] = [];
   selectedContentId: string | null = null;
+  selectedSystemCardId: SystemMessageCardId | null = null;
   draftName = '';
   draftDescription = '';
+  draftSystemMessages: Partial<Record<SystemMessageFieldKey, string>> = {};
   addMenuIndex: number | null = null;
   pendingInsertIndex: number | null = null;
   private readonly autosave$ = new Subject<void>();
@@ -180,6 +206,83 @@ export class CourseFormContentComponent implements OnDestroy {
     },
   ];
 
+  readonly systemMessageCards: SystemMessageCardConfig[] = [
+    {
+      id: 'pre-enrollment',
+      title: 'Mensagem de pré-inscrição',
+      description: 'Mensagem automática enviada antes da confirmação da matrícula.',
+      fields: [
+        {
+          key: 'pre_enrollment_message',
+          label: 'Mensagem principal',
+          hint: 'Use placeholders como [USER_FIRST_NAME], [COURSE_NAME] e [WORKSPACE_NAME].',
+          rows: 4,
+        },
+        {
+          key: 'pre_enrollment_prompt',
+          label: 'Pergunta de confirmação',
+          hint: 'Exemplo: Deseja confirmar sua matrícula?',
+          rows: 3,
+        },
+      ],
+    },
+    {
+      id: 'enrollment-confirmed',
+      title: 'Mensagem de matrícula confirmada',
+      description: 'Mensagem automática enviada após a confirmação da matrícula.',
+      fields: [
+        {
+          key: 'enrollment_confirmed_message',
+          label: 'Mensagem principal',
+          hint: 'Exemplo: Sua matrícula foi confirmada com sucesso!',
+          rows: 3,
+        },
+        {
+          key: 'enrollment_confirmed_prompt',
+          label: 'Chamada para continuar',
+          hint: 'Exemplo: Vamos começar?',
+          rows: 3,
+        },
+      ],
+    },
+    {
+      id: 'certificate-ready',
+      title: 'Mensagem de certificado',
+      description: 'Mensagem automática exibida quando o aluno conclui o curso.',
+      fields: [
+        {
+          key: 'certificate_ready_message',
+          label: 'Mensagem principal',
+          hint: 'Exemplo: Você chegou ao final do curso e já pode receber o seu certificado.',
+          rows: 4,
+        },
+      ],
+    },
+    {
+      id: 'course-completed',
+      title: 'Mensagem de conclusão',
+      description: 'Mensagem automática enviada junto com o certificado.',
+      fields: [
+        {
+          key: 'course_completed_message',
+          label: 'Mensagem principal',
+          hint: 'Use placeholders como [USER_FIRST_NAME] e [COURSE_NAME].',
+          rows: 4,
+        },
+      ],
+    },
+  ];
+
+  readonly defaultSystemMessages: Record<SystemMessageFieldKey, string> = {
+    pre_enrollment_message:
+      '👋 Olá [USER_FIRST_NAME], sua pré-inscrição no curso [COURSE_NAME] foi realizada pela [WORKSPACE_NAME].',
+    pre_enrollment_prompt: 'Deseja confirmar sua matrícula?',
+    enrollment_confirmed_message: '🎉 Sua matrícula foi confirmada com sucesso!',
+    enrollment_confirmed_prompt: 'Vamos começar?',
+    certificate_ready_message: 'Você chegou ao final do curso e já pode receber o seu certificado.',
+    course_completed_message: '🏆 Parabéns [USER_FIRST_NAME], você concluiu o curso [COURSE_NAME]!',
+  };
+
   @Output() createContent = new EventEmitter<{
     contentFormData: ContentFormData;
     messagesContentEmbed: boolean;
@@ -189,6 +292,7 @@ export class CourseFormContentComponent implements OnDestroy {
     id: string;
     data: EditDialogFormData;
   }>();
+  @Output() updateSystemMessages = new EventEmitter<Partial<Course>>();
   @Output() reorderContents = new EventEmitter<Content[]>();
 
   private readonly _dialog = inject(MatDialog);
@@ -237,7 +341,11 @@ export class CourseFormContentComponent implements OnDestroy {
   }
 
   get hasSelection(): boolean {
-    return !!this.selectedContent;
+    return !!this.selectedContent || !!this.selectedSystemCardId;
+  }
+
+  get selectedSystemCard(): SystemMessageCardConfig | null {
+    return this.systemMessageCards.find((card) => card.id === this.selectedSystemCardId) ?? null;
   }
 
   get fileBlocks(): ContentBlock[] {
@@ -285,14 +393,24 @@ export class CourseFormContentComponent implements OnDestroy {
 
   onSelectContent(content: Content): void {
     if (this.selectedContentId === content.id) return;
+    this.selectedSystemCardId = null;
     this.selectedContentId = content.id || null;
     this.resetDraft(content);
   }
 
+  onSelectSystemCard(cardId: SystemMessageCardId): void {
+    if (this.selectedSystemCardId === cardId) return;
+    this.selectedContentId = null;
+    this.selectedSystemCardId = cardId;
+    this.resetSystemDraft(cardId);
+  }
+
   onCloseDrawer(): void {
     this.selectedContentId = null;
+    this.selectedSystemCardId = null;
     this.draftName = '';
     this.draftDescription = '';
+    this.draftSystemMessages = {};
   }
 
   onDraftNameChange(value: string): void {
@@ -303,6 +421,22 @@ export class CourseFormContentComponent implements OnDestroy {
   onDraftDescriptionChange(value: string): void {
     this.draftDescription = value;
     this.autosave$.next();
+  }
+
+  onSystemMessageDraftChange(key: SystemMessageFieldKey, value: string): void {
+    this.draftSystemMessages = { ...this.draftSystemMessages, [key]: value };
+  }
+
+  onSaveSystemMessages(): void {
+    const card = this.selectedSystemCard;
+    if (!card) return;
+
+    const payload = card.fields.reduce<Partial<Course>>((acc, field) => {
+      acc[field.key] = (this.draftSystemMessages[field.key] || '').trim();
+      return acc;
+    }, {});
+
+    this.updateSystemMessages.emit(payload);
   }
 
   onDrawerFileSelected(event: Event, content: Content): void {
@@ -345,7 +479,7 @@ export class CourseFormContentComponent implements OnDestroy {
       return 'video/*,.mp4,.mov,.m4v,.avi,.webm,.mkv';
     }
     if (this.isAudio(content)) {
-      return 'audio/*,.mp3,.wav,.m4a,.aac,.ogg';
+      return this.messagesContentEmbed ? '.ogg,audio/ogg' : '.mp3,audio/mpeg';
     }
     if (this.isPdf(content)) {
       return '.pdf,application/pdf';
@@ -361,6 +495,11 @@ export class CourseFormContentComponent implements OnDestroy {
 
   getUploadFieldDescription(content: Content): string {
     if (this.isQuiz(content)) return 'Quiz e pesquisa usam apenas título e descrição.';
+    if (this.isAudio(content)) {
+      return this.messagesContentEmbed
+        ? 'Para envio direto no WhatsApp, use arquivos .ogg.'
+        : 'Para player web, use arquivos .mp3.';
+    }
     return 'Você pode adicionar ou trocar a mídia depois de montar a timeline.';
   }
 
@@ -372,6 +511,18 @@ export class CourseFormContentComponent implements OnDestroy {
   getContentSource(content: Content): string | null {
     const preview = this.learnContentPreviewById[content.learn_content];
     return preview?.url || preview?.link || preview?.blog || null;
+  }
+
+  getSystemMessageValue(key: SystemMessageFieldKey): string {
+    return this.course?.[key]?.trim() || this.defaultSystemMessages[key];
+  }
+
+  getSystemMessageDraftValue(key: SystemMessageFieldKey): string {
+    return this.draftSystemMessages[key] ?? this.getSystemMessageValue(key);
+  }
+
+  getRenderedSystemMessage(key: SystemMessageFieldKey): string {
+    return this.renderSystemMessage(this.getSystemMessageValue(key));
   }
 
   private persistSelectedContent(): void {
@@ -515,6 +666,26 @@ export class CourseFormContentComponent implements OnDestroy {
   private resetDraft(content: Content): void {
     this.draftName = content.name || '';
     this.draftDescription = content.description || '';
+  }
+
+  private resetSystemDraft(cardId: SystemMessageCardId): void {
+    const card = this.systemMessageCards.find((item) => item.id === cardId);
+    if (!card) {
+      this.draftSystemMessages = {};
+      return;
+    }
+
+    this.draftSystemMessages = card.fields.reduce<Partial<Record<SystemMessageFieldKey, string>>>((acc, field) => {
+      acc[field.key] = this.getSystemMessageValue(field.key);
+      return acc;
+    }, {});
+  }
+
+  private renderSystemMessage(template: string): string {
+    return template
+      .replaceAll('[USER_FIRST_NAME]', this.previewUserFirstName || '[USER_FIRST_NAME]')
+      .replaceAll('[COURSE_NAME]', this.course?.name || '[COURSE_NAME]')
+      .replaceAll('[WORKSPACE_NAME]', this.previewWorkspaceName || '[WORKSPACE_NAME]');
   }
 
   private loadLearnContentPreviews(): void {

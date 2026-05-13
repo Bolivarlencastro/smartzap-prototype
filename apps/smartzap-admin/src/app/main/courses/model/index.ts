@@ -15,6 +15,12 @@ export interface ImageUploadApiResponse {
 export interface Course extends BaseEntity {
   description: string;
   message_description?: string;
+  pre_enrollment_message?: string;
+  pre_enrollment_prompt?: string;
+  enrollment_confirmed_message?: string;
+  enrollment_confirmed_prompt?: string;
+  certificate_ready_message?: string;
+  course_completed_message?: string;
   duration?: string;
   category_id: string;
   is_active?: boolean;

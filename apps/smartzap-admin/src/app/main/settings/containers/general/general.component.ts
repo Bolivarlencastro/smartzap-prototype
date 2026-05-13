@@ -38,6 +38,10 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 export class SettingsGeneralComponent {
   readonly smartzapConfigForm: FormGroup<SmartzapConfigurationForm>;
   readonly userTokenExpirationForm = new FormControl<number | null>(null, [Validators.min(1), Validators.required]);
+  readonly userTokenExpirationTooltipKey = () =>
+    this.userTokenExpirationForm.disabled
+      ? 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.USER_TOKEN_EXPIRATION.DISABLED_TOOLTIP'
+      : 'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.USER_TOKEN_EXPIRATION.TOOLTIP';
 
   private readonly store = inject(Store);
   private readonly fb = inject(FormBuilder);
@@ -76,6 +80,7 @@ export class SettingsGeneralComponent {
     effect(() => {
       const config = this.smartzapConfiguration();
       if (config) {
+        this.syncUserTokenExpirationAvailability(config.messagesContentEmbed ?? false);
         this.smartzapConfigForm.patchValue(
           {
             messagesContentEmbed: config.messagesContentEmbed ?? false,
@@ -106,6 +111,10 @@ export class SettingsGeneralComponent {
   }
 
   private initSmartzapConfigFormListener() {
+    this.smartzapConfigForm.controls.messagesContentEmbed.valueChanges
+      .pipe(distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
+      .subscribe((messagesContentEmbed) => this.syncUserTokenExpirationAvailability(!!messagesContentEmbed));
+
     this.smartzapConfigForm.valueChanges
       .pipe(
         debounceTime(500),
@@ -127,11 +136,26 @@ export class SettingsGeneralComponent {
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        filter((value) => !!value && this.userTokenExpirationForm.valid && this.userTokenExpirationForm.dirty),
+        filter(
+          (value) =>
+            this.userTokenExpirationForm.enabled &&
+            !!value &&
+            this.userTokenExpirationForm.valid &&
+            this.userTokenExpirationForm.dirty,
+        ),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((value) =>
         this.store.dispatch(GlobalSettingsActions.updateUserTokenExpiration({ user_token_expiration: value })),
       );
+  }
+
+  private syncUserTokenExpirationAvailability(messagesContentEmbed: boolean) {
+    if (messagesContentEmbed) {
+      this.userTokenExpirationForm.disable({ emitEvent: false });
+      return;
+    }
+
+    this.userTokenExpirationForm.enable({ emitEvent: false });
   }
 }

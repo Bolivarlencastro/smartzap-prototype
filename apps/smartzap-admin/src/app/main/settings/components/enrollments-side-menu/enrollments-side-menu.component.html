@@ -3,6 +3,11 @@
     <div class="flex flex-col gap-1">
       <span class="mb-2">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TITLE' | transloco }}</span>
       <span class="text-xs">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.SUBTITLE' | transloco }}</span>
+      @if (billing?.tierName) {
+        <span class="text-xs opacity-60">
+          {{ 'SETTINGS.ENROLLMENTS.STATISTICS.CURRENT_TIER' | transloco }}: {{ billing?.tierName }}
+        </span>
+      }
     </div>
     <button mat-icon-button class="ml-auto" (click)="closeMenu.emit()">
       <mat-icon>close</mat-icon>
@@ -22,8 +27,14 @@
     <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
       <mat-icon class="s-6 text-primary shrink-0">send</mat-icon>
       <div class="flex flex-col leading-tight">
-        <span class="font-medium">{{ statistics?.totalSentMessages || 0 }}</span>
-        <span class="text-xs opacity-60">{{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES' | transloco }}</span>
+        <span class="font-medium">{{ utilityConsumed }}</span>
+        <span class="text-xs opacity-60">{{
+          'SETTINGS.ENROLLMENTS.STATISTICS.UTILITY_SENT_MESSAGES' | transloco
+        }}</span>
+        <span class="text-[11px] opacity-50">
+          {{ utilityConsumed }}/{{ utilityIncluded || 0 }}
+          {{ 'SETTINGS.ENROLLMENTS.STATISTICS.ALLOWANCE_CONSUMED' | transloco }}
+        </span>
       </div>
     </div>
     @if (statistics?.startedEnrollments) {
@@ -49,21 +60,29 @@
       </div>
     }
     <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
-      <mat-icon class="s-6 shrink-0">schedule</mat-icon>
+      <mat-icon class="s-6 text-primary shrink-0">campaign</mat-icon>
       <div class="flex flex-col leading-tight">
-        <span class="font-medium">{{ statistics?.totalPendingMessages || 0 }}</span>
+        <span class="font-medium">{{ marketingConsumed }}</span>
         <span class="text-xs opacity-60">{{
-          'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco
+          'SETTINGS.ENROLLMENTS.STATISTICS.MARKETING_SENT_MESSAGES' | transloco
         }}</span>
+        <span class="text-[11px] opacity-50">
+          {{ marketingConsumed }}/{{ marketingIncluded || 0 }}
+          {{ 'SETTINGS.ENROLLMENTS.STATISTICS.ALLOWANCE_CONSUMED' | transloco }}
+        </span>
       </div>
     </div>
     <div class="min-h-14 pl-6 py-3 w-full rounded-md border border-default flex items-center gap-3">
       <mat-icon class="s-6 text-primary shrink-0">bar_chart</mat-icon>
       <div class="flex flex-col leading-tight">
-        <span class="font-medium">{{ statistics?.totalSentMessagesPeriod || 0 }}</span>
+        <span class="font-medium">{{ projectedOverageAmount | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}</span>
         <span class="text-xs opacity-60">{{
-          'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_SENT_MESSAGES_PERIOD' | transloco
+          'SETTINGS.ENROLLMENTS.STATISTICS.PROJECTED_OVERAGE_AMOUNT' | transloco
         }}</span>
+        <span class="text-[11px] opacity-50">
+          {{ statistics?.totalPendingMessages || 0 }}
+          {{ 'SETTINGS.ENROLLMENTS.STATISTICS.TOTAL_PENDING_MESSAGES' | transloco }}
+        </span>
       </div>
     </div>
   </div>

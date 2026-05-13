@@ -8,7 +8,7 @@ import { filter, map, take, withLatestFrom } from 'rxjs/operators';
 import { selectWorkspaceName } from '../../../../../shared/store/selectors/ui.selectors';
 import { globalSettingsFeature } from '../../../../../shared/store/features';
 import { Content, Course } from '../../../model';
-import { LessonsActions } from '../../../store/actions';
+import { CourseActions, LessonsActions } from '../../../store/actions';
 import { CourseSelectors, LessonsSelectors } from '../../../store/selectors';
 import { CourseFormContentComponent } from '../components/content/course-form-content.component';
 import { EditDialogFormData } from '../components/edit-dialog/edit-dialog.component';
@@ -27,6 +27,7 @@ import { EditDialogFormData } from '../components/edit-dialog/edit-dialog.compon
         (createContent)="onCreateContent($event)"
         (removeContent)="onRemoveContent($event)"
         (editContent)="onEditContent($event)"
+        (updateSystemMessages)="onUpdateSystemMessages($event)"
         (reorderContents)="onReorderContents($event)"
       >
       </app-course-form-content>
@@ -101,5 +102,12 @@ export class CourseContentsComponent implements OnInit {
     const lesson_id = this.defaultLessonId();
     if (!lesson_id) return;
     this.store.dispatch(LessonsActions.reorderContents({ lesson_id, contents }));
+  }
+
+  onUpdateSystemMessages(changes: Partial<Course>): void {
+    this.course$.pipe(take(1)).subscribe((course) => {
+      if (!course?.id) return;
+      this.store.dispatch(CourseActions.updateCourse({ id: course.id, course: { ...course, ...changes } }));
+    });
   }
 }

@@ -68,6 +68,12 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      pre_enrollment_message,
+      pre_enrollment_prompt,
+      enrollment_confirmed_message,
+      enrollment_confirmed_prompt,
+      certificate_ready_message,
+      course_completed_message,
       enable_native_nps,
     } = course;
     return this._http.post<Course>('/course', {
@@ -83,6 +89,12 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      pre_enrollment_message,
+      pre_enrollment_prompt,
+      enrollment_confirmed_message,
+      enrollment_confirmed_prompt,
+      certificate_ready_message,
+      course_completed_message,
       enable_native_nps,
     });
   }
@@ -100,6 +112,12 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      pre_enrollment_message,
+      pre_enrollment_prompt,
+      enrollment_confirmed_message,
+      enrollment_confirmed_prompt,
+      certificate_ready_message,
+      course_completed_message,
       enable_native_nps,
     } = course;
     return this._http.patch<Course>(`/course/${id}`, {
@@ -114,6 +132,12 @@ export class CoursesService {
       content_performance_weight,
       disable_send_certificate,
       message_description,
+      pre_enrollment_message,
+      pre_enrollment_prompt,
+      enrollment_confirmed_message,
+      enrollment_confirmed_prompt,
+      certificate_ready_message,
+      course_completed_message,
       enable_native_nps,
     });
   }

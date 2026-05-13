@@ -10,6 +10,13 @@ export interface Charge {
   updated: string;
 }
 
+export interface BillingBucket {
+  included: number;
+  consumed: number;
+  exceeded: number;
+  exceeded_amount?: number;
+}
+
 export interface CurrentBillingPeriod {
   start_at: string;
   end_at: string;
@@ -21,4 +28,7 @@ export interface Billing {
   zaps_sent: number;
   charges: Charge[];
   current_billing: CurrentBillingPeriod;
+  tier_name?: string;
+  utility?: BillingBucket;
+  marketing?: BillingBucket;
 }

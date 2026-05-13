@@ -16,6 +16,8 @@ import { EnrollmentsListComponent } from '../../components/enrollments-list/enro
 import { EnrollmentsSideMenuComponent } from '../../components/enrollments-side-menu/enrollments-side-menu.component';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { KpTableLayoutComponent } from 'libs/shared-ui/ui/src/lib/components/kp-table-layout';
+import { selectGetBilling } from 'app/shared/store/selectors/billing.selectors';
+import { State as BillingState } from 'app/shared/store/reducers/billing.reducer';
 
 @Component({
   selector: 'app-settings-enrollments',
@@ -40,6 +42,7 @@ export class SettingsEnrollmentsComponent implements OnDestroy {
   statistics = toSignal<EnrollmentsStatistics | null>(this.store.select(fromSelectors.selectStatistics), {
     initialValue: null,
   });
+  billing = toSignal<BillingState | null>(this.store.select(selectGetBilling), { initialValue: null });
   filters = toSignal(this.store.select(fromSelectors.selectFilter), { initialValue: {} as EnrollmentFilter });
 
   constructor(private store: Store) {

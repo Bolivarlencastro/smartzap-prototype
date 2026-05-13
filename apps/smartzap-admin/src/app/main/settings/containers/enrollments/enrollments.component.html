@@ -1,6 +1,10 @@
 <mat-drawer-container class="blank grow min-h-0" autosize>
   <mat-drawer #drawer class="h-full" mode="side" position="end">
-    <app-enrollments-side-menu [statistics]="statistics()" (closeMenu)="drawer.toggle()"></app-enrollments-side-menu>
+    <app-enrollments-side-menu
+      [statistics]="statistics()"
+      [billing]="billing()"
+      (closeMenu)="drawer.toggle()"
+    ></app-enrollments-side-menu>
   </mat-drawer>
 
   <div class="h-full flex flex-col">

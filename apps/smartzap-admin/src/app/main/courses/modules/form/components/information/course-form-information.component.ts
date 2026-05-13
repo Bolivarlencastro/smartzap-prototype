@@ -179,8 +179,8 @@ export class CourseFormInformationComponent implements OnInit, OnChanges {
       name: ['', [Validators.required, Validators.maxLength(100)]],
       category_id: ['', Validators.required],
       lang: ['', Validators.required],
-      description: ['', [this.requiredVisibleTextValidator(), this.visibleTextMaxLengthValidator(200)]],
-      message_description: ['', [this.visibleTextMaxLengthValidator(120)]],
+      description: ['', [this.visibleTextMaxLengthValidator(200)]],
+      message_description: ['', [this.requiredVisibleTextValidator(), this.visibleTextMaxLengthValidator(120)]],
       assessment_mode: [this.getAssessmentMode(), Validators.required],
     });
 

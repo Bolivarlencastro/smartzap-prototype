@@ -49,6 +49,35 @@ describe('SettingsGeneralComponent', () => {
       expect(controls.coursesPortalUrl.value).toBe('https://example.com');
     });
 
+    it('should disable userTokenExpirationForm when messages content is embedded in WhatsApp', () => {
+      store.overrideSelector(globalSettingsFeature.selectSmartzapConfiguration, mockSmartzapConfiguration);
+      store.refreshState();
+      fixture.detectChanges();
+
+      expect(component.userTokenExpirationForm.disabled).toBe(true);
+    });
+
+    it('should enable userTokenExpirationForm when messages content is not embedded in WhatsApp', () => {
+      store.overrideSelector(globalSettingsFeature.selectSmartzapConfiguration, {
+        ...mockSmartzapConfiguration,
+        messagesContentEmbed: false,
+      });
+      store.refreshState();
+      fixture.detectChanges();
+
+      expect(component.userTokenExpirationForm.enabled).toBe(true);
+    });
+
+    it('should expose disabled tooltip key when userTokenExpirationForm is disabled', () => {
+      store.overrideSelector(globalSettingsFeature.selectSmartzapConfiguration, mockSmartzapConfiguration);
+      store.refreshState();
+      fixture.detectChanges();
+
+      expect(component.userTokenExpirationTooltipKey()).toBe(
+        'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.USER_TOKEN_EXPIRATION.DISABLED_TOOLTIP',
+      );
+    });
+
     it('should mark smartzapConfigForm as pristine after patching', () => {
       store.overrideSelector(globalSettingsFeature.selectSmartzapConfiguration, mockSmartzapConfiguration);
       store.refreshState();
@@ -144,6 +173,18 @@ describe('SettingsGeneralComponent', () => {
 
     it('should not dispatch updateUserTokenExpiration when form is invalid', fakeAsync(() => {
       component.userTokenExpirationForm.setValue(0);
+      component.userTokenExpirationForm.markAsDirty();
+
+      tick(500);
+
+      expect(store.dispatch).not.toHaveBeenCalledWith(
+        expect.objectContaining({ type: GlobalSettingsActions.updateUserTokenExpiration.type }),
+      );
+    }));
+
+    it('should not dispatch updateUserTokenExpiration when field is disabled', fakeAsync(() => {
+      component.userTokenExpirationForm.disable();
+      component.userTokenExpirationForm.setValue(20);
       component.userTokenExpirationForm.markAsDirty();
 
       tick(500);

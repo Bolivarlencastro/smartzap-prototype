@@ -101,10 +101,7 @@
             </mat-label>
             <input matInput [formControl]="userTokenExpirationForm" mask="0*" />
           </mat-form-field>
-          <mat-icon
-            [matTooltip]="'GENERAL.APPS_SERVICES.SMARTZAP_SETTINGS.USER_TOKEN_EXPIRATION.TOOLTIP' | transloco"
-            matTooltipPosition="right"
-          >
+          <mat-icon [matTooltip]="userTokenExpirationTooltipKey() | transloco" matTooltipPosition="right">
             info
           </mat-icon>
         </div>

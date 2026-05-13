@@ -31,17 +31,15 @@
           Automático — início do curso
         </div>
 
-        <div class="system-flow-card">
+        <div
+          class="system-flow-card"
+          [class.system-flow-card--active]="selectedSystemCardId === 'pre-enrollment'"
+          (click)="onSelectSystemCard('pre-enrollment')"
+        >
           <div class="system-flow-card__inner">
             <div class="wa-msg">
-              <span
-                >👋 Olá <strong>{{ previewUserFirstName || '[USER_FIRST_NAME]' }}</strong
-                >, sua pré-inscrição no curso <strong>{{ course?.name || '[COURSE_NAME]' }}</strong> foi realizada pela
-                <strong>{{ previewWorkspaceName || '[WORKSPACE_NAME]' }}</strong
-                >.</span
-              >
-              <span>{{ course?.message_description || course?.description || '[COURSE_DESCRIPTION]' }}</span>
-              <span>Deseja confirmar sua matrícula?</span>
+              <span>{{ getRenderedSystemMessage('pre_enrollment_message') }}</span>
+              <span>{{ getRenderedSystemMessage('pre_enrollment_prompt') }}</span>
               <div class="wa-ctalist">
                 <span class="wa-cta">↗ Sim, quero continuar</span>
                 <span class="wa-cta">↗ Não</span>
@@ -53,11 +51,16 @@
 
         <div class="system-flow-connector"></div>
 
-        <div class="system-flow-card">
+        <div
+          class="system-flow-card"
+          [class.system-flow-card--active]="selectedSystemCardId === 'enrollment-confirmed'"
+          (click)="onSelectSystemCard('enrollment-confirmed')"
+        >
           <div class="system-flow-card__inner">
             <div class="wa-msg">
-              <span>🎉 Sua matrícula foi confirmada com sucesso!</span>
-              <span>Vamos começar?</span>
+              <span>{{ getRenderedSystemMessage('enrollment_confirmed_message') }}</span>
+              <span>{{ course?.message_description || '[WHATSAPP_DESCRIPTION]' }}</span>
+              <span>{{ getRenderedSystemMessage('enrollment_confirmed_prompt') }}</span>
               <div class="wa-ctalist">
                 <span class="wa-cta">↗ Receber conteúdo</span>
                 <span class="wa-cta">↗ Suporte</span>
@@ -239,10 +242,14 @@
 
       <!-- System cards: course end -->
       <div class="system-flow-group">
-        <div class="system-flow-card">
+        <div
+          class="system-flow-card"
+          [class.system-flow-card--active]="selectedSystemCardId === 'certificate-ready'"
+          (click)="onSelectSystemCard('certificate-ready')"
+        >
           <div class="system-flow-card__inner">
             <div class="wa-msg">
-              <span>Você chegou ao final do curso e já pode receber o seu certificado.</span>
+              <span>{{ getRenderedSystemMessage('certificate_ready_message') }}</span>
               <div class="wa-ctalist">
                 <span class="wa-cta">↗ Emitir Certificado</span>
               </div>
@@ -252,7 +259,11 @@
 
         <div class="system-flow-connector"></div>
 
-        <div class="system-flow-card">
+        <div
+          class="system-flow-card"
+          [class.system-flow-card--active]="selectedSystemCardId === 'course-completed'"
+          (click)="onSelectSystemCard('course-completed')"
+        >
           <div class="system-flow-card__inner">
             <div class="wa-file">
               <div class="wa-file__fallback">
@@ -263,11 +274,7 @@
               </div>
             </div>
             <div class="wa-msg">
-              <span
-                >🏆 Parabéns <strong>{{ previewUserFirstName || '[USER_FIRST_NAME]' }}</strong
-                >, você concluiu o curso <strong>{{ course?.name || '[COURSE_NAME]' }}</strong
-                >!</span
-              >
+              <span>{{ getRenderedSystemMessage('course_completed_message') }}</span>
             </div>
           </div>
         </div>
@@ -374,6 +381,56 @@
           <button mat-stroked-button type="button" (click)="onRemoveContent(content)" [disabled]="isDisabled">
             <mat-icon>delete_outline</mat-icon>
             Excluir bloco
+          </button>
+        </div>
+      </aside>
+    } @else if (selectedSystemCard; as systemCard) {
+      <aside class="content-builder__drawer">
+        <div class="content-builder__drawer-head">
+          <div class="flex flex-col gap-2">
+            <span class="content-builder__drawer-eyebrow">Automático</span>
+            <h3>{{ systemCard.title }}</h3>
+          </div>
+          <button mat-icon-button type="button" (click)="onCloseDrawer()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div class="content-builder__drawer-body">
+          <p class="content-builder__drawer-copy">{{ systemCard.description }}</p>
+
+          @for (field of systemCard.fields; track field.key) {
+            <mat-form-field appearance="outline" class="content-item__material-field">
+              <mat-label>{{ field.label }}</mat-label>
+              <textarea
+                matInput
+                [rows]="field.rows || 4"
+                [value]="getSystemMessageDraftValue(field.key)"
+                (input)="onSystemMessageDraftChange(field.key, $any($event.target).value)"
+                [disabled]="isDisabled"
+              ></textarea>
+            </mat-form-field>
+            @if (field.hint) {
+              <p class="content-builder__drawer-hint">{{ field.hint }}</p>
+            }
+          }
+
+          @if (selectedSystemCardId === 'pre-enrollment') {
+            <p class="content-builder__drawer-hint">
+              A descrição do curso continua vindo do campo de apresentação definido na etapa de informações.
+            </p>
+          }
+        </div>
+
+        <div class="content-builder__drawer-actions">
+          <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            (click)="onSaveSystemMessages()"
+            [disabled]="isDisabled"
+          >
+            Salvar mensagem
           </button>
         </div>
       </aside>
