@@ -385,7 +385,8 @@
       "@keeps-platform-frontend-workspace/ui/overrides": ["libs/shared-ui/ui/src/lib/components/overrides"],
       "@keeps-platform-frontend-workspace/ui/pipes": ["libs/shared-ui/ui/src/lib/components/pipes"],
       "@keeps-platform-frontend-workspace/ui/transloco-scope": ["libs/shared-ui/ui/src/lib/transloco-scope.factory"],
-      "@keeps-platform-frontend-workspace/ui/validators": ["libs/shared-ui/ui/src/lib/validators"]
+      "@keeps-platform-frontend-workspace/ui/validators": ["libs/shared-ui/ui/src/lib/validators"],
+      "@keeps-platform-frontend-workspace/push-manager": ["libs/push-manager/src/index.ts"]
     },
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,

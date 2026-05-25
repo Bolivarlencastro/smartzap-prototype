@@ -1,0 +1,107 @@
+{
+  "CREATION": {
+    "BACK_TO_PANEL": "Back to Panel",
+    "CONTACTS": {
+      "DOWNLOAD_TEMPLATE": "Download template spreadsheet",
+      "INPUT_DESCRIPTION": "Drag your CSV or Excel file here or click to select",
+      "INPUT_TITLE": "Import Contact Base",
+      "INVALID_ROWS": {
+        "LINE": "LINE",
+        "NAME": "NAME",
+        "PHONE": "PHONE",
+        "RECORD": {
+          "SINGULAR": "RECORD",
+          "PLURAL": "RECORDS"
+        },
+        "TITLE": "DATA IMPORTED WITH ERRORS"
+      },
+      "LABEL": "CONTACTS"
+    },
+    "FINISH": "FINISH SENDING",
+    "GO_BACK": "GO BACK",
+    "NEXT": "ADVANCE",
+    "REVIEW": {
+      "LABEL": "REVIEW",
+      "PREVIEW_TITLE": "FINAL MESSAGE REVIEW",
+      "SUMMARY": {
+        "CONTACTS": "contacts",
+        "DESTINATION": "DESTINATION",
+        "ESTIMATED_COST": "ESTIMATED INVESTMENT",
+        "SUFFICIENT_BALANCE": "AVAILABLE BALANCE",
+        "INSUFFICIENT_BALANCE": "INSUFFICIENT BALANCE",
+        "START_FORECAST": "ESTIMATED START",
+        "TEMPLATE": "TEMPLATE",
+        "TITLE": "Dispatch Summary",
+        "TOTAL_RECIPIENTS": "TOTAL RECIPIENTS"
+      }
+    },
+    "SCHEDULE": {
+      "CAMPAIGN": "FREE CAMPAIGN",
+      "CAMPAIGN_NAME": "CAMPAIGN NAME",
+      "COURSE": "COURSE",
+      "DATE": "SEND DATE",
+      "HOUR": "SEND TIME",
+      "LABEL": "SCHEDULING",
+      "TARGET_COURSE": "TARGET COURSE",
+      "TITLE": "LINK TYPE"
+    },
+    "TEMPLATE": {
+      "FORM": {
+        "TITLE": "TEMPLATE PARAMETERS",
+        "WAITING_TEMPLATE": "WAITING FOR TEMPLATE"
+      },
+      "LABEL": "TEMPLATE",
+      "MODEL": {
+        "SELECT_MODEL": "SELECT MODEL"
+      },
+      "PREVIEW": {
+        "NO_CONTENT_MESSAGE": "SELECT A TEMPLATE TO VIEW",
+        "TITLE": "REAL VIEW"
+      }
+    }
+  },
+  "PANEL": {
+    "NEW_PUSH_BUTTON": "CREATE NEW PUSH",
+    "PUSH_HISTORY": {
+      "CAMPAIGN": "CAMPAIGN",
+      "DATE": "SEND DATE",
+      "EMPTY_LIST": "No records found.",
+      "ESTIMATED_COST": "ESTIMATED COST",
+      "SEARCH": "Search history...",
+      "SENT_COUNT": "SENT",
+      "STATUS": {
+        "LABEL": "STATUS",
+        "PROCESSING": "PROCESSING",
+        "COMPLETED": "COMPLETED",
+        "FAILED": "FAILED",
+        "CANCELED": "CANCELED"
+      },
+      "TITLE": "Send History"
+    },
+    "SUBTITLE": "Engagement management and conversion metrics.",
+    "SUMMARY_CARD": {
+      "ROI_ENROLLMENT": "CURRENT BALANCE",
+      "TOTAL_INVESTIMENT": "TOTAL INVESTMENT",
+      "TOTAL_SENDS": "TOTAL SENT"
+    },
+    "TITLE": "Communication Panel",
+    "UPCOMING_APPOINTMENTS": {
+      "CAMPAIGN": "CAMPAIGN",
+      "CANCEL_BUTTON": "Cancel",
+      "CANCEL_DIALOG": {
+        "CONFIRM_BUTTON": "Confirm",
+        "MESSAGE": "Are you sure you want to cancel this campaign?",
+        "TITLE": "Cancel push"
+      },
+      "CONTACTS": "CONTACTS",
+      "DATE": "SCHEDULED DATE",
+      "EMPTY_LIST": "No records found.",
+      "SEARCH": "Search appointments...",
+      "TITLE": "Upcoming Appointments"
+    },
+    "SIDE_MENU": {
+      "TITLE": "Summary",
+      "SUBTITLE": "Push channel metrics"
+    }
+  }
+}

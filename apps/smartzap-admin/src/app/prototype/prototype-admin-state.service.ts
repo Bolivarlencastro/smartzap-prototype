@@ -83,7 +83,7 @@ export class PrototypeAdminStateService {
     name: 'Workspace Prototype Smartzap',
     logo_url: 'assets/branding/smartzap-double-check.svg',
     icon_url: 'assets/branding/smartzap-double-check.svg',
-    hash_id: '',
+    hash_id: 'smartzap',
     custom_color: '#875DAB',
     theme_dark: false,
     logout_url: window.location.origin,
@@ -104,6 +104,7 @@ export class PrototypeAdminStateService {
   readonly workspaceServices: ApplicationService[] = [
     { id: 'service-smartzap', name: 'Smartzap' },
     { id: 'service-konquest', name: 'Konquest' },
+    { id: 'f3986e26-1d86-465b-9864-4c572526f0e5', name: 'Push Manager' },
   ];
 
   readonly roles: UserRoleV2[] = [

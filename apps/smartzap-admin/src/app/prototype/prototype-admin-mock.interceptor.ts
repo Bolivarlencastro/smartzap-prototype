@@ -59,6 +59,11 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
       return this.handleCertificateManagerRequest(request.method, pathname, body);
     }
 
+    if (request.url.startsWith(environment.apps.pushManager.api)) {
+      const pathname = this.getRelativePath(request.url, environment.apps.pushManager.api);
+      return this.handlePushManagerRequest(request.method, pathname, params, body);
+    }
+
     return undefined;
   }
 
@@ -451,6 +456,192 @@ export class PrototypeAdminMockInterceptor implements HttpInterceptor {
 
     if (method === 'POST' && pathname === '/certificates/images') {
       return { url: 'https://media.keepsdev.com/certificate-manager/default-images/landscape.png' };
+    }
+
+    return undefined;
+  }
+
+  private handlePushManagerRequest(
+    method: string,
+    pathname: string,
+    params: Record<string, string>,
+    body: Record<string, any> | FormData,
+  ): unknown {
+    if (method === 'GET' && pathname === '/templates') {
+      return {
+        itens: [
+          {
+            id: 'tpl-onboarding',
+            content_sid: 'HX001',
+            name: 'Boas-vindas ao Treinamento',
+            title: 'Boas-vindas!',
+            body_preview: 'Olá {{nome}}! Você foi inscrito no treinamento *{{curso}}*. Acesse: {{link}}',
+            variables: [
+              { position: 0, name: 'nome', required: true },
+              { position: 1, name: 'curso', required: true },
+              { position: 2, name: 'link', required: true },
+            ],
+            category: 'UTILITY',
+            language: 'pt-BR',
+            is_active: true,
+            cost_per_message: '0.15',
+          },
+          {
+            id: 'tpl-reminder',
+            content_sid: 'HX002',
+            name: 'Lembrete de Conclusão',
+            title: 'Lembrete!',
+            body_preview: 'Oi {{nome}}, não esqueça de concluir o curso *{{curso}}* até {{data}}.',
+            variables: [
+              { position: 0, name: 'nome', required: true },
+              { position: 1, name: 'curso', required: true },
+              { position: 2, name: 'data', required: true },
+            ],
+            category: 'UTILITY',
+            language: 'pt-BR',
+            is_active: true,
+            cost_per_message: '0.12',
+          },
+          {
+            id: 'tpl-certificate',
+            content_sid: 'HX003',
+            name: 'Certificado Disponível',
+            title: 'Seu certificado chegou!',
+            body_preview: '{{nome}}, seu certificado do curso *{{curso}}* está pronto! Baixe aqui: {{link}}',
+            variables: [
+              { position: 0, name: 'nome', required: true },
+              { position: 1, name: 'curso', required: true },
+              { position: 2, name: 'link', required: true },
+            ],
+            category: 'MARKETING',
+            language: 'pt-BR',
+            is_active: true,
+            cost_per_message: '0.10',
+          },
+        ],
+        total: 3,
+      };
+    }
+
+    if (method === 'GET' && pathname === '/wallet/balance') {
+      return { balance: 18240, currency: 'BRL' };
+    }
+
+    if (method === 'GET' && pathname === '/wallet/general-stats') {
+      return { total_dispatches: 4320, total_investment: '648.00' };
+    }
+
+    if (method === 'GET' && pathname === '/campaigns') {
+      const page = Number(params['page'] || 1);
+      const perPage = Number(params['per_page'] || 10);
+      const campaigns = [
+        {
+          id: 'camp-1',
+          name: 'Onboarding Comercial — Maio',
+          status: 'COMPLETED',
+          template_name: 'Boas-vindas ao Treinamento',
+          contacts_count: 124,
+          sent_count: 118,
+          failed_count: 6,
+          scheduled_at: '2026-05-10T09:00:00.000Z',
+          completed_at: '2026-05-10T09:05:00.000Z',
+          cost: '18.60',
+        },
+        {
+          id: 'camp-2',
+          name: 'Lembrete Compliance',
+          status: 'COMPLETED',
+          template_name: 'Lembrete de Conclusão',
+          contacts_count: 210,
+          sent_count: 205,
+          failed_count: 5,
+          scheduled_at: '2026-05-08T14:00:00.000Z',
+          completed_at: '2026-05-08T14:06:00.000Z',
+          cost: '25.20',
+        },
+        {
+          id: 'camp-3',
+          name: 'Certificados Disponíveis',
+          status: 'SCHEDULED',
+          template_name: 'Certificado Disponível',
+          contacts_count: 91,
+          sent_count: 0,
+          failed_count: 0,
+          scheduled_at: '2026-05-28T10:00:00.000Z',
+          completed_at: null,
+          cost: '9.10',
+        },
+        {
+          id: 'camp-4',
+          name: 'Cultura Empresarial — Junho',
+          status: 'SCHEDULED',
+          template_name: 'Boas-vindas ao Treinamento',
+          contacts_count: 312,
+          sent_count: 0,
+          failed_count: 0,
+          scheduled_at: '2026-06-02T08:00:00.000Z',
+          completed_at: null,
+          cost: '46.80',
+        },
+      ];
+      const statusFilter: string[] = params['status'] ? String(params['status']).split(',') : [];
+      const filtered = statusFilter.length ? campaigns.filter((c) => statusFilter.includes(c.status)) : campaigns;
+      const start = (page - 1) * perPage;
+      return {
+        data: filtered.slice(start, start + perPage),
+        meta: {
+          totalItems: filtered.length,
+          totalPages: Math.ceil(filtered.length / perPage),
+          current_page: page,
+          itemsPerPage: perPage,
+          sortBy: [],
+        },
+        links: { current: '', last: '', next: '', previous: '', first: '' },
+      };
+    }
+
+    if (method === 'POST' && pathname.includes('/cancel')) {
+      return null;
+    }
+
+    if (method === 'POST' && pathname === '/campaigns/validate') {
+      return {
+        template_id: 'tpl-onboarding',
+        template_name: 'Boas-vindas ao Treinamento',
+        total_rows: 53,
+        valid_rows: 50,
+        invalid_rows: 3,
+        invalid_rows_preview: [
+          { row: 7, name: 'Maria Oliveira', phone: '119999' },
+          { row: 21, name: '', phone: '11988887777' },
+          { row: 45, name: 'João Sem Telefone', phone: '' },
+        ],
+        missing_fields: [],
+        estimated_cost: '7.50',
+        cost_per_message: '0.15',
+        current_balance: '18240.00',
+        has_sufficient_balance: true,
+        detected_columns: ['nome', 'telefone'],
+        file_name: 'contatos.csv',
+        can_proceed: true,
+        validation_message: 'Arquivo válido com 50 contatos aptos para envio.',
+      };
+    }
+
+    if (method === 'POST' && pathname === '/campaigns') {
+      const now = new Date().toISOString();
+      return {
+        id: `camp-${Date.now()}`,
+        name: 'Nova Campanha',
+        status: 'SCHEDULED',
+        template_id: 'tpl-onboarding',
+        total_recipients: 50,
+        estimated_cost: '7.50',
+        created_at: now,
+        message: 'Campanha criada com sucesso.',
+        reference_id: '',
+        reference_name: '',
+      };
     }
 
     return undefined;

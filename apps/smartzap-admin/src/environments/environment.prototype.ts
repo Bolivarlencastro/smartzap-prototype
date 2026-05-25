@@ -22,7 +22,7 @@ const coreModuleConfig: CoreConfig = {
 };
 
 const featureFlags: FeatureFlags = {
-  'push-manager': false,
+  'push-manager': true,
 };
 
 export const environment = {

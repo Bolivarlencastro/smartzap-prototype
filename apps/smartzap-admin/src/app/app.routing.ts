@@ -8,8 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'push-manager',
-    pathMatch: 'full',
-    redirectTo: '/courses',
+    loadChildren: () => import('@keeps-platform-frontend-workspace/push-manager').then((m) => m.pushManagerRoutes),
   },
   {
     path: 'courses',

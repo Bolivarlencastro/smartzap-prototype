@@ -243,6 +243,7 @@
       "@keeps-platform-frontend-workspace/ui/kp-table-columns": [
         "libs/shared-ui/ui/src/lib/components/kp-table-columns"
       ],
+      "@keeps-platform-frontend-workspace/ui/kp-table-layout": ["libs/shared-ui/ui/src/lib/components/kp-table-layout"],
       "@keeps-platform-frontend-workspace/ui/kp-text-circle": ["libs/shared-ui/ui/src/lib/components/kp-text-circle"],
       "@keeps-platform-frontend-workspace/ui/kp-title": ["libs/shared-ui/ui/src/lib/components/kp-title"],
       "@keeps-platform-frontend-workspace/ui/kp-toolbar-balance": [

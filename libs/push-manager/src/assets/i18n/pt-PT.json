@@ -1,0 +1,107 @@
+{
+  "CREATION": {
+    "BACK_TO_PANEL": "Voltar ao Painel",
+    "CONTACTS": {
+      "DOWNLOAD_TEMPLATE": "Transferir folha de cálculo modelo",
+      "INPUT_DESCRIPTION": "Arraste seu arquivo CSV ou Excel aqui ou clique para selecionar",
+      "INPUT_TITLE": "Importar Base de Contatos",
+      "INVALID_ROWS": {
+        "LINE": "LINHA",
+        "NAME": "NOME",
+        "PHONE": "TELEFONE",
+        "RECORD": {
+          "SINGULAR": "REGISTO",
+          "PLURAL": "REGISTOS"
+        },
+        "TITLE": "DADOS IMPORTADOS COM ERRO"
+      },
+      "LABEL": "CONTATOS"
+    },
+    "FINISH": "FINALIZAR DISPARO",
+    "GO_BACK": "VOLTAR",
+    "NEXT": "AVANÇAR",
+    "REVIEW": {
+      "LABEL": "REVISÃO",
+      "PREVIEW_TITLE": "REVISÃO FINAL DA MENSAGEM",
+      "SUMMARY": {
+        "CONTACTS": "contactos",
+        "DESTINATION": "DESTINO",
+        "ESTIMATED_COST": "INVESTIMENTO ESTIMADO",
+        "SUFFICIENT_BALANCE": "SALDO DISPONÍVEL",
+        "INSUFFICIENT_BALANCE": "SALDO INDISPONÍVEL",
+        "START_FORECAST": "PREVISÃO DE INÍCIO",
+        "TEMPLATE": "TEMPLATE",
+        "TITLE": "Resumo do Envio",
+        "TOTAL_RECIPIENTS": "TOTAL DE DESTINATÁRIOS"
+      }
+    },
+    "SCHEDULE": {
+      "CAMPAIGN": "CAMPANHA LIVRE",
+      "CAMPAIGN_NAME": "NOME DA CAMPANHA",
+      "COURSE": "CURSO",
+      "DATE": "DATA DO DISPARO",
+      "HOUR": "HORA DO DISPARO",
+      "LABEL": "AGENDAMENTO",
+      "TARGET_COURSE": "CURSO ALVO",
+      "TITLE": "TIPO DE VÍNCULO"
+    },
+    "TEMPLATE": {
+      "FORM": {
+        "TITLE": "PARÂMETROS DO TEMPLATE",
+        "WAITING_TEMPLATE": "AGUARDANDO TEMPLATE"
+      },
+      "LABEL": "TEMPLATE",
+      "MODEL": {
+        "SELECT_MODEL": "SELECIONE O MODELO"
+      },
+      "PREVIEW": {
+        "NO_CONTENT_MESSAGE": "SELECIONE UM TEMPLATE PARA VISUALIZAR",
+        "TITLE": "VISUALIZAÇÃO REAL"
+      }
+    }
+  },
+  "PANEL": {
+    "NEW_PUSH_BUTTON": "CRIAR NOVO PUSH",
+    "PUSH_HISTORY": {
+      "CAMPAIGN": "CAMPANHA",
+      "DATE": "DATA DISPARO",
+      "EMPTY_LIST": "Não há registos.",
+      "ESTIMATED_COST": "CUSTO ESTIMADO",
+      "SEARCH": "Pesquisar histórico...",
+      "SENT_COUNT": "ENVIADOS",
+      "STATUS": {
+        "LABEL": "STATUS",
+        "PROCESSING": "EM PROCESSAMENTO",
+        "COMPLETED": "FINALIZADO",
+        "FAILED": "ERRO",
+        "CANCELED": "CANCELADO"
+      },
+      "TITLE": "Histórico de Disparos"
+    },
+    "SUBTITLE": "Gestão de engajamento e métricas de conversão.",
+    "SUMMARY_CARD": {
+      "ROI_ENROLLMENT": "SALDO ATUAL",
+      "TOTAL_INVESTIMENT": "INVESTIMENTO TOTAL",
+      "TOTAL_SENDS": "TOTAL DISPAROS"
+    },
+    "TITLE": "Painel de Comunicação",
+    "UPCOMING_APPOINTMENTS": {
+      "CAMPAIGN": "CAMPANHA",
+      "CANCEL_BUTTON": "Cancelar",
+      "CANCEL_DIALOG": {
+        "CONFIRM_BUTTON": "Confirmar",
+        "MESSAGE": "Tem a certeza que pretende cancelar esta campanha?",
+        "TITLE": "Cancelar push"
+      },
+      "CONTACTS": "CONTATOS",
+      "DATE": "DATA PROGRAMADA",
+      "EMPTY_LIST": "Não há registos.",
+      "SEARCH": "Pesquisar agendamentos...",
+      "TITLE": "Próximos Agendamentos"
+    },
+    "SIDE_MENU": {
+      "TITLE": "Resumo",
+      "SUBTITLE": "Métricas do canal de push"
+    }
+  }
+}

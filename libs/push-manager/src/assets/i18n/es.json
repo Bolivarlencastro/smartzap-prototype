@@ -1,0 +1,107 @@
+{
+  "CREATION": {
+    "BACK_TO_PANEL": "Volver al Panel",
+    "CONTACTS": {
+      "DOWNLOAD_TEMPLATE": "Descargar hoja de cálculo modelo",
+      "INPUT_DESCRIPTION": "Arrastra tu archivo CSV o Excel aquí o haz clic para seleccionar",
+      "INPUT_TITLE": "Importar Base de Contactos",
+      "INVALID_ROWS": {
+        "LINE": "LÍNEA",
+        "NAME": "NOMBRE",
+        "PHONE": "TELÉFONO",
+        "RECORD": {
+          "SINGULAR": "REGISTRO",
+          "PLURAL": "REGISTROS"
+        },
+        "TITLE": "DATOS IMPORTADOS CON ERROR"
+      },
+      "LABEL": "CONTACTOS"
+    },
+    "FINISH": "FINALIZAR ENVÍO",
+    "GO_BACK": "VOLVER",
+    "NEXT": "AVANZAR",
+    "REVIEW": {
+      "LABEL": "REVISIÓN",
+      "PREVIEW_TITLE": "REVISIÓN FINAL DEL MENSAJE",
+      "SUMMARY": {
+        "CONTACTS": "contactos",
+        "DESTINATION": "DESTINO",
+        "ESTIMATED_COST": "INVERSIÓN ESTIMADA",
+        "SUFFICIENT_BALANCE": "SALDO DISPONIBLE",
+        "INSUFFICIENT_BALANCE": "SALDO INSUFICIENTE",
+        "START_FORECAST": "INICIO ESTIMADO",
+        "TEMPLATE": "TEMPLATE",
+        "TITLE": "Resumen del Envío",
+        "TOTAL_RECIPIENTS": "TOTAL DESTINATARIOS"
+      }
+    },
+    "SCHEDULE": {
+      "CAMPAIGN": "CAMPAÑA LIBRE",
+      "CAMPAIGN_NAME": "NOMBRE DE LA CAMPAÑA",
+      "COURSE": "CURSO",
+      "DATE": "FECHA DE ENVÍO",
+      "HOUR": "HORA DE ENVÍO",
+      "LABEL": "PROGRAMACIÓN",
+      "TARGET_COURSE": "CURSO OBJETIVO",
+      "TITLE": "TIPO DE VÍNCULO"
+    },
+    "TEMPLATE": {
+      "FORM": {
+        "TITLE": "PARÁMETROS DE LA PLANTILLA",
+        "WAITING_TEMPLATE": "ESPERANDO PLANTILLA"
+      },
+      "LABEL": "TEMPLATE",
+      "MODEL": {
+        "SELECT_MODEL": "SELECCIONAR MODELO"
+      },
+      "PREVIEW": {
+        "NO_CONTENT_MESSAGE": "SELECCIONA UNA PLANTILLA PARA VER",
+        "TITLE": "VISTA REAL"
+      }
+    }
+  },
+  "PANEL": {
+    "NEW_PUSH_BUTTON": "CREAR NUEVO PUSH",
+    "PUSH_HISTORY": {
+      "CAMPAIGN": "CAMPAÑA",
+      "DATE": "FECHA DE ENVÍO",
+      "EMPTY_LIST": "No hay registros.",
+      "ESTIMATED_COST": "COSTO ESTIMADO",
+      "SEARCH": "Buscar historial...",
+      "SENT_COUNT": "ENVIADOS",
+      "STATUS": {
+        "LABEL": "STATUS",
+        "PROCESSING": "EN PROCESO",
+        "COMPLETED": "COMPLETADO",
+        "FAILED": "ERROR",
+        "CANCELED": "CANCELADO"
+      },
+      "TITLE": "Historial de Envíos"
+    },
+    "SUBTITLE": "Gestión de compromiso y métricas de conversión.",
+    "SUMMARY_CARD": {
+      "ROI_ENROLLMENT": "SALDO ACTUAL",
+      "TOTAL_INVESTIMENT": "INVERSIÓN TOTAL",
+      "TOTAL_SENDS": "TOTAL ENVIADOS"
+    },
+    "TITLE": "Panel de Comunicación",
+    "UPCOMING_APPOINTMENTS": {
+      "CAMPAIGN": "CAMPAÑA",
+      "CANCEL_BUTTON": "Cancelar",
+      "CANCEL_DIALOG": {
+        "CONFIRM_BUTTON": "Confirmar",
+        "MESSAGE": "¿Estás seguro de que deseas cancelar esta campaña?",
+        "TITLE": "Cancelar push"
+      },
+      "CONTACTS": "CONTACTOS",
+      "DATE": "FECHA PROGRAMADA",
+      "EMPTY_LIST": "No hay registros.",
+      "SEARCH": "Buscar citas...",
+      "TITLE": "Próximas Citas"
+    },
+    "SIDE_MENU": {
+      "TITLE": "Resumen",
+      "SUBTITLE": "Métricas del canal de push"
+    }
+  }
+}
