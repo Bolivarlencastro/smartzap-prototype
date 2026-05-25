@@ -77,7 +77,7 @@ export type BondType = 'course' | 'campaign';
         <div class="flex gap-2">
           <mat-form-field appearance="outline" subscriptSizing="dynamic">
             <mat-label class="label">{{ 'PUSH_MANAGER.CREATION.SCHEDULE.DATE' | transloco }}</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date" />
+            <input matInput [matDatepicker]="picker" [min]="today" formControlName="date" />
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -137,6 +137,7 @@ export class ScheduleStepComponent {
   bondType = signal<BondType>('course');
   isCourseType = computed(() => this.bondType() === 'course');
   courseSearchControl = new FormControl<string | SmartzapCourse>('');
+  readonly today = new Date();
 
   private readonly destroyRef = inject(DestroyRef);
 

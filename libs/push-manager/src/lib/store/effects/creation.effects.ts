@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
@@ -73,11 +74,16 @@ export class CreationEffects {
     () => {
       return this.actions$.pipe(
         ofType(CreationActions.createCampaignSuccess),
-        tap(() => this.router.navigate(['/push-manager/panel'])),
+        tap(() => {
+          this.router.navigate(['/push-manager/panel']);
+          this.snackBar.open('Disparo criado com sucesso!', 'Fechar', { duration: 5000 });
+        }),
       );
     },
     { dispatch: false },
   );
+
+  private readonly snackBar = inject(MatSnackBar);
 
   constructor(
     private readonly actions$: Actions,
