@@ -24,6 +24,7 @@ import { KpTableLayoutComponent } from '@keeps-platform-frontend-workspace/ui/kp
   ],
   template: `
     <kp-table-layout
+      class="grow min-h-0"
       [totalItems]="total()"
       [pageIndex]="page() - 1"
       [pageSize]="limit()"
@@ -83,7 +84,10 @@ import { KpTableLayoutComponent } from '@keeps-platform-frontend-workspace/ui/kp
   `,
   styles: `
     :host {
-      display: contents;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0;
+      min-height: 0;
     }
 
     .no-data-row {

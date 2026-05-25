@@ -114,6 +114,17 @@ import { UpcomingAppointmentsViewModel } from '../../store/features/upcoming-app
     :host ::ng-deep .mat-mdc-tab-label-container {
       padding-left: 2rem;
     }
+
+    :host ::ng-deep .mat-mdc-tab-body-wrapper {
+      flex: 1 1 0;
+      min-height: 0;
+    }
+
+    :host ::ng-deep .mat-mdc-tab-body-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
