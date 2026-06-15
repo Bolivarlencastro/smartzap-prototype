@@ -13,7 +13,7 @@ import { Course } from 'app/main/courses/model';
       <div class="course-form-step__header">
         <div>
           <h2>{{ 'COURSE.FORM.TABS.IMAGES' | transloco }}</h2>
-          <p>{{ 'COURSE.FORM.NAVIGATION.IMAGES' | transloco }}</p>
+          <p>{{ 'COURSE.FORM.DESCRIPTION.IMAGES' | transloco }}</p>
         </div>
         <div class="course-form-step__actions">
           <a mat-stroked-button [routerLink]="['/courses', course.id, 'form']">{{ 'GENERAL.PREVIOUS' | transloco }}</a>

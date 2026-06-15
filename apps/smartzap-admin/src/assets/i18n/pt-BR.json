@@ -172,7 +172,7 @@
       "NAVIGATION": {
         "SUBTITLE": "Organize o curso em etapas claras.",
         "INFORMATION": "Configure os dados do seu curso.",
-        "IMAGES": "Defina as imagens do seu curso. Elas são exibidas na landing page, na listagem de cursos e na dialog de detalhes do curso.",
+        "IMAGES": "Defina as imagens do curso",
         "CONFIGURATIONS": "Ajuste a exibição e o uso do curso.",
         "CONTENTS": "Adicione os conteúdos em seu curso.",
         "FINISH": "Publique seu curso."
@@ -183,6 +183,9 @@
         "FINISH": "Finalizar",
         "IMAGES": "Imagens",
         "INFORMATION": "Informações"
+      },
+      "DESCRIPTION": {
+        "IMAGES": "Defina as imagens do seu curso. Elas são exibidas na landing page, na listagem de cursos e na dialog de detalhes do curso."
       },
       "TITLE": {
         "EDIT": "Edição do curso",

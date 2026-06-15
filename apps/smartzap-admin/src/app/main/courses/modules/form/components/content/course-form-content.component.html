@@ -24,266 +24,348 @@
 
   <div class="content-builder" [class.content-builder--with-drawer]="hasSelection">
     <div class="content-builder__timeline">
-      <!-- System cards: course start -->
-      <div class="system-flow-group">
-        <div class="system-flow-group__label">
-          <mat-icon>auto_awesome</mat-icon>
-          Automático — início do curso
-        </div>
+      <button
+        mat-icon-button
+        type="button"
+        class="content-view-toggle"
+        [class.content-view-toggle--active]="viewMode() === 'list'"
+        (click)="toggleViewMode()"
+        [attr.aria-label]="viewMode() === 'timeline' ? 'Alternar para lista' : 'Alternar para timeline'"
+      >
+        <mat-icon>{{ viewMode() === 'timeline' ? 'view_list' : 'view_agenda' }}</mat-icon>
+      </button>
+      @if (viewMode() === 'timeline') {
+        <!-- System cards: course start -->
+        <div class="system-flow-group">
+          <div class="system-flow-group__label">
+            <mat-icon>auto_awesome</mat-icon>
+            Automático — início do curso
+          </div>
 
-        <div
-          class="system-flow-card"
-          [class.system-flow-card--active]="selectedSystemCardId === 'pre-enrollment'"
-          (click)="onSelectSystemCard('pre-enrollment')"
-        >
-          <div class="system-flow-card__inner">
-            <div class="wa-msg">
-              <span>{{ getRenderedSystemMessage('pre_enrollment_message') }}</span>
-              <span>{{ getRenderedSystemMessage('pre_enrollment_prompt') }}</span>
-              <div class="wa-ctalist">
-                <span class="wa-cta">↗ Sim, quero continuar</span>
-                <span class="wa-cta">↗ Não</span>
-                <span class="wa-cta">↗ Suporte</span>
+          <div
+            class="system-flow-card"
+            [class.system-flow-card--active]="selectedSystemCardId === 'pre-enrollment'"
+            (click)="onSelectSystemCard('pre-enrollment')"
+          >
+            <div class="system-flow-card__inner">
+              <div class="wa-msg">
+                <span>{{ getRenderedSystemMessage('pre_enrollment_message') }}</span>
+                <span>{{ getRenderedSystemMessage('pre_enrollment_prompt') }}</span>
+                <div class="wa-ctalist">
+                  <span class="wa-cta">↗ Sim, quero continuar</span>
+                  <span class="wa-cta">↗ Não</span>
+                  <span class="wa-cta">↗ Suporte</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-flow-connector"></div>
+
+          <div
+            class="system-flow-card"
+            [class.system-flow-card--active]="selectedSystemCardId === 'enrollment-confirmed'"
+            (click)="onSelectSystemCard('enrollment-confirmed')"
+          >
+            <div class="system-flow-card__inner">
+              <div class="wa-msg">
+                <span>{{ getRenderedSystemMessage('enrollment_confirmed_message') }}</span>
+                <span>{{ course?.message_description || '[WHATSAPP_DESCRIPTION]' }}</span>
+                <span>{{ getRenderedSystemMessage('enrollment_confirmed_prompt') }}</span>
+                <div class="wa-ctalist">
+                  <span class="wa-cta">↗ Receber conteúdo</span>
+                  <span class="wa-cta">↗ Suporte</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="system-flow-connector"></div>
-
-        <div
-          class="system-flow-card"
-          [class.system-flow-card--active]="selectedSystemCardId === 'enrollment-confirmed'"
-          (click)="onSelectSystemCard('enrollment-confirmed')"
-        >
-          <div class="system-flow-card__inner">
-            <div class="wa-msg">
-              <span>{{ getRenderedSystemMessage('enrollment_confirmed_message') }}</span>
-              <span>{{ course?.message_description || '[WHATSAPP_DESCRIPTION]' }}</span>
-              <span>{{ getRenderedSystemMessage('enrollment_confirmed_prompt') }}</span>
-              <div class="wa-ctalist">
-                <span class="wa-cta">↗ Receber conteúdo</span>
-                <span class="wa-cta">↗ Suporte</span>
-              </div>
-            </div>
-          </div>
+        <!-- Zone connector: start → content -->
+        <div class="system-flow-zone-connector">
+          <div class="system-flow-zone-connector__line"></div>
         </div>
-      </div>
 
-      <!-- Zone connector: start → content -->
-      <div class="system-flow-zone-connector">
-        <div class="system-flow-zone-connector__line"></div>
-        <span class="system-flow-zone-connector__label">Conteúdos do curso</span>
-        <div class="system-flow-zone-connector__line"></div>
-      </div>
-
-      <!-- User content area -->
-      @if (!localContents.length) {
-        <div class="course-content-shell__empty course-content-shell__empty--compact">
+        <!-- User content area -->
+        @if (!localContents.length) {
           <button
-            class="content-builder__add-button content-builder__add-button--empty"
-            mat-stroked-button
+            class="content-add-card"
             type="button"
             [matMenuTriggerFor]="contentTypeMenu"
             (menuOpened)="setAddMenuIndex()"
             [disabled]="isDisabled"
           >
             <mat-icon>add</mat-icon>
-            Adicionar
+            <span>Adicionar conteúdo</span>
           </button>
-        </div>
-      } @else {
-        <div class="content-list" cdkDropList (cdkDropListDropped)="onDrop($event)">
-          @for (content of localContents; track content.id; let i = $index) {
-            @if (i > 0) {
-              <div class="content-inserter content-inserter--gap">
-                <button
-                  class="content-inserter__trigger"
-                  mat-icon-button
-                  type="button"
-                  [matMenuTriggerFor]="contentTypeMenu"
-                  (menuOpened)="setAddMenuIndex(i)"
-                  [disabled]="isDisabled"
-                  [attr.aria-label]="'Adicionar conteúdo na posição ' + (i + 1)"
-                >
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
-            }
+        } @else {
+          <div class="content-list" cdkDropList (cdkDropListDropped)="onDrop($event)">
+            @for (content of localContents; track content.id; let i = $index) {
+              @if (i > 0) {
+                <div class="content-inserter content-inserter--gap">
+                  <button
+                    class="content-inserter__trigger"
+                    mat-icon-button
+                    type="button"
+                    [matMenuTriggerFor]="contentTypeMenu"
+                    (menuOpened)="setAddMenuIndex(i)"
+                    [disabled]="isDisabled"
+                    [attr.aria-label]="'Adicionar conteúdo na posição ' + (i + 1)"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              }
 
-            <article
-              class="content-item"
-              [class.content-item--quiz]="isQuiz(content)"
-              [class.content-item--active]="selectedContentId === content.id"
-              cdkDrag
-              [cdkDragDisabled]="isDisabled"
-              (click)="onSelectContent(content)"
-            >
-              <div class="content-item__card">
-                <div class="content-item__body content-item__body--summary">
-                  <div class="content-item__material">
-                    @if (!isQuiz(content)) {
-                      @if (isAudio(content)) {
-                        <div class="wa-audio">
-                          @if (getContentSource(content); as source) {
-                            <audio class="wa-audio__player" [src]="source" controls preload="metadata"></audio>
-                          } @else {
-                            <div class="wa-audio__bar">
-                              <mat-icon>pause</mat-icon>
-                              <div class="wa-audio__wave"></div>
-                              <span class="wa-audio__speed">2x</span>
-                            </div>
-                          }
-                        </div>
-                      } @else if (isPdf(content)) {
-                        <div class="wa-file">
-                          @if (getContentSource(content); as source) {
-                            <object class="wa-pdf__frame" [data]="source | kpSafeUrl" type="application/pdf">
+              <article
+                class="content-item"
+                [class.content-item--quiz]="isQuiz(content)"
+                [class.content-item--active]="selectedContentId === content.id"
+                cdkDrag
+                [cdkDragDisabled]="isDisabled"
+                (click)="onSelectContent(content)"
+              >
+                <div class="content-item__card">
+                  <div class="content-item__body content-item__body--summary">
+                    <div class="content-item__material">
+                      @if (!isQuiz(content)) {
+                        @if (isAudio(content)) {
+                          <div class="wa-audio">
+                            @if (getContentSource(content); as source) {
+                              <audio class="wa-audio__player" [src]="source" controls preload="metadata"></audio>
+                            } @else {
+                              <div class="wa-audio__bar">
+                                <mat-icon>pause</mat-icon>
+                                <div class="wa-audio__wave"></div>
+                                <span class="wa-audio__speed">2x</span>
+                              </div>
+                            }
+                          </div>
+                        } @else if (isPdf(content)) {
+                          <div class="wa-file">
+                            @if (getContentSource(content); as source) {
+                              <object class="wa-pdf__frame" [data]="source | kpSafeUrl" type="application/pdf">
+                                <div class="wa-file__fallback">
+                                  <div class="wa-file__icon">
+                                    <mat-icon>picture_as_pdf</mat-icon>
+                                  </div>
+                                  <span class="wa-file__name">{{ content.name || '[CONTENT_NAME]' }}</span>
+                                </div>
+                              </object>
+                            } @else {
                               <div class="wa-file__fallback">
                                 <div class="wa-file__icon">
                                   <mat-icon>picture_as_pdf</mat-icon>
                                 </div>
                                 <span class="wa-file__name">{{ content.name || '[CONTENT_NAME]' }}</span>
                               </div>
-                            </object>
-                          } @else {
-                            <div class="wa-file__fallback">
-                              <div class="wa-file__icon">
-                                <mat-icon>picture_as_pdf</mat-icon>
-                              </div>
-                              <span class="wa-file__name">{{ content.name || '[CONTENT_NAME]' }}</span>
-                            </div>
-                          }
-                        </div>
-                      } @else {
-                        <div
-                          class="wa-media"
-                          [class.wa-media--image]="isImage(content)"
-                          [class.wa-media--video]="isVideo(content)"
-                        >
-                          @if (getContentSource(content); as source) {
-                            @if (isImage(content)) {
-                              <img
-                                class="wa-media__asset wa-media__asset--image"
-                                [src]="source"
-                                [alt]="content.name || 'Imagem'"
-                              />
-                            } @else if (isVideo(content)) {
-                              <video
-                                class="wa-media__asset wa-media__asset--video"
-                                [src]="source"
-                                controls
-                                preload="metadata"
-                              ></video>
+                            }
+                          </div>
+                        } @else {
+                          <div
+                            class="wa-media"
+                            [class.wa-media--image]="isImage(content)"
+                            [class.wa-media--video]="isVideo(content)"
+                          >
+                            @if (getContentSource(content); as source) {
+                              @if (isImage(content)) {
+                                <img
+                                  class="wa-media__asset wa-media__asset--image"
+                                  [src]="source"
+                                  [alt]="content.name || 'Imagem'"
+                                />
+                              } @else if (isVideo(content)) {
+                                <video
+                                  class="wa-media__asset wa-media__asset--video"
+                                  [src]="source"
+                                  controls
+                                  preload="metadata"
+                                ></video>
+                              } @else {
+                                <div class="wa-media__placeholder">
+                                  <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
+                                </div>
+                              }
                             } @else {
                               <div class="wa-media__placeholder">
                                 <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
                               </div>
                             }
-                          } @else {
-                            <div class="wa-media__placeholder">
-                              <mat-icon class="wa-media__icon">{{ getContentTypeIcon(content) }}</mat-icon>
-                            </div>
-                          }
+                          </div>
+                        }
+
+                        <div class="wa-msg wa-msg--content">
+                          <span class="wa-msg__text">{{ content.description || '[CONTENT_DESCRIPTION]' }}</span>
+                          <span class="wa-msg__subcopy"
+                            >Ao concluir o conteúdo, solicite o próximo o quanto antes!</span
+                          >
+                          <div class="wa-ctalist">
+                            <span class="wa-cta">↗ Receber conteúdo</span>
+                            <span class="wa-cta">↗ Suporte</span>
+                          </div>
+                        </div>
+                      } @else {
+                        <div class="wa-msg wa-msg--quiz">
+                          <span>🗒️ Olá {{ previewUserFirstName || '[USER_FIRST_NAME]' }}!</span>
+                          <span class="wa-msg__quiz-name">{{ content.name || '[QUIZ_NAME]' }}</span>
+                          <span class="wa-msg__quiz-desc">{{ content.description || '[QUIZ_DESCRIPTION]' }}</span>
+                          <span class="wa-msg__quiz-link">
+                            <strong
+                              >👇 Responda {{ isEvaluativeQuiz(content) ? 'o quiz' : 'a pesquisa' }} por aqui:</strong
+                            >
+                            <span>{{ getContentSource(content) || 'keeps.page.link/[QUIZ_LINK]' }}</span>
+                          </span>
+                          <div class="wa-ctalist">
+                            <span class="wa-cta">↗ Receber conteúdo</span>
+                            <span class="wa-cta">↗ Suporte</span>
+                          </div>
                         </div>
                       }
-
-                      <div class="wa-msg wa-msg--content">
-                        <span class="wa-msg__text">{{ content.description || '[CONTENT_DESCRIPTION]' }}</span>
-                        <span class="wa-msg__subcopy">Ao concluir o conteúdo, solicite o próximo o quanto antes!</span>
-                        <div class="wa-ctalist">
-                          <span class="wa-cta">↗ Receber conteúdo</span>
-                          <span class="wa-cta">↗ Suporte</span>
-                        </div>
-                      </div>
-                    } @else {
-                      <div class="wa-msg wa-msg--quiz">
-                        <span>🗒️ Olá {{ previewUserFirstName || '[USER_FIRST_NAME]' }}!</span>
-                        <span class="wa-msg__quiz-name">{{ content.name || '[QUIZ_NAME]' }}</span>
-                        <span class="wa-msg__quiz-desc">{{ content.description || '[QUIZ_DESCRIPTION]' }}</span>
-                        <span class="wa-msg__quiz-link">
-                          <strong
-                            >👇 Responda {{ isEvaluativeQuiz(content) ? 'o quiz' : 'a pesquisa' }} por aqui:</strong
-                          >
-                          <span>{{ getContentSource(content) || 'keeps.page.link/[QUIZ_LINK]' }}</span>
-                        </span>
-                        <div class="wa-ctalist">
-                          <span class="wa-cta">↗ Receber conteúdo</span>
-                          <span class="wa-cta">↗ Suporte</span>
-                        </div>
-                      </div>
-                    }
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          }
+              </article>
+            }
+          </div>
+
+          <div class="content-inserter content-inserter--bottom content-inserter--expanded">
+            <button
+              class="content-builder__add-button"
+              mat-stroked-button
+              type="button"
+              [matMenuTriggerFor]="contentTypeMenu"
+              (menuOpened)="setAddMenuIndex()"
+              [disabled]="isDisabled"
+            >
+              <mat-icon>add</mat-icon>
+              <span>Adicionar</span>
+            </button>
+          </div>
+        }
+
+        <!-- Zone connector: content → end -->
+        <div class="system-flow-zone-connector system-flow-zone-connector--end">
+          <div class="system-flow-zone-connector__line"></div>
         </div>
 
-        <div class="content-inserter content-inserter--bottom content-inserter--expanded">
+        <!-- System cards: course end -->
+        <div class="system-flow-group">
+          <div
+            class="system-flow-card"
+            [class.system-flow-card--active]="selectedSystemCardId === 'certificate-ready'"
+            (click)="onSelectSystemCard('certificate-ready')"
+          >
+            <div class="system-flow-card__inner">
+              <div class="wa-msg">
+                <span>{{ getRenderedSystemMessage('certificate_ready_message') }}</span>
+                <div class="wa-ctalist">
+                  <span class="wa-cta">↗ Emitir Certificado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-flow-connector"></div>
+
+          <div
+            class="system-flow-card"
+            [class.system-flow-card--active]="selectedSystemCardId === 'course-completed'"
+            (click)="onSelectSystemCard('course-completed')"
+          >
+            <div class="system-flow-card__inner">
+              <div class="wa-file">
+                <div class="wa-file__fallback">
+                  <div class="wa-file__icon">
+                    <mat-icon>picture_as_pdf</mat-icon>
+                  </div>
+                  <span class="wa-file__name">certificado_{{ course?.name || '[COURSE_NAME]' }}</span>
+                </div>
+              </div>
+              <div class="wa-msg">
+                <span>{{ getRenderedSystemMessage('course_completed_message') }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-flow-group__label system-flow-group__label--foot">
+            <mat-icon>auto_awesome</mat-icon>
+            Automático — conclusão do curso
+          </div>
+        </div>
+      } @else {
+        <!-- List view -->
+        <div class="content-list-view">
+          <!-- System cards: início do curso -->
+          @for (card of systemMessageCards.slice(0, 2); track card.id) {
+            <div
+              class="content-list-row content-list-row--system"
+              [class.content-list-row--active]="selectedSystemCardId === card.id"
+              (click)="onSelectSystemCard(card.id)"
+            >
+              <div class="content-list-row__icon content-list-row__icon--system">
+                <mat-icon>auto_awesome</mat-icon>
+              </div>
+              <div class="content-list-row__body">
+                <span class="content-list-row__title">{{ card.title }}</span>
+                <span class="content-list-row__badge">Automático</span>
+              </div>
+              <mat-icon class="content-list-row__chevron">chevron_right</mat-icon>
+            </div>
+          }
+
+          <!-- User contents -->
+          <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="content-list-droppable">
+            @for (content of localContents; track content.id) {
+              <div
+                class="content-list-row"
+                [class.content-list-row--active]="selectedContentId === content.id"
+                cdkDrag
+                [cdkDragDisabled]="isDisabled"
+                (click)="onSelectContent(content)"
+              >
+                <mat-icon cdkDragHandle class="content-list-row__drag">drag_indicator</mat-icon>
+                <div class="content-list-row__icon">
+                  <mat-icon>{{ getContentTypeIcon(content) }}</mat-icon>
+                </div>
+                <div class="content-list-row__body">
+                  <span class="content-list-row__title">{{ content.name || getContentPreviewTitle(content) }}</span>
+                  <span class="content-list-row__badge">{{ getContentBadge(content) }}</span>
+                </div>
+                <mat-icon class="content-list-row__chevron">chevron_right</mat-icon>
+              </div>
+            }
+          </div>
+
           <button
-            class="content-builder__add-button"
-            mat-stroked-button
+            class="content-list-row content-list-row--add"
             type="button"
             [matMenuTriggerFor]="contentTypeMenu"
             (menuOpened)="setAddMenuIndex()"
             [disabled]="isDisabled"
           >
             <mat-icon>add</mat-icon>
-            <span>Adicionar</span>
+            <span>Adicionar conteúdo</span>
           </button>
+
+          <!-- System cards: conclusão do curso -->
+          @for (card of systemMessageCards.slice(2); track card.id) {
+            <div
+              class="content-list-row content-list-row--system"
+              [class.content-list-row--active]="selectedSystemCardId === card.id"
+              (click)="onSelectSystemCard(card.id)"
+            >
+              <div class="content-list-row__icon content-list-row__icon--system">
+                <mat-icon>auto_awesome</mat-icon>
+              </div>
+              <div class="content-list-row__body">
+                <span class="content-list-row__title">{{ card.title }}</span>
+                <span class="content-list-row__badge">Automático</span>
+              </div>
+              <mat-icon class="content-list-row__chevron">chevron_right</mat-icon>
+            </div>
+          }
         </div>
       }
-
-      <!-- Zone connector: content → end -->
-      <div class="system-flow-zone-connector system-flow-zone-connector--end">
-        <div class="system-flow-zone-connector__line"></div>
-      </div>
-
-      <!-- System cards: course end -->
-      <div class="system-flow-group">
-        <div
-          class="system-flow-card"
-          [class.system-flow-card--active]="selectedSystemCardId === 'certificate-ready'"
-          (click)="onSelectSystemCard('certificate-ready')"
-        >
-          <div class="system-flow-card__inner">
-            <div class="wa-msg">
-              <span>{{ getRenderedSystemMessage('certificate_ready_message') }}</span>
-              <div class="wa-ctalist">
-                <span class="wa-cta">↗ Emitir Certificado</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="system-flow-connector"></div>
-
-        <div
-          class="system-flow-card"
-          [class.system-flow-card--active]="selectedSystemCardId === 'course-completed'"
-          (click)="onSelectSystemCard('course-completed')"
-        >
-          <div class="system-flow-card__inner">
-            <div class="wa-file">
-              <div class="wa-file__fallback">
-                <div class="wa-file__icon">
-                  <mat-icon>picture_as_pdf</mat-icon>
-                </div>
-                <span class="wa-file__name">certificado_{{ course?.name || '[COURSE_NAME]' }}</span>
-              </div>
-            </div>
-            <div class="wa-msg">
-              <span>{{ getRenderedSystemMessage('course_completed_message') }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="system-flow-group__label system-flow-group__label--foot">
-          <mat-icon>auto_awesome</mat-icon>
-          Automático — conclusão do curso
-        </div>
-      </div>
     </div>
 
     @if (selectedContent; as content) {

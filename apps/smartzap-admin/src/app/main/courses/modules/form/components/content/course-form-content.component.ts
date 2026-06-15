@@ -10,8 +10,9 @@ import {
   OnDestroy,
   Output,
   inject,
+  signal,
 } from '@angular/core';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Content, Course, EVALUATIVE_TYPE_ID, Question } from 'app/main/courses/model';
 import {
@@ -99,6 +100,7 @@ type SystemMessageCardConfig = {
     TranslocoPipe,
     CdkDropList,
     CdkDrag,
+    CdkDragHandle,
     KpSafeUrlPipe,
   ],
 })
@@ -124,6 +126,7 @@ export class CourseFormContentComponent implements OnDestroy {
   draftSystemMessages: Partial<Record<SystemMessageFieldKey, string>> = {};
   addMenuIndex: number | null = null;
   pendingInsertIndex: number | null = null;
+  viewMode = signal<'timeline' | 'list'>('timeline');
   private readonly autosave$ = new Subject<void>();
   private readonly learnContentPreviewById: Record<string, LearnContent> = {};
   private readonly learnContentRequesting = new Set<string>();
@@ -374,6 +377,10 @@ export class CourseFormContentComponent implements OnDestroy {
 
   setAddMenuIndex(insertAt?: number): void {
     this.addMenuIndex = insertAt ?? null;
+  }
+
+  toggleViewMode(): void {
+    this.viewMode.update((mode) => (mode === 'timeline' ? 'list' : 'timeline'));
   }
 
   onRemoveContent(content: Content): void {
