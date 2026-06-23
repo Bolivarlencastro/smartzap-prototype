@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SmartZap Classroom — Protótipo Navegável</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --bg:       #0C1620;
+  --surface:  #132030;
+  --surface2: #1B2D3F;
+  --border:   #243545;
+  --text:     #D8E4EE;
+  --dim:      #5E7D92;
+  --accent:   #F5A623;
+  --done:     #35C880;
+  --danger:   #EF5350;
+  --info:     #5AABCD;
+  --ph-bg:    #EEF1F5;
+  --ph-white: #FFFFFF;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body {
+  height:100%; overflow:hidden;
+  background:var(--bg); color:var(--text);
+  font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button { font-family:inherit; touch-action:manipulation; }
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+/* ── MATERIAL SYMBOLS ────────────────────────────── */
+.ms {
+  font-family:'Material Symbols Outlined';
+  font-weight:normal; font-style:normal;
+  font-size:20px; line-height:1;
+  letter-spacing:normal; text-transform:none;
+  display:inline-flex; align-items:center; justify-content:center;
+  white-space:nowrap; direction:ltr;
+  -webkit-font-smoothing:antialiased;
+  user-select:none;
+  font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;
+}
+.ms.fill { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20; }
+.ms.sz16 { font-size:16px; font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20; }
+.ms.sz24 { font-size:24px; font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+.ms.sz24.fill { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+.ms.sz32 { font-size:32px; font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 48; }
+.ms.sz32.fill { font-variation-settings:'FILL' 1,'wght' 300,'GRAD' 0,'opsz' 48; }
+.ms.sz40 { font-size:40px; font-variation-settings:'FILL' 1,'wght' 300,'GRAD' 0,'opsz' 48; }
+
+/* ── LAYOUT ─────────────────────────────────────── */
+.layout {
+  display:grid;
+  grid-template-columns:272px 1fr 272px;
+  height:100dvh;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────── */
+.sidebar {
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.sb-header {
+  padding:18px 18px 14px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sb-logo { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+.logo-mark {
+  width:28px; height:28px; background:var(--accent); border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:800; color:#fff; flex-shrink:0;
+}
+.logo-name { font-size:14px; font-weight:700; letter-spacing:-.01em; }
+.sb-sub { font-size:11px; color:var(--dim); }
+.sb-body { flex:1; overflow-y:auto; padding:10px 0 16px; }
+.sg-label {
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--dim); padding:12px 18px 6px;
+}
+.sg-divider { height:1px; background:var(--border); margin:8px 18px; }
+.sc-btn {
+  display:flex; align-items:center; gap:10px; width:100%;
+  padding:9px 18px; background:none; border:none; cursor:pointer;
+  text-align:left; transition:background .1s; border-left:3px solid transparent;
+}
+.sc-btn:hover { background:var(--surface2); }
+.sc-btn.active { background:rgba(245,166,35,.08); border-left-color:var(--accent); }
+.sc-icon {
+  width:30px; height:30px; border-radius:8px; background:var(--surface2);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; color:var(--dim);
+}
+.sc-btn.active .sc-icon { background:rgba(245,166,35,.15); color:var(--accent); }
+.sc-info { flex:1; min-width:0; }
+.sc-label {
+  font-size:12.5px; font-weight:600; color:var(--text);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.sc-btn.active .sc-label { color:var(--accent); }
+.sc-desc {
+  font-size:11px; color:var(--dim); margin-top:1px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.sc-badge {
+  font-size:10px; font-weight:700; padding:2px 6px;
+  border-radius:4px; background:var(--surface2); color:var(--dim); flex-shrink:0;
+}
+.sc-btn.active .sc-badge { background:rgba(245,166,35,.15); color:var(--accent); }
+
+/* ── STAGE ─────────────────────────────────────── */
+.stage {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:16px 24px; gap:10px; overflow:hidden;
+}
+.stage-label {
+  font-size:12px; color:var(--dim);
+  display:flex; align-items:center; gap:8px;
+}
+.stage-label .sl-name { color:var(--text); font-weight:600; }
+.stage-label .sl-screen {
+  font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:2px 8px; border-radius:4px; background:var(--surface2); color:var(--dim);
+}
+.stage-label .sl-screen.viewer    { background:rgba(245,166,35,.12); color:var(--accent); }
+.stage-label .sl-screen.completed { background:rgba(53,200,128,.10); color:var(--done); }
+
+/* ── PHONE FRAME ─────────────────────────────────── */
+.phone {
+  width:375px;
+  background:#0D1620;
+  border-radius:46px;
+  padding:14px;
+  box-shadow:0 0 0 2px #1B2F40, 0 50px 100px rgba(0,0,0,.65),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  flex-shrink:0;
+}
+.phone-notch {
+  width:88px; height:26px; background:#0D1620;
+  border-radius:0 0 16px 16px; margin:0 auto 8px;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.notch-dot { width:8px; height:8px; border-radius:50%; background:#1B2F40; }
+.phone-screen {
+  background:var(--ph-bg); border-radius:30px;
+  overflow:hidden; height:672px; position:relative;
+}
+
+/* ── STATUS BAR ─────────────────────────────────── */
+.status-bar {
+  background:var(--ph-white); padding:10px 16px 4px;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-shrink:0;
+}
+.status-time { font-size:13px; font-weight:700; color:#0F1923; letter-spacing:-.02em; }
+.s-icons { display:flex; align-items:center; gap:6px; }
+.battery {
+  width:22px; height:11px; border:1.5px solid #0F1923;
+  border-radius:2.5px; position:relative; opacity:.8;
+}
+.battery::after {
+  content:''; position:absolute; right:-4px; top:50%;
+  transform:translateY(-50%); width:2px; height:6px;
+  background:#0F1923; border-radius:0 1px 1px 0;
+}
+.battery-fill {
+  position:absolute; inset:2px; background:#0F1923;
+  border-radius:1px; width:75%;
+}
+
+/* ── SCREENS ─────────────────────────────────────── */
+.screen {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  background:var(--ph-bg);
+  transition:transform .3s cubic-bezier(.4,0,.2,1), opacity .28s ease;
+}
+.screen.hidden   { transform:translateX(100%); opacity:0; pointer-events:none; }
+.screen.out-left { transform:translateX(-28%); opacity:0; pointer-events:none; }
+
+/* ── TOP BAR ─────────────────────────────────────── */
+.topbar {
+  background:var(--ph-white); padding:8px 16px 10px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid #E5E8EE; flex-shrink:0; gap:8px;
+}
+.topbar-title { font-size:14px; font-weight:700; color:#0F1923; }
+.topbar-sub   { font-size:11px; color:#8A9BAA; margin-top:1px; }
+.topbar-stat  { font-size:12px; color:#8A9BAA; font-weight:500; white-space:nowrap; }
+.back-btn {
+  background:none; border:none; color:#007AFF;
+  cursor:pointer; padding:0; display:flex; align-items:center;
+  flex-shrink:0; gap:2px; font-size:13px; font-weight:500;
+}
+.back-btn .ms { font-size:18px; }
+
+/* ── PROGRESS ─────────────────────────────────────── */
+.prog-rail { height:4px; background:#DDE1E8; flex-shrink:0; }
+.prog-fill { height:100%; background:linear-gradient(90deg,#35C880,#29AF6B); transition:width .5s ease; }
+
+/* ── CONTENT LIST ─────────────────────────────────── */
+.c-list { flex:1; overflow-y:auto; padding:6px 0; }
+.c-item {
+  display:flex; align-items:center; gap:12px;
+  padding:11px 16px; background:var(--ph-white); margin-bottom:2px;
+  cursor:pointer; transition:background .1s; user-select:none;
+}
+.c-item:active { background:#F4F6FA; }
+.c-item.is-current { background:#FFFBF0; }
+.c-item.is-locked  { opacity:.4; cursor:not-allowed; }
+.ci-ico {
+  width:38px; height:38px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.ci-ico.done    { background:#E8F8F0; color:#1A9B5E; }
+.ci-ico.current { background:#FFF7E0; color:#A86E00; }
+.ci-ico.pending { background:#EEF0F5; color:#8A9BAA; }
+.ci-ico.locked  { background:#F5EAEA; color:#B04040; }
+.ci-body { flex:1; min-width:0; }
+.ci-name {
+  font-size:13px; font-weight:600; color:#0F1923;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.ci-meta { font-size:11px; color:#8A9BAA; margin-top:2px; }
+.ci-badge { font-size:10px; font-weight:700; padding:2px 8px; border-radius:5px; flex-shrink:0; }
+.ci-badge.done    { background:#E8F8F0; color:#1A9B5E; }
+.ci-badge.current { background:#FFF3CC; color:#A86E00; }
+.ci-badge.pending { background:#EEF0F5; color:#8A9BAA; }
+.ci-badge.locked  { background:#F5EAEA; color:#B04040; }
+
+/* ── CTA ─────────────────────────────────────────── */
+.cta-bar { background:var(--ph-white); padding:12px 16px; border-top:1px solid #E5E8EE; flex-shrink:0; }
+.btn-primary {
+  width:100%; background:var(--accent); color:#fff; border:none;
+  border-radius:12px; padding:13px; font-size:14px; font-weight:700;
+  cursor:pointer; transition:background .1s, transform .08s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.btn-primary:active { background:#D9901A; transform:scale(.99); }
+.btn-primary.green  { background:var(--done); }
+.btn-primary.green:active { background:#29AF6B; }
+
+/* ── VIEWER MEDIA ────────────────────────────────── */
+.viewer-video {
+  background:#0F1923; aspect-ratio:16/9;
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden; flex-shrink:0;
+}
+.viewer-video::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,#152030,#0F1923);
+}
+.play-btn {
+  width:54px; height:54px; background:rgba(245,166,35,.9); border-radius:50%;
+  border:none; cursor:pointer; position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .12s, background .1s; color:#fff;
+}
+.play-btn:hover { transform:scale(1.1); background:rgba(245,166,35,1); }
+
+.scrubber { background:#0F1923; padding:10px 16px 12px; flex-shrink:0; }
+.scrubber-track {
+  height:3px; background:#243545; border-radius:2px; margin-bottom:7px;
+}
+.scrubber-fill { height:100%; background:var(--accent); border-radius:2px; width:33%; }
+.scrubber-times {
+  display:flex; justify-content:space-between;
+  font-size:11px; color:#5E7D92; font-family:"Menlo",monospace;
+}
+
+/* PDF */
+.viewer-pdf {
+  background:#E8EAF0; margin:12px 16px 0; border-radius:6px;
+  border:1px solid #D0D4DC; flex-shrink:0;
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:8px; padding:24px;
+}
+.pdf-name  { font-size:12px; font-weight:600; color:#4A6070; text-align:center; }
+.pdf-pages { font-size:11px; color:#8A9BAA; }
+
+/* IMAGE */
+.viewer-image {
+  background:#1C2A38; aspect-ratio:16/9;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; color:rgba(255,255,255,.15);
+}
+
+/* AUDIO */
+.viewer-audio {
+  background:linear-gradient(135deg,#1C2A38,#0F1923);
+  padding:20px 20px 16px;
+  display:flex; flex-direction:column; align-items:center; gap:14px; flex-shrink:0;
+}
+.audio-wave { display:flex; align-items:center; gap:3px; height:38px; }
+.w-bar {
+  width:3px; background:var(--accent); border-radius:2px;
+  transform-origin:bottom; animation:wave .7s ease-in-out infinite;
+}
+@keyframes wave { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(1.7)} }
+.audio-ctl { display:flex; align-items:center; gap:20px; }
+.audio-skip {
+  background:none; border:none; color:#8A9BAA; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  font-size:10px;
+}
+.audio-skip .ms { font-size:22px; }
+.audio-play {
+  width:46px; height:46px; background:var(--accent); border-radius:50%;
+  border:none; display:flex; align-items:center; justify-content:center;
+  cursor:pointer; color:#fff;
+}
+.audio-play .ms { font-size:26px; }
+
+/* QUIZ */
+.quiz-body { flex:1; overflow-y:auto; padding:16px; background:var(--ph-bg); }
+.quiz-num {
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px;
+}
+.quiz-q { font-size:14.5px; font-weight:600; color:#0F1923; line-height:1.55; margin-bottom:18px; }
+.quiz-opt {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:11px 13px; background:var(--ph-white);
+  border:2px solid #E5E8EE; border-radius:10px; margin-bottom:9px;
+  cursor:pointer; transition:border-color .12s, background .12s; user-select:none;
+}
+.quiz-opt:hover { border-color:#CBD2DC; }
+.quiz-opt.selected { border-color:var(--accent); background:#FFFBF0; }
+.quiz-opt.correct  { border-color:var(--done);   background:#EDFAF4; }
+.quiz-opt.wrong    { border-color:var(--danger);  background:#FEF0EF; }
+.opt-bul {
+  width:22px; height:22px; border-radius:50%;
+  border:2px solid #CBD2DC; display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:700; color:#8A9BAA; flex-shrink:0; margin-top:2px;
+  transition:border-color .12s, background .12s;
+}
+.quiz-opt.selected .opt-bul { border-color:var(--accent); background:var(--accent); color:#fff; }
+.quiz-opt.correct  .opt-bul { border-color:var(--done);   background:var(--done);   color:#fff; }
+.quiz-opt.wrong    .opt-bul { border-color:var(--danger);  background:var(--danger); color:#fff; }
+.opt-txt { font-size:13px; color:#0F1923; line-height:1.5; }
+
+/* VIEWER INFO & DESC */
+.viewer-info {
+  background:var(--ph-white); padding:13px 16px;
+  border-bottom:1px solid #E5E8EE; flex-shrink:0;
+}
+.viewer-title  { font-size:15px; font-weight:700; color:#0F1923; }
+.viewer-course { font-size:12px; color:#8A9BAA; margin-top:2px; }
+.viewer-desc {
+  background:var(--ph-white); padding:12px 16px;
+  font-size:13px; color:#4A6070; line-height:1.6; flex:1; overflow-y:auto;
+}
+
+/* VIEWER NAV */
+.viewer-nav {
+  background:var(--ph-white); padding:10px 16px;
+  border-top:1px solid #E5E8EE;
+  display:grid; grid-template-columns:1fr 1fr; gap:8px; flex-shrink:0;
+}
+.btn-nav {
+  padding:10px 8px; border-radius:10px; font-size:13px; font-weight:600;
+  border:1.5px solid #E5E8EE; background:var(--ph-white); cursor:pointer;
+  color:#0F1923; display:flex; align-items:center; justify-content:center; gap:4px;
+  transition:background .1s;
+}
+.btn-nav:active    { background:#F4F6FA; }
+.btn-nav:disabled  { opacity:.3; cursor:not-allowed; }
+.btn-nav.next      { background:var(--accent); border-color:var(--accent); color:#fff; }
+.btn-nav.next:active { background:#D9901A; }
+.btn-nav.finish    { background:var(--done); border-color:var(--done); color:#fff; }
+
+/* EXPIRED OVERLAY */
+.expired-overlay {
+  position:absolute; inset:0;
+  background:rgba(8,14,22,.88); backdrop-filter:blur(6px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:28px; gap:14px; z-index:10;
+}
+.exp-icon { color:var(--accent); }
+.exp-title { font-size:18px; font-weight:700; color:#fff; text-align:center; }
+.exp-text { font-size:13.5px; color:#8A9BAA; text-align:center; line-height:1.6; }
+.btn-ghost {
+  background:none; border:1.5px solid #243545; color:#8A9BAA;
+  border-radius:10px; padding:10px 20px; font-size:13px; font-weight:600;
+  cursor:pointer; margin-top:4px; transition:border-color .1s, color .1s;
+}
+.btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+
+/* COMPLETED */
+.completed-body {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:28px 24px; gap:14px; background:var(--ph-white);
+}
+.done-circle {
+  width:76px; height:76px; border-radius:50%;
+  background:linear-gradient(135deg,#35C880,#29AF6B);
+  display:flex; align-items:center; justify-content:center; color:#fff;
+}
+.done-title {
+  font-size:22px; font-weight:800; color:#0F1923; text-align:center; letter-spacing:-.02em;
+}
+.done-course  { font-size:14px; color:#8A9BAA; text-align:center; }
+.done-stats   { display:flex; gap:24px; margin:6px 0; }
+.done-stat    { text-align:center; }
+.ds-val { font-size:24px; font-weight:800; color:#0F1923; letter-spacing:-.02em; display:block; }
+.ds-lbl { font-size:11px; color:#8A9BAA; display:block; }
+.done-cta { display:flex; flex-direction:column; gap:10px; width:100%; margin-top:4px; }
+.btn-outline {
+  width:100%; background:none; border:1.5px solid #E5E8EE; color:#0F1923;
+  border-radius:12px; padding:12px; font-size:13.5px; font-weight:600;
+  cursor:pointer; transition:background .1s;
+}
+.btn-outline:active { background:#F4F6FA; }
+
+/* ── ANNOTATIONS ─────────────────────────────────── */
+.ann {
+  background:var(--surface); border-left:1px solid var(--border);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.ann-hd { padding:18px 18px 14px; border-bottom:1px solid var(--border); flex-shrink:0; }
+.ann-hd-lbl { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); margin-bottom:6px; }
+.ann-sc-name { font-size:15px; font-weight:700; letter-spacing:-.01em; }
+.ann-body { flex:1; overflow-y:auto; padding:14px 18px 20px; }
+.ann-sec { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin:16px 0 8px; }
+.ann-sec:first-child { margin-top:0; }
+.ann-item { display:flex; align-items:flex-start; gap:8px; margin-bottom:9px; }
+.ann-bul {
+  width:18px; height:18px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:1px;
+}
+.ann-bul.ok   { background:rgba(53,200,128,.15); color:var(--done); }
+.ann-bul.warn { background:rgba(245,166,35,.15);  color:var(--accent); }
+.ann-bul.info { background:rgba(90,171,205,.15);  color:var(--info); }
+.ann-bul.edge { background:rgba(239,83,80,.15);   color:var(--danger); }
+.ann-bul .ms  { font-size:11px; font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 20; }
+.ann-txt { font-size:12.5px; color:var(--dim); line-height:1.55; }
+.ann-empty {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  height:100%; gap:10px; padding:24px;
+}
+.ann-empty-ico { color:var(--dim); opacity:.4; }
+.ann-empty-txt { font-size:13px; color:var(--dim); text-align:center; line-height:1.55; }
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-height:820px) {
+  .phone { transform:scale(.9); transform-origin:top center; }
+  .stage { justify-content:flex-start; padding-top:8px; }
+}
+@media (max-height:720px) {
+  .phone { transform:scale(.78); }
+}
+@media (max-width:1120px) {
+  .layout { grid-template-columns:260px 1fr 0; }
+  .ann { display:none; }
+}
+
+/* ── MOBILE: apenas a interface, sem frame ───────── */
+@media (max-width:760px) {
+  html,body { overflow:hidden; background:var(--ph-bg); }
+  .layout { grid-template-columns:1fr; }
+  .sidebar, .ann { display:none !important; }
+  .stage { padding:0; align-items:stretch; justify-content:flex-start; }
+  .stage-label { display:none; }
+
+  /* Phone preenche o viewport completo via fixed */
+  .phone {
+    position:fixed; inset:0;
+    width:100%; height:100%;
+    background:none; border-radius:0; padding:0;
+    box-shadow:none; transform:none !important;
+  }
+  .phone-notch { display:none; }
+  .phone-screen {
+    height:100%; border-radius:0;
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .status-bar { display:none; }
+
+  .c-item { padding:13px 16px; }
+  .btn-primary { padding:15px; }
+  .btn-nav { padding:12px 8px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ── SIDEBAR ─────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sb-header">
+      <div class="sb-logo">
+        <div class="logo-mark">SZ</div>
+        <div class="logo-name">SmartZap</div>
+      </div>
+      <div class="sb-sub">Classroom · Protótipo Navegável</div>
+    </div>
+    <div class="sb-body" id="sb-body"></div>
+  </aside>
+
+  <!-- ── STAGE ───────────────────────────────── -->
+  <main class="stage">
+    <div class="stage-label" id="stage-label">
+      <span>Selecione um cenário</span>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-dot"></div></div>
+      <div class="phone-screen" id="phone-screen"></div>
+    </div>
+  </main>
+
+  <!-- ── ANNOTATIONS ─────────────────────────── -->
+  <aside class="ann">
+    <div class="ann-hd">
+      <div class="ann-hd-lbl">Anotações do cenário</div>
+      <div class="ann-sc-name" id="ann-name">—</div>
+    </div>
+    <div class="ann-body" id="ann-body">
+      <div class="ann-empty">
+        <div class="ann-empty-ico"><span class="ms sz32">lightbulb</span></div>
+        <div class="ann-empty-txt">Selecione um cenário para ver o que testar e os edge cases.</div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+<script>
+// ═══════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════
+
+// Content type metadata → Material Symbol icon names
+const T = {
+  VIDEO: { icon:'videocam',    label:'Vídeo' },
+  PDF:   { icon:'description', label:'PDF' },
+  IMAGE: { icon:'image',       label:'Imagem' },
+  AUDIO: { icon:'headphones',  label:'Áudio' },
+  QUIZ:  { icon:'quiz',        label:'Quiz' },
+};
+
+// Sidebar scenario icon → Material Symbol name
+const SC_ICONS = {
+  'in-progress':  'menu_book',
+  'just-started': 'rocket_launch',
+  'almost-done':  'flag',
+  'completed':    'emoji_events',
+  'expired':      'timer_off',
+  'long':         'library_books',
+  'single':       'looks_one',
+  'v-video':      'videocam',
+  'v-pdf':        'description',
+  'v-quiz':       'quiz',
+  'v-audio':      'headphones',
+};
+
+const DESCS = {
+  VIDEO: 'Assista ao vídeo completo. Quando terminar, clique em Próximo para avançar no curso.',
+  PDF:   'Leia o documento. Use o indicador de páginas para acompanhar seu progresso na leitura.',
+  IMAGE: 'Observe o infográfico com atenção. Clique em Próximo quando estiver pronto.',
+  AUDIO: 'Ouça o podcast na íntegra. Você pode pausar e retomar quando quiser.',
+};
+
+const BASE8 = [
+  { id:'c1', name:'Boas-vindas ao curso',       order:1, type:'VIDEO', dur:180 },
+  { id:'c2', name:'O que é agilidade?',          order:2, type:'VIDEO', dur:300 },
+  { id:'c3', name:'Manifesto Ágil',              order:3, type:'PDF',   dur:120 },
+  { id:'c4', name:'Sprint Planning na prática',  order:4, type:'VIDEO', dur:480 },
+  { id:'c5', name:'Daily Standup eficiente',     order:5, type:'VIDEO', dur:240 },
+  { id:'c6', name:'A arte da Retrospectiva',     order:6, type:'AUDIO', dur:360 },
+  { id:'c7', name:'Ferramentas de gestão ágil',  order:7, type:'IMAGE', dur:180 },
+  { id:'c8', name:'Avaliação final',             order:8, type:'QUIZ',  dur:600 },
+];
+
+const LONG22 = Array.from({length:22},(_,i)=>{
+  const names=['Introdução ao Agile','Scrum Framework','Papéis no Scrum','Sprint e Time-boxing',
+    'Product Backlog','Sprint Planning','Daily Scrum','Sprint Review','Retrospectiva',
+    'Definition of Done','User Stories','Story Points','Velocity e Métricas','Kanban vs Scrum',
+    'Lean Thinking','Extreme Programming','SAFe Framework','OKRs e Agile',
+    'Gestão de stakeholders','Agilidade em escala','Cases de sucesso','Avaliação final'];
+  const types=['VIDEO','VIDEO','PDF','VIDEO','AUDIO','VIDEO','IMAGE','QUIZ'];
+  return { id:`c${i+1}`, name:names[i], order:i+1, type:types[i%8], dur:180+(i%4)*120 };
+});
+
+const QUIZ_DATA = {
+  q:'Qual é o principal objetivo de uma Sprint Retrospectiva?',
+  opts:[
+    {id:'a', t:'Planejar os itens do próximo sprint backlog com a equipe'},
+    {id:'b', t:'Inspecionar como foi o sprint e identificar melhorias para o processo da equipe'},
+    {id:'c', t:'Revisar os incrementos de produto com os stakeholders e coletores de feedback'},
+    {id:'d', t:'Estimar o esforço de cada história de usuário para o próximo ciclo'},
+  ],
+  correct:'b',
+};
+
+function mk(arr, doneN, curId) {
+  return arr.map(c=>({
+    ...c,
+    status: c.id===curId ? 'CURRENT' : c.order<=doneN ? 'DONE' : 'PENDING'
+  }));
+}
+function fmtDur(s) { const m=Math.floor(s/60),sec=s%60; return `${m}min${sec>0?' '+sec+'s':''}`; }
+function fmtDate(str) { return new Date(str).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'}); }
+
+const SCENARIOS = [
+  // ── FLUXOS PRINCIPAIS ──
+  { id:'in-progress', group:'Fluxos principais', label:'Em andamento', badge:'3/8',
+    desc:'Fluxo típico · usuário no meio do curso', screen:'overview',
+    enr:{ progress:3/8, end:'2026-09-15', cur:'c4', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,3,'c4'),
+    ann:{ ctx:'Cenário mais comum. Usuário com progresso parcial que abre o link pelo WhatsApp.',
+      items:[
+        {t:'ok',  tx:'Barra de progresso em 37,5% — 3 de 8 concluídos'},
+        {t:'ok',  tx:'Itens 1–3 com check_circle verde — clicáveis para reassistir'},
+        {t:'warn',tx:'Item 4 destacado em âmbar "Agora" — toque para abrir o viewer'},
+        {t:'ok',  tx:'CTA "Continuar de onde parei" no rodapé'},
+        {t:'info',tx:'Itens pendentes também são clicáveis (navegação livre)'},
+      ]}},
+  { id:'just-started', group:'Fluxos principais', label:'Iniciando agora', badge:'0/8',
+    desc:'Primeiro acesso · nenhuma atividade', screen:'overview',
+    enr:{ progress:0, end:'2026-09-15', cur:null, name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,0,null),
+    ann:{ ctx:'Usuário recém-matriculado. Primeiro acesso — zero atividades registradas.',
+      items:[
+        {t:'ok',  tx:'Barra de progresso vazia (0%)'},
+        {t:'warn',tx:'Edge: sem CURRENT — CTA vira "Começar pelo primeiro conteúdo"'},
+        {t:'ok',  tx:'Todos os 8 itens com estado Pendente'},
+        {t:'info',tx:'CTA abre o item 1 (primeiro da lista)'},
+      ]}},
+  { id:'almost-done', group:'Fluxos principais', label:'Quase concluído', badge:'7/8',
+    desc:'Só a avaliação final resta', screen:'overview',
+    enr:{ progress:7/8, end:'2026-09-15', cur:'c8', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,7,'c8'),
+    ann:{ ctx:'Reta final: 7 conteúdos feitos, só o quiz de avaliação permanece.',
+      items:[
+        {t:'ok',  tx:'Barra de progresso em 87,5%'},
+        {t:'warn',tx:'Item 8 (Quiz) destacado como "Agora"'},
+        {t:'ok',  tx:'CTA abre direto o quiz interativo'},
+        {t:'info',tx:'Confirmar resposta → botão "Concluir curso" aparece'},
+      ]}},
+  { id:'completed', group:'Fluxos principais', label:'Concluído', badge:'8/8',
+    desc:'Tela de conclusão com certificado', screen:'completed',
+    enr:{ progress:1, end:'2026-09-15', cur:null, name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,8,null),
+    ann:{ ctx:'Todos os conteúdos concluídos. Tela de celebração com estatísticas.',
+      items:[
+        {t:'ok',  tx:'Ícone check em círculo verde'},
+        {t:'ok',  tx:'Estatísticas: 8 conteúdos · 41 minutos · 100%'},
+        {t:'warn',tx:'CTA principal: "Ver meu certificado"'},
+        {t:'info',tx:'"Ver todos os conteúdos" retorna à overview'},
+      ]}},
+  // ── EDGE CASES ──
+  { id:'expired', group:'Edge cases', label:'Enrollment expirado', badge:'3/8',
+    desc:'end_date passado · acesso bloqueado', screen:'overview', expired:true,
+    enr:{ progress:3/8, end:'2026-01-10', cur:'c4', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,3,'c4'),
+    ann:{ ctx:'O prazo do enrollment passou. Conteúdos feitos são revisáveis; pendentes, bloqueados.',
+      items:[
+        {t:'edge',tx:'Overlay escuro com ícone timer_off e data de expiração'},
+        {t:'edge',tx:'Itens PENDING com lock_outline e opacity reduzida'},
+        {t:'warn',tx:'Itens DONE ainda abrem o viewer normalmente'},
+        {t:'info',tx:'"Ver o que já fiz" dispensa o overlay e revela os bloqueios'},
+      ]}},
+  { id:'long', group:'Edge cases', label:'Curso longo (22)', badge:'11/22',
+    desc:'22 conteúdos · scroll e legibilidade', screen:'overview',
+    enr:{ progress:11/22, end:'2026-12-31', cur:'c12', name:'Formação Completa em Gestão Ágil' },
+    contents:mk(LONG22,11,'c12'),
+    ann:{ ctx:'22 conteúdos — testa scroll, auto-scroll para o item ativo e truncamento de nomes.',
+      items:[
+        {t:'ok',  tx:'Lista scrollável dentro do phone'},
+        {t:'warn',tx:'Auto-scroll para o item CURRENT (#12) ao carregar'},
+        {t:'edge',tx:'Nomes longos devem ser truncados (text-overflow: ellipsis)'},
+        {t:'ok',  tx:'Barra de progresso em 50%'},
+        {t:'info',tx:'Mix de todos os tipos na mesma lista'},
+      ]}},
+  { id:'single', group:'Edge cases', label:'Conteúdo único', badge:'0/1',
+    desc:'Curso com apenas 1 conteúdo', screen:'overview',
+    enr:{ progress:0, end:'2026-09-15', cur:null, name:'Introdução ao SmartZap' },
+    contents:[{id:'c1',name:'Como usar o SmartZap',order:1,type:'VIDEO',dur:240,status:'PENDING'}],
+    ann:{ ctx:'Curso mínimo. Verifica comportamento dos botões de navegação no viewer.',
+      items:[
+        {t:'edge',tx:'Viewer: botão "← Anterior" desabilitado (primeiro item)'},
+        {t:'edge',tx:'Viewer: "Próximo →" substituto por "Concluir curso ✓"'},
+        {t:'warn',tx:'CTA vira "Começar o conteúdo"'},
+      ]}},
+  // ── TIPOS DE CONTEÚDO ──
+  { id:'v-video', group:'Tipos de conteúdo', label:'Viewer — Vídeo', badge:null,
+    desc:'Sprint Planning · 8 min · com scrubber', screen:'viewer', contentIdx:3,
+    enr:{ progress:3/8, end:'2026-09-15', cur:'c4', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,3,'c4'),
+    ann:{ ctx:'Viewer de vídeo — tipo mais comum no SmartZap.',
+      items:[
+        {t:'ok',  tx:'Área escura com botão play_arrow âmbar centralizado'},
+        {t:'ok',  tx:'Scrubber com tempo atual (2:48) e total (8:00)'},
+        {t:'ok',  tx:'Título, nome do curso e descrição abaixo do player'},
+        {t:'warn',tx:'Navegação: ← Manifesto Ágil (PDF) | Daily Standup → (Vídeo)'},
+      ]}},
+  { id:'v-pdf', group:'Tipos de conteúdo', label:'Viewer — PDF', badge:null,
+    desc:'Manifesto Ágil · 12 páginas', screen:'viewer', contentIdx:2,
+    enr:{ progress:3/8, end:'2026-09-15', cur:'c4', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,3,'c4'),
+    ann:{ ctx:'Viewer de PDF. Preview do documento com ícone description e indicador de páginas.',
+      items:[
+        {t:'ok',  tx:'Área de preview com ícone description e "Página 1 de 12"'},
+        {t:'info',tx:'Este item é DONE (já foi lido) — badge verde na lista'},
+        {t:'warn',tx:'Navegação: ← O que é agilidade? | Sprint Planning → (CURRENT)'},
+      ]}},
+  { id:'v-quiz', group:'Tipos de conteúdo', label:'Viewer — Quiz', badge:null,
+    desc:'Avaliação final · 4 alternativas', screen:'viewer', contentIdx:7,
+    enr:{ progress:7/8, end:'2026-09-15', cur:'c8', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,7,'c8'),
+    ann:{ ctx:'Viewer de quiz interativo. Opções clicáveis com feedback visual.',
+      items:[
+        {t:'ok',  tx:'4 alternativas com bullet A/B/C/D'},
+        {t:'warn',tx:'Selecionar → âmbar; "Confirmar resposta" aparece'},
+        {t:'ok',  tx:'Confirmar → correta fica verde, errada fica vermelha'},
+        {t:'edge',tx:'Último item → "Concluir curso ✓" no lugar de "Próximo"'},
+      ]}},
+  { id:'v-audio', group:'Tipos de conteúdo', label:'Viewer — Áudio', badge:null,
+    desc:'A arte da Retrospectiva · podcast', screen:'viewer', contentIdx:5,
+    enr:{ progress:3/8, end:'2026-09-15', cur:'c4', name:'Liderança Ágil para Gestores' },
+    contents:mk(BASE8,3,'c4'),
+    ann:{ ctx:'Viewer de áudio / podcast. Ondas animadas e controles de reprodução.',
+      items:[
+        {t:'ok',  tx:'Ondas sonoras animadas em CSS'},
+        {t:'ok',  tx:'Controles: replay_10, play_arrow, forward_10'},
+        {t:'ok',  tx:'Scrubber de tempo idêntico ao do vídeo'},
+        {t:'warn',tx:'Este item está PENDING (além do cursor atual)'},
+      ]}},
+];
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+
+const S = { sid:null, screen:null, cidx:0, qsel:null, qconf:false };
+
+function scenario() { return SCENARIOS.find(s=>s.id===S.sid)||null; }
+
+// ═══════════════════════════════════════════════════
+// HELPERS — ICON HTML
+// ═══════════════════════════════════════════════════
+
+function ms(name, extra='') { return `<span class="ms ${extra}">${name}</span>`; }
+function msFill(name, extra='') { return `<span class="ms fill ${extra}">${name}</span>`; }
+
+// Icon for a content item based on type + status
+function ciIconHtml(c) {
+  const tm = T[c.type]||T.VIDEO;
+  if (c.status==='DONE')    return msFill('check_circle','sz24');
+  if (c.status==='CURRENT') return msFill('play_arrow','sz24');
+  if (c.status==='LOCKED')  return ms('lock','sz24');
+  return ms(tm.icon,'sz24');
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — SIDEBAR
+// ═══════════════════════════════════════════════════
+
+function renderSidebar() {
+  const groups=[...new Set(SCENARIOS.map(s=>s.group))];
+  let h='';
+  groups.forEach((g,gi)=>{
+    h+=`<div class="sg-label">${g}</div>`;
+    SCENARIOS.filter(s=>s.group===g).forEach(s=>{
+      const a=s.id===S.sid?'active':'';
+      const icon=SC_ICONS[s.id]||'circle';
+      const b=s.badge?`<span class="sc-badge">${s.badge}</span>`:'';
+      h+=`
+        <button class="sc-btn ${a}" onclick="pick('${s.id}')">
+          <div class="sc-icon">${ms(icon,'sz16')}</div>
+          <div class="sc-info">
+            <div class="sc-label">${s.label}</div>
+            <div class="sc-desc">${s.desc}</div>
+          </div>${b}
+        </button>`;
+    });
+    if(gi<groups.length-1) h+=`<div class="sg-divider"></div>`;
+  });
+  document.getElementById('sb-body').innerHTML=h;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — ANNOTATIONS
+// ═══════════════════════════════════════════════════
+
+function renderAnn(sc) {
+  document.getElementById('ann-name').textContent=sc.label;
+  const BM={
+    ok:  {c:'ok',  i:'check'},
+    warn:{c:'warn',i:'warning'},
+    info:{c:'info',i:'info'},
+    edge:{c:'edge',i:'priority_high'},
+  };
+  let h=`<div class="ann-sec">Contexto</div>
+    <div class="ann-item">
+      <div class="ann-bul info">${ms('info')}</div>
+      <div class="ann-txt">${sc.ann.ctx}</div>
+    </div>
+    <div class="ann-sec">O que observar</div>`;
+  sc.ann.items.forEach(item=>{
+    const b=BM[item.t];
+    h+=`<div class="ann-item"><div class="ann-bul ${b.c}">${ms(b.i)}</div><div class="ann-txt">${item.tx}</div></div>`;
+  });
+  document.getElementById('ann-body').innerHTML=h;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — STAGE LABEL
+// ═══════════════════════════════════════════════════
+
+function renderLabel(sc) {
+  const names={overview:'Overview',viewer:'Viewer',completed:'Concluído'};
+  const cls=S.screen==='overview'?'':S.screen==='completed'?'completed':'viewer';
+  document.getElementById('stage-label').innerHTML=
+    `<span class="sl-name">${sc.label}</span>
+     <span class="sl-screen ${cls}">${names[S.screen]||''}</span>`;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — STATUS BAR
+// ═══════════════════════════════════════════════════
+
+function sbar() {
+  return `<div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="s-icons">
+      ${ms('signal_cellular_alt','sz16')}
+      ${ms('battery_full','sz16')}
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — OVERVIEW
+// ═══════════════════════════════════════════════════
+
+function renderOverview(sc) {
+  const e=sc.enr, pct=Math.round(e.progress*100);
+  const doneN=sc.contents.filter(c=>c.status==='DONE').length;
+  const total=sc.contents.length;
+
+  const items=sc.contents.map((c,idx)=>{
+    const isDone=c.status==='DONE', isCur=c.status==='CURRENT';
+    const tm=T[c.type]||T.VIDEO;
+    const isLocked=sc.expired&&c.status==='PENDING';
+    const iCls=isLocked?'locked':isDone?'done':isCur?'current':'pending';
+    const bCls=isLocked?'locked':isDone?'done':isCur?'current':'pending';
+    const bTxt=isLocked?'Bloqueado':isDone?'Feito':isCur?'Agora':'Pendente';
+    const iconHtml=isLocked?ms('lock','sz24'):ciIconHtml(c);
+    const itemCls=`c-item${isCur?' is-current':''}${isLocked?' is-locked':''}`;
+    const click=isLocked?'':` onclick="openC(${idx})"`;
+    return `
+      <div class="${itemCls}"${click} id="ci-${idx}">
+        <div class="ci-ico ${iCls}">${iconHtml}</div>
+        <div class="ci-body">
+          <div class="ci-name">${c.name}</div>
+          <div class="ci-meta">${tm.label} · ${fmtDur(c.dur)}</div>
+        </div>
+        <span class="ci-badge ${bCls}">${bTxt}</span>
+      </div>`;
+  }).join('');
+
+  const ctaTxt=e.cur?'Continuar de onde parei':'Começar pelo primeiro conteúdo';
+  const ctaIcon=ms('play_arrow','sz24 fill');
+
+  const expOverlay=sc.expired?`
+    <div class="expired-overlay" id="exp-overlay">
+      <div class="exp-icon">${ms('timer_off','sz40')}</div>
+      <div class="exp-title">Seu acesso expirou</div>
+      <div class="exp-text">
+        O prazo deste curso terminou em<br>
+        <strong style="color:#fff">${fmtDate(e.end)}</strong>.
+        <br><br>
+        Conteúdos já feitos ainda estão disponíveis para revisão. Para renovar, fale com seu gestor.
+      </div>
+      <button class="btn-ghost" onclick="dismissExp()">Ver o que já fiz</button>
+    </div>`:'';
+
+  document.getElementById('phone-screen').innerHTML=`
+    <div class="screen" id="s-overview">
+      ${sbar()}
+      <div class="topbar">
+        <div>
+          <div class="topbar-title">${e.name}</div>
+          <div class="topbar-sub">${doneN} de ${total} concluídos</div>
+        </div>
+        <div class="topbar-stat">${pct}%</div>
+      </div>
+      <div class="prog-rail"><div class="prog-fill" style="width:${pct}%"></div></div>
+      <div class="c-list" id="c-list">${items}</div>
+      ${sc.expired?'':
+        `<div class="cta-bar">
+          <button class="btn-primary" onclick="clickCTA()">${ctaIcon}${ctaTxt}</button>
+        </div>`}
+      ${expOverlay}
+    </div>`;
+
+  setTimeout(()=>{
+    const curIdx=sc.contents.findIndex(c=>c.status==='CURRENT');
+    if(curIdx>=0){
+      const el=document.getElementById(`ci-${curIdx}`);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  },120);
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — VIEWER
+// ═══════════════════════════════════════════════════
+
+function renderViewer(sc, idx) {
+  const c=sc.contents[idx];
+  const isFirst=idx===0, isLast=idx===sc.contents.length-1;
+  const mins=Math.floor(c.dur/60), secs=String(c.dur%60).padStart(2,'0');
+
+  const prevBtn=`<button class="btn-nav" ${isFirst?'disabled':''} onclick="openC(${idx-1})">${msFill('chevron_left')} Anterior</button>`;
+  const nextBtn=isLast
+    ? `<button class="btn-nav finish" onclick="finishCourse()">${msFill('check_circle')} Concluir</button>`
+    : `<button class="btn-nav next" onclick="openC(${idx+1})">Próximo ${msFill('chevron_right')}</button>`;
+
+  let media='';
+  if(c.type==='VIDEO'){
+    media=`
+      <div class="viewer-video">
+        <button class="play-btn">${msFill('play_arrow','sz32')}</button>
+      </div>
+      <div class="scrubber">
+        <div class="scrubber-track"><div class="scrubber-fill"></div></div>
+        <div class="scrubber-times"><span>2:48</span><span>${mins}:${secs}</span></div>
+      </div>`;
+  } else if(c.type==='PDF'){
+    media=`
+      <div class="viewer-pdf">
+        ${ms('description','sz40')}
+        <div class="pdf-name">${c.name}</div>
+        <div class="pdf-pages">Página 1 de 12</div>
+      </div>`;
+  } else if(c.type==='IMAGE'){
+    media=`<div class="viewer-image">${ms('image','sz40')}</div>`;
+  } else if(c.type==='AUDIO'){
+    const heights=[12,20,28,18,32,22,14,30,20,26,16,34,22,18,28,14,30,24,16,28,20,32,18,26];
+    const bars=heights.map((h,i)=>`<div class="w-bar" style="height:${h}px;animation-delay:${(i*.05).toFixed(2)}s;opacity:${i<9?'1':'.35'}"></div>`).join('');
+    media=`
+      <div class="viewer-audio">
+        <div class="audio-wave">${bars}</div>
+        <div style="width:100%">
+          <div class="scrubber-track" style="margin-bottom:6px;"><div class="scrubber-fill"></div></div>
+          <div class="scrubber-times"><span>2:20</span><span>${mins}:${secs}</span></div>
+        </div>
+        <div class="audio-ctl">
+          <button class="audio-skip">${ms('replay_10','sz24')}<span>10s</span></button>
+          <button class="audio-play">${msFill('play_arrow','sz24')}</button>
+          <button class="audio-skip">${ms('forward_10','sz24')}<span>10s</span></button>
+        </div>
+      </div>`;
+  }
+
+  // QUIZ — different layout
+  if(c.type==='QUIZ'){
+    const opts=QUIZ_DATA.opts.map((o,i)=>{
+      let cls='';
+      if(S.qsel===o.id) cls=S.qconf?(o.id===QUIZ_DATA.correct?'correct':'wrong'):'selected';
+      else if(S.qconf&&o.id===QUIZ_DATA.correct) cls='correct';
+      return `
+        <div class="quiz-opt ${cls}" onclick="qselect('${o.id}')">
+          <div class="opt-bul">${String.fromCharCode(65+i)}</div>
+          <div class="opt-txt">${o.t}</div>
+        </div>`;
+    }).join('');
+
+    const confirmBtn=(S.qsel&&!S.qconf)
+      ?`<button class="btn-primary" onclick="qconfirm()" style="margin-top:8px">${msFill('check_circle')} Confirmar resposta</button>`
+      :'';
+
+    document.getElementById('phone-screen').innerHTML=`
+      <div class="screen" id="s-viewer">
+        ${sbar()}
+        <div class="topbar">
+          <button class="back-btn" onclick="toOverview()">${ms('arrow_back_ios')} Voltar</button>
+          <div class="topbar-stat">${idx+1} de ${sc.contents.length}</div>
+        </div>
+        <div class="viewer-info">
+          <div class="viewer-title">${c.name}</div>
+          <div class="viewer-course">${sc.enr.name}</div>
+        </div>
+        <div class="quiz-body">
+          <div class="quiz-num">Questão 1 de 1</div>
+          <div class="quiz-q">${QUIZ_DATA.q}</div>
+          ${opts}${confirmBtn}
+        </div>
+        <div class="viewer-nav">${prevBtn}${nextBtn}</div>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('phone-screen').innerHTML=`
+    <div class="screen" id="s-viewer">
+      ${sbar()}
+      <div class="topbar">
+        <button class="back-btn" onclick="toOverview()">${ms('arrow_back_ios')} Voltar</button>
+        <div class="topbar-stat">${idx+1} de ${sc.contents.length}</div>
+      </div>
+      ${media}
+      <div class="viewer-info">
+        <div class="viewer-title">${c.name}</div>
+        <div class="viewer-course">${sc.enr.name}</div>
+      </div>
+      <div class="viewer-desc">${DESCS[c.type]||''}</div>
+      <div class="viewer-nav">${prevBtn}${nextBtn}</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER — COMPLETED
+// ═══════════════════════════════════════════════════
+
+function renderCompleted(sc) {
+  const total=sc.contents.length;
+  const totalMins=Math.round(sc.contents.reduce((a,c)=>a+c.dur,0)/60);
+  document.getElementById('phone-screen').innerHTML=`
+    <div class="screen" id="s-completed">
+      ${sbar()}
+      <div class="topbar">
+        <button class="back-btn" onclick="toOverview()">${ms('arrow_back_ios')} Conteúdos</button>
+      </div>
+      <div class="completed-body">
+        <div class="done-circle">${ms('check','sz40')}</div>
+        <div class="done-title">Curso concluído!</div>
+        <div class="done-course">${sc.enr.name}</div>
+        <div class="done-stats">
+          <div class="done-stat"><span class="ds-val">${total}</span><span class="ds-lbl">conteúdos</span></div>
+          <div class="done-stat"><span class="ds-val">${totalMins}</span><span class="ds-lbl">minutos</span></div>
+          <div class="done-stat"><span class="ds-val">100%</span><span class="ds-lbl">concluído</span></div>
+        </div>
+        <div class="done-cta">
+          <button class="btn-primary green">${ms('workspace_premium','sz24')} Ver meu certificado</button>
+          <button class="btn-outline" onclick="toOverview()">Ver todos os conteúdos</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER DISPATCH
+// ═══════════════════════════════════════════════════
+
+function render() {
+  const sc=scenario(); if(!sc) return;
+  renderSidebar();
+  renderLabel(sc);
+  renderAnn(sc);
+  if(S.screen==='overview')        renderOverview(sc);
+  else if(S.screen==='viewer')     renderViewer(sc,S.cidx);
+  else if(S.screen==='completed')  renderCompleted(sc);
+}
+
+// ═══════════════════════════════════════════════════
+// ACTIONS
+// ═══════════════════════════════════════════════════
+
+function pick(id) {
+  const sc=SCENARIOS.find(s=>s.id===id); if(!sc) return;
+  S.sid=id; S.screen=sc.screen; S.cidx=sc.contentIdx??0; S.qsel=null; S.qconf=false;
+  render();
+}
+function openC(idx) { S.screen='viewer'; S.cidx=idx; S.qsel=null; S.qconf=false; render(); }
+function toOverview() { S.screen='overview'; render(); }
+function clickCTA() {
+  const sc=scenario(); if(!sc) return;
+  const i=sc.contents.findIndex(c=>c.status==='CURRENT');
+  openC(i>=0?i:0);
+}
+function finishCourse() { S.screen='completed'; render(); }
+function dismissExp() {
+  const o=document.getElementById('exp-overlay');
+  if(o){o.style.transition='opacity .25s';o.style.opacity='0';setTimeout(()=>o.remove(),260);}
+}
+function qselect(id) { if(S.qconf) return; S.qsel=id; render(); }
+function qconfirm() { if(!S.qsel) return; S.qconf=true; render(); }
+
+// ── INIT
+renderSidebar();
+pick('in-progress');
+</script>
+</body>
+</html>

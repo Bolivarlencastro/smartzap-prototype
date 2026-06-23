@@ -3,6 +3,7 @@
   "version": "1.42.0",
   "license": "MIT",
   "scripts": {
+    "start:classroom-prototype": "npx serve apps/smartzap-view-prototype --listen 4200 --no-clipboard",
     "start": "nx reset && NX_DAEMON=false nx serve smartzap-admin --configuration=prototype --port=4300",
     "start:smartzap-admin-prototype": "nx reset && NX_DAEMON=false nx serve smartzap-admin --configuration=prototype --port=4300",
     "build:smartzap-admin-prototype-pages": "nx reset && NX_DAEMON=false nx build smartzap-admin --configuration=prototype-pages",
