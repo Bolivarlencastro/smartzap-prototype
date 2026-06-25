@@ -42,6 +42,9 @@ jobs:
           NODE_OPTIONS: "--max-old-space-size=4096"
         run: npx nx build smartzap-admin --configuration=prototype-pages
 
+      - name: Copy classroom prototype
+        run: cp -r apps/smartzap-view-prototype dist/apps/smartzap-admin-pages/classroom-prototype
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
