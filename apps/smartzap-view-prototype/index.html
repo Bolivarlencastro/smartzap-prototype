@@ -196,12 +196,14 @@ button { font-family:inherit; touch-action:manipulation; }
 .topbar-title { font-size:14px; font-weight:700; color:#0F1923; }
 .topbar-sub   { font-size:11px; color:#8A9BAA; margin-top:1px; }
 .topbar-stat  { font-size:12px; color:#8A9BAA; font-weight:500; white-space:nowrap; }
-.back-btn {
-  background:none; border:none; color:#007AFF;
-  cursor:pointer; padding:0; display:flex; align-items:center;
-  flex-shrink:0; gap:2px; font-size:13px; font-weight:500;
+.menu-btn {
+  background:none; border:none; color:#0F1923;
+  cursor:pointer; padding:4px 6px 4px 0; display:flex; align-items:center;
+  flex-shrink:0; gap:5px; font-size:13px; font-weight:600;
+  border-radius:8px; transition:background .1s;
 }
-.back-btn .ms { font-size:18px; }
+.menu-btn:active { background:#F4F6FA; }
+.menu-btn .ms { font-size:20px; }
 
 /* ── PROGRESS ─────────────────────────────────────── */
 .prog-rail { height:4px; background:#DDE1E8; flex-shrink:0; }
@@ -218,7 +220,7 @@ button { font-family:inherit; touch-action:manipulation; }
 .c-item.is-current { background:#FFFBF0; }
 .c-item.is-locked  { opacity:.4; cursor:not-allowed; }
 .ci-ico {
-  width:38px; height:38px; border-radius:10px;
+  width:36px; height:36px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   flex-shrink:0;
 }
@@ -241,12 +243,13 @@ button { font-family:inherit; touch-action:manipulation; }
 /* ── CTA ─────────────────────────────────────────── */
 .cta-bar { background:var(--ph-white); padding:12px 16px; border-top:1px solid #E5E8EE; flex-shrink:0; }
 .btn-primary {
-  width:100%; background:var(--accent); color:#fff; border:none;
-  border-radius:12px; padding:13px; font-size:14px; font-weight:700;
+  width:100%; background:#9758a7; color:#fff; border:none;
+  border-radius:100px; padding:14px 20px; font-size:14px; font-weight:700;
   cursor:pointer; transition:background .1s, transform .08s;
   display:flex; align-items:center; justify-content:center; gap:8px;
+  min-height:48px; letter-spacing:.01em;
 }
-.btn-primary:active { background:#D9901A; transform:scale(.99); }
+.btn-primary:active { background:#7a4589; transform:scale(.99); }
 .btn-primary.green  { background:var(--done); }
 .btn-primary.green:active { background:#29AF6B; }
 
@@ -368,15 +371,15 @@ button { font-family:inherit; touch-action:manipulation; }
   display:grid; grid-template-columns:1fr 1fr; gap:8px; flex-shrink:0;
 }
 .btn-nav {
-  padding:10px 8px; border-radius:10px; font-size:13px; font-weight:600;
+  padding:10px 8px; border-radius:100px; font-size:13px; font-weight:600;
   border:1.5px solid #E5E8EE; background:var(--ph-white); cursor:pointer;
   color:#0F1923; display:flex; align-items:center; justify-content:center; gap:4px;
   transition:background .1s;
 }
 .btn-nav:active    { background:#F4F6FA; }
 .btn-nav:disabled  { opacity:.3; cursor:not-allowed; }
-.btn-nav.next      { background:var(--accent); border-color:var(--accent); color:#fff; }
-.btn-nav.next:active { background:#D9901A; }
+.btn-nav.next      { background:#9758a7; border-color:#9758a7; color:#fff; }
+.btn-nav.next:active { background:#7a4589; }
 .btn-nav.finish    { background:var(--done); border-color:var(--done); color:#fff; }
 
 /* EXPIRED OVERLAY */
@@ -757,10 +760,10 @@ function msFill(name, extra='') { return `<span class="ms fill ${extra}">${name}
 // Icon for a content item based on type + status
 function ciIconHtml(c) {
   const tm = T[c.type]||T.VIDEO;
-  if (c.status==='DONE')    return msFill('check_circle','sz24');
-  if (c.status==='CURRENT') return msFill('play_arrow','sz24');
-  if (c.status==='LOCKED')  return ms('lock','sz24');
-  return ms(tm.icon,'sz24');
+  if (c.status==='DONE')    return msFill('check_circle','sz16');
+  if (c.status==='CURRENT') return msFill('play_arrow','sz16');
+  if (c.status==='LOCKED')  return ms('lock','sz16');
+  return ms(tm.icon,'sz16');
 }
 
 // ═══════════════════════════════════════════════════
@@ -857,7 +860,7 @@ function renderOverview(sc) {
     const iCls=isLocked?'locked':isDone?'done':isCur?'current':'pending';
     const bCls=isLocked?'locked':isDone?'done':isCur?'current':'pending';
     const bTxt=isLocked?'Bloqueado':isDone?'Feito':isCur?'Agora':'Pendente';
-    const iconHtml=isLocked?ms('lock','sz24'):ciIconHtml(c);
+    const iconHtml=isLocked?ms('lock','sz16'):ciIconHtml(c);
     const itemCls=`c-item${isCur?' is-current':''}${isLocked?' is-locked':''}`;
     const click=isLocked?'':` onclick="openC(${idx})"`;
     return `
@@ -987,7 +990,7 @@ function renderViewer(sc, idx) {
       <div class="screen" id="s-viewer">
         ${sbar()}
         <div class="topbar">
-          <button class="back-btn" onclick="toOverview()">${ms('arrow_back_ios')} Voltar</button>
+          <button class="menu-btn" onclick="toOverview()">${ms('format_list_bulleted')} Menu</button>
           <div class="topbar-stat">${idx+1} de ${sc.contents.length}</div>
         </div>
         <div class="viewer-info">
@@ -1008,7 +1011,7 @@ function renderViewer(sc, idx) {
     <div class="screen" id="s-viewer">
       ${sbar()}
       <div class="topbar">
-        <button class="back-btn" onclick="toOverview()">${ms('arrow_back_ios')} Voltar</button>
+        <button class="menu-btn" onclick="toOverview()">${ms('format_list_bulleted')} Menu</button>
         <div class="topbar-stat">${idx+1} de ${sc.contents.length}</div>
       </div>
       ${media}
@@ -1032,7 +1035,7 @@ function renderCompleted(sc) {
     <div class="screen" id="s-completed">
       ${sbar()}
       <div class="topbar">
-        <button class="back-btn" onclick="toOverview()">${ms('arrow_back_ios')} Conteúdos</button>
+        <button class="menu-btn" onclick="toOverview()">${ms('format_list_bulleted')} Menu</button>
       </div>
       <div class="completed-body">
         <div class="done-circle">${ms('check','sz40')}</div>
